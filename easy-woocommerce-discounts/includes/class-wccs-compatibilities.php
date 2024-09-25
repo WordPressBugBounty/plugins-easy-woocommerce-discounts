@@ -126,9 +126,7 @@ class WCCS_Compatibilities {
 		// WooCommerce Payments compatibility.
 		if ( defined( 'WCPAY_PLUGIN_FILE' ) && WC_Payments_Features::is_customer_multi_currency_enabled() ) {
 			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-wc-payments.php';
-			$compatibility = new WCCS_Compatibility_WC_Payments( $this->loader, WC_Payments_Multi_Currency() );
-			$compatibility->init();
-			$this->services->set( 'WCCS_Compatibility_WC_Payments', $compatibility );
+			WCCS_Compatibility_WC_Payments::init();
 		}
 
 		// CURCY - Multi Currency for WooCommerce compatibility.

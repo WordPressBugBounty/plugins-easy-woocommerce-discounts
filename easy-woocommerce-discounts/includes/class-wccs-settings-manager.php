@@ -635,6 +635,30 @@ class WCCS_Settings_Manager {
 									),
 									'disabled_options' => array( 1 ),
 								),
+								'bulk_pricing_change_price' => array(
+									'id'      => 'bulk_pricing_change_price',
+									'name'    => __( 'Change Price', 'easy-woocommerce-discounts' ),
+									'desc'    => __( 'The client side may be faster, but the server side is more accurate, especially when considering the quantities within the cart.', 'easy-woocommerce-discounts' ),
+									'type'    => 'select',
+									'std'     => 'client',
+									'options' => array(
+										'client' => __( 'Client side', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
+										'server' => __( 'Server side', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
+									),
+									'disabled_options' => array( 'client', 'server' ),
+								),
+								'variation_pirce_update' => array(
+									'id'      => 'variation_pirce_update',
+									'name'    => __( 'Variation Price Update', 'easy-woocommerce-discounts' ),
+									'desc'    => __( "When enabled, the product price will automatically update to reflect the selected variation's price when a variation is chosen on the product page.", 'easy-woocommerce-discounts' ),
+									'type'    => 'select',
+									'std'     => 0,
+									'options' => array(
+										1 => __( 'Enabled', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
+										0 => __( 'Disabled', 'easy-woocommerce-discounts' ),
+									),
+									'disabled_options' => array( 1 ),
+								),
 							)
 						),
 						'live-price' => apply_filters( 'wccs_settings_promotion_live_price_section',

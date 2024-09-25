@@ -1,5 +1,19 @@
 == Changelog ==
 
+= 7.1.0 =
+* Added manual coupons feature that makes a cart discount rule similar to a manual coupon.
+* Added an option to toggle between client-side or server-side handling for bulk pricing rule adjustments.
+* Introduced a new option for bulk pricing rules in the plugin settings that allows to automatically update the product price based on variation price changes when a variation is selected.
+* Resolved an issue affecting product variation price changes under bulk pricing rules.
+* Corrected a problem with the wccs_change_cart_item_price filter hook.
+* Addressed a compatibility issue with manual coupons in the WooCommerce REST API.
+* Fixed a total price calculation issue in the live price feature.
+* mproved compatibility with WooCommerce Payments to resolve specific conflicts.
+* Fixed an issue where removing cart discount coupons interfered with checkout fee rules.
+* Verified compatibility with WooCommerce version 9.3.2.
+* Verified compatibility with WordPress version 6.6.2.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.0.0 =
 * Added a custom cache table to store plugin data such as pricing, quantity tables, messages, badges, and more, improving performance.
 * Introduced options to selectively disable caching of prices, quantity tables, messages, and badges, providing more flexibility.
@@ -11,7 +25,6 @@
 * Added a free gift emoji 🎁 to the free items in the cart and checkout. (PRO)
 * Added an option to Enable/Disable free gift emoji 🎁 in the cart and checkout. (PRO)
 * Verified compatibility with WooCommerce version 9.0.0.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 6.5.0 =
 * Added a compatibility with Elementor mini-cart.

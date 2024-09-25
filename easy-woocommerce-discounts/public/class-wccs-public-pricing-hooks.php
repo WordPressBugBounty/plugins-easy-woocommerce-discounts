@@ -47,9 +47,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		$this->loader->add_action( 'woocommerce_cart_item_removed', $this, 'reset_applied_pricings' );
 		$this->loader->add_action( 'woocommerce_checkout_update_order_review', $this, 'reset_applied_pricings' );
 		$this->loader->add_action( 'woocommerce_after_cart_item_quantity_update', $this, 'reset_applied_pricings' );
-		if ( apply_filters( 'wccs_change_cart_item_price', true ) ) {
-			$this->loader->add_filter( 'woocommerce_cart_item_price', $this, 'cart_item_price', 10, 3 );
-		}
+		$this->loader->add_filter( 'woocommerce_cart_item_price', $this, 'cart_item_price', 10, 3 );
 
 		// Fix mini cart issue with subtotal conditions of simple pricing rules.
 		$this->loader->add_action( 'woocommerce_before_mini_cart_contents', $this, 'calculate_cart_totals', 10 );
@@ -275,6 +273,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 
 	public function cart_item_price( $price, $cart_item, $cart_item_key ) {
 		if ( ! isset( $cart_item['_wccs_discounted_price'] ) || ! isset( $cart_item['_wccs_before_discounted_price'] ) || ! isset( $cart_item['_wccs_main_price'] ) ) {
+			return $price;
+		}
+
+		if ( ! apply_filters( 'wccs_change_cart_item_price', true ) ) {
 			return $price;
 		}
 

@@ -30,6 +30,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 		$loader->add_action( 'woocommerce_check_cart_items', $this, 'maybe_remove_coupon', 1 );
 		$loader->add_filter( 'woocommerce_coupon_message', $this, 'maybe_remove_coupon_message', 99, 3 );
 		$loader->add_filter( 'woocommerce_apply_individual_use_coupon', $this, 'apply_individual_use_coupon', 10, 3 );
+		$loader->add_filter( 'woocommerce_coupon_is_valid', $this, 'coupon_is_valid', 99, 2 );
 	}
 
 	public function add_discount() {
@@ -69,7 +70,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 			return;
 		}
 
-		$this->discounts = WCCS()->cart_discount->get_possible_discounts();
+		$this->discounts = WCCS()->cart_discount->get_possible_discounts( 'with_applied_manuals' );
 		$this->discounts = apply_filters( 'wccs_applicable_cart_discounts', $this->discounts, $this );
 		if ( empty( $this->discounts ) ) {
 			return;
@@ -89,10 +90,18 @@ class WCCS_Public_Cart_Discount_Hooks {
 
 	public function get_coupon_data( $false, $data ) {
 		if (
-			empty( $this->discounts ) ||
 			! WCCS()->cart_discount ||
 			! WCCS()->cart_discount->is_cart_discount_coupon( $data )
 		) {
+			return $false;
+		}
+
+		$manual = $this->get_manual_coupon_data( $data );
+		if ( $manual ) {
+			return $manual;
+		}
+
+		if ( empty( $this->discounts ) ) {
 			return $false;
 		}
 
@@ -147,12 +156,48 @@ class WCCS_Public_Cart_Discount_Hooks {
 		return $false;
 	}
 
+	protected function get_manual_coupon_data( $data ) {
+		$manual = WCCS()->cart_discount->get_manual_coupon( $data );
+		if ( ! $manual ) {
+			return false;
+		}
+
+		$discount = array(
+			'id'   => self::COUPON_ID,
+			'code' => $manual->code,
+		);
+
+		if ( 'percentage' === $manual->discount_type ) {
+			$discount['discount_type'] = 'percent';
+			$discount['amount']        = $manual->amount;
+		} elseif ( 'percentage_discount_per_item' === $manual->discount_type ) {
+			$discount['discount_type'] = 'percent';
+			$discount['amount']        = $manual->amount;
+			$discount['product_ids']   = ! empty( $manual->product_ids ) ? $manual->product_ids : array();
+		} elseif ( 'price_discount_per_item' === $manual->discount_type ) {
+			$discount['discount_type'] = 'fixed_product';
+			$discount['amount']        = WCCS_Helpers::maybe_exchange_price( $manual->amount, 'coupon' );
+			$discount['product_ids']   = ! empty( $manual->product_ids ) ? $manual->product_ids : array();
+		} elseif (
+			'price' === $manual->discount_type ||
+			'fixed_price' === $manual->discount_type
+		) {
+			$discount['amount']        = WCCS_Helpers::maybe_exchange_price( $manual->discount_amount, 'coupon' );
+		}
+
+		return apply_filters( 'wccs_get_manual_coupon_data', $discount );
+	}
+
 	public function cart_totals_coupon_html( $coupon_html, $coupon ) {
 		if (
 			! WCCS()->cart_discount ||
 			! WCCS()->cart_discount->is_cart_discount_coupon( $coupon->get_code() )
 		) {
 			return $this->maybe_remove_coupon_zero_value( $coupon_html, $coupon );
+		}
+
+		if ( WCCS()->cart_discount->is_manual_coupon( $coupon->get_code() ) ) {
+			return $coupon_html;
 		}
 
 		if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->get_code(), WC()->cart->display_cart_ex_tax ) ) {
@@ -169,6 +214,10 @@ class WCCS_Public_Cart_Discount_Hooks {
 
 		$code = WCCS_Helpers::wc_version_check() ? $coupon->get_code() : $coupon->code;
 		if ( ! WCCS()->cart_discount->is_cart_discount_coupon( $code ) ) {
+			return $label;
+		}
+
+		if ( WCCS()->cart_discount->is_manual_coupon( $coupon->get_code() ) ) {
 			return $label;
 		}
 
@@ -195,10 +244,23 @@ class WCCS_Public_Cart_Discount_Hooks {
 			return;
 		}
 
-		foreach ( WC()->cart->applied_coupons as $coupon_code ) {
-			if ( WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) ) {
-				WC()->cart->remove_coupon( $coupon_code );
+		// Get the applied coupons array
+		$applied_coupons = WC()->cart->get_applied_coupons();
+		$removed = false;
+
+		foreach ( $applied_coupons as $key => $coupon_code ) {
+			// Check if the coupon is a cart discount coupon and not a manual coupon
+			if ( 
+				WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) && 
+				! WCCS()->cart_discount->is_manual_coupon( $coupon_code ) 
+			) {
+				unset( $applied_coupons[ $key ] );
+				$removed = true;
 			}
+		}
+		
+		if ( $removed ) {
+			WC()->cart->applied_coupons = array_values( $applied_coupons );
 		}
 	}
 
@@ -212,7 +274,10 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		foreach ( WC()->cart->applied_coupons as $coupon_code ) {
-			if ( ! WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) ) {
+			if ( 
+				! WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) ||
+				WCCS()->cart_discount->is_manual_coupon( $coupon_code )
+			) {
 				continue;
 			}
 
@@ -239,7 +304,10 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		$code = WCCS_Helpers::wc_version_check() ? $coupon->get_code() : $coupon->code;
-		if ( WCCS()->cart_discount->is_cart_discount_coupon( $code ) ) {
+		if ( 
+			WCCS()->cart_discount->is_cart_discount_coupon( $code ) && 
+			! WCCS()->cart_discount->is_manual_coupon( $code ) 
+		) {
 			return '';
 		}
 
@@ -265,12 +333,26 @@ class WCCS_Public_Cart_Discount_Hooks {
 		return $keep_coupons;
 	}
 
-	protected function apply_coupon( $coupon_code ) {
-		if ( empty( $coupon_code ) ) {
+	public function coupon_is_valid( $valid, $coupon ) {
+		$manual = WCCS()->cart_discount->get_manual_coupon( $coupon->get_code() );
+		if ( ! $manual ) {
+			return $valid;
+		}
+
+		$possibles = WCCS()->cart_discount->get_possible_discounts( 'all' );
+		if ( empty( $possibles ) || ! isset( $possibles[ $coupon->get_code() ] ) ) {
 			return false;
 		}
 
+		return $valid;
+	}
+
+	protected function apply_coupon( $coupon_code ) {
 		try {
+			if ( empty( $coupon_code ) ) {
+				return false;
+			}
+
 			$coupon = new WC_Coupon( $coupon_code );
 			if ( $coupon->is_valid() && ! WC()->cart->has_discount( $coupon_code ) ) {
 				WC()->cart->applied_coupons[] = $coupon_code;
@@ -279,11 +361,11 @@ class WCCS_Public_Cart_Discount_Hooks {
 				do_action( 'woocommerce_applied_coupon', $coupon_code );
 				$this->applying_coupon = false;
 			}
+
+			return true;
 		} catch ( Exception $e ) {
 			return false;
 		}
-
-		return true;
 	}
 
 	protected function should_apply_cart_discounts() {

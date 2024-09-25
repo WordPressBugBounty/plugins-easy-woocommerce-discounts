@@ -3,9 +3,9 @@ Contributors: asanaplugins
 Donate link: https://www.asanaplugins.com/
 Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woocommerce discounts, woocommerce pricing deals, woocommerce Buy One Get One Free, bulk coupons, gift coupons, signup coupons, advanced coupons, woocommerce bulk discounts, woocommerce pricing, woocommerce price rules, woocommerce advanced discounts, woocommerce pricing deals, woocommerce bulk discounts, woocommerce cart discounts, woocommerce pricing deals, woocommerce discount rules, discount rules for woocommerce, woocommerce shipping, dynamic shipping, url coupons for woocommerce
 Requires at least: 4.4.2
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 5.6.0
-Stable tag: 7.0.0
+Stable tag: 7.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,12 +77,12 @@ Conditional shipping methods allow e-commerce businesses to determine shipping o
 Conditional checkout fees are additional charges that are applied to a purchase based on certain conditions being met. For example, an online retailer may charge a fee for expedited shipping or for a specific payment method. These fees are typically disclosed upfront so that the customer understands the total cost of their purchase. While some customers may find these fees to be an inconvenience, they are often necessary for businesses to cover the costs associated with these services. It is important for businesses to be transparent about these fees to avoid any confusion or frustration among customers.
 
 == Auto Add Gift Products (PRO Version Addon) ==
-Additionally, it is worth noting that the Auto Add Products to Cart addon can also be utilized when a customer reaches a certain spending threshold. In other words, if a customer spends a certain amount of money, they can automatically receive a gift product. This feature can be a powerful tool in encouraging customers to spend more and boost sales.
+Additionally, it is worth noting that the [Auto Add Products to Cart](https://www.asanaplugins.com/auto-add-products-to-cart-in-woocommerce/) addon can also be utilized when a customer reaches a certain spending threshold. In other words, if a customer spends a certain amount of money, they can automatically receive a gift product. This feature can be a powerful tool in encouraging customers to spend more and boost sales.
 
 Auto Add Products to Cart is available as an addon for the PRO version.
 
 == WooCommerce Shipping Discount (PRO Version Addon) ==
-Shipping discount refers to the reduced cost of delivering products to customers. It is a promotional strategy commonly used by online retailers to attract customers and increase sales. Shipping can be a significant expense for buyers, especially for those located far from the seller's location. A shipping offer can incentivize buyers to purchase more items or make larger purchases, knowing that they will save money on delivery fees. Sellers can also benefit from offering shipping discounts by gaining more sales and repeat customers. Overall, shipping OFFs are a win-win for both buyers and sellers as they help lower costs and increase customer satisfaction.
+[Shipping discount](https://www.asanaplugins.com/how-to-add-shipping-discounts-in-woocommerce/) refers to the reduced cost of delivering products to customers. It is a promotional strategy commonly used by online retailers to attract customers and increase sales. Shipping can be a significant expense for buyers, especially for those located far from the seller's location. A shipping offer can incentivize buyers to purchase more items or make larger purchases, knowing that they will save money on delivery fees. Sellers can also benefit from offering shipping discounts by gaining more sales and repeat customers. Overall, shipping OFFs are a win-win for both buyers and sellers as they help lower costs and increase customer satisfaction.
 
 It is an addon for the PRO version.
 
@@ -96,11 +96,11 @@ URL Coupons is an addon for the PRO version.
 * <strong>[WooCommerce percentage OFF](https://www.asanaplugins.com/how-to-create-woocommerce-percentage-discounts/) | [Video Tutorial](https://youtu.be/W5hwOb5tflw)</strong>
 * <strong>[WooCommerce BOGO deals or Buy One Get One Free in WooCommerce](https://www.asanaplugins.com/how-to-create-buy-one-get-one-free-bogo-deals-in-woocommerce/)</strong>
 * <strong>[Buy 2 Get 1 Free in WooCommerce](https://www.asanaplugins.com/buy-2-get-1-free-woocommerce-discount/) | [Video Tutorial](https://youtu.be/OtzozKCz_ks)</strong>
-* <strong>Buy 3 Get 1 Free Offer</strong>
+* <strong>[Buy 3 Get 1 Free Offer](https://www.asanaplugins.com/create-a-buy-3-get-1-free-deal-for-woocommerce/)</strong>
 * <strong>[Buy A Get B](https://youtu.be/FxbnrqUnhYI)</strong>
 * <strong>[Automatically add free products to cart for BOGO deals](https://youtu.be/A7lWDWAiNG8)</strong>
-* <strong>Give free gift products</strong>
-* <strong>Offer one or more free gift products</strong>
+* <strong>[Give free gift products](https://www.asanaplugins.com/provide-free-gift-products-in-woocommerce-complete-guide/)</strong>
+* <strong>[Offer one or more free gift products](https://www.asanaplugins.com/provide-free-gift-products-in-woocommerce-complete-guide/)</strong>
 * <strong>[WooCommerce Bulk pricing](https://www.asanaplugins.com/woocommerce-bulk-discounts/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link) | [Video Tutorial](https://youtu.be/hm77PqMcA_0)</strong>
 * <strong>[WooCommerce tiered pricing](https://www.asanaplugins.com/woocommerce-tiered-discounts/)</strong>
 * <strong>[Products Group Pricing](https://www.asanaplugins.com/how-to-create-bundle-discounts-in-woocommerce/)</strong>
@@ -109,29 +109,29 @@ URL Coupons is an addon for the PRO version.
 * <strong>[OFF categories](https://www.asanaplugins.com/how-to-create-woocommerce-category-discounts/) | [Video Tutorial](https://youtu.be/11_LJBTvgng)</strong>
 * <strong>[Product attributes](https://www.asanaplugins.com/how-to-create-woocommerce-product-attributes-discounts/)</strong>
 * <strong>Product tags</strong>
-* <strong>Create User Role Based Rules</strong>
+* <strong>[Create User Role Based Rules](https://www.asanaplugins.com/user-role-based-pricing-for-woocommerce-detailed-guide/)</strong>
 * <strong>Create Black Friday or Cyber Mondey discount deals</strong>
-* <strong>Create WholeSale deals</strong>
+* <strong>[Create WholeSale deals](https://www.asanaplugins.com/how-to-setup-wholesale-discounts-for-products-in-woocommerce/)</strong>
 * <strong>Dependant product (Buy Product A and get discount on Product B)</strong>
 * <strong>Purchase history (Customers who spent $100 in previously get 10%)</strong>
 * <strong>Rules for number of orders placed earlier (Example: 10% for customers with 5 or more orders)</strong>
 * <strong>User based offers</strong>
 * <strong>[First Order rule](https://www.asanaplugins.com/how-to-give-first-order-discount-in-woocommerce/)</strong>
-* <strong>[payment methods](https://youtu.be/Kmi8ezXUnLU)</strong>
+* <strong>[payment methods](https://www.asanaplugins.com/create-payment-method-discount-in-woocommerce/)</strong>
 * <strong>[Shipping state offers](https://youtu.be/jJtZ5de1568)</strong>
 * <strong>Create shipping or delivery location based offers</strong>
 * <strong>Advanced Checkout Fees</strong>
 * <strong>Live Price</strong>
 * <strong>Advanced WooCommerce Coupons</strong>
 * <strong>Advanced WooCommerce Shipping Methods</strong>
-* <strong>[Checkout Fee for specific Payment Methods](https://youtu.be/Bg-Of6n1j6g)</strong>
+* <strong>[Checkout Fee for specific Payment Methods](https://www.asanaplugins.com/create-payment-gateway-fees-in-woocommerce/)</strong>
 * <strong>[Checkout Fee for specific Shipping postcodes](https://youtu.be/837u3oJD2J0)</strong>
 * <strong>[Checkout Fee for specific products](https://youtu.be/YWm5lhyi5jY)</strong>
 * <strong>Powerful Conditional Logic</strong>
 * <strong>WooCommerce Countdown Timer</strong>
 * <strong>Fixed price offers (Get 10$ discount for purchasing over 6 items).</strong>
 * <strong>User role based pricing (Example: Wholesale customers get a discounted price).</strong>
-* <strong>All Products or Storewide offers.</strong>
+* <strong>[All Products or Storewide offers](https://www.asanaplugins.com/woocommerce-apply-discount-to-all-products/)</strong>
 * <strong>Signup Offer</strong>
 * <strong>Discount Manager Plugin</strong>
 * <strong>[WooCommerce smart coupons](https://www.asanaplugins.com/how-to-create-smart-coupons-in-woocommerce/)</strong>
@@ -252,6 +252,20 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 7. WooCommerce Checkout Fee - Charge £20.00 fee when weight is greater than a specific wheight.
 
 == Changelog ==
+
+= 7.1.0 =
+* Added manual coupons feature that makes a cart discount rule similar to a manual coupon.
+* Added an option to toggle between client-side or server-side handling for bulk pricing rule adjustments.
+* Introduced a new option for bulk pricing rules in the plugin settings that allows to automatically update the product price based on variation price changes when a variation is selected.
+* Resolved an issue affecting product variation price changes under bulk pricing rules.
+* Corrected a problem with the wccs_change_cart_item_price filter hook.
+* Addressed a compatibility issue with manual coupons in the WooCommerce REST API.
+* Fixed a total price calculation issue in the live price feature.
+* mproved compatibility with WooCommerce Payments to resolve specific conflicts.
+* Fixed an issue where removing cart discount coupons interfered with checkout fee rules.
+* Verified compatibility with WooCommerce version 9.3.2.
+* Verified compatibility with WordPress version 6.6.2.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.0.0 =
 * Added a custom cache table to store plugin data such as pricing, quantity tables, messages, badges, and more, improving performance.

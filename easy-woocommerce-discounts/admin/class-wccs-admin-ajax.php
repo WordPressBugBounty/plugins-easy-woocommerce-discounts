@@ -107,6 +107,7 @@ class WCCS_Admin_Ajax {
 				$meta_data['discount_amount'] = ! empty( $_POST['discount_amount'] ) ? floatval( $_POST['discount_amount'] ) : 0;
 				$meta_data['items']           = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
 				$meta_data['exclude_items']   = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
+				$meta_data['manual']          = ! empty( $_POST['manual'] ) ? absint( $_POST['manual'] ) : 0;
 			} // Shipping method condition meta data.
 			elseif ( 'shipping' === $type ) {
 				$meta_data['private_note']      = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
