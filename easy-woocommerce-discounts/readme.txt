@@ -5,7 +5,7 @@ Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woo
 Requires at least: 4.4.2
 Tested up to: 6.6
 Requires PHP: 5.6.0
-Stable tag: 7.1.0
+Stable tag: 7.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -253,6 +253,12 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 
 == Changelog ==
 
+= 7.1.1 =
+* Added "subtotal including tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
+* Added "subtotal excluding tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
+* Verified compatibility with WooCommerce version 9.3.3.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.1.0 =
 * Added manual coupons feature that makes a cart discount rule similar to a manual coupon.
 * Added an option to toggle between client-side or server-side handling for bulk pricing rule adjustments.
@@ -265,7 +271,6 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 * Fixed an issue where removing cart discount coupons interfered with checkout fee rules.
 * Verified compatibility with WooCommerce version 9.3.2.
 * Verified compatibility with WordPress version 6.6.2.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.0.0 =
 * Added a custom cache table to store plugin data such as pricing, quantity tables, messages, badges, and more, improving performance.
@@ -278,7 +283,6 @@ Note: We kindly request your support in spreading the word by leaving a 5-star r
 * Added a free gift emoji 🎁 to the free items in the cart and checkout. (PRO)
 * Added an option to Enable/Disable free gift emoji 🎁 in the cart and checkout. (PRO)
 * Verified compatibility with WooCommerce version 9.0.0.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 6.5.0 =
 * Added a compatibility with Elementor mini-cart.
