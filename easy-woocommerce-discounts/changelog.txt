@@ -1,10 +1,15 @@
 == Changelog ==
 
+= 7.2.0 =
+* Fixed an issue with individual use manual coupons.
+* Verified compatibility with WooCommerce version 9.4.1.
+* Verified compatibility with WordPress version 6.7.0.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.1.1 =
 * Added "subtotal including tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
 * Added "subtotal excluding tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
 * Verified compatibility with WooCommerce version 9.3.3.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.1.0 =
 * Added manual coupons feature that makes a cart discount rule similar to a manual coupon.

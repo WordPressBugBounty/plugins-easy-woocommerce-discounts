@@ -70,7 +70,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 			return;
 		}
 
-		$this->discounts = WCCS()->cart_discount->get_possible_discounts( 'with_applied_manuals' );
+		$this->discounts = WCCS()->cart_discount->get_possible_discounts();
 		$this->discounts = apply_filters( 'wccs_applicable_cart_discounts', $this->discounts, $this );
 		if ( empty( $this->discounts ) ) {
 			return;
@@ -339,7 +339,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 			return $valid;
 		}
 
-		$possibles = WCCS()->cart_discount->get_possible_discounts( 'all' );
+		$possibles = WCCS()->cart_discount->get_possible_discounts();
 		if ( empty( $possibles ) || ! isset( $possibles[ $coupon->get_code() ] ) ) {
 			return false;
 		}

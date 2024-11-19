@@ -366,6 +366,32 @@ class WCCS_Helpers {
 		return ! empty( $post->post_content ) && false !== strpos( $post->post_content, '[product_page' );
 	}
 
+	public static function get_applying_coupon() {
+		// If it's a WooCommerce REST request (Cart Block), retrieve the 'code' parameter from JSON payload
+		if ( 
+			! empty( $_SERVER['REQUEST_URI'] ) &&
+			false !== strpos( $_SERVER['REQUEST_URI'], '/wc/store' ) 
+		) {
+			$raw_data = file_get_contents( 'php://input' );
+			$data = json_decode( $raw_data, true );
+	
+			if ( 
+				is_array( $data ) && 
+				false !== strpos( $data['requests'][0]['path'], '/apply-coupon' ) && 
+				isset( $data['requests'][0]['data']['code'] ) 
+			) {
+				return wc_format_coupon_code( wp_unslash( $data['requests'][0]['data']['code'] ) );
+			}
+		}
+
+		if ( ! check_ajax_referer( 'apply-coupon', 'security', false ) ) {
+			return '';
+		}
+	
+		// Fallback for traditional WooCommerce cart form submission
+		return ! empty( $_POST['coupon_code'] ) ? wc_format_coupon_code( wp_unslash( $_POST['coupon_code'] ) ) : '';
+	}
+
 	public static function register_polyfills( $react = false ) {
 		static $registered;
 		if ( $registered ) {

@@ -3,9 +3,9 @@ Contributors: asanaplugins
 Donate link: https://www.asanaplugins.com/
 Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woocommerce discounts, woocommerce pricing deals, woocommerce Buy One Get One Free, bulk coupons, gift coupons, signup coupons, advanced coupons, woocommerce bulk discounts, woocommerce pricing, woocommerce price rules, woocommerce advanced discounts, woocommerce pricing deals, woocommerce bulk discounts, woocommerce cart discounts, woocommerce pricing deals, woocommerce discount rules, discount rules for woocommerce, woocommerce shipping, dynamic shipping, url coupons for woocommerce
 Requires at least: 4.4.2
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.6.0
-Stable tag: 7.1.1
+Stable tag: 7.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -253,11 +253,16 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 
 == Changelog ==
 
+= 7.2.0 =
+* Fixed an issue with individual use manual coupons.
+* Verified compatibility with WooCommerce version 9.4.1.
+* Verified compatibility with WordPress version 6.7.0.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.1.1 =
 * Added "subtotal including tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
 * Added "subtotal excluding tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
 * Verified compatibility with WooCommerce version 9.3.3.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.1.0 =
 * Added manual coupons feature that makes a cart discount rule similar to a manual coupon.

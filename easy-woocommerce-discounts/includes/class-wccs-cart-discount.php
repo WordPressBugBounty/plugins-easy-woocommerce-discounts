@@ -61,39 +61,64 @@ class WCCS_Cart_Discount {
 		return $this->coupon_codes;
 	}
 
-	public function get_valid_discounts( $include_type = 'auto' ) {
+	public function get_valid_discounts() {
 		if ( ! isset( $this->cart ) || ! WC()->cart || empty( $this->discounts ) ) {
 			return array();
 		}
 
-		$valid_discounts = array();
-		$applied_coupons = WC()->cart->get_applied_coupons();
+		$valid_discounts   = array();
+		$applied_coupons   = WC()->cart->get_applied_coupons();
+		$applying_coupon   = WCCS_Helpers::get_applying_coupon();
+		$individual_manual = false;
+		$manuals           = array();
 
 		foreach ( $this->discounts as $discount ) {
-			if ( isset( $discount->manual ) && 1 == $discount->manual && 'all' !== $include_type ) {
-				if ( 'with_applied_manuals' === $include_type ) {
-					$code = wc_format_coupon_code( $discount->name );
-					if ( ! in_array( $code, $applied_coupons ) ) {
-						continue;
-					}
+			// Skip URL-based coupons or invalid date/condition constraints
+			if ( ! empty( $discount->url_coupon ) || 
+				! $this->date_time_validator->is_valid_date_times( $discount->date_time, isset( $discount->date_times_match_mode ) ? $discount->date_times_match_mode : 'one' ) || 
+				! $this->condition_validator->is_valid_conditions( $discount->conditions, isset( $discount->conditions_match_mode ) ? $discount->conditions_match_mode : 'all' ) 
+			) {
+				continue;
+			}
+	
+			// Handle manual discounts
+			if ( ! empty( $discount->manual ) ) {
+				$code = wc_format_coupon_code( $discount->name );
+				$is_applying = ( $code === $applying_coupon );
+				$is_individual = ( isset( $discount->apply_mode ) && 'individually' === $discount->apply_mode );
+	
+				if ( $is_applying && $is_individual ) {
+					$individual_manual = $discount->id;
+				}
+	
+				if ( in_array( $code, $applied_coupons, true ) || $is_applying ) {
+					$manuals[] = $discount;
 				} else {
 					continue;
 				}
 			}
-
-			if ( isset( $discount->url_coupon ) && 1 == $discount->url_coupon ) {
-				continue;
-			}
-
-			if ( ! $this->date_time_validator->is_valid_date_times( $discount->date_time, ( ! empty( $discount->date_times_match_mode ) ? $discount->date_times_match_mode : 'one' ) ) ) {
-				continue;
-			}
-
-			if ( ! $this->condition_validator->is_valid_conditions( $discount->conditions, ( ! empty( $discount->conditions_match_mode ) ? $discount->conditions_match_mode : 'all' ) ) ) {
-				continue;
-			}
-
+	
 			$valid_discounts[] = $discount;
+		}
+	
+		if ( $individual_manual ) {
+			// Remove all other applied coupons when individual-use coupon is applied
+			$applied_coupons = array_filter( $applied_coupons, function( $applied ) use ( $manuals, $individual_manual ) {
+				foreach ( $manuals as $manual ) {
+					$code = wc_format_coupon_code( $manual->name );
+					if ( $code === $applied && $manual->id !== $individual_manual ) {
+						return false;
+					}
+				}
+				return true;
+			});
+	
+			WC()->cart->applied_coupons = array_values( $applied_coupons );
+	
+			// Filter valid discounts to include only the individual-use discount
+			$valid_discounts = array_filter( $valid_discounts, function( $discount ) use ( $individual_manual ) {
+				return empty( $discount->manual ) || $discount->id === $individual_manual;
+			});
 		}
 
 		$valid_discounts = apply_filters( 'wccs_cart_discount_valid_discounts', $valid_discounts, $this );
@@ -106,8 +131,8 @@ class WCCS_Cart_Discount {
 		return $valid_discounts;
 	}
 
-	public function get_possible_discounts( $include_type = 'auto' ) {
-		$valids = $this->get_valid_discounts( $include_type );
+	public function get_possible_discounts() {
+		$valids = $this->get_valid_discounts();
         if ( empty( $valids ) ) {
             return array();
 		}
@@ -333,7 +358,7 @@ class WCCS_Cart_Discount {
 			return false;
 		}
 
-		$possibles = $this->get_possible_discounts( 'all' );
+		$possibles = $this->get_possible_discounts();
 		if ( ! isset( $possibles[ $coupon_code ] ) ) {
 			foreach ( $this->discounts as $discount ) {
 				if ( 
