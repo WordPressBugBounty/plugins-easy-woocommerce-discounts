@@ -138,6 +138,7 @@ class WCCS_Admin_Assets {
 					'shippingList' => $wccs->WCCS_Conditions_Provider->get_shippings(),
 					'dateTime' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
 					'saleBadgesAdv' => ! defined( 'ASNP_WESB_VERSION' ),
+					'pluginUrl' => WCCS_PLUGIN_URL,
 				);
 			break;
 		}

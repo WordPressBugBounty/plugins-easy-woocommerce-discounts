@@ -78,7 +78,7 @@ class WCCS_Admin {
 		$this->services    = $services;
 
 		$this->load_dependencies();
-		$this->black_friday();
+		$this->handle_offers();
 	}
 
 	/**
@@ -169,35 +169,109 @@ class WCCS_Admin {
 		return $links;
 	}
 
-	protected function black_friday() {
-		$name = 'wccs_black_friday_' . date( 'Y' );
+	protected function add_offer_notice( $offer_name, $start_date, $end_date, $message, $button_label, $button_url, $button_color = '#0071a1' ) {
+		$name = 'wccs_' . $offer_name . '_' . date( 'Y' );
 		if ( (int) get_option( $name . '_added' ) ) {
-			// Is Black Friday expired.
-			if ( time() > strtotime( date( 'Y' ) . '-11-30' ) ) {
-				WC_Admin_Notices::remove_notice( $name );
+			// Is the offer expired.
+			if ( time() > strtotime( $end_date . ' 23:59:59' ) ) {
+				\WC_Admin_Notices::remove_notice( $name );
 				delete_option( $name . '_added' );
 			}
 			return;
 		}
 
-		if ( WC_Admin_Notices::has_notice( $name ) ) {
+		if ( \WC_Admin_Notices::has_notice( $name ) ) {
 			return;
 		}
 
-		// Is Black Friday applicable.
+		// Is the offer applicable.
 		if (
-			time() < strtotime( date( 'Y' ) . '-11-20' ) ||
-			time() > strtotime( date( 'Y' ) . '-11-30' )
+			time() < strtotime( $start_date . ' 00:00:00' ) ||
+			time() > strtotime( $end_date . ' 23:59:59' )
 		) {
 			return;
 		}
 
-		WC_Admin_Notices::add_custom_notice(
+		\WC_Admin_Notices::add_custom_notice(
 			$name,
-			'<p>' . __( '<strong>Black Friday Exclusive:</strong> SAVE up to 50% & access to <strong>Discount Rules and Dynamic Pricing Pro</strong> features.', 'easy-woocommerce-discounts' ) . '<a class="button button-primary" style="margin-left: 10px; background: #5614d5; border-color: #5614d5;" target="_blank" href="https://asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=black-friday&utm_medium=link">' . __('Grab The Offer', 'easy-woocommerce-discounts') . '</a></p>'
+			'<p>' . $message . '<a class="button button-primary" style="margin-left: 10px; background: ' . esc_attr( $button_color ) . '; border-color: ' . esc_attr( $button_color ) . ';" target="_blank" href="' . esc_url( $button_url ) . '">' .
+				esc_html( $button_label ) .
+				'</a></p>'
 		);
 
 		update_option( $name . '_added', 1 );
+	}
+
+	protected function handle_offers() {
+		$this->add_offer_notice(
+			'black_friday',
+			date( 'Y' ) . '-11-20',
+			date( 'Y' ) . '-11-30',
+			'<strong>Black Friday Exclusive:</strong> SAVE up to 75% & get access to <strong>Discount Rules and Dynamic Pricing Pro</strong> features.',
+			'Grab The Offer',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=black-friday&utm_medium=link',
+			'#5614d5'
+		);
+
+		$this->add_offer_notice(
+			'cyber_monday',
+			date( 'Y' ) . '-12-01',
+			date( 'Y' ) . '-12-10',
+			'<strong>Cyber Monday Exclusive:</strong> Save up to 75% on <strong>Discount Rules and Dynamic Pricing Pro</strong>. Limited Time Only!',
+			'Claim Your Deal',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=cyber-monday&utm_medium=link',
+			'#00aaff'
+		);
+
+		$this->add_offer_notice(
+			'holiday_discount',
+			date( 'Y' ) . '-12-11',
+			date( 'Y' ) . '-12-31',
+			'<strong>Holiday Cheer:</strong> Get up to 75% OFF <strong>Discount Rules and Dynamic Pricing Pro</strong> this festive season.',
+			'Shop Now',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=holiday-discount&utm_medium=link',
+			'#28a745'
+		);
+
+		$this->add_offer_notice(
+			'new_year_sale',
+			date( 'Y' ) . '-01-01',
+			date( 'Y' ) . '-01-10',
+			'<strong>New Year Sale:</strong> Kickstart your projects with up to 75% OFF <strong>Discount Rules and Dynamic Pricing Pro</strong>!',
+			'Get The Deal',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=new-year-sale&utm_medium=link',
+			'#ff5733'
+		);
+
+		$this->add_offer_notice(
+			'spring_sale',
+			date( 'Y' ) . '-03-20',
+			date( 'Y' ) . '-03-30',
+			'<strong>Spring Into Savings:</strong> Get up to 75% OFF <strong>Discount Rules and Dynamic Pricing Pro</strong>. Refresh your store this season!',
+			'Spring Deals',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=spring-sale&utm_medium=link',
+			'#5cb85c'
+		);
+
+		$this->add_offer_notice(
+			'summer_sale',
+			date( 'Y' ) . '-06-15',
+			date( 'Y' ) . '-06-25',
+			'<strong>Sizzling Summer Sale:</strong> Save up to 75% on <strong>Discount Rules and Dynamic Pricing Pro</strong>. Limited time only!',
+			'Cool Deals',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=summer-sale&utm_medium=link',
+			'#ff5733'
+		);
+
+		$this->add_offer_notice(
+			'halloween_sale',
+			date( 'Y' ) . '-10-25',
+			date( 'Y' ) . '-10-31',
+			'<strong>Halloween Spooktacular:</strong> Scare away high prices! Get up to 75% OFF <strong>Discount Rules and Dynamic Pricing Pro</strong>. No tricks, just treats!',
+			'Shop Spooky Deals',
+			'https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=halloween-sale&utm_medium=link',
+			'#ff4500'
+		);
 	}
 
 }
