@@ -280,6 +280,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			return $price;
 		}
 
+		if ( isset( $cart_item['asnp_wepb_items'] ) || isset( $cart_item['asnp_wepb_parent_id'] ) ) {
+			return $price;
+		}
+
 		if ( isset( $cart_item['_wccs_main_sale_price'] ) && $cart_item['_wccs_main_sale_price'] == $cart_item['_wccs_main_price'] ) {
 			$before_discounted_price = apply_filters(
 				'wccs_cart_item_price_before_discounted_price',

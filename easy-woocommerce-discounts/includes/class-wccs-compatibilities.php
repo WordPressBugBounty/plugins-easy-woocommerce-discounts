@@ -150,6 +150,11 @@ class WCCS_Compatibilities {
 			$compatibility->init();
 			$this->services->set( 'WCCS_Compatibility_WPML', $compatibility );
 		}
+
+		if ( defined( 'ASNP_WEPB_VERSION' ) ) {
+			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-product-bundles.php';
+			WCCS_Compatibility_Product_Bundles::init();
+		}
     }
 
 }
