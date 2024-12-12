@@ -5,7 +5,7 @@ Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woo
 Requires at least: 4.4.2
 Tested up to: 6.7
 Requires PHP: 5.6.0
-Stable tag: 7.3.0
+Stable tag: 7.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -252,6 +252,12 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 7. WooCommerce Checkout Fee - Charge £20.00 fee when weight is greater than a specific wheight.
 
 == Changelog ==
+
+= 7.3.1 =
+* Fixed an issue in changing product bundle price.
+* Checkout Fees adjusted to consider if the subtotal includes or excludes tax based on cart configuration. (PRO)
+* Verified compatibility with WooCommerce version 9.4.3.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.3.0 =
 * Added basic compatibility of simple pricing rules with Product Bundle Builder plugin.

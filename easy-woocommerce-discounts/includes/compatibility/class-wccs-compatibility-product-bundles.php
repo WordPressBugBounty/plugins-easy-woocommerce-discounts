@@ -10,7 +10,7 @@ class WCCS_Compatibility_Product_Bundles {
         add_filter( 'asnp_wepb_maybe_change_price', [ __CLASS__, 'maybe_change_price' ], 99, 3 );
     }
 
-    public static function maybe_change_price( $product, $price, $price_type ) {
+    public static function maybe_change_price( $price, $product, $price_type ) {
         if ( ! $product ) {
             return $price;
         }
