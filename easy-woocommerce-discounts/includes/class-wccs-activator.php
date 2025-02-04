@@ -289,6 +289,9 @@ class WCCS_Activator {
 			'7.0.0' => array(
 				'WCCS_Updates::update_700',
 			),
+			'7.3.2' => array(
+				'WCCS_Updates::clear_pricing_caches',
+			),
 		);
 	}
 

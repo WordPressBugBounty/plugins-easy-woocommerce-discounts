@@ -214,7 +214,6 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			}
 
 			$regular_price = WCCS()->product_helpers->wc_get_price_to_display( $this->product, array( 'price' => WCCS()->product_helpers->wc_get_regular_price( $this->product ) ) );
-			$regular_price = wc_price( $regular_price );
 		}
 		
 		$prices = array_filter( $prices );
@@ -229,16 +228,24 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		if ( isset( $from ) && isset( $to ) && $from != $to ) {
 			$content = wc_format_price_range( $from, $to );
 		} elseif ( isset( $from ) ) {
-			$content = wc_price( $from ) . $this->product->get_price_suffix();
+			$content = wc_price( $from );
 		} elseif ( isset( $to ) ) {
-			$content = wc_price( $to ) . $this->product->get_price_suffix();
+			$content = wc_price( $to );
 		}
 
-		if ( '' !== $regular_price && $regular_price != $content ) {
-			$content = '<del aria-hidden="true">' . $regular_price . '</del> <ins>' . $content . '</ins>' . $this->product->get_price_suffix();
+		if ( '' !== $regular_price ) {
+			if ( $this->product->is_type( 'variable' ) ) {
+				if ( $min_reg < $from || $max_reg > $to ) {
+					$content = '<del aria-hidden="true">' . $regular_price . '</del> <ins>' . $content . '</ins>';
+				}
+			} elseif ( $regular_price < $from || $regular_price > $to ) {
+				$content = '<del aria-hidden="true">' . wc_price( $regular_price ) . '</del> <ins>' . $content . '</ins>';
+			}
 		}
 
-		$content = apply_filters( 'wccs_public_product_pricing_' . __FUNCTION__, $content, $this );
+		$content .= $this->product->get_price_suffix();
+
+		$content = apply_filters( 'wccs_public_product_pricing_' . __FUNCTION__, $content, $prices, $this );
 
 		WCCS()->WCCS_Product_Price_Cache->cache_price( $this->product, $content, array( 'rule' => absint( $rule['id'] ), 'price' => $price ) );
 
