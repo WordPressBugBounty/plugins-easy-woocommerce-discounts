@@ -126,7 +126,7 @@ class WCCS_Product_Price_Replace {
             return apply_filters( 'wccs_product_price_replace_replace_price', $price, $price, $product, $price_type );
         }
 
-        if ( $exchange_price ) {
+        if ( $cached_price != $price && $exchange_price ) {
             $cached_price = WCCS_Helpers::maybe_exchange_price( $cached_price );
         }
 

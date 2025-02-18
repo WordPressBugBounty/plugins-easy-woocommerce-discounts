@@ -5,7 +5,7 @@ Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woo
 Requires at least: 4.4.2
 Tested up to: 6.7
 Requires PHP: 5.6.0
-Stable tag: 7.3.2
+Stable tag: 7.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ WooCommerce discount plugin, pricing and discounts, category discount, smart cou
 
 Looking for the best <strong>WooCommerce discount</strong> plugin to boost your sales? Look no further than the <strong>WooCommerce Dynamic Pricing & Discounts</strong> - <strong>Easy WooCommerce Discounts</strong> plugin! With its easy-to-use interface and comprehensive features, you can easily create bulk discounts, percentage category discounts, smart coupons, storewide offers, auto-apply coupons, product offers, product variation offers, advanced coupons, tiered-offs, and product quantity-based offers. This plugin offers well-defined solutions to help you set the best offers on your WooCommerce store, making it the perfect choice for beginners and professional users alike.
 
-[FRONT-END DEMO](https://pricing-and-discounts.asanaplugins.com/demo/) | [BACK-END DEMO](https://pricing-and-discounts.asanaplugins.com/) | [Ask Questions](https://www.asanaplugins.com/support/) | [DOCUMENTATION](https://www.asanaplugins.com/knowledgebase/wccs-overview/) | [VIDEO TOTURIALS](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-videos/) | **[PRO WITH 50% DISCOUNT FOR $30](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
+[FRONT-END DEMO](https://pricing-and-discounts.asanaplugins.com/demo/) | [BACK-END DEMO](https://pricing-and-discounts.asanaplugins.com/) | [Ask Questions](https://www.asanaplugins.com/support/) | [DOCUMENTATION](https://www.asanaplugins.com/knowledgebase/wccs-overview/) | [VIDEO TOTURIALS](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-videos/) | **[PRO WITH UPTO 75% DISCOUNT](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
 
 https://youtu.be/79uJ1WzTxFM
 
@@ -253,10 +253,14 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 
 == Changelog ==
 
+= 7.3.3 =
+* Fixed a compatibility issue with currency switcher plugins.
+* Verified compatibility with WooCommerce version 9.6.1.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.3.2 =
 * Fixed change product price issue with bulk pricing rules.
 * Verified compatibility with WooCommerce version 9.6.0.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.3.1 =
 * Fixed an issue in changing product bundle price.
