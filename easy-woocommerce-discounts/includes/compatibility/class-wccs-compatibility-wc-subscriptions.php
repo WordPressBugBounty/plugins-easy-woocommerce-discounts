@@ -18,7 +18,7 @@ class WCCS_Compatibility_WC_Subscriptions {
 
     public function should_apply( $apply ) {
         if ( ! is_callable( array( 'WC_Subscriptions_Cart', 'get_calculation_type' ) ) ) {
-            return $apply ;
+            return $apply;
         }
 
         if ( $apply && 'recurring_total' === WC_Subscriptions_Cart::get_calculation_type() ) {

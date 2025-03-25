@@ -5,7 +5,7 @@ Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woo
 Requires at least: 4.4.2
 Tested up to: 6.7
 Requires PHP: 5.6.0
-Stable tag: 7.3.3
+Stable tag: 7.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -253,10 +253,15 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 
 == Changelog ==
 
+= 7.3.4 =
+* Fixed an issue in getting applied couopn with WooCommerce cart block.
+* Fixed an issue in checking pricing existance.
+* Verified compatibility with WooCommerce version 9.7.1.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.3.3 =
 * Fixed a compatibility issue with currency switcher plugins.
 * Verified compatibility with WooCommerce version 9.6.1.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.3.2 =
 * Fixed change product price issue with bulk pricing rules.

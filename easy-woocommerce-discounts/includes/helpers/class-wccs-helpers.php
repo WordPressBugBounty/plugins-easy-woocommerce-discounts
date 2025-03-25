@@ -300,14 +300,23 @@ class WCCS_Helpers {
 	}
 
 	public static function should_change_display_price() {
+		if ( ! WCCS()->pricing ) {
+			return false;
+		}
+
 		if ( 'none' === WCCS()->settings->get_setting( 'change_display_price', 'simple' ) ) {
 			return false;
 		}
+
 		$simples = WCCS()->pricing->get_simple_pricings();
 		return ! empty( $simples );
 	}
 
 	public static function should_change_display_price_html( $type = 'simple' ) {
+		if ( ! WCCS()->pricing ) {
+			return false;
+		}
+
 		$change = WCCS()->settings->get_setting( 'change_display_price', 'all' );
 		if ( 'all' !== $change && 'simple' !== $change ) {
 			return false;
@@ -372,11 +381,12 @@ class WCCS_Helpers {
 			! empty( $_SERVER['REQUEST_URI'] ) &&
 			false !== strpos( $_SERVER['REQUEST_URI'], '/wc/store' ) 
 		) {
-			$raw_data = file_get_contents( 'php://input' );
-			$data = json_decode( $raw_data, true );
+			$data = file_get_contents( 'php://input' );
+			$data = json_decode( $data, true );
 	
 			if ( 
 				is_array( $data ) && 
+				isset( $data['requests'][0]['path'] ) &&
 				false !== strpos( $data['requests'][0]['path'], '/apply-coupon' ) && 
 				isset( $data['requests'][0]['data']['code'] ) 
 			) {
