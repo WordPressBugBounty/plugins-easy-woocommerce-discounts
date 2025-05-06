@@ -125,10 +125,12 @@ class WCCS_Activator {
 		require_once dirname( __FILE__ ) . '/class-wccs-db-conditions.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-db-condition-meta.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-db-cache.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-db-user-usage-logs.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-db-rule-usage-logs.php';
 	}
 
 	/**
-	 * Runing installation.
+	 * Running installation.
 	 *
 	 * @since  1.0.0
 	 *
@@ -171,6 +173,12 @@ class WCCS_Activator {
 		$cache = new WCCS_DB_Cache();
 		$cache->create_table();
 
+		$rule_usage_logs = new WCCS_DB_Rule_Usage_Logs();
+		$rule_usage_logs->create_table();
+
+		$user_usage_logs = new WCCS_DB_User_Usage_Logs();
+		$user_usage_logs->create_table();
+
 		self::create_options();
 		self::update_version();
 		self::maybe_update_db_version();
@@ -198,12 +206,12 @@ class WCCS_Activator {
 		// Setup some default options
 		$options = array();
 
-		$settigns_manager = new WCCS_Settings_Manager();
+		$settings_manager = new WCCS_Settings_Manager();
 		// Populate some default values
-		foreach( $settigns_manager->get_registered_settings() as $tab => $sections ) {
+		foreach( $settings_manager->get_registered_settings() as $tab => $sections ) {
 			foreach( $sections as $section => $settings) {
 				// Check for backwards compatibility
-				$tab_sections = $settigns_manager->get_settings_tab_sections( $tab );
+				$tab_sections = $settings_manager->get_settings_tab_sections( $tab );
 				if( ! is_array( $tab_sections ) || ! array_key_exists( $section, $tab_sections ) ) {
 					$section = 'main';
 					$settings = $sections;

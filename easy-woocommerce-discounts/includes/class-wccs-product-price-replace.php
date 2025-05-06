@@ -372,80 +372,31 @@ class WCCS_Product_Price_Replace {
 
         $value = true;
 
-        $pricing_rules = WCCS()->pricing->get_all_pricing_rules();
+        $pricing_rules = WCCS()->pricing->get_simple_pricings();
+        $exclude_rules = WCCS()->pricing->get_exclude_rules();
 
-        $user_conditions = apply_filters( 'wccs_product_price_replace_user_conditions_invalidate_cached_variation_prices', array(
-            'customers',
-            'money_spent',
-            'number_of_orders',
-            'last_order_amount',
-            'roles',
-            'email',
-            'bought_products',
-            'bought_product_variations',
-            'bought_product_categories',
-            'bought_product_attributes',
-            'bought_product_tags',
-            'bought_featured_products',
-            'bought_onsale_products',
-            'user_capability',
-            'user_meta',
-            'average_money_spent_per_order',
-            'last_order_date',
-            'number_of_products_reviews',
-            'quantity_of_bought_products',
-            'quantity_of_bought_variations',
-            'quantity_of_bought_categories',
-            'quantity_of_bought_attributes',
-            'quantity_of_bought_tags',
-            'amount_of_bought_products',
-            'amount_of_bought_variations',
-            'amount_of_bought_categories',
-            'amount_of_bought_attributes',
-            'amount_of_bought_tags',
-        ) );
+        $hash = md5( wp_json_encode( array( $pricing_rules, $exclude_rules ) ) );
 
-        $cart_conditions = apply_filters( 'wccs_product_price_replace_cart_conditions_invalidate_cached_variation_prices', array(
-            'products_in_cart',
-            'product_variations_in_cart',
-            'featured_products_in_cart',
-            'onsale_products_in_cart',
-            'product_categories_in_cart',
-            'product_attributes_in_cart',
-            'product_tags_in_cart',
-            'number_of_cart_items',
-            'subtotal_excluding_tax',
-            'subtotal_including_tax',
-            'quantity_of_cart_items',
-            'cart_total_weight',
-            'coupons_applied',
-            'quantity_of_products',
-            'quantity_of_variations',
-            'quantity_of_categories',
-            'quantity_of_attributes',
-            'quantity_of_tags',
-            'payment_method',
-            'shipping_method',
-            'shipping_country',
-            'shipping_state',
-            'shipping_postcode',
-            'shipping_zone',
-            'subtotal_of_products_include_tax',
-            'subtotal_of_products_exclude_tax',
-            'subtotal_of_variations_include_tax',
-            'subtotal_of_variations_exclude_tax',
-            'subtotal_of_categories_include_tax',
-            'subtotal_of_categories_exclude_tax',
-            'subtotal_of_attributes_include_tax',
-            'subtotal_of_attributes_exclude_tax',
-            'subtotal_of_tags_include_tax',
-            'subtotal_of_tags_exclude_tax',
-        ) );
+        $saved_hash = get_transient( 'wccs_can_read_variation_cached_prices_hash' );
+        if ( $saved_hash != $hash ) {
+            if ( is_user_logged_in() ) {
+                // Compare with use specific transient.
+                $user_id = get_current_user_id();
+                $user_transient = get_transient( 'wccs_can_read_variation_cached_prices_hash_' . $user_id );
+                if ( $user_transient != $hash ) {
+                    $value = false;
+                    if ( $this->can_save_variation_cached_prices_transient( $pricing_rules ) ) {
+                        set_transient( 'wccs_can_read_variation_cached_prices_hash_' . $user_id, $hash, DAY_IN_SECONDS );
+                    }
+                }
 
-        if ( is_user_logged_in() && WCCS_Rules_Helpers::has_conditions( $pricing_rules, $user_conditions ) ) {
-            $value = false;
-        } elseif ( is_a( WC()->cart, 'WC_Cart' ) && ! WC()->cart->is_empty() && WCCS_Rules_Helpers::has_conditions( $pricing_rules, $cart_conditions ) ) {
-            $value = false;
+                // Set general transient.
+            } else {
+                $value = false;
+                if ( $this->can_save_variation_cached_prices_transient( $pricing_rules ) ) {
+                    set_transient( 'wccs_can_read_variation_cached_prices_hash', $hash );
+                }
+            }
         }
 
         $this->read_variation_cached_prices = apply_filters( 'wccs_product_price_replace_read_variation_cached_prices', $value, $product );
@@ -503,14 +454,25 @@ class WCCS_Product_Price_Replace {
 		return md5( wp_json_encode( apply_filters( 'woocommerce_get_variation_prices_hash', $price_hash, $product, $for_display ) ) );
     }
 
-    protected function get_variation_pricing_hash( $product, $for_display = false )
-    {
+    protected function get_variation_pricing_hash( $product, $for_display = false ) {
         $hash = array(
             'rules'         => WCCS()->pricing->get_simple_pricings(),
             'exclude_rules' => WCCS()->pricing->get_exclude_rules(),
         );
 
         return md5( wp_json_encode( apply_filters( 'wccs_' . __FUNCTION__, $hash, $product, $for_display ) ) );
+    }
+
+    protected function can_save_variation_cached_prices_transient( $rules ) {
+        if ( empty( $rules ) ) {
+            return false;
+        }
+
+        if ( WC()->cart && WC()->cart->is_empty() ) {
+            return true;
+        }
+
+        return ! WCCS_Rules_Helpers::has_cart_conditions( $rules );
     }
 
 }

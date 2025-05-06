@@ -55,16 +55,27 @@ class WCCS_Pricing {
 		foreach ( $this->pricings as $pricing ) {
 			if ( 'simple' !== $pricing->mode || empty( $pricing->items ) || empty( $pricing->discount ) || floatval( $pricing->discount ) <= 0 ) {
 				continue;
-			} // Validating date time.
-			elseif ( ! $this->date_time_validator->is_valid_date_times( $pricing->date_time, ( ! empty( $pricing->date_times_match_mode ) ? $pricing->date_times_match_mode : 'one' ) ) ) {
+			}
+
+			// Validating rule usage limit.
+			if ( ! empty( $pricing->usage_limit ) && ! WCCS_Usage_Validator::check_rule_usage_limit( $pricing ) ) {
 				continue;
-			} // Validating conditions.
-			elseif ( ! $this->condition_validator->is_valid_conditions( $pricing->conditions, ( ! empty( $pricing->conditions_match_mode ) ? $pricing->conditions_match_mode : 'all' ) ) ) {
+			} 
+			
+			// Validating date time.
+			if ( ! $this->date_time_validator->is_valid_date_times( $pricing->date_time, ( ! empty( $pricing->date_times_match_mode ) ? $pricing->date_times_match_mode : 'one' ) ) ) {
+				continue;
+			} 
+			
+			// Validating conditions.
+			if ( ! $this->condition_validator->is_valid_conditions( $pricing, ( ! empty( $pricing->conditions_match_mode ) ? $pricing->conditions_match_mode : 'all' ) ) ) {
 				continue;
 			}
 
 			$this->cache['simple'][ $pricing->id ] = array(
 				'id'                    => absint( $pricing->id ),
+				'name'                  => ! empty( $pricing->name ) ? sanitize_text_field( $pricing->name ) : '',
+				'description'           => ! empty( $pricing->description ) ? sanitize_text_field( $pricing->description ) : '',
 				'mode'                  => 'simple',
 				'apply_mode'            => ! empty( $pricing->apply_mode ) ? $pricing->apply_mode : 'all',
 				'order'                 => (int) $pricing->ordering,
@@ -74,6 +85,7 @@ class WCCS_Pricing {
 				'exclude_items'         => ! empty( $pricing->exclude_items ) ? $pricing->exclude_items : array(),
 				'date_time'             => $pricing->date_time,
 				'date_times_match_mode' => ! empty( $pricing->date_times_match_mode ) ? $pricing->date_times_match_mode : 'one',
+				'conditions'            => $pricing->conditions,
 			);
 		}
 
@@ -93,11 +105,20 @@ class WCCS_Pricing {
 		foreach ( $this->pricings as $pricing ) {
 			if ( 'bulk' !== $pricing->mode || empty( $pricing->items ) || empty( $pricing->quantity_based_on ) || empty( $pricing->quantities ) ) {
 				continue;
-			} // Validating date time.
-			elseif ( ! $this->date_time_validator->is_valid_date_times( $pricing->date_time, ( ! empty( $pricing->date_times_match_mode ) ? $pricing->date_times_match_mode : 'one' ) ) ) {
+			}
+
+			// Validating rule usage limit.
+			if ( ! empty( $pricing->usage_limit ) && ! WCCS_Usage_Validator::check_rule_usage_limit( $pricing ) ) {
 				continue;
-			} // Validating conditions.
-			elseif ( ! $this->condition_validator->is_valid_conditions( $pricing->conditions, ( ! empty( $pricing->conditions_match_mode ) ? $pricing->conditions_match_mode : 'all' ) ) ) {
+			} 
+			
+			// Validating date time.
+			if ( ! $this->date_time_validator->is_valid_date_times( $pricing->date_time, ( ! empty( $pricing->date_times_match_mode ) ? $pricing->date_times_match_mode : 'one' ) ) ) {
+				continue;
+			} 
+			
+			// Validating conditions.
+			if ( ! $this->condition_validator->is_valid_conditions( $pricing, ( ! empty( $pricing->conditions_match_mode ) ? $pricing->conditions_match_mode : 'all' ) ) ) {
 				continue;
 			}
 
@@ -118,6 +139,8 @@ class WCCS_Pricing {
 
 			$this->cache['bulk'][ $pricing->id ] = array(
 				'id'                    => absint( $pricing->id ),
+				'name'                  => ! empty( $pricing->name ) ? sanitize_text_field( $pricing->name ) : '',
+				'description'           => ! empty( $pricing->description ) ? sanitize_text_field( $pricing->description ) : '',
 				'mode'                  => 'bulk',
 				'apply_mode'            => ! empty( $pricing->apply_mode ) ? $pricing->apply_mode : 'all',
 				'order'                 => (int) $pricing->ordering,
@@ -130,6 +153,7 @@ class WCCS_Pricing {
 				'display_discount'      => ! empty( $pricing->display_discount ) ? $pricing->display_discount : 'no',
 				'date_time'             => $pricing->date_time,
 				'date_times_match_mode' => ! empty( $pricing->date_times_match_mode ) ? $pricing->date_times_match_mode : 'one',
+				'conditions'            => $pricing->conditions,
 			);
 		}
 

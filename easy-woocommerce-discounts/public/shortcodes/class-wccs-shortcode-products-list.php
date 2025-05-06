@@ -25,7 +25,7 @@ class WCCS_Shortcode_Products_List {
 			return do_action( 'woocommerce_no_products_found' );
 		}
 
-		if ( ! empty( $condition->conditions ) && ! $wccs->WCCS_Condition_Validator->is_valid_conditions( $condition->conditions, ( ! empty( $condition->conditions_match_mode ) ? $condition->conditions_match_mode : 'all' ) ) ) {
+		if ( ! empty( $condition->conditions ) && ! $wccs->WCCS_Condition_Validator->is_valid_conditions( $condition, ( ! empty( $condition->conditions_match_mode ) ? $condition->conditions_match_mode : 'all' ) ) ) {
 			return do_action( 'woocommerce_no_products_found' );
 		}
 

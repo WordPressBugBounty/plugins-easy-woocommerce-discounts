@@ -117,6 +117,10 @@ class WCCS_Public_Cart_Item_Pricing {
 		return apply_filters( 'wccs_public_cart_item_pricing_' . __FUNCTION__, $this->prices, $this );
 	}
 
+	public function get_applied_rules() {
+		return $this->applied_discounts;
+	}
+
 	/**
 	 * Setting applied prices to the item.
 	 *
@@ -159,19 +163,26 @@ class WCCS_Public_Cart_Item_Pricing {
 		$discount_limit = '';
 
 		$discount_amounts = array();
-		foreach ( $discounts as $discount_id => $discount ) {
+		foreach ( $discounts as $discount ) {
 			if ( '' !== $discount_limit && 0 >= $discount_limit ) {
 				break;
 			}
 
-			$discount_amount = $this->calculate_discount_amount( $discount, $base_price, $discount_id, $discount_limit );
+			$discount_amount = $this->calculate_discount_amount( $discount, $base_price, $discount['id'], $discount_limit );
 			if ( false !== $discount_amount ) {
 				if ( '' !== $discount_limit ) {
 					$discount_limit -= $discount_amount;
 				}
 
 				$discount_amounts[] = array(
-					'id'                    => $discount_id,
+					'id'                    => $discount['id'],
+					'name'                  => $discount['name'],
+					'description'           => $discount['description'],
+					'type'                  => 'discount',
+					'mode'                  => ! empty( $discount['mode'] ) ? $discount['mode'] : '',
+					'apply_mode'            => ! empty( $discount['apply_mode'] ) ? $discount['apply_mode'] : '',
+					'discount_type'         => ! empty( $discount['discount_type'] ) ? $discount['discount_type'] : '',
+					'discount'              => ! empty( $discount['discount'] ) ? $discount['discount'] : 0,
 					'amount'                => $discount_amount,
 					'date_time'             => $discount['date_time'],
 					'date_times_match_mode' => $discount['date_times_match_mode'],

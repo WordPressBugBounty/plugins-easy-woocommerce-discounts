@@ -402,6 +402,29 @@ class WCCS_Helpers {
 		return ! empty( $_POST['coupon_code'] ) ? wc_format_coupon_code( wp_unslash( $_POST['coupon_code'] ) ) : '';
 	}
 
+	public static function get_billing_email() {
+        if ( empty( $_GET['wc-ajax'] ) || ! in_array( $_GET['wc-ajax'], array( 'checkout', 'update_order_review' ) ) ) {
+            return '';
+        }
+
+        $email = '';
+        if ( ! empty( $_POST['billing_email'] ) ) {
+            $email = strtolower( sanitize_email( $_POST['billing_email'] ) );
+        } elseif ( ! empty( $_POST['post_data'] ) ) {
+            parse_str( $_POST['post_data'], $post );
+            if ( ! empty( $post['billing_email'] ) ) {
+                $email = strtolower( sanitize_email( $post['billing_email'] ) );
+            }
+        }
+        return is_email( $email ) ? $email : '';
+    }
+
+	public static function get_used_by() {
+		$used_by = get_current_user_id();
+		$used_by = empty( $used_by ) ? static::get_billing_email() : $used_by;
+		return $used_by;
+	}
+
 	public static function register_polyfills( $react = false ) {
 		static $registered;
 		if ( $registered ) {

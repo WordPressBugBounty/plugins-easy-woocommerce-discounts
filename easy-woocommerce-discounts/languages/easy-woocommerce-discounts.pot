@@ -2,14 +2,14 @@
 # This file is distributed under the http://www.gnu.org/licenses/gpl-2.0.html.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 7.3.4\n"
+"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 7.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-woocommerce-discounts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-25T00:36:06+03:00\n"
+"POT-Creation-Date: 2025-05-06T21:05:16+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: easy-woocommerce-discounts\n"
@@ -42,123 +42,123 @@ msgstr ""
 msgid "Some errors occurred in saving condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:176
+#: admin/class-wccs-admin-ajax.php:179
 msgid "Condition %s successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:186
+#: admin/class-wccs-admin-ajax.php:189
 msgid "Errors occurred in saving condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:210
+#: admin/class-wccs-admin-ajax.php:213
 msgid "Condition id required to deleting it."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:218
+#: admin/class-wccs-admin-ajax.php:221
 msgid "Some errors occurred in deleting condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:234
+#: admin/class-wccs-admin-ajax.php:237
 msgid "Condition deleted successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:244
+#: admin/class-wccs-admin-ajax.php:247
 msgid "Errors occurred in deleting condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:267
+#: admin/class-wccs-admin-ajax.php:270
 msgid "ID is required to updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:271
+#: admin/class-wccs-admin-ajax.php:274
 msgid "Type is required to updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:275
+#: admin/class-wccs-admin-ajax.php:278
 msgid "Data is required to updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:283
+#: admin/class-wccs-admin-ajax.php:286
 msgid "Some errors occurred in updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:333
+#: admin/class-wccs-admin-ajax.php:336
 msgid "Condition updated successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:344
+#: admin/class-wccs-admin-ajax.php:347
 msgid "Errors occurred in updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:367
+#: admin/class-wccs-admin-ajax.php:370
 msgid "Conditions required for ordering"
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:371
+#: admin/class-wccs-admin-ajax.php:374
 msgid "Type required for ordering."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:379
+#: admin/class-wccs-admin-ajax.php:382
 msgid "Some errors occurred in ordering conditions."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:395
+#: admin/class-wccs-admin-ajax.php:398
 msgid "Conditions ordered successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:406
+#: admin/class-wccs-admin-ajax.php:409
 msgid "Conditions did not ordered successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:430
+#: admin/class-wccs-admin-ajax.php:433
 msgid "Condition id required to duplicate it."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:434
+#: admin/class-wccs-admin-ajax.php:437
 msgid "Type required for duplicating."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:442
+#: admin/class-wccs-admin-ajax.php:445
 msgid "Some errors occurred in duplicating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:455
+#: admin/class-wccs-admin-ajax.php:458
 msgid "Errors occurred in duplicating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:467
+#: admin/class-wccs-admin-ajax.php:470
 msgid "Condition duplicated successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:491
+#: admin/class-wccs-admin-ajax.php:494
 msgid "Search term is required to select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:495
+#: admin/class-wccs-admin-ajax.php:498
 msgid "Type is required to select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:503
+#: admin/class-wccs-admin-ajax.php:506
 msgid "Some errors occurred in selecting data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:553
+#: admin/class-wccs-admin-ajax.php:556
 msgid "Options are required to get select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:557
+#: admin/class-wccs-admin-ajax.php:560
 msgid "Type is required to get select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:565
+#: admin/class-wccs-admin-ajax.php:568
 msgid "Some errors occurred in getting select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:595
+#: admin/class-wccs-admin-ajax.php:598
 msgid "Bundle"
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:608
+#: admin/class-wccs-admin-ajax.php:611
 msgid "Addons"
 msgstr ""
 
@@ -189,7 +189,7 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: admin/class-wccs-admin-order-hooks.php:36
+#: admin/class-wccs-admin-order-hooks.php:38
 #: includes/class-wccs-settings-manager.php:80
 #: includes/class-wccs-settings-manager.php:809
 #: public/class-wccs-public-total-discounts-hooks.php:20
@@ -661,7 +661,7 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:268
 #: includes/class-wccs-settings-manager.php:1100
 #: includes/class-wccs-settings-manager.php:1102
-#: public/class-wccs-public-cart-discount-hooks.php:230
+#: public/class-wccs-public-cart-discount-hooks.php:255
 #: public/class-wccs-public-product-pricing.php:481
 #: admin/js/conditions/index.js:1
 msgid "Discount"
@@ -1853,6 +1853,10 @@ msgid "Email"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+msgid "User usage limit"
+msgstr ""
+
+#: admin/js/conditions/index.js:1
 msgid "Customer value"
 msgstr ""
 
@@ -2466,6 +2470,14 @@ msgstr ""
 
 #: admin/js/conditions/index.js:1
 msgid "Please enter a valid value."
+msgstr ""
+
+#: admin/js/conditions/index.js:1
+msgid "Usage Limit"
+msgstr ""
+
+#: admin/js/conditions/index.js:1
+msgid "Leave blank for unlimited usage. To set a usage limit for individual users, please refer to the \"User usage limit\" condition in the conditions list."
 msgstr ""
 
 #: admin/js/conditions/index.js:1

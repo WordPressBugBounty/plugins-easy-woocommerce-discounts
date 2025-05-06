@@ -73,6 +73,9 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			}
 
 			$discounts[ $pricing_id ] = array(
+				'id'                    => $pricing_id,
+				'name'                  => $pricing['name'],
+				'description'           => $pricing['description'],
 				'mode'                  => $pricing['mode'],
 				'apply_mode'            => $pricing['apply_mode'],
 				'order'                 => (int) $pricing['order'],
@@ -102,6 +105,9 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			}
 
 			$pricings[ $pricing_id ] = array(
+				'id'                    => $pricing_id,
+				'name'                  => $pricing['name'],
+				'description'           => $pricing['description'],
 				'mode'                  => $pricing['mode'],
 				'apply_mode'            => $pricing['apply_mode'],
 				'order'                 => (int) $pricing['order'],
@@ -145,6 +151,9 @@ class WCCS_Cart_Item_Pricing_Discounts {
 				foreach ( $pricing['quantities'] as $quantity ) {
 					if ( intval( $quantity['min'] ) <= $item_quantity && ( '' === $quantity['max'] || intval( $quantity['max'] ) >= $item_quantity ) ) {
 						$discounts[ $pricing_id ] = array(
+							'id'                    => $pricing_id,
+							'name'                  => $pricing['name'],
+							'description'           => $pricing['description'],
 							'mode'                  => $pricing['mode'],
 							'apply_mode'            => $pricing['apply_mode'],
 							'order'                 => (int) $pricing['order'],
@@ -178,6 +187,9 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			}
 
 			$pricings[ $pricing_id ] = array(
+				'id'                    => $pricing_id,
+				'name'                  => $pricing['name'],
+				'description'           => $pricing['description'],
 				'mode'                  => $pricing['mode'],
 				'apply_mode'            => $pricing['apply_mode'],
 				'order'                 => (int) $pricing['order'],

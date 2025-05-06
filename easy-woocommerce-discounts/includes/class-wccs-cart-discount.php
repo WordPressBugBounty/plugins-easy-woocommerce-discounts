@@ -54,7 +54,7 @@ class WCCS_Cart_Discount {
 
 		foreach ( $this->discounts as $discount ) {
 			if ( ! isset( $this->coupon_codes[ wc_format_coupon_code( $discount->name ) ] ) ) {
-				$this->coupon_codes[ wc_format_coupon_code( $discount->name ) ] = $discount->name;
+				$this->coupon_codes[ wc_format_coupon_code( $discount->name ) ] = $discount;
 			}
 		}
 
@@ -73,11 +73,21 @@ class WCCS_Cart_Discount {
 		$manuals           = array();
 
 		foreach ( $this->discounts as $discount ) {
-			// Skip URL-based coupons or invalid date/condition constraints
-			if ( ! empty( $discount->url_coupon ) || 
-				! $this->date_time_validator->is_valid_date_times( $discount->date_time, isset( $discount->date_times_match_mode ) ? $discount->date_times_match_mode : 'one' ) || 
-				! $this->condition_validator->is_valid_conditions( $discount->conditions, isset( $discount->conditions_match_mode ) ? $discount->conditions_match_mode : 'all' ) 
-			) {
+			// Skip URL-based coupons.
+			if ( ! empty( $discount->url_coupon ) ) {
+				continue;
+			}
+
+			// Validating rule usage limit.
+			if ( ! empty( $discount->usage_limit ) && ! WCCS_Usage_Validator::check_rule_usage_limit( $discount ) ) {
+				continue;
+			}
+
+			if ( ! $this->date_time_validator->is_valid_date_times( $discount->date_time, isset( $discount->date_times_match_mode ) ? $discount->date_times_match_mode : 'one' ) ) {
+				continue;
+			}
+
+			if ( ! $this->condition_validator->is_valid_conditions( $discount, isset( $discount->conditions_match_mode ) ? $discount->conditions_match_mode : 'all' ) ) {
 				continue;
 			}
 	

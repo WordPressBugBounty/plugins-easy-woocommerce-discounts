@@ -202,11 +202,20 @@ class WCCS_Shipping_Method extends WC_Shipping_Method {
 
         $valid_rules = array();
         foreach ( $rules as $rule ) {
+            // Validating usage limit.
+            if ( ! empty( $rule->usage_limit ) && ! WCCS_Usage_Validator::check_rule_usage_limit( $rule ) ) {
+				continue;
+            }
+
+            // Validating date time.
             if ( ! $this->date_time_validator->is_valid_date_times( $rule->date_time, ( ! empty( $rule->date_times_match_mode ) ? $rule->date_times_match_mode : 'one' ) ) ) {
 				continue;
-			} elseif ( ! $this->condition_validator->is_valid_conditions( $rule->conditions, ( ! empty( $rule->conditions_match_mode ) ? $rule->conditions_match_mode : 'all' ), $package ) ) {
+			} 
+            
+            // Validating conditions.
+            if ( ! $this->condition_validator->is_valid_conditions( $rule, ( ! empty( $rule->conditions_match_mode ) ? $rule->conditions_match_mode : 'all' ), $package ) ) {
 				continue;
-			}
+            }
 
 			$valid_rules[] = $rule;
         }

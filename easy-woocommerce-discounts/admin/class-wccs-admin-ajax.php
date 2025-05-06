@@ -108,6 +108,7 @@ class WCCS_Admin_Ajax {
 				$meta_data['items']           = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
 				$meta_data['exclude_items']   = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
 				$meta_data['manual']          = ! empty( $_POST['manual'] ) ? absint( $_POST['manual'] ) : 0;
+				$meta_data['usage_limit']     = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
 			} // Shipping method condition meta data.
 			elseif ( 'shipping' === $type ) {
 				$meta_data['private_note']      = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
@@ -119,6 +120,7 @@ class WCCS_Admin_Ajax {
 				$meta_data['fee']               = ! empty( $_POST['fee'] ) ? sanitize_text_field( $_POST['fee'] ) : 0;
 				$meta_data['min_fee']           = isset( $_POST['min_fee'] ) && '' !== $_POST['min_fee'] ? floatval( $_POST['min_fee'] ) : '';
 				$meta_data['max_fee']           = isset( $_POST['max_fee'] ) && '' !== $_POST['max_fee'] ? floatval( $_POST['max_fee'] ) : '';
+				$meta_data['usage_limit']       = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
 			} // Pricing condition meta data.
 			elseif ( 'pricing' === $type ) {
 				if ( ! empty( $_POST['mode'] ) ) {
@@ -126,6 +128,7 @@ class WCCS_Admin_Ajax {
 					$meta_data['mode']          = sanitize_text_field( $_POST['mode'] );
 					$meta_data['items']         = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
 					$meta_data['exclude_items'] = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
+					$meta_data['usage_limit']   = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
 
 					$delete_meta = array();
 

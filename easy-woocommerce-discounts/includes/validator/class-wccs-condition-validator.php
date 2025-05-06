@@ -33,7 +33,15 @@ class WCCS_Condition_Validator {
 		}
 	}
 
-	public function is_valid_conditions( array $conditions, $match_mode = 'all' ) {
+	public function is_valid_conditions( $rule, $match_mode = 'all' ) {
+		// Backward compatibility to get the conditions.
+		$conditions = $rule;
+		if ( is_object( $rule ) && isset( $rule->conditions ) ) {
+			$conditions = $rule->conditions;
+		} else {
+			$rule = null;
+		}
+		
 		if ( empty( $conditions ) ) {
 			return true;
 		}
@@ -51,7 +59,7 @@ class WCCS_Condition_Validator {
 				$empty = false;
 				$valid = true;
 				foreach ( $group as $condition ) {
-					if ( ! $this->is_valid( $condition ) ) {
+					if ( ! $this->is_valid( $condition, $rule ) ) {
 						$valid = false;
 						break;
 					}
@@ -64,9 +72,9 @@ class WCCS_Condition_Validator {
 		}
 
 		foreach ( $conditions as $condition ) {
-			if ( 'one' === $match_mode && $this->is_valid( $condition ) ) {
+			if ( 'one' === $match_mode && $this->is_valid( $condition, $rule ) ) {
 				return true;
-			} elseif ( 'all' === $match_mode && ! $this->is_valid( $condition ) ) {
+			} elseif ( 'all' === $match_mode && ! $this->is_valid( $condition, $rule ) ) {
 				return false;
 			}
 		}
@@ -74,14 +82,14 @@ class WCCS_Condition_Validator {
 		return 'all' === $match_mode;
 	}
 
-	public function is_valid( array $condition ) {
+	public function is_valid( array $condition, $rule = null ) {
 		if ( empty( $condition ) ) {
 			return false;
 		}
 
 		$is_valid = false;
-		if ( method_exists( $this, $condition['condition'] ) ) {
-			$is_valid = $this->{$condition['condition']}( $condition );
+		if ( is_callable( array( $this, $condition['condition'] ) ) ) {
+            $is_valid = call_user_func_array( array( $this, $condition['condition'] ), array( $condition, $rule ) );
 		}
 
 		return apply_filters( 'wccs_condition_validator_is_valid_' . $condition['condition'], $is_valid, $condition );
@@ -134,6 +142,30 @@ class WCCS_Condition_Validator {
 		}
 
 		return WCCS()->WCCS_Comparison->math_compare( $this->cart->get_cart_contents_weight(), $value, $condition['math_operation_type'] );
+	}
+
+	public function user_usage_limit( array $condition, $rule ) {
+		if ( ! $rule || ! $rule->id ) {
+			return false;
+		}
+		
+        $value = ! empty( $condition['number_value_2'] ) ? floatval( $condition['number_value_2'] ) : 0;
+		if ( 0 >= $value ) {
+			return false;
+		}
+
+		$used_by = WCCS_Helpers::get_used_by();
+		if ( empty( $used_by ) ) {
+			return true;
+		}
+
+		try {
+			$model = WCCS()->container()->get( WCCS_DB_User_Usage_Logs::class );
+			$usage_count = $model->get_user_usage_count( (int) $rule->id, $used_by );
+			return $usage_count < $value;
+		} catch ( Exception $e ) {
+			return false;
+		}
 	}
 
 }

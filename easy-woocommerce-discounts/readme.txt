@@ -3,9 +3,9 @@ Contributors: asanaplugins
 Donate link: https://www.asanaplugins.com/
 Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woocommerce discounts, woocommerce pricing deals, woocommerce Buy One Get One Free, bulk coupons, gift coupons, signup coupons, advanced coupons, woocommerce bulk discounts, woocommerce pricing, woocommerce price rules, woocommerce advanced discounts, woocommerce pricing deals, woocommerce bulk discounts, woocommerce cart discounts, woocommerce pricing deals, woocommerce discount rules, discount rules for woocommerce, woocommerce shipping, dynamic shipping, url coupons for woocommerce
 Requires at least: 4.4.2
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 5.6.0
-Stable tag: 7.3.4
+Stable tag: 7.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -253,11 +253,17 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 
 == Changelog ==
 
+= 7.4.0 =
+* Added usage restrictions to the rules.
+* Added usage restrictions per user to the rules.
+* Verified compatibility with WooCommerce version 9.8.4.
+* Verified compatibility with WordPress version 6.8.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 7.3.4 =
-* Fixed an issue in getting applied couopn with WooCommerce cart block.
+* Fixed an issue in getting applied coupon with WooCommerce cart block.
 * Fixed an issue in checking pricing existance.
 * Verified compatibility with WooCommerce version 9.7.1.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.3.3 =
 * Fixed a compatibility issue with currency switcher plugins.

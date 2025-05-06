@@ -90,19 +90,20 @@ class WCCS_Public {
 		/**
 		 * The controller class of public area.
 		 */
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-controller.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-products-list.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-cart-discount-hooks.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-pricing-hooks.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-cart-item-pricing.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-product-pricing.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-shipping-hooks.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-wccs-public-total-discounts-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-controller.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-products-list.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-cart-discount-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-pricing-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-cart-item-pricing.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-product-pricing.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-shipping-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-total-discounts-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-order-hooks.php';
 
 		// Shortcodes.
-		require_once plugin_dir_path( __FILE__ ) . 'shortcodes/class-wccs-shortcode-products-list.php';
-		require_once plugin_dir_path( __FILE__ ) . 'shortcodes/class-wccs-shortcode-bulk-table.php';
-		require_once plugin_dir_path( __FILE__ ) . 'shortcodes/class-wccs-shortcode-sale-flash.php';
+		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-products-list.php';
+		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-bulk-table.php';
+		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-sale-flash.php';
 	}
 
 	/**
@@ -126,6 +127,8 @@ class WCCS_Public {
 			if ( (int) WCCS()->settings->get_setting( 'display_total_discounts', 0 ) ) {
 				$this->services->set( 'WCCS_Public_Total_Discounts_Hooks', new WCCS_Public_Total_Discounts_Hooks( $this->loader ) );
 			}
+
+			WCCS_Public_Order_Hooks::init();
 
 			// Shortcodes.
 			$this->loader->add_shortcode( 'wccs_products_list', new WCCS_Shortcode_Products_List(), 'output' );

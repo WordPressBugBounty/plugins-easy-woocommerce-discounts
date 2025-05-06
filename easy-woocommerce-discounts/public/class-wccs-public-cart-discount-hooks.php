@@ -6,6 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WCCS_Public_Cart_Discount_Hooks {
 
+	const SESSION_KEY = 'wccs_applied_coupons';
+	
 	public $applying_coupon = false;
 
 	/**
@@ -67,13 +69,36 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		if ( ! $add_discounts ) {
+			if ( WC()->session ) {
+				WC()->session->set( static::SESSION_KEY, [] );
+			}
 			return;
 		}
 
 		$this->discounts = WCCS()->cart_discount->get_possible_discounts();
 		$this->discounts = apply_filters( 'wccs_applicable_cart_discounts', $this->discounts, $this );
 		if ( empty( $this->discounts ) ) {
+			if ( WC()->session ) {
+				WC()->session->set( static::SESSION_KEY, [] );
+			}
 			return;
+		}
+
+		if ( WC()->session ) {
+			$applied_coupons = array_map( function( $discount ) {
+				return [
+					'id'              => $discount->id,
+					'name'            => $discount->name,
+					'description'     => ! empty( $discount->description ) ? $discount->description : '',
+					'apply_mode'      => isset( $discount->apply_mode ) ? $discount->apply_mode : '',
+					'manual'          => isset( $discount->manual ) ? $discount->manual : 0,
+					'discount_type'   => isset( $discount->discount_type ) ? $discount->discount_type : '',
+					'discount_amount' => isset( $discount->discount_amount ) ? $discount->discount_amount : 0,
+					'amount'          => isset( $discount->amount ) ? $discount->amount : 0,
+					'url_coupon'      => isset( $discount->url_coupon ) ? $discount->url_coupon : 0,
+				];
+			}, $this->discounts );
+			WC()->session->set( static::SESSION_KEY, $applied_coupons );
 		}
 
 		if ( 'combine' === $this->display_multiple ) {

@@ -171,6 +171,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_discounted_price'] );
 				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_prices'] );
 				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_prices_main'] );
+				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_applied_rules'] );
 			}
 
 			if ( ! apply_filters( 'wccs_apply_pricing_on_cart_item', true, $cart_item ) ) {
@@ -198,6 +199,25 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			$cart->cart_contents[ $cart_item_key ]['_wccs_prices']                  = apply_filters( 'wccs_cart_item_prices', $pricing_item->get_prices(), $cart_item );
 			// Do not apply any filter on _wccs_prices_main.
 			$cart->cart_contents[ $cart_item_key ]['_wccs_prices_main']             = $pricing_item->get_prices();
+
+			// Set applied rules.
+			$applied_rules = $pricing_item->get_applied_rules();
+			if ( ! empty( $applied_rules ) ) {
+				$applied_rules = array_map( function( $rule ) {
+					return [
+						'id'            => $rule['id'],
+						'name'          => $rule['name'],
+						'description'   => ! empty( $rule['description'] ) ? $rule['description'] : '',
+						'type'          => isset( $rule['type'] ) ? $rule['type'] : 'discount',
+						'discount_type' => isset( $rule['discount_type'] ) ? $rule['discount_type'] : '',
+						'discount'      => isset( $rule['discount'] ) ? $rule['discount'] : 0,
+						'apply_mode'    => isset( $rule['apply_mode'] ) ? $rule['apply_mode'] : '',
+						'mode'          => isset( $rule['mode'] ) ? $rule['mode'] : '',
+						'amount'        => isset( $rule['amount'] ) ? $rule['amount'] : 0,
+					];
+				}, $applied_rules );
+			}
+			$cart->cart_contents[ $cart_item_key ]['_wccs_applied_rules'] = $applied_rules;
 
 			do_action( 'wccs_apply_pricing_after_set_item_prices', $cart_item, $pricing_item, $item_discounted_price );
 
@@ -253,6 +273,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_discounted_price'] );
 				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_prices'] );
 				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_prices_main'] );
+				unset( $cart->cart_contents[ $cart_item_key ]['_wccs_applied_rules'] );
 			}
 
 			if ( isset( $cart_item['_wccs_main_sale_price'] ) ) {

@@ -20,6 +20,8 @@ class WCCS_Admin_Order_Hooks extends WCCS_Admin_Controller {
                 'order_total_discounts'
             );
         }
+
+        $this->loader->add_filter( 'woocommerce_hidden_order_itemmeta', $this, 'hidden_order_itemmeta' );
     }
 
     public function order_total_discounts( $order_id ) {
@@ -48,5 +50,18 @@ class WCCS_Admin_Order_Hooks extends WCCS_Admin_Controller {
             )
         );
     }
+
+    public function hidden_order_itemmeta( $items ) {
+		return array_merge( $items, [
+			'_wccs_main_price',
+            '_wccs_main_display_price',
+            '_wccs_before_discounted_price',
+            '_wccs_discounted_price',
+            '_wccs_prices',
+            '_wccs_prices_main',
+            '_wccs_main_sale_price',
+            '_wccs_applied_rules',
+		] );
+	}
 
 }

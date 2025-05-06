@@ -273,6 +273,9 @@ final class WC_Conditions {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wccs-db-condition-meta.php';
 
 		require_once dirname( __FILE__ ) . '/class-wccs-db-cache.php';
+		// Usage logs.
+		require_once dirname( __FILE__ ) . '/class-wccs-db-user-usage-logs.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-db-rule-usage-logs.php';
 
 		/**
 		 * The class responsible for providing conditions.
@@ -310,6 +313,7 @@ final class WC_Conditions {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/validator/class-wccs-date-time-validator.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/validator/class-wccs-product-validator.php';
+		require_once dirname( __FILE__ ) . '/validator/class-wccs-usage-validator.php';
 
 		/**
 		 * The class responsible for filtering rules.
@@ -655,6 +659,8 @@ final class WC_Conditions {
 		$this->services->set( 'product_helpers', $product_helpers );
 		$this->services->set( 'WCCS_Background_Batch_Price_Updater', $batch_price_updater );
 		$this->services->set( 'WCCS_Rest_Api', new WCCS_Rest_Api() );
+		$this->services->set( WCCS_DB_User_Usage_Logs::class, new WCCS_DB_User_Usage_Logs() );
+		$this->services->set( WCCS_DB_Rule_Usage_Logs::class, new WCCS_DB_Rule_Usage_Logs() );
 	}
 
 	/**
