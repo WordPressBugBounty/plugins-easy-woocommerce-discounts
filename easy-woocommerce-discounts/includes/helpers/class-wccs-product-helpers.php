@@ -102,7 +102,8 @@ class WCCS_Product_Helpers {
 				// Enable plugin price replacer hooks.
 				WCCS()->WCCS_Product_Price_Replace->enable_hooks();
 			}
-			return $price_to_display;
+
+			return apply_filters( 'wccs_wc_get_price_to_display', $price_to_display, $product, $args, $wc_price );
 		}
 
 		$args = wp_parse_args( $args, array(
@@ -115,7 +116,8 @@ class WCCS_Product_Helpers {
 			// Enable plugin price replacer hooks.
 			WCCS()->WCCS_Product_Price_Replace->enable_hooks();
 		}
-		return $price_to_display;
+
+		return apply_filters( 'wccs_wc_get_price_to_display', $price_to_display, $product, $args, $wc_price );
 	}
 
 	/**

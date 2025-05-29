@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 7.5.0 =
+* Added a compatibility with WooCommerce WholeSale Prices.
+* Fixed price suffix issue in the quantity table.
+* Verified compatibility with WooCommerce version 9.8.5.
+
 = 7.4.0 =
 * Added usage restrictions to the rules.
 * Added usage restrictions per user to the rules.

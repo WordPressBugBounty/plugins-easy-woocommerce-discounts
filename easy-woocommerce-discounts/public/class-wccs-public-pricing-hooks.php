@@ -126,6 +126,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			return $price;
 		}
 
+		if ( ! apply_filters( 'asnp_wccs_apply_get_price_html', true, $price, $product ) ) {
+			return $price;
+		}
+
 		$product_pricing = $this->get_product_pricing( $product );
 		return $product_pricing->get_price_html( $price );
 	}

@@ -2,14 +2,14 @@
 # This file is distributed under the http://www.gnu.org/licenses/gpl-2.0.html.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 7.4.0\n"
+"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 7.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-woocommerce-discounts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-06T21:05:16+03:00\n"
+"POT-Creation-Date: 2025-05-28T22:44:18+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: easy-woocommerce-discounts\n"
@@ -662,7 +662,7 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:1100
 #: includes/class-wccs-settings-manager.php:1102
 #: public/class-wccs-public-cart-discount-hooks.php:255
-#: public/class-wccs-public-product-pricing.php:481
+#: public/class-wccs-public-product-pricing.php:495
 #: admin/js/conditions/index.js:1
 msgid "Discount"
 msgstr ""
@@ -935,7 +935,7 @@ msgid "Title of Quantity Table"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:597
-#: public/class-wccs-public-product-pricing.php:479
+#: public/class-wccs-public-product-pricing.php:493
 msgid "Discount per Quantity"
 msgstr ""
 
@@ -1391,14 +1391,14 @@ msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1088
 #: includes/class-wccs-settings-manager.php:1090
-#: public/class-wccs-public-product-pricing.php:480
+#: public/class-wccs-public-product-pricing.php:494
 #: admin/js/conditions/index.js:1
 msgid "Price"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1094
 #: includes/class-wccs-settings-manager.php:1096
-#: public/class-wccs-public-product-pricing.php:482
+#: public/class-wccs-public-product-pricing.php:496
 #: admin/js/conditions/index.js:1
 msgid "Quantity"
 msgstr ""

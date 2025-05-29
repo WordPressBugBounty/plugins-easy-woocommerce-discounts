@@ -124,7 +124,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 		do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
 
-		return apply_filters( 'wccs_product_pricing_get_price_html', $discounted_price, $this->product );
+		return apply_filters( 'wccs_product_pricing_get_price_html', $discounted_price, $this->product, $price );
 	}
 
 	protected function get_bulk_price_html( $price = '' ) {
@@ -206,10 +206,22 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$prices[] = $this->calculate_discounted_price( $max['discount'], $max['discount_type'] );
 
 			if ( ! isset( $max['min'] ) || 1 != $max['min'] ) {
-				$prices[] = WCCS()->product_helpers->wc_get_price_to_display( $this->product );
+				$prices[] = apply_filters( 
+					'wccs_get_bulk_price_html_display_price', 
+					WCCS()->product_helpers->wc_get_price_to_display( $this->product ), 
+					$this->product, 
+					$price, 
+					$this 
+				);
 			} elseif ( isset( $max['min'] ) && 1 == $max['min'] && 0 == $max['discount'] ) {
 				if ( 'fixed_price' !== $max['discount_type'] ) {
-					$prices[] = WCCS()->product_helpers->wc_get_price_to_display( $this->product );
+					$prices[] = apply_filters( 
+						'wccs_get_bulk_price_html_display_price', 
+						WCCS()->product_helpers->wc_get_price_to_display( $this->product ), 
+						$this->product, 
+						$price, 
+						$this 
+					);
 				}
 			}
 
@@ -245,7 +257,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 		$content .= $this->product->get_price_suffix();
 
-		$content = apply_filters( 'wccs_public_product_pricing_' . __FUNCTION__, $content, $prices, $this );
+		$content = apply_filters( 'wccs_public_product_pricing_' . __FUNCTION__, $content, $prices, $this, $price );
 
 		WCCS()->WCCS_Product_Price_Cache->cache_price( $this->product, $content, array( 'rule' => absint( $rule['id'] ), 'price' => $price ) );
 
@@ -259,7 +271,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 	 *
 	 * @return float
 	 */
-	public function get_price() {
+	public function get_price( $base_price = null ) {
 		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
 			return false;
 		}
@@ -269,7 +281,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		// Fix #13 and using get_base_price instead of get_base_price_to_display that caused issues.
-		$base_price     = $this->get_base_price();
+		$base_price     = null === $base_price ? $this->get_base_price() : $base_price;
 		$adjusted_price = $this->apply_simple_discounts( $base_price );
 
 		if ( $base_price != $adjusted_price ) {
@@ -316,7 +328,8 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 	public function get_discounted_price( $discount, $discount_type ) {
 		$discount = (float) $discount;
 		if ( $discount <= 0 || empty( $discount_type ) ) {
-			return WCCS()->product_helpers->wc_get_price_html( $this->product );
+			$price = WCCS()->product_helpers->wc_get_price_to_display( $this->product );
+			return wc_price( $price );
 		}
 
 		do_action( 'wccs_public_product_pricing_before_get_discounted_price', $discount, $discount_type, $this );
@@ -324,19 +337,20 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		do_action( 'wccs_public_product_pricing_after_get_discounted_price', $discount, $discount_type, $this );
 
 		if ( false === $price ) {
-			return WCCS()->product_helpers->wc_get_price_html( $this->product );
+			$price = WCCS()->product_helpers->wc_get_price_to_display( $this->product );
+			return wc_price( $price );
 		}
 
 		if ( is_array( $price ) ) {
 			if ( $price['min'] !== $price['max'] ) {
 				$price = WCCS_Helpers::wc_format_price_range( $price['min'], $price['max'] );
-				return $price . $this->product->get_price_suffix();
+				return $price;
 			} else {
 				$price = $price['min'];
 			}
 		}
 
-		return wc_price( $price ) . $this->product->get_price_suffix( $price );
+		return wc_price( $price );
 	}
 
 	public function calculate_discounted_price( $discount, $discount_type ) {

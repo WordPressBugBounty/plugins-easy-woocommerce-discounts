@@ -45,6 +45,7 @@ class WCCS_Product_Price_Cache extends WCCS_Abstract_Cache {
                 'price_type'    => $price_type,
                 'rules'         => $valid_rules,
                 'exclude_rules' => $this->pricing->get_exclude_rules(),
+                'base_price'    => $this->product_pricing->get_base_price(),
             )
         ) );
 

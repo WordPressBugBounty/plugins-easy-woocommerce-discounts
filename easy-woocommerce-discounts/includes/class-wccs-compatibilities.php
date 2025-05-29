@@ -155,6 +155,11 @@ class WCCS_Compatibilities {
 			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-product-bundles.php';
 			WCCS_Compatibility_Product_Bundles::init();
 		}
+
+		if ( class_exists( 'WooCommerceWholeSalePrices' ) ) {
+			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-wholesale-prices.php';
+			WCCS_Compatibility_WholeSale_Prices::init();
+		}
     }
 
 }
