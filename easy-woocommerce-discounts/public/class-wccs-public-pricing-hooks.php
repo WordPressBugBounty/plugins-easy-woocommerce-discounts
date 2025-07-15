@@ -55,6 +55,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		if ( (int) WCCS()->settings->get_setting( 'display_quantity_table', 1 ) ) {
 			$this->quantity_table_hooks();
 		}
+
+		if ( (int) WCCS()->settings->get_setting( 'purchase_x_receive_y_message_display', 1 ) ) {
+			$this->purchase_message_hooks();
+		}
 	}
 
 	public function cart_loaded_from_session( $cart ) {
@@ -414,6 +418,75 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 
 		$product_pricing = $this->get_product_pricing( $product );
 		$product_pricing->bulk_pricing_table();
+	}
+
+	protected function purchase_message_hooks() {
+		$position = WCCS()->settings->get_setting( 'purchase_x_receive_y_message_position', 'before_add_to_cart_button' );
+
+		switch ( $position ) {
+			case 'before_add_to_cart_button' :
+			case 'after_add_to_cart_button' :
+				$add_to_cart_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart' );
+				if ( 'before_add_to_cart_button' === $position ) {
+					$add_to_cart_priority ?
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', $add_to_cart_priority - 1 ) :
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', 29 );
+				} elseif ( 'after_add_to_cart_button' === $position ) {
+					$add_to_cart_priority ?
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', $add_to_cart_priority + 1 ) :
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', 31 );
+				}
+				break;
+
+			case 'before_add_to_cart_form':
+				$this->loader->add_action( 'woocommerce_before_add_to_cart_form', $this, 'display_purchase_message' );
+				break;
+
+			case 'after_add_to_cart_form':
+				$this->loader->add_action( 'woocommerce_after_add_to_cart_form', $this, 'display_purchase_message' );
+				break;
+
+			case 'before_excerpt' :
+			case 'after_excerpt' :
+				$excerpt_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt' );
+				if ( 'before_excerpt' === $position ) {
+					$excerpt_priority ?
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', $excerpt_priority - 1 ) :
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', 19 );
+				} elseif ( 'after_excerpt' === $position ) {
+					$excerpt_priority ?
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', $excerpt_priority + 1 ) :
+						$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', 21 );
+				}
+				break;
+
+			case 'after_product_meta' :
+				$meta_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta' );
+				$meta_priority ?
+					$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', $meta_priority + 1 ) :
+					$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', 41 );
+				break;
+
+			case 'in_modal' :
+				break;
+
+			default :
+				break;
+		}
+	}
+
+	public function display_purchase_message() {
+		global $product;
+		if ( ! $product ) {
+			return;
+		}
+
+		if ( ! apply_filters( 'wccs_display_purchase_message', true, $product ) ) {
+			return;
+		}
+
+		$product_pricing = $this->get_product_pricing( $product );
+		$product_pricing->purchase_message();
 	}
 
 	protected function sale_badge_hooks() {

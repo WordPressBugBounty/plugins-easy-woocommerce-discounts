@@ -103,6 +103,7 @@ class WCCS_Public {
 		// Shortcodes.
 		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-products-list.php';
 		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-bulk-table.php';
+		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-purchase-message.php';
 		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-sale-flash.php';
 	}
 
@@ -133,6 +134,7 @@ class WCCS_Public {
 			// Shortcodes.
 			$this->loader->add_shortcode( 'wccs_products_list', new WCCS_Shortcode_Products_List(), 'output' );
 			$this->loader->add_shortcode( 'wccs_bulk_table', new WCCS_Shortcode_Bulk_Table(), 'output' );
+			$this->loader->add_shortcode( 'wccs_purchase_message', new WCCS_Shortcode_Purchase_Message(), 'output' );
 			$this->loader->add_shortcode( 'wccs_sale_flash', new WCCS_Shortcode_Sale_Flash(), 'output' );
 		}
 

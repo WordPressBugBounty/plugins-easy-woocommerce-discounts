@@ -354,6 +354,7 @@ final class WC_Conditions {
 		require_once dirname( __FILE__ ) . '/abstracts/abstract-wccs-cache.php';
 		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-price-cache.php';
 		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-quantity-table-cache.php';
+		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-purchase-message-cache.php';
 		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-onsale-cache.php';
 
 		require_once dirname( __FILE__ ) . '/class-wccs-clear-cache.php';

@@ -58,6 +58,10 @@ class WCCS_Cart_Item_Pricing_Discounts {
 	}
 
 	public function get_simple_discounts() {
+		if ( ! apply_filters( 'wccs_cart_item_simple_discounts', true, $this->item, $this ) ) {
+			return [];
+		}
+
 		if ( empty( $this->pricings ) || empty( $this->pricings['simple'] ) ) {
 			return apply_filters( 'wccs_cart_item_pricing_simple_discounts', array() );
         }
@@ -90,6 +94,10 @@ class WCCS_Cart_Item_Pricing_Discounts {
 	}
 
 	public function get_simple_pricings() {
+		if ( ! apply_filters( 'wccs_cart_item_simple_pricings', true, $this->item, $this ) ) {
+			return [];
+		}
+
 		if ( empty( $this->pricings ) || empty( $this->pricings['simple'] ) ) {
 			return apply_filters( 'wccs_cart_item_pricing_simple_pricings', array() );
         }
@@ -120,6 +128,10 @@ class WCCS_Cart_Item_Pricing_Discounts {
     }
 
 	public function get_bulk_discounts() {
+		if ( ! apply_filters( 'wccs_cart_item_bulk_discounts', true, $this->item, $this ) ) {
+			return [];
+		}
+
 		if ( empty( $this->pricings ) || empty( $this->pricings['bulk'] ) ) {
 			return apply_filters( 'wccs_cart_item_pricing_bulk_discounts', array() );
         }
@@ -172,6 +184,10 @@ class WCCS_Cart_Item_Pricing_Discounts {
 	}
 
 	public function get_bulk_pricings() {
+		if ( ! apply_filters( 'wccs_cart_item_bulk_pricings', true, $this->item, $this ) ) {
+			return [];
+		}
+		
 		if ( empty( $this->pricings ) || empty( $this->pricings['bulk'] ) ) {
 			return apply_filters( 'wccs_cart_item_pricing_bulk_pricings', array() );
         }

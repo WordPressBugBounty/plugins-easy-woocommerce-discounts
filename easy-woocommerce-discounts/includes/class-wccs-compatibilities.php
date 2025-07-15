@@ -95,17 +95,13 @@ class WCCS_Compatibilities {
 		// WooCommerce Product Bundles compatibility.
 		if ( class_exists( 'WC_Bundles' ) ) {
 			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-wc-product-bundles.php';
-			$compatibility = new WCCS_Compatibility_WC_Product_Bundles( $this->loader );
-			$compatibility->init();
-			$this->services->set( 'WCCS_Compatibility_WC_Product_Bundles', $compatibility );
+			WCCS_Compatibility_WC_Product_Bundles::init();
 		}
 
 		// WPC Product Bundles compatibility.
 		if ( defined( 'WOOSB_FILE' ) ) {
 			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-wpc-product-bundles.php';
-			$compatibility = new WCCS_Compatibility_WPC_Product_Bundles( $this->loader );
-			$compatibility->init();
-			$this->services->set( 'WCCS_Compatibility_WPC_Product_Bundles', $compatibility );
+			WCCS_Compatibility_WPC_Product_Bundles::init();
 		}
 
 		// Product Feed PRO for WooCommerce compatibility.

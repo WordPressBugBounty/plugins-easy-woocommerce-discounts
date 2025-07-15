@@ -26,6 +26,7 @@ class WCCS_Clear_Cache {
     public function clear_pricing_caches() {
         WCCS()->WCCS_Product_Price_Cache->clear_cache();
         WCCS()->WCCS_Product_Quantity_Table_Cache->clear_cache();
+        WCCS()->WCCS_Product_Purchase_Message_Cache->clear_cache();
         WCCS()->WCCS_Product_Onsale_Cache->clear_cache();
         delete_transient( 'wccs_discounted_products' );
     }

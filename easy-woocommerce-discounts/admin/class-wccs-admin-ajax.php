@@ -124,11 +124,15 @@ class WCCS_Admin_Ajax {
 			} // Pricing condition meta data.
 			elseif ( 'pricing' === $type ) {
 				if ( ! empty( $_POST['mode'] ) ) {
-					$meta_data['apply_mode']    = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
-					$meta_data['mode']          = sanitize_text_field( $_POST['mode'] );
-					$meta_data['items']         = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
-					$meta_data['exclude_items'] = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
-					$meta_data['usage_limit']   = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
+					$meta_data['apply_mode']                = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
+					$meta_data['mode']                      = sanitize_text_field( $_POST['mode'] );
+					$meta_data['items']                     = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
+					$meta_data['exclude_items']             = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
+					$meta_data['usage_limit']               = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
+					$meta_data['message_type']              = ! empty( $_POST['message_type'] ) ? sanitize_text_field( $_POST['message_type'] ) : 'text_message';
+					$meta_data['message_background_color']  = ! empty( $_POST['message_background_color'] ) ? sanitize_text_field( $_POST['message_background_color'] ) : '';
+					$meta_data['message_color']             = ! empty( $_POST['message_color'] ) ? sanitize_text_field( $_POST['message_color'] ) : '';
+					$meta_data['receive_message']           = ! empty( $_POST['receive_message'] ) ? wp_kses_post( $_POST['receive_message'] ) : '';
 
 					$delete_meta = array();
 
@@ -141,14 +145,14 @@ class WCCS_Admin_Ajax {
 						$meta_data['display_discount'] = ! empty( $_POST['display_discount'] ) ? sanitize_text_field( $_POST['display_discount'] ) : 'no';
 
 						if ( isset( $data['id'] ) ) {
-							$delete_meta = array( 'discount_type', 'discount', 'purchase', 'purchased_items', 'purchased_message', 'receive_message', 'repeat' );
+							$delete_meta = array( 'discount_type', 'discount', 'purchase', 'purchased_items', 'purchased_message', 'repeat' );
 						}
 					} elseif ( 'simple' === $_POST['mode'] ) {
 						$meta_data['discount_type'] = ! empty( $_POST['discount_type'] ) ? sanitize_text_field( $_POST['discount_type'] ) : 'percentage_discount';
 						$meta_data['discount']      = ! empty( $_POST['discount'] ) ? (float) $_POST['discount'] : 0;
 
 						if ( isset( $data['id'] ) ) {
-							$delete_meta = array( 'quantity_based_on', 'quantities', 'purchase', 'purchased_items', 'purchased_message', 'receive_message', 'repeat' );
+							$delete_meta = array( 'quantity_based_on', 'quantities', 'purchase', 'purchased_items', 'purchased_message', 'repeat' );
 						}
 					}
 				}

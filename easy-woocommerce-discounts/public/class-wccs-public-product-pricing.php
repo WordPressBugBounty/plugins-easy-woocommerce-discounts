@@ -577,6 +577,203 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 	}
 
+	public function purchase_message() {
+		if ( $this->is_in_exclude_rules() ) {
+			return;
+		}
+
+		$rules         = $this->pricing->get_pricings();
+		$exclude_rules = $this->pricing->get_exclude_rules();
+
+		foreach ( $rules as $type => $pricings ) {
+			if ( empty( $pricings ) ) {
+				continue;
+			}
+
+			foreach ( $pricings as $pricing ) {
+				if ( empty( $pricing['purchased_message'] ) && empty( $pricing['receive_message'] ) ) {
+					continue;
+				}
+
+				if ( ! empty( $pricing['purchased_message'] ) ) {
+					$cache = $this->get_pricing_purchase_message_from_cache( $pricing, $exclude_rules, 'purchased_message' );
+					if ( false !== $cache ) {
+						echo $cache;
+					} else {
+						echo $this->get_pricing_purchase_message( $pricing, $exclude_rules, 'purchased_message' );
+					}
+				}
+
+				if ( ! empty( $pricing['receive_message'] ) ) {
+					$cache = $this->get_pricing_purchase_message_from_cache( $pricing, $exclude_rules, 'receive_message' );
+					if ( false !== $cache ) {
+						echo $cache;
+					} else {
+						echo $this->get_pricing_purchase_message( $pricing, $exclude_rules, 'receive_message' );
+					}
+				}
+			}
+		}
+
+		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
+			// Disable plugin price repacer hooks to get variations main price.
+			WCCS()->WCCS_Product_Price_Replace->disable_hooks();
+			add_filter( 'woocommerce_show_variation_price', '__return_false', 100 );
+			$variations = $this->product->get_available_variations();
+			// Enable plugin price replacer hooks.
+			WCCS()->WCCS_Product_Price_Replace->enable_hooks();
+			remove_filter( 'woocommerce_show_variation_price', '__return_false', 100 );
+			if ( ! empty( $variations ) ) {
+				foreach ( $variations as $variation ) {
+					$variation_pricing = new WCCS_Public_Product_Pricing( $variation['variation_id'], $this->pricing, $this->apply_method );
+					$variation_pricing->purchase_message();
+				}
+			}
+		}
+	}
+
+	protected function get_pricing_purchase_message_from_cache( $pricing, $exclude_rules, $type ) {
+		if ( empty( $pricing ) || empty( $type ) ) {
+			return '';
+		}
+
+		if ( empty( $pricing[ $type ] ) ) {
+			return '';
+		}
+
+		if ( 0 === (int) WCCS()->settings->get_setting( 'cache_messages', 1 ) ) {
+			return false;
+		}
+
+		$cache_args = array(
+			'product_id'    => $this->product_id,
+			'parent_id'     => $this->parent_id,
+			'pricing'       => $pricing,
+			'exclude_rules' => $exclude_rules,
+			'type'          => $type,
+		);
+		$cache = WCCS()->WCCS_Product_Purchase_Message_Cache->get_purchase_message( $cache_args );
+		if ( false !== $cache ) {
+			if ( ! empty( $cache ) ) {
+				if ( ! empty( $pricing['message_type'] ) && 'shortcode' === $pricing['message_type'] ) {
+					$message = '<div class="wccs-shortcode-purchase-message wccs-shortcode-' . esc_attr( $type ) . '"' .
+						( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '') .
+						( ! empty( 'variation' === $this->product_type ) ? 'style="display: none;"' : '' ) . '>' .
+						do_shortcode( $cache ) .
+						'</div>';
+					return apply_filters( "wccs_purchase_{$type}", $message, $pricing, $this );
+				} else {
+					return apply_filters( "wccs_purchase_{$type}", $cache, $pricing, $this );
+				}
+			}
+
+			return '';
+		}
+
+		return false;
+	}
+
+	protected function get_pricing_purchase_message( $pricing, $exclude_rules, $type ) {
+		$cache_enabled = WCCS()->settings->get_setting( 'cache_messages', 1 );
+		$cache_args = array(
+			'product_id'    => $this->product_id,
+			'parent_id'     => $this->parent_id,
+			'pricing'       => $pricing,
+			'exclude_rules' => $exclude_rules,
+			'type'          => $type,
+		);
+
+		if ( $this->is_in_exclude_rules() ) {
+			if ( $cache_enabled ) {
+				WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
+			}
+			return '';
+		}
+
+		if ( 'purchased_message' === $type ) {
+			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['purchased_items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+				if ( $cache_enabled ) {
+					WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
+				}
+				return '';
+			}
+		} elseif ( 'receive_message' === $type ) {
+			if ( 'products_group' === $pricing['mode'] ) {
+				$is_valid = false;
+				if ( ! empty( $pricing['groups'] ) ) {
+					foreach ( $pricing['groups'] as $group ) {
+						if ( ! empty( $group['items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $group['items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+							$is_valid = true;
+							break;
+						}
+					}
+				}
+				
+				if ( ! $is_valid ) {
+					if ( $cache_enabled ) {
+						WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
+					}
+					return '';
+				}
+			} elseif ( empty( $pricing['items'] ) || ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+				if ( $cache_enabled ) {
+					WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
+				}
+				return '';
+			}
+		}
+
+		if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+			if ( $cache_enabled ) {
+				WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
+			}
+			return '';
+		}
+
+		if ( ! empty( $pricing['message_type'] ) && 'shortcode' === $pricing['message_type'] ) {
+			if ( $cache_enabled ) {
+				WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, $pricing[ $type ] );
+			}
+			
+			$message = '<div class="wccs-shortcode-purchase-message wccs-shortcode-' . esc_attr( $type ) . '"' .
+				( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '') .
+				( ! empty( 'variation' === $this->product_type ) ? 'style="display: none;"' : '' ) . '>' .
+				do_shortcode( $pricing[ $type ] ) .
+				'</div>';
+			return apply_filters( "wccs_purchase_{$type}", $message, $pricing, $this );
+		}
+
+		$default_background_color = WCCS()->settings->get_setting( 'purchase_message_background_color', '' );
+		$default_color            = WCCS()->settings->get_setting( 'purchase_message_color', '' );
+
+		$style = '';
+		if ( ! empty( $pricing['message_background_color'] ) ) {
+			$style .= 'background-color: ' . $pricing['message_background_color'] . ';';
+		} elseif ( ! empty( $default_background_color ) ) {
+			$style .= 'background-color: ' . $default_background_color . ';';
+		}
+
+		if ( ! empty( $pricing['message_color'] ) ) {
+			$style .= 'color: ' . $pricing['message_color'] . ';';
+		} elseif ( ! empty( $default_color ) ) {
+			$style .= 'color: ' . $default_color . ';';
+		}
+
+		if ( 'variation' === $this->product_type ) {
+			$style .= 'display: none;';
+		}
+
+		$message = '<div class="wccs-purchase-message wccs-' . esc_attr( $type ) . '"' .
+			( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '') .
+			( ! empty( $style ) ? "style='$style'" : '' ) . '>' . __( wp_kses_post( wp_unslash( $pricing[ $type ] ) ), 'easy-woocommerce-discounts' ) . '</div>';
+
+		if ( $cache_enabled ) {
+			WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, $message );
+		}
+
+		return apply_filters( "wccs_purchase_{$type}", $message, $pricing, $this );
+	}
+
 	public function get_simple_discounts() {
 		if ( isset( $this->simple_discounts ) ) {
 			return $this->simple_discounts;

@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 7.6.0 =
+* New: Added product page messages for all pricing rules to better inform customers.
+* New: Added product page messages shortcode.
+* New: Added a "Buy x Get x - same product" option to create Buy One Get One deals for the same product with a single rule. (PRO)
+* Fix: Resolved a null cart issue in the Store API.
+* Update: Verified compatibility with WooCommerce 9.9.5.
+
 = 7.5.0 =
 * Added a compatibility with WooCommerce WholeSale Prices.
 * Fixed price suffix issue in the quantity table.
