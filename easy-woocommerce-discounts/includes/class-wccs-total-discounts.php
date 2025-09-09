@@ -26,6 +26,10 @@ class WCCS_Total_Discounts {
         }
 
         foreach ( $cart_items as $cart_item ) {
+            if ( ! apply_filters( 'asnp_wccs_total_discounts_process_cart_item', true, $cart_item ) ) {
+                continue;
+            }
+            
             // Compatibility with the Custom Product Boxes plugin.
             if ( '' === $cart_item['line_subtotal'] || ! empty( $cart_item['cpb_custom_parent_id'] ) ) {
                 continue;

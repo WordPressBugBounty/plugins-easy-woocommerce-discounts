@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WCCS_Admin_Select_Data_Provider {
 
-	public function search_products( array $args = array() ) {
+	public static function search_products( array $args = array() ) {
 		if ( empty( $args['search'] ) ) {
 			throw new Exception( 'Search term is required to search products.' );
 		}
@@ -21,10 +21,10 @@ class WCCS_Admin_Select_Data_Provider {
 
 		$products = array_filter( $products );
 
-		return ! empty( $products ) ? $this->prepare_product_select( $products ) : array();
+		return ! empty( $products ) ? static::prepare_product_select( $products ) : array();
 	}
 
-	public function get_products( array $args = array() ) {
+	public static function get_products( array $args = array() ) {
 		$args = wp_parse_args( $args, array( 'limit' => -1 ) );
 		if ( empty( $args['include'] ) && empty( $args['post_id']  ) ) {
 			return array();
@@ -35,10 +35,10 @@ class WCCS_Admin_Select_Data_Provider {
 			return array();
 		}
 
-		return $this->prepare_product_select( $products );
+		return static::prepare_product_select( $products );
 	}
 
-	public function search_variations( array $args = array() ) {
+	public static function search_variations( array $args = array() ) {
 		if ( empty( $args['search'] ) ) {
 			throw new Exception( 'Search term is required to search products.' );
 		}
@@ -53,10 +53,10 @@ class WCCS_Admin_Select_Data_Provider {
 
 		$products = array_filter( $products );
 
-		return ! empty( $products ) ? $this->prepare_product_select( $products, array( 'variation' ) ) : array();
+		return ! empty( $products ) ? static::prepare_product_select( $products, array( 'variation' ) ) : array();
 	}
 
-	public function get_variations( array $args = array() ) {
+	public static function get_variations( array $args = array() ) {
 		$args = wp_parse_args( $args, array( 'type' => 'variation', 'limit' => -1 ) );
 		if ( empty( $args['include'] ) && empty( $args['post_id']  ) ) {
 			return array();
@@ -67,10 +67,10 @@ class WCCS_Admin_Select_Data_Provider {
 			return array();
 		}
 
-		return $this->prepare_product_select( $products, array( 'variation' ) );
+		return static::prepare_product_select( $products, array( 'variation' ) );
 	}
 
-	protected function prepare_product_select( array $products, $allowed_types = array() ) {
+	protected static function prepare_product_select( array $products, $allowed_types = array() ) {
 		$products_select = array();
 		foreach ( $products as $product ) {
 			if ( is_numeric( $product ) ) {

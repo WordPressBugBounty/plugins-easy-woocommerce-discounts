@@ -2,35 +2,40 @@
 # This file is distributed under the http://www.gnu.org/licenses/gpl-2.0.html.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 7.6.0\n"
+"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 7.6.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-woocommerce-discounts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-14T22:40:45+03:00\n"
+"POT-Creation-Date: 2025-09-09T20:05:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: easy-woocommerce-discounts\n"
 
 #. Plugin Name of the plugin
+#: easy-woocommerce-discounts.php
 msgid "Discount Rules and Dynamic Pricing for WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: easy-woocommerce-discounts.php
 msgid "https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link"
 msgstr ""
 
 #. Description of the plugin
+#: easy-woocommerce-discounts.php
 msgid "All purpose WooCommerce discounts, pricing, shipping and promotion tool."
 msgstr ""
 
 #. Author of the plugin
+#: easy-woocommerce-discounts.php
 msgid "Discount Team"
 msgstr ""
 
 #. Author URI of the plugin
+#: easy-woocommerce-discounts.php
 msgid "https://www.asanaplugins.com/"
 msgstr ""
 
@@ -42,127 +47,129 @@ msgstr ""
 msgid "Some errors occurred in saving condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:183
+#: admin/class-wccs-admin-ajax.php:187
+#, php-format
 msgid "Condition %s successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:193
+#: admin/class-wccs-admin-ajax.php:197
 msgid "Errors occurred in saving condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:217
+#: admin/class-wccs-admin-ajax.php:221
 msgid "Condition id required to deleting it."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:225
+#: admin/class-wccs-admin-ajax.php:229
 msgid "Some errors occurred in deleting condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:241
+#: admin/class-wccs-admin-ajax.php:245
 msgid "Condition deleted successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:251
+#: admin/class-wccs-admin-ajax.php:255
 msgid "Errors occurred in deleting condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:274
+#: admin/class-wccs-admin-ajax.php:278
 msgid "ID is required to updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:278
+#: admin/class-wccs-admin-ajax.php:282
 msgid "Type is required to updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:282
+#: admin/class-wccs-admin-ajax.php:286
 msgid "Data is required to updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:290
+#: admin/class-wccs-admin-ajax.php:294
 msgid "Some errors occurred in updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:340
+#: admin/class-wccs-admin-ajax.php:345
 msgid "Condition updated successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:351
+#: admin/class-wccs-admin-ajax.php:356
 msgid "Errors occurred in updating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:374
+#: admin/class-wccs-admin-ajax.php:379
 msgid "Conditions required for ordering"
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:378
+#: admin/class-wccs-admin-ajax.php:383
 msgid "Type required for ordering."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:386
+#: admin/class-wccs-admin-ajax.php:391
 msgid "Some errors occurred in ordering conditions."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:402
+#: admin/class-wccs-admin-ajax.php:407
 msgid "Conditions ordered successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:413
+#: admin/class-wccs-admin-ajax.php:418
 msgid "Conditions did not ordered successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:437
+#: admin/class-wccs-admin-ajax.php:442
 msgid "Condition id required to duplicate it."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:441
+#: admin/class-wccs-admin-ajax.php:446
 msgid "Type required for duplicating."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:449
+#: admin/class-wccs-admin-ajax.php:454
 msgid "Some errors occurred in duplicating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:462
+#: admin/class-wccs-admin-ajax.php:467
 msgid "Errors occurred in duplicating condition."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:474
+#: admin/class-wccs-admin-ajax.php:479
 msgid "Condition duplicated successfully."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:498
+#: admin/class-wccs-admin-ajax.php:503
 msgid "Search term is required to select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:502
+#: admin/class-wccs-admin-ajax.php:507
 msgid "Type is required to select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:510
+#: admin/class-wccs-admin-ajax.php:515
 msgid "Some errors occurred in selecting data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:560
+#: admin/class-wccs-admin-ajax.php:564
 msgid "Options are required to get select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:564
+#: admin/class-wccs-admin-ajax.php:568
 msgid "Type is required to get select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:572
+#: admin/class-wccs-admin-ajax.php:576
 msgid "Some errors occurred in getting select data."
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:602
+#: admin/class-wccs-admin-ajax.php:605
 msgid "Bundle"
 msgstr ""
 
-#: admin/class-wccs-admin-ajax.php:615
+#: admin/class-wccs-admin-ajax.php:618
 msgid "Addons"
 msgstr ""
 
 #: admin/class-wccs-admin-html-element.php:41
+#, php-format
 msgid "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 
@@ -290,6 +297,7 @@ msgstr ""
 
 #: includes/class-wccs-background-price-updater.php:46
 #: includes/class-wccs-background-price-updater.php:50
+#, php-format
 msgid "Unable to dispatch WooCommerce Conditions price updater: %s"
 msgstr ""
 
@@ -481,6 +489,7 @@ msgstr ""
 
 #: includes/class-wccs-settings-manager.php:165
 #: includes/class-wccs-settings-manager.php:166
+#, php-format
 msgid "Total discount limit %s"
 msgstr ""
 
@@ -595,6 +604,7 @@ msgid "Change Display Price"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:219
+#, php-format
 msgid "When change with HTML selected it shows discounted price as %1$s In other words the main price shown as a deleted price.%2$sWhen change without HTML selected it shows discounted price as %3$s and does not show the product main price."
 msgstr ""
 
@@ -643,6 +653,7 @@ msgid "Sale Badge Type"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:263
+#, php-format
 msgid "Sale: Displays \"Sale\" inside the badge.%1$s Discount: Displays discount value inside the badge.%1$s Note: It will only applies to simple pricing rules."
 msgstr ""
 
@@ -724,6 +735,7 @@ msgid "Consider Product Sale Price"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:319
+#, php-format
 msgid ""
 "If product is on sale with a WooCommerce onsale price consider it when the %1$s is %2$s or %3$s.%4$s\n"
 "\t\t\t\t\t\t\t\t\t\t\te.g: If the product discounted price by the plugin is 20$ and product onsale price in WooCommerce is 10$\n"
@@ -735,6 +747,7 @@ msgid "Product Base Price"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:338
+#, php-format
 msgid "The base price of the product that discounts should apply to it.%1$s Product Price: Discounts will apply to the product regular or sale price.%1$s Cart Item Price: Discounts will apply to the cart item price. Useful when a custom pricing plugin is enabled on your site."
 msgstr ""
 
@@ -767,6 +780,7 @@ msgid "Round Adjustment"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:361
+#, php-format
 msgid "If set to yes it will round product adjusted price.%1$s exp: Subtotal of 2 quantities of a product with price %2$s and %3$s discount will be %4$s when round is enabled otherwise it will be %5$s"
 msgstr ""
 
@@ -776,6 +790,7 @@ msgstr ""
 
 #: includes/class-wccs-settings-manager.php:384
 #: includes/class-wccs-settings-manager.php:385
+#, php-format
 msgid "Price discount limit %s"
 msgstr ""
 
@@ -822,6 +837,7 @@ msgid "Automatically add free products to cart"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:429
+#, php-format
 msgid "Automatically add free products to the cart for \"purchase X receive Y\" rules.%1$s To use this feature just add one product or one variation to the \"Discounted products\" of \"purchase X receive Y\" rule.%1$s Check out %2$s."
 msgstr ""
 
@@ -867,6 +883,7 @@ msgstr ""
 
 #: includes/class-wccs-settings-manager.php:494
 #: includes/class-wccs-settings-manager.php:495
+#, php-format
 msgid "Total fee limit %s"
 msgstr ""
 
@@ -1051,6 +1068,7 @@ msgid "Display Live Total Price"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:681
+#, php-format
 msgid "If enabled displays product discounted total price in the product page.%1$s Note: It calculates total price based on %2$slive price * quantity%3$s."
 msgstr ""
 
@@ -1059,6 +1077,7 @@ msgid "Display Type"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:693
+#, php-format
 msgid "Discount Available: Displays live price when a discount available for the product.%1$s Always: Displays live price always."
 msgstr ""
 
@@ -1176,6 +1195,7 @@ msgid "Display Countdown Timer"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:856
+#, php-format
 msgid "If enabled displays Countdown Timer in the product page.%1$sWhen a discount available: If the product has a pricing rule with a date-time condition then show the countdown timer based on <strong>Threshold Time Value</strong>.%1$sWhen a discount can apply: If the product has a pricing rule with a date-time condition then check all of that rule conditions and if all conditions are true then show the countdown timer based on <strong>Threshold Time Value</strong>."
 msgstr ""
 
@@ -1196,6 +1216,7 @@ msgid "Threshold Time Value"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:902
+#, php-format
 msgid "Display Countdown Timer when its close to the end time of the rule.%1$s e.g: If its value is 1 and \"Threshold Time Type\" is \"Day\" Countdown Timer will display before 1day to the end time of the rule."
 msgstr ""
 
@@ -1204,6 +1225,7 @@ msgid "Threshold Time Type"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:910
+#, php-format
 msgid "e.g: If its value is \"Day\" and \"Threshold Time Value\" is \"1\" Countdown Timer will display before 1day to the end time of the rule.%1$s Note: Please note that when its value is \"No Limit\" Countdown Timer will display always if pricing rule has date/time condition."
 msgstr ""
 
@@ -1376,14 +1398,17 @@ msgid "This message will show in the cart page."
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1057
+#, php-format
 msgid "Example Message : Visit our %s to view new discounted products based on your cart."
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1058
+#, php-format
 msgid "%s is a placeholder for discount page url and should be exists in the message."
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1060
+#, php-format
 msgid "Visit our %1$s to view new discounted products based on your cart."
 msgstr ""
 
@@ -1392,10 +1417,12 @@ msgid "Discount Page Title"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1066
+#, php-format
 msgid "This title will replace with %s placeholder in discount page message."
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1082
+#, php-format
 msgid "Enable it to use local texts or labels.%1$s Note: Disable it on a multilingual site and just translate texts that appears in front-end of your site which are exists in the langulage file of the plugin."
 msgstr ""
 
@@ -1434,6 +1461,7 @@ msgid "Cache Prices"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1137
+#, php-format
 msgid "Enable/Disable price caching.%s <strong>Note:</strong> Disabling this feature can potentially reduce your website's loading speed."
 msgstr ""
 
@@ -1458,6 +1486,7 @@ msgid "Disable Calculate Cart Totals"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1181
+#, php-format
 msgid "Disable calculate cart totals option to fix compatibility issues with some plugins.%1$s %2$sOnly use it when necessary because it can cause issues for mini-cart prices and pricing rules that are using subtotal conditions.%3$s"
 msgstr ""
 
@@ -1466,6 +1495,7 @@ msgid "Search Items Limit"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:1192
+#, php-format
 msgid "Limit search result of search inputs in the admin.%1$s Set it to %2$s-1%3$s for no limit."
 msgstr ""
 
@@ -1727,6 +1757,7 @@ msgid "End"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%s And New Rule"
 msgstr ""
 
@@ -1739,6 +1770,7 @@ msgid "OR"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%s OR New Group"
 msgstr ""
 
@@ -2415,6 +2447,7 @@ msgid "Apply if other rules are not applicable"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "Requires %1$s + %2$s."
 msgstr ""
 
@@ -2467,6 +2500,7 @@ msgid "Percentage discount per item"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%1$sNote:%2$s The %1$sFixed price discount%2$s amount will apply to the whole cart in the backend even if you select specific items."
 msgstr ""
 
@@ -2475,6 +2509,7 @@ msgid "Discount Amount"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "Discount amount can be greater or equal to %d."
 msgstr ""
 
@@ -2643,38 +2678,47 @@ msgid "Exclude products from all rules"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sSimple:%s Just a simple discount that will apply to listed discounted products."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sBulk:%s Adjusts discounted products price based on quantities added to the cart - All units get the highest discount."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sTiered:%s Adjusts discounted products price based on quantities added to the cart - Subsequent units get increasing discount."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sProducts group:%s Adjusts specified products group price."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sPurchase X Receive Y:%s Apply discount to specified number of discounted items when customer adds specified number of listed purchased items to the cart."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sPurchase X Receive Y - same products:%s Same as Purchase X Receive Y but purchased and discounted products are same. Use this mode when purchase and receive products are same."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sExample 1 for Purchase X Receive Y:%s purchase two number of the product to get one free."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sExample 2 for Purchase X Receive Y:%s purchase product X to get %2$s discount on product Y."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sExclude products from all rules:%s excludes selected products from all of pricing rules."
 msgstr ""
 
@@ -2703,22 +2747,27 @@ msgid "Sum of all products quantities"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sSingle product:%s Quantity is calculated separately for each product."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sSingle product variation:%s Quantity is calculated separately for each product variation, for simple products quantity will calculated based on product."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sCart line item:%s Quantity is calculated separately for each product line in the cart."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sSum of categories quantities:%s Quantity is calculated separately for each category in the cart."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "%sSum of all products quantities:%s Quantity is calculated based on sum of all quantities in the cart."
 msgstr ""
 
@@ -2823,6 +2872,7 @@ msgid "Adjustment"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "Discount amount should be greater than %d."
 msgstr ""
 
@@ -2831,10 +2881,12 @@ msgid "Quantities"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "Adjusts discounted products price based on quantities added to the cart.%1$s Set quantities ranges and each range discount amount.%1$s Leave Quantity maximum empty to setting no limit for range."
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "This feature is available only in the pro version, %1$s or %2$s."
 msgstr ""
 
@@ -2875,6 +2927,7 @@ msgid "Cost Per Quantity"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "Cost for each item quantity in the cart.%1$s Use %2$s a for percentage base amount. e.g: %3$s"
 msgstr ""
 
@@ -2883,10 +2936,12 @@ msgid "Cost Per Weight"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "Cost for each item weight in the cart.%1$s Use %2$s for a percentage base amount. e.g: %3$s"
 msgstr ""
 
 #: admin/js/conditions/index.js:1
+#, js-format
 msgid "An additional fee.%1$s Use %2$s for a percentage base amount. e.g: %3$s"
 msgstr ""
 
@@ -2939,6 +2994,7 @@ msgid "There was an error on applying review."
 msgstr ""
 
 #: admin/js/review/index.js:1
+#, js-format
 msgid "We hope you're enjoying %1$s! %3$s Could you please do us a BIG favor and give it a %2$s to help us spread the word and boost our motivation?%4$s %5$sShare your feature requests%6$s with the review, We always check them and try our best."
 msgstr ""
 

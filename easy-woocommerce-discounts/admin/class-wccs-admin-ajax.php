@@ -83,6 +83,10 @@ class WCCS_Admin_Ajax {
 			$data['ordering'] = (int) $_POST['ordering'];
 		}
 
+		if ( 'cart-discount' === $type && ! empty( $data['name'] ) ) {
+			$data['name'] = wc_format_coupon_code( $data['name'] );
+		}
+
 		$condition_id = $conditions_db->add( $data );
 
 		if ( $condition_id ) {
@@ -304,6 +308,7 @@ class WCCS_Admin_Ajax {
 			$data = array();
 			if ( ! empty( $_POST['data']['name'] ) ) {
 				$data['name'] = sanitize_text_field( $_POST['data']['name'] );
+				$data['name'] = 'cart-discount' === $_POST['type'] ? wc_format_coupon_code( $data['name'] ) : $data['name'];
 			}
 
 			if ( isset( $_POST['data']['status'] ) ) {
@@ -519,14 +524,13 @@ class WCCS_Admin_Ajax {
 			wp_die();
 		}
 
-		$limit       = (int) WCCS()->settings->get_setting( 'search_items_limit', 20 );
-		$select_data = new WCCS_Admin_Select_Data_Provider();
-		$items       = array();
+		$limit = (int) WCCS()->settings->get_setting( 'search_items_limit', 20 );
+		$items = array();
 
 		if ( 'products' === $_GET['type'] ) {
-			$items = $select_data->search_products( array( 'search' => $term, 'limit' => $limit ) );
+			$items = WCCS_Admin_Select_Data_Provider::search_products( array( 'search' => $term, 'limit' => $limit ) );
 		} elseif ( 'variations' === $_GET['type'] ) {
-			$items = $select_data->search_variations( array( 'search' => $term, 'limit' => $limit ) );
+			$items = WCCS_Admin_Select_Data_Provider::search_variations( array( 'search' => $term, 'limit' => $limit ) );
 		} elseif ( 'categories' === $_GET['type'] ) {
 			$items = WCCS()->products->get_categories( array( 'name__like' => $term, 'number' => $limit ) );
 		}
@@ -576,13 +580,12 @@ class WCCS_Admin_Ajax {
 			);
 		}
 
-		$select_data = new WCCS_Admin_Select_Data_Provider();
-		$items       = array();
+		$items = array();
 
 		if ( 'products' === $_POST['type'] ) {
-			$items = $select_data->get_products( array( 'include' => is_array( $_POST['options'] ) ? array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $_POST['options'] ) : array( WCCS_Helpers::maybe_get_exact_item_id( $_POST['options'] ) ) ) );
+			$items = WCCS_Admin_Select_Data_Provider::get_products( array( 'include' => is_array( $_POST['options'] ) ? array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $_POST['options'] ) : array( WCCS_Helpers::maybe_get_exact_item_id( $_POST['options'] ) ) ) );
 		} elseif ( 'variations' === $_POST['type'] ) {
-			$items = $select_data->get_variations( array( 'include' => is_array( $_POST['options'] ) ? array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $_POST['options'] ) : array( WCCS_Helpers::maybe_get_exact_item_id( $_POST['options'] ) ) ) );
+			$items = WCCS_Admin_Select_Data_Provider::get_variations( array( 'include' => is_array( $_POST['options'] ) ? array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $_POST['options'] ) : array( WCCS_Helpers::maybe_get_exact_item_id( $_POST['options'] ) ) ) );
 		} elseif ( 'categories' === $_POST['type'] ) {
 			$items = WCCS()->products->get_categories( array( 'include' => array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $_POST['options'] ) ) );
 		}

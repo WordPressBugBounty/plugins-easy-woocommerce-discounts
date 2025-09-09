@@ -614,10 +614,10 @@ final class WC_Conditions {
 		if ( $this->is_request( 'frontend' ) || WCCS_Helpers::wc_is_rest_api_request() ) {
 			$this->cart = new WCCS_Cart();
 			$pricing = new WCCS_Pricing(
-				$this->WCCS_Conditions_Provider->get_pricings( array( 'status' => 1 ) )
+				WCCS_Conditions_Provider::get_pricings( array( 'status' => 1 ) )
 			);
 			$this->services->set( 'cart_discount', new WCCS_Cart_Discount(
-				$this->WCCS_Conditions_Provider->get_cart_discounts( array( 'status' => 1 ) )
+				WCCS_Conditions_Provider::get_cart_discounts( array( 'status' => 1 ) )
 			) );
 			$this->services->set( 'pricing', $pricing );
 			$this->services->set( 'WCCS_Product_Price_Cache', new WCCS_Product_Price_Cache( $pricing ) );

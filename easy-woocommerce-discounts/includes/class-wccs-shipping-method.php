@@ -195,7 +195,7 @@ class WCCS_Shipping_Method extends WC_Shipping_Method {
      * @return array
      */
     public function get_valid_rules( $package = array() ) {
-        $rules = WCCS()->WCCS_Conditions_Provider->get_shippings( array( 'status' => 1 ) );
+        $rules = WCCS_Conditions_Provider::get_shippings( array( 'status' => 1 ) );
         if ( empty( $rules ) ) {
             return apply_filters( 'wccs_shipping_method_get_valid_rules', array(), $package, $this );
         }

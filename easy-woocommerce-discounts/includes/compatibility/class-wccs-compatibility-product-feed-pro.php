@@ -28,7 +28,7 @@ class WCCS_Compatibility_Product_Feed_Pro {
         $pricing = WCCS()->container()->get( 'pricing' );
         if ( ! $pricing ) {
             $pricing = new WCCS_Pricing(
-                WCCS()->WCCS_Conditions_Provider->get_pricings( array( 'status' => 1 ) )
+                WCCS_Conditions_Provider::get_pricings( array( 'status' => 1 ) )
             );
             WCCS()->container()->set( 'pricing', $pricing );
         }
