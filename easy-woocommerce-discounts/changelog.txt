@@ -1,5 +1,29 @@
 == Changelog ==
 
+= 8.1.2 =
+* Update: Update WordPress tested version to 6.9
+* Update: Verified compatibility with WooCommerce 10.4.3
+
+= 8.1.1 =
+* Update: Verified compatibility with WordPress 6.9
+* Update: Verified compatibility with WooCommerce 10.4.2
+
+= 8.1.0 =
+* New: Added recurring discount types for the WooCommerce subscriptions plugin.
+
+= 8.0.2 =
+* New: Added negative value support for checkout fees that works like a discount.
+* Fix: Fixed an issue of counting pricing rules impression when analytics is disabled.
+* Fix: Fixed select2 deprecated error message in WooCommerce 10.3.0 and above.
+
+= 8.0.1 =
+* Fix: Fixed an issue in logging variation products impressions.
+* Update: Verified compatibility with WooCommerce 10.3.4
+
+= 8.0.0 =
+* New: Added rules analytics to the plugin admin page.
+* Update: Verified compatibility with WooCommerce 10.3.3
+
 = 7.6.1 =
 * Fix: Fixed the total discount issue with product bundle plugin.
 * Fix: Format coupon name for cart discount rules on creating a new cart discount rule.

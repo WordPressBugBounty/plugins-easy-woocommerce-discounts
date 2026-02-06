@@ -62,6 +62,10 @@ class WCCS_Public_Cart_Item_Pricing {
 	 * @return float
 	 */
 	public function get_price() {
+		if ( ! $this->product ) {
+			return false;
+		}
+		
 		if ( $this->pricing->is_in_exclude_rules( $this->product_id, $this->variation_id, ( ! empty( $this->item['variation'] ) ? $this->item['variation'] : array() ) ) ) {
 			return apply_filters( 'wccs_public_cart_item_pricing_' . __FUNCTION__, false, $this );
 		}

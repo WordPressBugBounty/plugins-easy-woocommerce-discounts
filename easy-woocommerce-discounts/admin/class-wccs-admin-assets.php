@@ -18,7 +18,7 @@ class WCCS_Admin_Assets {
 
 	public function __construct( WCCS_Loader $loader, WCCS_Admin_Menu $menu ) {
 		$this->loader = $loader;
-		$this->menu   = $menu;
+		$this->menu = $menu;
 	}
 
 	public function init_hooks() {
@@ -58,10 +58,10 @@ class WCCS_Admin_Assets {
 	}
 
 	public function load_scripts() {
-		$suffix    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$screen    = get_current_screen();
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$screen = get_current_screen();
 		$screen_id = $screen ? $screen->id : '';
-		$menus     = $this->menu->get_menus();
+		$menus = $this->menu->get_menus();
 
 		if ( in_array( $screen_id, array_values( $menus ) ) ) {
 			$this->enqueue_style( 'wccs-admin', $this->get_asset_url( 'admin/css/wccs-admin' . $suffix . '.css' ) );
@@ -72,7 +72,6 @@ class WCCS_Admin_Assets {
 			$this->enqueue_style( 'select2', $this->get_asset_url( 'admin/css/select2/select2.css' ), array(), '4.0.3' );
 			$this->enqueue_style( 'easy-woocommerce-discounts', $this->get_asset_url( 'admin/css/conditions/style.css' ) );
 			$this->enqueue_style( 'wccs-font-awesome', $this->get_asset_url( 'admin/css/font-awesome.css' ), array(), '4.6.3' );
-			$this->register_script( 'select2', $this->get_asset_url( 'admin/js/vendor/select2/select2.js' ), array( 'jquery' ), '4.0.3' );
 			$this->register_script( 'vue', $this->get_asset_url( 'admin/js/vendor/vue/vue.js' ), array(), '2.6.12' );
 			$this->register_script( 'vue-router', $this->get_asset_url( 'admin/js/vendor/vue-router/vue-router.js' ), array( 'vue' ), '3.4.9' );
 			$this->register_script( 'vuex', $this->get_asset_url( 'admin/js/vendor/vuex/vuex.js' ), array( 'vue' ), '3.6.0' );
@@ -81,6 +80,7 @@ class WCCS_Admin_Assets {
 			$this->register_script( 'ewd-shared', $this->get_asset_url( 'admin/js/shared/index.js' ), array(), WCCS_VERSION );
 			$this->register_script( 'ewd-pages', $this->get_asset_url( 'admin/js/pages/index.js' ), array( 'vuex' ), WCCS_VERSION );
 			$this->register_script( 'ewd-validators', $this->get_asset_url( 'admin/js/validators/index.js' ), array( 'vuelidate' ), WCCS_VERSION );
+
 			WCCS_Helpers::register_polyfills();
 			$this->enqueue_script(
 				'easy-woocommerce-discounts',
@@ -90,14 +90,16 @@ class WCCS_Admin_Assets {
 					'vuelidate',
 					'moment',
 					'lodash',
-					'select2',
+					version_compare( WC()->version, '10.3.0', '>=' ) ? 'wc-select2' : 'select2',
 					'sortable',
 					'wp-color-picker',
 					'wp-hooks',
 					'wp-i18n',
+					'wp-api-fetch',
 					'ewd-shared',
 					'ewd-pages',
 					'ewd-validators',
+					version_compare( WC()->version, '10.3.0', '>=' ) ? 'wc-jquery-tiptip' : 'jquery-tiptip',
 				),
 				WCCS_VERSION,
 				true
@@ -117,16 +119,16 @@ class WCCS_Admin_Assets {
 
 	protected function localize_script( $handle ) {
 		if ( ! in_array( $handle, $this->localize_scripts ) && wp_script_is( $handle ) && ( $data = $this->get_script_data( $handle ) ) ) {
-			$name                        = 'easy-woocommerce-discounts' === $handle ? 'wcConditions' : str_replace( '-', '_', $handle ) . '_params';
-			$this->localize_scripts[]    = $handle;
+			$name = 'easy-woocommerce-discounts' === $handle ? 'wcConditions' : str_replace( '-', '_', $handle ) . '_params';
+			$this->localize_scripts[] = $handle;
 			wp_localize_script( $handle, $name, apply_filters( $name, $data ) );
 		}
 	}
 
 	protected function get_script_data( $handle ) {
 		switch ( $handle ) {
-			case 'easy-woocommerce-discounts' :
-				$wccs        = WCCS();
+			case 'easy-woocommerce-discounts':
+				$wccs = WCCS();
 				$wc_products = $wccs->products;
 
 				return array(
@@ -139,8 +141,8 @@ class WCCS_Admin_Assets {
 					'dateTime' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
 					'saleBadgesAdv' => ! defined( 'ASNP_WESB_VERSION' ),
 					'pluginUrl' => WCCS_PLUGIN_URL,
+					'wcSubscriptions' => class_exists( 'WC_Subscriptions' ),
 				);
-			break;
 		}
 
 		return false;

@@ -6,6 +6,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WCCS_Admin_Select_Data_Provider {
 
+	public static function get_rules( array $args = [] ) {
+		$args = array_merge( [
+			'number' => 20,
+			'orderby' => 'ordering',
+			'order' => 'ASC',
+		], $args );
+
+		$conditions = WCCS()->conditions->get_conditions( $args );
+		if ( empty( $conditions ) ) {
+			return [];
+		}
+
+		$data = array();
+		foreach ( $conditions as $condition ) {
+			$data[] = (object) array(
+				'id' => $condition->id,
+				'text' => html_entity_decode( $condition->name ),
+			);
+		}
+
+		return $data;
+	}
+
 	public static function search_products( array $args = array() ) {
 		if ( empty( $args['search'] ) ) {
 			throw new Exception( 'Search term is required to search products.' );
@@ -26,7 +49,7 @@ class WCCS_Admin_Select_Data_Provider {
 
 	public static function get_products( array $args = array() ) {
 		$args = wp_parse_args( $args, array( 'limit' => -1 ) );
-		if ( empty( $args['include'] ) && empty( $args['post_id']  ) ) {
+		if ( empty( $args['include'] ) && empty( $args['post_id'] ) ) {
 			return array();
 		}
 
@@ -58,7 +81,7 @@ class WCCS_Admin_Select_Data_Provider {
 
 	public static function get_variations( array $args = array() ) {
 		$args = wp_parse_args( $args, array( 'type' => 'variation', 'limit' => -1 ) );
-		if ( empty( $args['include'] ) && empty( $args['post_id']  ) ) {
+		if ( empty( $args['include'] ) && empty( $args['post_id'] ) ) {
 			return array();
 		}
 
@@ -103,7 +126,7 @@ class WCCS_Admin_Select_Data_Provider {
 			}
 
 			$products_select[ $id ] = (object) array(
-				'id'   => $product->get_id(),
+				'id' => $product->get_id(),
 				'text' => $text,
 			);
 		}

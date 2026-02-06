@@ -1,1 +1,211 @@
-this.ewd=this.ewd||{},this.ewd.pages=function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=145)}({145:function(t,e,n){"use strict";n.r(e),n.d(e,"registerRoute",(function(){return c})),n.d(e,"registerTab",(function(){return s})),n.d(e,"getTabComponents",(function(){return f})),n.d(e,"getRoutes",(function(){return d})),n.d(e,"getTabs",(function(){return p}));var r=n(4),o=n.n(r),u=n(8),i=n.n(u);o.a.use(i.a);var a=new i.a.Store({state:{routes:[],tabs:[]},mutations:{addRoute:function(t,e){return t.routes.push(e)},addTab:function(t,e){return t.tabs.push(e)}},actions:{addRoute:function(t,e){var n=t.commit;if(!e||!e.path)throw new Error("Route path is required.");if(!e.component)throw new Error("Route component is required.");n("addRoute",e)},addTab:function(t,e){var n=t.commit;if(!e||!e.name)throw new Error("Tab name is required.");if(!e.component)throw new Error("Tab component is required.");n("addTab",e)}},getters:{getRoutes:function(t){return t.routes},getTabs:function(t){return t.tabs},getTabComponents:function(t){var e={};return t.tabs.map((function(t){t.component&&t.component.name&&(e[t.component.name]=t.component)})),e}}}),c=function(t){if(!t||!t.path)throw new Error("Route path is required.");if(!t.component)throw new Error("Route component is required.");a.dispatch("addRoute",t)},s=function(t){if(!t||!t.name)throw new Error("Tab name is required.");if(!t.route)throw new Error("Tab route is required.");a.dispatch("addTab",t)},f=function(){return a.getters.getTabComponents},d=function(){return a.getters.getRoutes},p=function(){return a.getters.getTabs}},4:function(t,e){!function(){t.exports=this.Vue}()},8:function(t,e){!function(){t.exports=this.Vuex}()}});
+this["ewd"] = this["ewd"] || {}; this["ewd"]["pages"] =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 151);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 151:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "registerRoute", function() { return /* binding */ src_registerRoute; });
+__webpack_require__.d(__webpack_exports__, "registerTab", function() { return /* binding */ src_registerTab; });
+__webpack_require__.d(__webpack_exports__, "getTabComponents", function() { return /* binding */ src_getTabComponents; });
+__webpack_require__.d(__webpack_exports__, "getRoutes", function() { return /* binding */ src_getRoutes; });
+__webpack_require__.d(__webpack_exports__, "getTabs", function() { return /* binding */ src_getTabs; });
+
+// EXTERNAL MODULE: external "Vue"
+var external_Vue_ = __webpack_require__(4);
+var external_Vue_default = /*#__PURE__*/__webpack_require__.n(external_Vue_);
+
+// EXTERNAL MODULE: external "Vuex"
+var external_Vuex_ = __webpack_require__(7);
+var external_Vuex_default = /*#__PURE__*/__webpack_require__.n(external_Vuex_);
+
+// CONCATENATED MODULE: ./admin/vue/pages/src/store/index.js
+
+
+external_Vue_default.a.use(external_Vuex_default.a);
+/* harmony default export */ var store = (new external_Vuex_default.a.Store({
+  state: {
+    routes: [],
+    tabs: []
+  },
+  mutations: {
+    addRoute: function addRoute(state, route) {
+      return state.routes.push(route);
+    },
+    addTab: function addTab(state, tab) {
+      return state.tabs.push(tab);
+    }
+  },
+  actions: {
+    addRoute: function addRoute(_ref, route) {
+      var commit = _ref.commit;
+      if (!route || !route.path) {
+        throw new Error('Route path is required.');
+      } else if (!route.component) {
+        throw new Error('Route component is required.');
+      }
+      commit('addRoute', route);
+    },
+    addTab: function addTab(_ref2, tab) {
+      var commit = _ref2.commit;
+      if (!tab || !tab.name) {
+        throw new Error('Tab name is required.');
+      } else if (!tab.component) {
+        throw new Error('Tab component is required.');
+      }
+      commit('addTab', tab);
+    }
+  },
+  getters: {
+    getRoutes: function getRoutes(state) {
+      return state.routes;
+    },
+    getTabs: function getTabs(state) {
+      return state.tabs;
+    },
+    getTabComponents: function getTabComponents(state) {
+      var components = {};
+      state.tabs.map(function (tab) {
+        if (tab.component && tab.component.name) {
+          components[tab.component.name] = tab.component;
+        }
+      });
+      return components;
+    }
+  }
+}));
+// CONCATENATED MODULE: ./admin/vue/pages/src/index.js
+
+var src_registerRoute = function registerRoute(route) {
+  if (!route || !route.path) {
+    throw new Error('Route path is required.');
+  } else if (!route.component) {
+    throw new Error('Route component is required.');
+  }
+  store.dispatch('addRoute', route);
+};
+var src_registerTab = function registerTab(tab) {
+  if (!tab || !tab.name) {
+    throw new Error('Tab name is required.');
+  } else if (!tab.route) {
+    throw new Error('Tab route is required.');
+  }
+  store.dispatch('addTab', tab);
+};
+var src_getTabComponents = function getTabComponents() {
+  return store.getters.getTabComponents;
+};
+var src_getRoutes = function getRoutes() {
+  return store.getters.getRoutes;
+};
+var src_getTabs = function getTabs() {
+  return store.getters.getTabs;
+};
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["Vue"]; }());
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["Vuex"]; }());
+
+/***/ })
+
+/******/ });

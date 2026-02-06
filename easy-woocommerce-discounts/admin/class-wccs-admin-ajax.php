@@ -59,19 +59,19 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in saving condition.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
 		}
 
-		$wccs           = WCCS();
-		$conditions_db  = $wccs->conditions;
+		$wccs = WCCS();
+		$conditions_db = $wccs->conditions;
 		$condition_meta = $wccs->condition_meta;
 
 		$data = array(
-			'type'   => $type,
-			'name'   => isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '',
+			'type' => $type,
+			'name' => isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '',
 			'status' => isset( $_POST['status'] ) ? (int) $_POST['status'] : 1,
 		);
 
@@ -94,7 +94,7 @@ class WCCS_Admin_Ajax {
 			$condition_meta->update_meta( $condition_id, 'conditions', $conditions );
 
 			$meta_data = array(
-				'date_time'             => ! empty( $_POST['date_time'] ) ? map_deep( $_POST['date_time'], 'sanitize_text_field' ) : array(),
+				'date_time' => ! empty( $_POST['date_time'] ) ? map_deep( $_POST['date_time'], 'sanitize_text_field' ) : array(),
 				'date_times_match_mode' => ! empty( $_POST['date_times_match_mode'] ) && in_array( $_POST['date_times_match_mode'], array( 'one', 'all' ) ) ? sanitize_text_field( $_POST['date_times_match_mode'] ) : 'one',
 				'conditions_match_mode' => ! empty( $_POST['conditions_match_mode'] ) && in_array( $_POST['conditions_match_mode'], array( 'one', 'all' ) ) ? sanitize_text_field( $_POST['conditions_match_mode'] ) : 'all',
 			);
@@ -105,47 +105,47 @@ class WCCS_Admin_Ajax {
 				$meta_data['exclude'] = ! empty( $_POST['exclude'] ) ? map_deep( $_POST['exclude'], 'sanitize_text_field' ) : array();
 			}  // Cart Discount condition meta data.
 			elseif ( 'cart-discount' === $type ) {
-				$meta_data['private_note']    = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
-				$meta_data['apply_mode']      = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
-				$meta_data['discount_type']   = ! empty( $_POST['discount_type'] ) ? sanitize_text_field( $_POST['discount_type'] ) : 'percentage';
+				$meta_data['private_note'] = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
+				$meta_data['apply_mode'] = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
+				$meta_data['discount_type'] = ! empty( $_POST['discount_type'] ) ? sanitize_text_field( $_POST['discount_type'] ) : 'percentage';
 				$meta_data['discount_amount'] = ! empty( $_POST['discount_amount'] ) ? floatval( $_POST['discount_amount'] ) : 0;
-				$meta_data['items']           = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
-				$meta_data['exclude_items']   = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
-				$meta_data['manual']          = ! empty( $_POST['manual'] ) ? absint( $_POST['manual'] ) : 0;
-				$meta_data['usage_limit']     = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
+				$meta_data['items'] = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
+				$meta_data['exclude_items'] = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
+				$meta_data['manual'] = ! empty( $_POST['manual'] ) ? absint( $_POST['manual'] ) : 0;
+				$meta_data['usage_limit'] = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
 			} // Shipping method condition meta data.
 			elseif ( 'shipping' === $type ) {
-				$meta_data['private_note']      = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
-				$meta_data['apply_mode']        = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
-				$meta_data['tax_status']        = ! empty( $_POST['tax_status'] ) ? sanitize_text_field( $_POST['tax_status'] ) : 'taxable';
-				$meta_data['cost']              = ! empty( $_POST['cost'] ) ? floatval( $_POST['cost'] ) : 0;
+				$meta_data['private_note'] = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
+				$meta_data['apply_mode'] = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
+				$meta_data['tax_status'] = ! empty( $_POST['tax_status'] ) ? sanitize_text_field( $_POST['tax_status'] ) : 'taxable';
+				$meta_data['cost'] = ! empty( $_POST['cost'] ) ? floatval( $_POST['cost'] ) : 0;
 				$meta_data['cost_per_quantity'] = ! empty( $_POST['cost_per_quantity'] ) ? sanitize_text_field( $_POST['cost_per_quantity'] ) : 0;
-				$meta_data['cost_per_weight']   = ! empty( $_POST['cost_per_weight'] ) ? sanitize_text_field( $_POST['cost_per_weight'] ) : 0;
-				$meta_data['fee']               = ! empty( $_POST['fee'] ) ? sanitize_text_field( $_POST['fee'] ) : 0;
-				$meta_data['min_fee']           = isset( $_POST['min_fee'] ) && '' !== $_POST['min_fee'] ? floatval( $_POST['min_fee'] ) : '';
-				$meta_data['max_fee']           = isset( $_POST['max_fee'] ) && '' !== $_POST['max_fee'] ? floatval( $_POST['max_fee'] ) : '';
-				$meta_data['usage_limit']       = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
+				$meta_data['cost_per_weight'] = ! empty( $_POST['cost_per_weight'] ) ? sanitize_text_field( $_POST['cost_per_weight'] ) : 0;
+				$meta_data['fee'] = ! empty( $_POST['fee'] ) ? sanitize_text_field( $_POST['fee'] ) : 0;
+				$meta_data['min_fee'] = isset( $_POST['min_fee'] ) && '' !== $_POST['min_fee'] ? floatval( $_POST['min_fee'] ) : '';
+				$meta_data['max_fee'] = isset( $_POST['max_fee'] ) && '' !== $_POST['max_fee'] ? floatval( $_POST['max_fee'] ) : '';
+				$meta_data['usage_limit'] = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
 			} // Pricing condition meta data.
 			elseif ( 'pricing' === $type ) {
 				if ( ! empty( $_POST['mode'] ) ) {
-					$meta_data['apply_mode']                = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
-					$meta_data['mode']                      = sanitize_text_field( $_POST['mode'] );
-					$meta_data['items']                     = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
-					$meta_data['exclude_items']             = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
-					$meta_data['usage_limit']               = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
-					$meta_data['message_type']              = ! empty( $_POST['message_type'] ) ? sanitize_text_field( $_POST['message_type'] ) : 'text_message';
-					$meta_data['message_background_color']  = ! empty( $_POST['message_background_color'] ) ? sanitize_text_field( $_POST['message_background_color'] ) : '';
-					$meta_data['message_color']             = ! empty( $_POST['message_color'] ) ? sanitize_text_field( $_POST['message_color'] ) : '';
-					$meta_data['receive_message']           = ! empty( $_POST['receive_message'] ) ? wp_kses_post( $_POST['receive_message'] ) : '';
+					$meta_data['apply_mode'] = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
+					$meta_data['mode'] = sanitize_text_field( $_POST['mode'] );
+					$meta_data['items'] = ! empty( $_POST['items'] ) ? map_deep( $_POST['items'], 'sanitize_text_field' ) : array();
+					$meta_data['exclude_items'] = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
+					$meta_data['usage_limit'] = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
+					$meta_data['message_type'] = ! empty( $_POST['message_type'] ) ? sanitize_text_field( $_POST['message_type'] ) : 'text_message';
+					$meta_data['message_background_color'] = ! empty( $_POST['message_background_color'] ) ? sanitize_text_field( $_POST['message_background_color'] ) : '';
+					$meta_data['message_color'] = ! empty( $_POST['message_color'] ) ? sanitize_text_field( $_POST['message_color'] ) : '';
+					$meta_data['receive_message'] = ! empty( $_POST['receive_message'] ) ? wp_kses_post( $_POST['receive_message'] ) : '';
 
 					$delete_meta = array();
 
 					if ( 'bulk' === $_POST['mode'] ) {
 						$meta_data['quantity_based_on'] = ! empty( $_POST['quantity_based_on'] ) ? sanitize_text_field( $_POST['quantity_based_on'] ) : 'single_product';
-						$meta_data['quantities']        = ! empty( $_POST['quantities'] ) ? map_deep( $_POST['quantities'], 'sanitize_text_field' ) : array();
+						$meta_data['quantities'] = ! empty( $_POST['quantities'] ) ? map_deep( $_POST['quantities'], 'sanitize_text_field' ) : array();
 
 						$meta_data['display_quantity'] = ! empty( $_POST['display_quantity'] ) ? sanitize_text_field( $_POST['display_quantity'] ) : 'yes';
-						$meta_data['display_price']    = ! empty( $_POST['display_price'] ) ? sanitize_text_field( $_POST['display_price'] ) : 'yes';
+						$meta_data['display_price'] = ! empty( $_POST['display_price'] ) ? sanitize_text_field( $_POST['display_price'] ) : 'yes';
 						$meta_data['display_discount'] = ! empty( $_POST['display_discount'] ) ? sanitize_text_field( $_POST['display_discount'] ) : 'no';
 
 						if ( isset( $data['id'] ) ) {
@@ -153,7 +153,7 @@ class WCCS_Admin_Ajax {
 						}
 					} elseif ( 'simple' === $_POST['mode'] ) {
 						$meta_data['discount_type'] = ! empty( $_POST['discount_type'] ) ? sanitize_text_field( $_POST['discount_type'] ) : 'percentage_discount';
-						$meta_data['discount']      = ! empty( $_POST['discount'] ) ? (float) $_POST['discount'] : 0;
+						$meta_data['discount'] = ! empty( $_POST['discount'] ) ? (float) $_POST['discount'] : 0;
 
 						if ( isset( $data['id'] ) ) {
 							$delete_meta = array( 'quantity_based_on', 'quantities', 'purchase', 'purchased_items', 'purchased_message', 'repeat' );
@@ -182,9 +182,9 @@ class WCCS_Admin_Ajax {
 			die(
 				json_encode(
 					array(
-						'success'   => 1,
+						'success' => 1,
 						'condition' => $condition,
-						'message'   => sprintf ( __( 'Condition %s successfully.', 'easy-woocommerce-discounts' ), ( isset( $data['id'] ) ? 'updated' : 'saved' ) ),
+						'message' => sprintf( __( 'Condition %s successfully.', 'easy-woocommerce-discounts' ), ( isset( $data['id'] ) ? 'updated' : 'saved' ) ),
 					)
 				)
 			);
@@ -227,14 +227,14 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in deleting condition.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
 		}
 
 		$condition = WCCS()->conditions->get_condition( $id );
-		$delete    = WCCS()->conditions->delete( $id );
+		$delete = WCCS()->conditions->delete( $id );
 
 		if ( $delete ) {
 			do_action( 'wccs_condition_deleted', $condition );
@@ -292,18 +292,18 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in updating condition.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
 		}
 
-		$wccs           = WCCS();
-		$conditions_db  = $wccs->conditions;
+		$wccs = WCCS();
+		$conditions_db = $wccs->conditions;
 		$condition_meta = $wccs->condition_meta;
 
-		$update        = false;
-		$condition     = $conditions_db->get_condition( intval( $_POST['id'] ) );
+		$update = false;
+		$condition = $conditions_db->get_condition( intval( $_POST['id'] ) );
 		if ( $condition ) {
 			$data = array();
 			if ( ! empty( $_POST['data']['name'] ) ) {
@@ -340,9 +340,9 @@ class WCCS_Admin_Ajax {
 				die(
 					json_encode(
 						array(
-							'success'   => 1,
+							'success' => 1,
 							'condition' => $condition,
-							'message'   => __( 'Condition updated successfully.', 'easy-woocommerce-discounts' ),
+							'message' => __( 'Condition updated successfully.', 'easy-woocommerce-discounts' ),
 						)
 					)
 				);
@@ -389,22 +389,22 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in ordering conditions.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
 		}
 
 		$conditions = WCCS()->conditions;
-		$update     = $conditions->update_conditions_ordering( map_deep( $_POST['conditions'], 'intval' ) );
+		$update = $conditions->update_conditions_ordering( map_deep( $_POST['conditions'], 'intval' ) );
 
 		if ( $update ) {
 			do_action( 'wccs_conditions_ordering_updated', sanitize_text_field( $_POST['type'] ) );
 			die(
 				json_encode(
 					array(
-						'success'    => 1,
-						'message'    => __( 'Conditions ordered successfully.', 'easy-woocommerce-discounts' ),
+						'success' => 1,
+						'message' => __( 'Conditions ordered successfully.', 'easy-woocommerce-discounts' ),
 						'conditions' => $conditions->get_conditions( array( 'type' => sanitize_text_field( $_POST['type'] ), 'number' => -1, 'orderby' => 'ordering', 'order' => 'ASC' ) ),
 					)
 				)
@@ -452,7 +452,7 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in duplicating condition.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
@@ -475,8 +475,8 @@ class WCCS_Admin_Ajax {
 		die(
 			json_encode(
 				array(
-					'success'    => 1,
-					'message'    => __( 'Condition duplicated successfully.', 'easy-woocommerce-discounts' ),
+					'success' => 1,
+					'message' => __( 'Condition duplicated successfully.', 'easy-woocommerce-discounts' ),
 					'conditions' => WCCS()->conditions->get_conditions( array( 'type' => sanitize_text_field( $_POST['type'] ), 'number' => -1, 'orderby' => 'ordering', 'order' => 'ASC' ) ),
 				)
 			)
@@ -513,7 +513,7 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in selecting data.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
@@ -533,6 +533,8 @@ class WCCS_Admin_Ajax {
 			$items = WCCS_Admin_Select_Data_Provider::search_variations( array( 'search' => $term, 'limit' => $limit ) );
 		} elseif ( 'categories' === $_GET['type'] ) {
 			$items = WCCS()->products->get_categories( array( 'name__like' => $term, 'number' => $limit ) );
+		} elseif ( 'rules' === $_GET['type'] ) {
+			$items = WCCS_Admin_Select_Data_Provider::get_rules( [ 'name' => $term, 'number' => $limit ] );
 		}
 
 		die(
@@ -574,7 +576,7 @@ class WCCS_Admin_Ajax {
 					array(
 						'success' => 0,
 						'message' => __( 'Some errors occurred in getting select data.', 'easy-woocommerce-discounts' ),
-						'errors'  => $errors,
+						'errors' => $errors,
 					)
 				)
 			);
@@ -588,6 +590,8 @@ class WCCS_Admin_Ajax {
 			$items = WCCS_Admin_Select_Data_Provider::get_variations( array( 'include' => is_array( $_POST['options'] ) ? array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $_POST['options'] ) : array( WCCS_Helpers::maybe_get_exact_item_id( $_POST['options'] ) ) ) );
 		} elseif ( 'categories' === $_POST['type'] ) {
 			$items = WCCS()->products->get_categories( array( 'include' => array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $_POST['options'] ) ) );
+		} elseif ( 'rules' === $_POST['type'] ) {
+			$items = WCCS_Admin_Select_Data_Provider::get_rules( [ 'id' => is_array( $_POST['options'] ) ? array_map( 'absint', $_POST['options'] ) : [ absint( $_POST['options'] ) ] ] );
 		}
 
 		die( json_encode( array( 'items' => $items ) ) );
@@ -601,52 +605,52 @@ class WCCS_Admin_Ajax {
 		}
 
 		$items = array(
-			'bundle'  => array(
+			'bundle' => array(
 				'title' => __( 'Bundle', 'easy-woocommerce-discounts' ),
 				'items' => array(
 					array(
-						'id'         => 'advanced-discounts-woocommerce',
-						'name'       => 'Advanced Discounts for WooCommerce',
-						'desc'       => 'Advanced Discounts for WooCommerce is a discount bundle plugin that includes all of the discount and coupon plugins that you need for your WooCommerce store.',
-						'url'        => 'https://www.asanaplugins.com/advanced-discounts-woocommerce',
-						'price'      => '180',
+						'id' => 'advanced-discounts-woocommerce',
+						'name' => 'Advanced Discounts for WooCommerce',
+						'desc' => 'Advanced Discounts for WooCommerce is a discount bundle plugin that includes all of the discount and coupon plugins that you need for your WooCommerce store.',
+						'url' => 'https://www.asanaplugins.com/advanced-discounts-woocommerce',
+						'price' => '180',
 						'sale_price' => '68',
 					),
 				),
 			),
-			'addons'  => array(
+			'addons' => array(
 				'title' => __( 'Addons', 'easy-woocommerce-discounts' ),
 				'items' => array(
 					array(
-						'id'         => 'sale-badges-woocommerce',
-						'name'       => 'Sale Badges and Product Labels',
-						'desc'       => 'The WooCommerce Sale Badges and Product Labels plugin enhances your store appeal by offering custom badges and countdown timers. Unleash the full potential of your WooCommerce store with attractive sale badges, product labels, and countdown timers. This all-in-one plugin empowers you to create eye-catching labels and scheduled badges for products, categories, and tags. These labels convey valuable information to your customers, such as discount values, product quantities, ratings, shipping classes, stock status, and sale status. Additionally, you can utilize countdown timers to instill urgency and boost conversions. With an intuitive interface, effortlessly customize labels and replace WooCommerce default on-sale badges. Elevate your WooCommerce store with visually appealing badges, labels, and countdown timers tailored to your unique offerings.',
-						'url'        => 'https://www.asanaplugins.com/product/woocommerce-sale-badges-and-product-labels/',
-						'price'      => '60',
+						'id' => 'sale-badges-woocommerce',
+						'name' => 'Sale Badges and Product Labels',
+						'desc' => 'The WooCommerce Sale Badges and Product Labels plugin enhances your store appeal by offering custom badges and countdown timers. Unleash the full potential of your WooCommerce store with attractive sale badges, product labels, and countdown timers. This all-in-one plugin empowers you to create eye-catching labels and scheduled badges for products, categories, and tags. These labels convey valuable information to your customers, such as discount values, product quantities, ratings, shipping classes, stock status, and sale status. Additionally, you can utilize countdown timers to instill urgency and boost conversions. With an intuitive interface, effortlessly customize labels and replace WooCommerce default on-sale badges. Elevate your WooCommerce store with visually appealing badges, labels, and countdown timers tailored to your unique offerings.',
+						'url' => 'https://www.asanaplugins.com/product/woocommerce-sale-badges-and-product-labels/',
+						'price' => '60',
 						'sale_price' => '30',
 					),
 					array(
-						'id'         => 'auto-add-products-to-cart-woocommerce',
-						'name'       => 'Auto Add Products to Cart',
-						'desc'       => 'Automatically Add Products to Cart is a discount plugin that can add products to the cart automatically based on conditions with a discount or without. You can use it to automatically add gift products to the cart in WooCommerce.',
-						'url'        => 'https://www.asanaplugins.com/product/auto-add-products-to-cart-woocommerce',
-						'price'      => '40',
+						'id' => 'auto-add-products-to-cart-woocommerce',
+						'name' => 'Auto Add Products to Cart',
+						'desc' => 'Automatically Add Products to Cart is a discount plugin that can add products to the cart automatically based on conditions with a discount or without. You can use it to automatically add gift products to the cart in WooCommerce.',
+						'url' => 'https://www.asanaplugins.com/product/auto-add-products-to-cart-woocommerce',
+						'price' => '40',
 						'sale_price' => '20',
 					),
 					array(
-						'id'         => 'shipping-discount-woocommerce',
-						'name'       => 'Shipping Discount',
-						'desc'       => 'Shipping Discount is a discount plugin that applies the discount on specific shipping methods based on conditions. You can set price or percentage discounts on shipping methods.',
-						'url'        => 'https://www.asanaplugins.com/product/shipping-discount-woocommerce',
-						'price'      => '40',
+						'id' => 'shipping-discount-woocommerce',
+						'name' => 'Shipping Discount',
+						'desc' => 'Shipping Discount is a discount plugin that applies the discount on specific shipping methods based on conditions. You can set price or percentage discounts on shipping methods.',
+						'url' => 'https://www.asanaplugins.com/product/shipping-discount-woocommerce',
+						'price' => '40',
 						'sale_price' => '20',
 					),
 					array(
-						'id'         => 'url-coupons-for-woocommerce',
-						'name'       => 'URL Coupons',
-						'desc'       => 'URL Coupons for WooCommerce adds unique URLs for coupons and when a customer visits that unique URL it will apply the discount to the cart. You can use the WooCommerce URL Coupons plugin to automate coupons on your site.',
-						'url'        => 'https://www.asanaplugins.com/product/url-coupons-for-woocommerce',
-						'price'      => '40',
+						'id' => 'url-coupons-for-woocommerce',
+						'name' => 'URL Coupons',
+						'desc' => 'URL Coupons for WooCommerce adds unique URLs for coupons and when a customer visits that unique URL it will apply the discount to the cart. You can use the WooCommerce URL Coupons plugin to automate coupons on your site.',
+						'url' => 'https://www.asanaplugins.com/product/url-coupons-for-woocommerce',
+						'price' => '40',
 						'sale_price' => '20',
 					),
 				),

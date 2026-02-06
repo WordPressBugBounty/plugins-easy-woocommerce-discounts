@@ -3,9 +3,9 @@ Contributors: asanaplugins
 Donate link: https://www.asanaplugins.com/
 Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woocommerce discounts, woocommerce pricing deals, woocommerce Buy One Get One Free, bulk coupons, gift coupons, signup coupons, advanced coupons, woocommerce bulk discounts, woocommerce pricing, woocommerce price rules, woocommerce advanced discounts, woocommerce pricing deals, woocommerce bulk discounts, woocommerce cart discounts, woocommerce pricing deals, woocommerce discount rules, discount rules for woocommerce, woocommerce shipping, dynamic shipping, url coupons for woocommerce
 Requires at least: 4.4.2
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.6.0
-Stable tag: 7.6.1
+Stable tag: 8.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,11 +140,13 @@ URL Coupons is an addon for the PRO version.
 == 🎉 Our Other Free Plugins ==
 * <strong>[WooCommerce Product Bundles](https://wordpress.org/plugins/easy-product-bundles-for-woocommerce/)
 * <strong>[Sale Badge and Product Label](https://wordpress.org/plugins/easy-sale-badges-for-woocommerce/)
+* <strong>[Upsells, Related Products and Product Recommendations](https://wordpress.org/plugins/easy-upsells-for-woocommerce/)
 * <strong>[AI Content Writing and WhatsApp Chat](https://wordpress.org/plugins/live-chat-button/)
 
 == 💡 Our Other Pro Plugins ==
 * <strong>[WooCommerce Product Bundles Pro](https://www.asanaplugins.com/product/woocommerce-product-bundles/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts-free&utm_medium=link)
 * <strong>[Sale Badges and Product Labels Pro](https://www.asanaplugins.com/product/woocommerce-sale-badges-and-product-labels/)
+* <strong>[Upsells, Related Products and Product Recommendations Pro](https://www.asanaplugins.com/product/woocommerce-upsells-related-products/)
 * <strong>[AI Content Writing and WhatsApp Chat Pro](https://www.asanaplugins.com/product/whatsapp-chat-wordpress/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts-free&utm_medium=link)
 
 = Tags =
@@ -252,6 +254,30 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 7. WooCommerce Checkout Fee - Charge £20.00 fee when weight is greater than a specific wheight.
 
 == Changelog ==
+
+= 8.1.2 =
+* Update: Update WordPress tested version to 6.9
+* Update: Verified compatibility with WooCommerce 10.4.3
+
+= 8.1.1 =
+* Update: Verified compatibility with WordPress 6.9
+* Update: Verified compatibility with WooCommerce 10.4.2
+
+= 8.1.0 =
+* New: Added recurring discount types for the WooCommerce subscriptions plugin.
+
+= 8.0.2 =
+* New: Added negative value support for checkout fees that works like a discount.
+* Fix: Fixed an issue of counting pricing rules impression when analytics is disabled.
+* Fix: Fixed select2 deprecated error message in WooCommerce 10.3.0 and above.
+
+= 8.0.1 =
+* Fix: Fixed an issue in logging variation products impressions.
+* Update: Verified compatibility with WooCommerce 10.3.4
+
+= 8.0.0 =
+* New: Added rules analytics to the plugin admin page.
+* Update: Verified compatibility with WooCommerce 10.3.3
 
 = 7.6.1 =
 * Fix: Fixed the total discount issue with product bundle plugin.

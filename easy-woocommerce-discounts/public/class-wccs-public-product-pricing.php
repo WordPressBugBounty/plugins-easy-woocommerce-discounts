@@ -34,16 +34,16 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		$wccs = WCCS();
 
 		$this->product_type = $this->product->get_type();
-		$this->product_id   = $this->product->get_id();
-		$this->parent_id    = 'variation' === $this->product_type ? $wccs->product_helpers->get_parent_id( $this->product ) : $this->product_id;
-		$this->pricing      = $pricing;
+		$this->product_id = $this->product->get_id();
+		$this->parent_id = 'variation' === $this->product_type ? $wccs->product_helpers->get_parent_id( $this->product ) : $this->product_id;
+		$this->pricing = $pricing;
 		$this->apply_method = ! empty( $apply_method ) ? $apply_method : $wccs->settings->get_setting( 'product_pricing_discount_apply_method', 'first' );
 	}
 
 	public function get_price_html( $price = '' ) {
 		do_action( 'wccs_public_product_pricing_before_get_price_html', $this, $price );
 
-		if ( 
+		if (
 			'all' === WCCS()->settings->get_setting( 'change_display_price', 'all' ) &&
 			! is_single( $this->parent_id )
 		) {
@@ -108,7 +108,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				$discounted_price = $discounted_price . $this->product->get_price_suffix();
 			}
 		} else {
-			$display_price            = WCCS()->product_helpers->wc_get_price_to_display( $this->product, $this->product->is_on_sale( 'edit' ) ? array( 'price' => WCCS()->product_helpers->wc_get_regular_price( $this->product ) ) : array() );
+			$display_price = WCCS()->product_helpers->wc_get_price_to_display( $this->product, $this->product->is_on_sale( 'edit' ) ? array( 'price' => WCCS()->product_helpers->wc_get_regular_price( $this->product ) ) : array() );
 			$product_discounted_price = WCCS()->product_helpers->wc_get_price_to_display( $this->product, array(), false );
 			if ( $product_discounted_price < 0 || $product_discounted_price == $display_price || false === $product_discounted_price ) {
 				do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
@@ -160,7 +160,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		$max = $rule['quantities'][0];
 
 		$regular_price = '';
-		$prices        = array();
+		$prices = array();
 
 		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
 			$variable_prices = WCCS()->product_helpers->wc_get_variation_prices( $this->product, true );
@@ -177,7 +177,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$prices[] = end( $variable_prices['price'] );
 				}
 			}
-			
+
 			$v_price = $this->calculate_discounted_price( $min['discount'], $min['discount_type'] );
 			if ( isset( $v_price['min'] ) ) {
 				$prices[] = $v_price['min'];
@@ -206,35 +206,35 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$prices[] = $this->calculate_discounted_price( $max['discount'], $max['discount_type'] );
 
 			if ( ! isset( $max['min'] ) || 1 != $max['min'] ) {
-				$prices[] = apply_filters( 
-					'wccs_get_bulk_price_html_display_price', 
-					WCCS()->product_helpers->wc_get_price_to_display( $this->product ), 
-					$this->product, 
-					$price, 
-					$this 
+				$prices[] = apply_filters(
+					'wccs_get_bulk_price_html_display_price',
+					WCCS()->product_helpers->wc_get_price_to_display( $this->product ),
+					$this->product,
+					$price,
+					$this
 				);
 			} elseif ( isset( $max['min'] ) && 1 == $max['min'] && 0 == $max['discount'] ) {
 				if ( 'fixed_price' !== $max['discount_type'] ) {
-					$prices[] = apply_filters( 
-						'wccs_get_bulk_price_html_display_price', 
-						WCCS()->product_helpers->wc_get_price_to_display( $this->product ), 
-						$this->product, 
-						$price, 
-						$this 
+					$prices[] = apply_filters(
+						'wccs_get_bulk_price_html_display_price',
+						WCCS()->product_helpers->wc_get_price_to_display( $this->product ),
+						$this->product,
+						$price,
+						$this
 					);
 				}
 			}
 
 			$regular_price = WCCS()->product_helpers->wc_get_price_to_display( $this->product, array( 'price' => WCCS()->product_helpers->wc_get_regular_price( $this->product ) ) );
 		}
-		
+
 		$prices = array_filter( $prices );
 		if ( empty( $prices ) ) {
 			return false;
 		}
 
 		$from = min( $prices );
-		$to   = max( $prices );
+		$to = max( $prices );
 
 		$content = '';
 		if ( isset( $from ) && isset( $to ) && $from != $to ) {
@@ -281,7 +281,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		// Fix #13 and using get_base_price instead of get_base_price_to_display that caused issues.
-		$base_price     = null === $base_price ? $this->get_base_price() : $base_price;
+		$base_price = null === $base_price ? $this->get_base_price() : $base_price;
 		$adjusted_price = $this->apply_simple_discounts( $base_price );
 
 		if ( $base_price != $adjusted_price ) {
@@ -367,7 +367,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 			$variable_prices = array();
 			foreach ( $variation_ids as $variation_id ) {
-				$variation  = wc_get_product( $variation_id );
+				$variation = wc_get_product( $variation_id );
 				$base_price = $this->get_base_price( $variation );
 				if ( $base_price < 0 ) {
 					continue;
@@ -389,7 +389,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$variation_price = WCCS()->product_helpers->wc_get_price_to_display(
 						$variation,
 						array(
-							'qty'   => 1,
+							'qty' => 1,
 							'price' => $base_price - $discount_amount,
 						)
 					);
@@ -419,7 +419,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		} // End if().
 		// Simple and Variation product.
 		else {
-			$base_price      = $this->get_base_price();
+			$base_price = $this->get_base_price();
 			$discount_amount = 0;
 			if ( 'percentage_discount' === $discount_type ) {
 				if ( $discount / 100 * $base_price > 0 ) {
@@ -436,7 +436,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				$price = WCCS()->product_helpers->wc_get_price_to_display(
 					$this->product,
 					array(
-						'qty'   => 1,
+						'qty' => 1,
 						'price' => $base_price - $discount_amount,
 					)
 				);
@@ -486,17 +486,19 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		$bulks = $this->get_bulk_pricings();
 
 		if ( ! empty( $bulks ) ) {
-            $settings       = WCCS()->settings;
-            $view           = $settings->get_setting( 'quantity_table_layout', 'bulk-pricing-table-vertical' );
-			$cache_enabled  = (int) $settings->get_setting( 'cache_quantity_table', 1 );
-			$exclude_rules  = $this->pricing->get_exclude_rules();
-			$table_title    = __( 'Discount per Quantity', 'easy-woocommerce-discounts' );
-			$price_label    = __( 'Price', 'easy-woocommerce-discounts' );
+			do_action( 'asnp_wccs_before_bulk_pricing_table', $bulks, $this );
+
+			$settings = WCCS()->settings;
+			$view = $settings->get_setting( 'quantity_table_layout', 'bulk-pricing-table-vertical' );
+			$cache_enabled = (int) $settings->get_setting( 'cache_quantity_table', 1 );
+			$exclude_rules = $this->pricing->get_exclude_rules();
+			$table_title = __( 'Discount per Quantity', 'easy-woocommerce-discounts' );
+			$price_label = __( 'Price', 'easy-woocommerce-discounts' );
 			$discount_label = __( 'Discount', 'easy-woocommerce-discounts' );
 			$quantity_label = __( 'Quantity', 'easy-woocommerce-discounts' );
 			if ( (int) $settings->get_setting( 'localization_enabled', 1 ) ) {
-				$table_title    = $settings->get_setting( 'quantity_table_title', $table_title );
-				$price_label    = $settings->get_setting( 'price_label', $price_label );
+				$table_title = $settings->get_setting( 'quantity_table_title', $table_title );
+				$price_label = $settings->get_setting( 'price_label', $price_label );
 				$discount_label = $settings->get_setting( 'discount_label', $discount_label );
 				$quantity_label = $settings->get_setting( 'quantity_label', $quantity_label );
 			}
@@ -504,17 +506,17 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$cache = false;
 			if ( $cache_enabled ) {
 				$cache_args = array(
-					'product_id'     => $this->product_id,
-					'parent_id'      => $this->parent_id,
-					'price_html'     => WCCS()->product_helpers->wc_get_price_html( $this->product ),
-					'rules'          => $bulks,
-					'exclude_rules'  => $exclude_rules,
-					'view'           => $view,
-					'table_title'    => $table_title,
+					'product_id' => $this->product_id,
+					'parent_id' => $this->parent_id,
+					'price_html' => WCCS()->product_helpers->wc_get_price_html( $this->product ),
+					'rules' => $bulks,
+					'exclude_rules' => $exclude_rules,
+					'view' => $view,
+					'table_title' => $table_title,
 					'quantity_label' => $quantity_label,
-					'price_label'    => $price_label,
+					'price_label' => $price_label,
 					'discount_label' => $discount_label,
-					'variation'      => 'variation' === $this->product_type ? $this->product_id : '',
+					'variation' => 'variation' === $this->product_type ? $this->product_id : '',
 				);
 				$cache = WCCS()->WCCS_Product_Quantity_Table_Cache->get_quantity_table( $cache_args );
 
@@ -532,30 +534,30 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					}
 					return;
 				}
-	
+
 				$table = '';
 				foreach ( $bulks as $discount ) {
 					ob_start();
 					$this->render_view(
 						"product-pricing.$view",
 						array(
-							'controller'     => $this,
-							'discount'       => $discount,
-							'table_title'    => $table_title,
+							'controller' => $this,
+							'discount' => $discount,
+							'table_title' => $table_title,
 							'quantity_label' => $quantity_label,
-							'price_label'    => $price_label,
+							'price_label' => $price_label,
 							'discount_label' => $discount_label,
-							'product_id'     => $this->product_id,
-							'variation'      => 'variation' === $this->product_type ? $this->product_id : '',
+							'product_id' => $this->product_id,
+							'variation' => 'variation' === $this->product_type ? $this->product_id : '',
 						)
 					);
 					$table .= ob_get_clean();
 				}
-	
+
 				if ( $cache_enabled ) {
 					WCCS()->WCCS_Product_Quantity_Table_Cache->set_quantity_table( $cache_args, $table );
 				}
-	
+
 				echo apply_filters( 'wccs_product_pricing_bulk_pricing_table', $table, $this );
 			}
 		}
@@ -582,7 +584,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			return;
 		}
 
-		$rules         = $this->pricing->get_pricings();
+		$rules = $this->pricing->get_pricings();
 		$exclude_rules = $this->pricing->get_exclude_rules();
 
 		foreach ( $rules as $type => $pricings ) {
@@ -646,18 +648,18 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		$cache_args = array(
-			'product_id'    => $this->product_id,
-			'parent_id'     => $this->parent_id,
-			'pricing'       => $pricing,
+			'product_id' => $this->product_id,
+			'parent_id' => $this->parent_id,
+			'pricing' => $pricing,
 			'exclude_rules' => $exclude_rules,
-			'type'          => $type,
+			'type' => $type,
 		);
 		$cache = WCCS()->WCCS_Product_Purchase_Message_Cache->get_purchase_message( $cache_args );
 		if ( false !== $cache ) {
 			if ( ! empty( $cache ) ) {
 				if ( ! empty( $pricing['message_type'] ) && 'shortcode' === $pricing['message_type'] ) {
 					$message = '<div class="wccs-shortcode-purchase-message wccs-shortcode-' . esc_attr( $type ) . '"' .
-						( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '') .
+						( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '' ) .
 						( ! empty( 'variation' === $this->product_type ) ? 'style="display: none;"' : '' ) . '>' .
 						do_shortcode( $cache ) .
 						'</div>';
@@ -676,11 +678,11 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 	protected function get_pricing_purchase_message( $pricing, $exclude_rules, $type ) {
 		$cache_enabled = WCCS()->settings->get_setting( 'cache_messages', 1 );
 		$cache_args = array(
-			'product_id'    => $this->product_id,
-			'parent_id'     => $this->parent_id,
-			'pricing'       => $pricing,
+			'product_id' => $this->product_id,
+			'parent_id' => $this->parent_id,
+			'pricing' => $pricing,
 			'exclude_rules' => $exclude_rules,
-			'type'          => $type,
+			'type' => $type,
 		);
 
 		if ( $this->is_in_exclude_rules() ) {
@@ -708,7 +710,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 						}
 					}
 				}
-				
+
 				if ( ! $is_valid ) {
 					if ( $cache_enabled ) {
 						WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
@@ -734,9 +736,9 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			if ( $cache_enabled ) {
 				WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, $pricing[ $type ] );
 			}
-			
+
 			$message = '<div class="wccs-shortcode-purchase-message wccs-shortcode-' . esc_attr( $type ) . '"' .
-				( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '') .
+				( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '' ) .
 				( ! empty( 'variation' === $this->product_type ) ? 'style="display: none;"' : '' ) . '>' .
 				do_shortcode( $pricing[ $type ] ) .
 				'</div>';
@@ -744,7 +746,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		$default_background_color = WCCS()->settings->get_setting( 'purchase_message_background_color', '' );
-		$default_color            = WCCS()->settings->get_setting( 'purchase_message_color', '' );
+		$default_color = WCCS()->settings->get_setting( 'purchase_message_color', '' );
 
 		$style = '';
 		if ( ! empty( $pricing['message_background_color'] ) ) {
@@ -764,7 +766,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		$message = '<div class="wccs-purchase-message wccs-' . esc_attr( $type ) . '"' .
-			( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '') .
+			( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '' ) .
 			( ! empty( $style ) ? "style='$style'" : '' ) . '>' . __( wp_kses_post( wp_unslash( $pricing[ $type ] ) ), 'easy-woocommerce-discounts' ) . '</div>';
 
 		if ( $cache_enabled ) {

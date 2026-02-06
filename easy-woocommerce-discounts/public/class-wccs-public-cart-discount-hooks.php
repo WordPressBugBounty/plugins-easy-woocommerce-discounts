@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WCCS_Public_Cart_Discount_Hooks {
 
 	const SESSION_KEY = 'wccs_applied_coupons';
-	
+
 	public $applying_coupon = false;
 
 	/**
@@ -25,7 +25,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 		$this->display_multiple = WCCS()->settings->get_setting( 'cart_discount_display_multiple_discounts', 'separate' );
 
 		$loader->add_action( 'woocommerce_before_calculate_totals', $this, 'remove_coupons', 1 );
-		$loader->add_action( 'woocommerce_after_calculate_totals', $this, 'add_discount', 20 );
+		$loader->add_action( 'woocommerce_after_calculate_totals', $this, 'add_discount', 20, 1 );
 		$loader->add_filter( 'woocommerce_get_shop_coupon_data', $this, 'get_coupon_data', 10, 2 );
 		$loader->add_filter( 'woocommerce_cart_totals_coupon_html', $this, 'cart_totals_coupon_html', 10, 2 );
 		$loader->add_filter( 'woocommerce_cart_totals_coupon_label', $this, 'cart_totals_coupon_label', 10, 2 );
@@ -35,7 +35,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 		$loader->add_filter( 'woocommerce_coupon_is_valid', $this, 'coupon_is_valid', 99, 2 );
 	}
 
-	public function add_discount() {
+	public function add_discount( $cart ) {
 		if (
 			$this->applying_coupon ||
 			! WCCS()->cart_discount ||
@@ -47,8 +47,8 @@ class WCCS_Public_Cart_Discount_Hooks {
 		$this->discounts = array();
 
 		$with_individuals = WCCS()->settings->get_setting( 'cart_discount_with_individual_coupons', 1 );
-		$with_regulars    = WCCS()->settings->get_setting( 'cart_discount_with_regular_coupons', 1 );
-		$add_discounts    = true;
+		$with_regulars = WCCS()->settings->get_setting( 'cart_discount_with_regular_coupons', 1 );
+		$add_discounts = true;
 		if ( ( 0 == $with_individuals || 0 == $with_regulars ) && ! empty( WC()->cart->applied_coupons ) ) {
 			foreach ( WC()->cart->applied_coupons as $code ) {
 				// Checking for do not apply with regular coupons.
@@ -85,17 +85,18 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		if ( WC()->session ) {
-			$applied_coupons = array_map( function( $discount ) {
+			$applied_coupons = array_map( function ( $discount ) {
 				return [
-					'id'              => $discount->id,
-					'name'            => $discount->name,
-					'description'     => ! empty( $discount->description ) ? $discount->description : '',
-					'apply_mode'      => isset( $discount->apply_mode ) ? $discount->apply_mode : '',
-					'manual'          => isset( $discount->manual ) ? $discount->manual : 0,
-					'discount_type'   => isset( $discount->discount_type ) ? $discount->discount_type : '',
+					'id' => $discount->id,
+					'name' => $discount->name,
+					'code' => $discount->code,
+					'description' => ! empty( $discount->description ) ? $discount->description : '',
+					'apply_mode' => isset( $discount->apply_mode ) ? $discount->apply_mode : '',
+					'manual' => isset( $discount->manual ) ? $discount->manual : 0,
+					'discount_type' => isset( $discount->discount_type ) ? $discount->discount_type : '',
 					'discount_amount' => isset( $discount->discount_amount ) ? $discount->discount_amount : 0,
-					'amount'          => isset( $discount->amount ) ? $discount->amount : 0,
-					'url_coupon'      => isset( $discount->url_coupon ) ? $discount->url_coupon : 0,
+					'amount' => isset( $discount->amount ) ? $discount->amount : 0,
+					'url_coupon' => isset( $discount->url_coupon ) ? $discount->url_coupon : 0,
 				];
 			}, $this->discounts );
 			WC()->session->set( static::SESSION_KEY, $applied_coupons );
@@ -103,11 +104,11 @@ class WCCS_Public_Cart_Discount_Hooks {
 
 		if ( 'combine' === $this->display_multiple ) {
 			$coupon_code = WCCS()->cart_discount->get_combine_coupon_code();
-			$this->apply_coupon( $coupon_code );
+			$this->apply_coupon( $coupon_code, $cart );
 		} else {
 			foreach ( $this->discounts as $discount ) {
 				if ( 0 < $discount->discount_amount ) {
-					$this->apply_coupon( $discount->code );
+					$this->apply_coupon( $discount->code, $cart );
 				}
 			}
 		}
@@ -145,34 +146,34 @@ class WCCS_Public_Cart_Discount_Hooks {
 				return apply_filters(
 					'wccs_cart_discount_get_coupon_data',
 					array(
-						'id'     => self::COUPON_ID,
-						'code'   => $coupon_code,
+						'id' => self::COUPON_ID,
+						'code' => $coupon_code,
 						'amount' => $amount,
 					)
 				);
 			}
 		} elseif ( isset( $this->discounts[ $data ] ) ) {
 			$discount = array(
-				'id'   => self::COUPON_ID,
+				'id' => self::COUPON_ID,
 				'code' => $this->discounts[ $data ]->code,
 			);
 
 			if ( 'percentage' === $this->discounts[ $data ]->discount_type ) {
 				$discount['discount_type'] = 'percent';
-				$discount['amount']        = $this->discounts[ $data ]->amount;
+				$discount['amount'] = $this->discounts[ $data ]->amount;
 			} elseif ( 'percentage_discount_per_item' === $this->discounts[ $data ]->discount_type ) {
 				$discount['discount_type'] = 'percent';
-				$discount['amount']        = $this->discounts[ $data ]->amount;
-				$discount['product_ids']   = ! empty( $this->discounts[ $data ]->product_ids ) ? $this->discounts[ $data ]->product_ids : array();
+				$discount['amount'] = $this->discounts[ $data ]->amount;
+				$discount['product_ids'] = ! empty( $this->discounts[ $data ]->product_ids ) ? $this->discounts[ $data ]->product_ids : array();
 			} elseif ( 'price_discount_per_item' === $this->discounts[ $data ]->discount_type ) {
 				$discount['discount_type'] = 'fixed_product';
-				$discount['amount']        = WCCS_Helpers::maybe_exchange_price( $this->discounts[ $data ]->amount, 'coupon' );
-				$discount['product_ids']   = ! empty( $this->discounts[ $data ]->product_ids ) ? $this->discounts[ $data ]->product_ids : array();
+				$discount['amount'] = WCCS_Helpers::maybe_exchange_price( $this->discounts[ $data ]->amount, 'coupon' );
+				$discount['product_ids'] = ! empty( $this->discounts[ $data ]->product_ids ) ? $this->discounts[ $data ]->product_ids : array();
 			} elseif (
 				'price' === $this->discounts[ $data ]->discount_type ||
 				'fixed_price' === $this->discounts[ $data ]->discount_type
 			) {
-				$discount['amount']        = WCCS_Helpers::maybe_exchange_price( $this->discounts[ $data ]->discount_amount, 'coupon' );
+				$discount['amount'] = WCCS_Helpers::maybe_exchange_price( $this->discounts[ $data ]->discount_amount, 'coupon' );
 			}
 
 			return apply_filters( 'wccs_cart_discount_get_coupon_data', $discount );
@@ -188,26 +189,26 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		$discount = array(
-			'id'   => self::COUPON_ID,
+			'id' => self::COUPON_ID,
 			'code' => $manual->code,
 		);
 
 		if ( 'percentage' === $manual->discount_type ) {
 			$discount['discount_type'] = 'percent';
-			$discount['amount']        = $manual->amount;
+			$discount['amount'] = $manual->amount;
 		} elseif ( 'percentage_discount_per_item' === $manual->discount_type ) {
 			$discount['discount_type'] = 'percent';
-			$discount['amount']        = $manual->amount;
-			$discount['product_ids']   = ! empty( $manual->product_ids ) ? $manual->product_ids : array();
+			$discount['amount'] = $manual->amount;
+			$discount['product_ids'] = ! empty( $manual->product_ids ) ? $manual->product_ids : array();
 		} elseif ( 'price_discount_per_item' === $manual->discount_type ) {
 			$discount['discount_type'] = 'fixed_product';
-			$discount['amount']        = WCCS_Helpers::maybe_exchange_price( $manual->amount, 'coupon' );
-			$discount['product_ids']   = ! empty( $manual->product_ids ) ? $manual->product_ids : array();
+			$discount['amount'] = WCCS_Helpers::maybe_exchange_price( $manual->amount, 'coupon' );
+			$discount['product_ids'] = ! empty( $manual->product_ids ) ? $manual->product_ids : array();
 		} elseif (
 			'price' === $manual->discount_type ||
 			'fixed_price' === $manual->discount_type
 		) {
-			$discount['amount']        = WCCS_Helpers::maybe_exchange_price( $manual->discount_amount, 'coupon' );
+			$discount['amount'] = WCCS_Helpers::maybe_exchange_price( $manual->discount_amount, 'coupon' );
 		}
 
 		return apply_filters( 'wccs_get_manual_coupon_data', $discount );
@@ -275,15 +276,15 @@ class WCCS_Public_Cart_Discount_Hooks {
 
 		foreach ( $applied_coupons as $key => $coupon_code ) {
 			// Check if the coupon is a cart discount coupon and not a manual coupon
-			if ( 
-				WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) && 
-				! WCCS()->cart_discount->is_manual_coupon( $coupon_code ) 
+			if (
+				WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) &&
+				! WCCS()->cart_discount->is_manual_coupon( $coupon_code )
 			) {
 				unset( $applied_coupons[ $key ] );
 				$removed = true;
 			}
 		}
-		
+
 		if ( $removed ) {
 			WC()->cart->applied_coupons = array_values( $applied_coupons );
 		}
@@ -299,7 +300,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		foreach ( WC()->cart->applied_coupons as $coupon_code ) {
-			if ( 
+			if (
 				! WCCS()->cart_discount->is_cart_discount_coupon( $coupon_code ) ||
 				WCCS()->cart_discount->is_manual_coupon( $coupon_code )
 			) {
@@ -329,9 +330,9 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		$code = WCCS_Helpers::wc_version_check() ? $coupon->get_code() : $coupon->code;
-		if ( 
-			WCCS()->cart_discount->is_cart_discount_coupon( $code ) && 
-			! WCCS()->cart_discount->is_manual_coupon( $code ) 
+		if (
+			WCCS()->cart_discount->is_cart_discount_coupon( $code ) &&
+			! WCCS()->cart_discount->is_manual_coupon( $code )
 		) {
 			return '';
 		}
@@ -365,22 +366,22 @@ class WCCS_Public_Cart_Discount_Hooks {
 		}
 
 		$possibles = WCCS()->cart_discount->get_possible_discounts();
-		if ( empty( $possibles ) || ! isset( $possibles[ $coupon->get_code() ] ) ) {
+		if ( empty( $possibles ) || ! isset( $possibles[ $coupon->get_code()] ) ) {
 			return false;
 		}
 
 		return $valid;
 	}
 
-	protected function apply_coupon( $coupon_code ) {
+	protected function apply_coupon( $coupon_code, $cart ) {
 		try {
 			if ( empty( $coupon_code ) ) {
 				return false;
 			}
 
 			$coupon = new WC_Coupon( $coupon_code );
-			if ( $coupon->is_valid() && ! WC()->cart->has_discount( $coupon_code ) ) {
-				WC()->cart->applied_coupons[] = $coupon_code;
+			if ( $coupon->is_valid() && ! $cart->has_discount( $coupon_code ) ) {
+				$cart->applied_coupons[] = $coupon_code;
 
 				$this->applying_coupon = true;
 				do_action( 'woocommerce_applied_coupon', $coupon_code );
@@ -388,7 +389,7 @@ class WCCS_Public_Cart_Discount_Hooks {
 			}
 
 			return true;
-		} catch ( Exception $e ) {
+		} catch (Exception $e) {
 			return false;
 		}
 	}

@@ -73,9 +73,9 @@ class WCCS_Public {
 	 */
 	public function __construct( $plugin_name, $version, WCCS_Loader $loader, WCCS_Service_Manager $services ) {
 		$this->plugin_name = $plugin_name;
-		$this->version     = $version;
-		$this->loader      = $loader;
-		$this->services    = $services;
+		$this->version = $version;
+		$this->loader = $loader;
+		$this->services = $services;
 
 		$this->load_dependencies();
 	}
@@ -99,6 +99,7 @@ class WCCS_Public {
 		require_once dirname( __FILE__ ) . '/class-wccs-public-shipping-hooks.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-public-total-discounts-hooks.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-public-order-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-analytics-hooks.php';
 
 		// Shortcodes.
 		require_once dirname( __FILE__ ) . '/shortcodes/class-wccs-shortcode-products-list.php';
@@ -127,6 +128,12 @@ class WCCS_Public {
 
 			if ( (int) WCCS()->settings->get_setting( 'display_total_discounts', 0 ) ) {
 				$this->services->set( 'WCCS_Public_Total_Discounts_Hooks', new WCCS_Public_Total_Discounts_Hooks( $this->loader ) );
+			}
+
+			if ( (int) WCCS()->settings->get_setting( 'enable_analytics', 1 ) ) {
+				$analytics = new WCCS_Pubilc_Analytics_Hooks();
+				$this->services->set( 'WCCS_Pubilc_Analytics_Hooks', $analytics );
+				$analytics->init();
 			}
 
 			WCCS_Public_Order_Hooks::init();
@@ -172,9 +179,10 @@ class WCCS_Public {
 				apply_filters(
 					'wccs_product_pricing_params',
 					array(
-						'ajaxurl'    => admin_url( 'admin-ajax.php' ),
-						'nonce'      => wp_create_nonce( 'wccs_single_product_nonce' ),
+						'ajaxurl' => admin_url( 'admin-ajax.php' ),
+						'nonce' => wp_create_nonce( 'wccs_single_product_nonce' ),
 						'product_id' => $post->ID,
+						'analytics' => (int) WCCS()->settings->get_setting( 'enable_analytics', 1 ),
 					)
 				)
 			);

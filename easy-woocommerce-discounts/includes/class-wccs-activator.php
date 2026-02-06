@@ -127,6 +127,7 @@ class WCCS_Activator {
 		require_once dirname( __FILE__ ) . '/class-wccs-db-cache.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-db-user-usage-logs.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-db-rule-usage-logs.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-db-analytics.php';
 	}
 
 	/**
@@ -179,6 +180,9 @@ class WCCS_Activator {
 		$user_usage_logs = new WCCS_DB_User_Usage_Logs();
 		$user_usage_logs->create_table();
 
+		$analytics = new WCCS_DB_Analytics();
+		$analytics->create_table();
+
 		self::create_options();
 		self::update_version();
 		self::maybe_update_db_version();
@@ -201,18 +205,18 @@ class WCCS_Activator {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wccs-settings-manager.php';
 
 		$plugin_settings = new WCCS_Settings();
-		$plugin_options  = $plugin_settings->get_settings();
+		$plugin_options = $plugin_settings->get_settings();
 
 		// Setup some default options
 		$options = array();
 
 		$settings_manager = new WCCS_Settings_Manager();
 		// Populate some default values
-		foreach( $settings_manager->get_registered_settings() as $tab => $sections ) {
-			foreach( $sections as $section => $settings) {
+		foreach ( $settings_manager->get_registered_settings() as $tab => $sections ) {
+			foreach ( $sections as $section => $settings ) {
 				// Check for backwards compatibility
 				$tab_sections = $settings_manager->get_settings_tab_sections( $tab );
-				if( ! is_array( $tab_sections ) || ! array_key_exists( $section, $tab_sections ) ) {
+				if ( ! is_array( $tab_sections ) || ! array_key_exists( $section, $tab_sections ) ) {
 					$section = 'main';
 					$settings = $sections;
 				}
@@ -221,7 +225,7 @@ class WCCS_Activator {
 						continue;
 					}
 
-					if( 'checkbox' == $option['type'] && ! empty( $option['std'] ) ) {
+					if ( 'checkbox' == $option['type'] && ! empty( $option['std'] ) ) {
 						$options[ $option['id'] ] = '1';
 					} elseif ( in_array( $option['type'], array( 'multicheck', 'sortable_multicheck' ) ) && ! empty( $option['options'] ) ) {
 						foreach ( $option['options'] as $key => $value ) {
@@ -315,8 +319,8 @@ class WCCS_Activator {
 	 */
 	private static function needs_db_update() {
 		$current_db_version = get_option( 'woocommerce_conditions_db_version' );
-		$upgraded_from      = get_option( 'wccs_version_upgraded_from' );
-		$updates            = self::get_db_update_callbacks();
+		$upgraded_from = get_option( 'wccs_version_upgraded_from' );
+		$updates = self::get_db_update_callbacks();
 
 		return false !== $upgraded_from && ( false === $current_db_version || version_compare( $current_db_version, max( array_keys( $updates ) ), '<' ) );
 	}
@@ -346,8 +350,8 @@ class WCCS_Activator {
 	 */
 	private static function update() {
 		$current_db_version = get_option( 'woocommerce_conditions_db_version' );
-		$logger             = WCCS_Helpers::wc_get_logger();
-		$update_queued      = false;
+		$logger = WCCS_Helpers::wc_get_logger();
+		$update_queued = false;
 
 		foreach ( self::get_db_update_callbacks() as $version => $update_callbacks ) {
 			if ( version_compare( $current_db_version, $version, '<' ) ) {
@@ -385,8 +389,8 @@ class WCCS_Activator {
 	}
 
 	private static function notices() {
-		if ( 
-			! defined( 'ASNP_WESB_VERSION' ) && 
+		if (
+			! defined( 'ASNP_WESB_VERSION' ) &&
 			! WC_Admin_Notices::has_notice( 'ewd_sale_badges_free' ) &&
 			! get_user_meta( get_current_user_id(), 'dismissed_ewd_sale_badges_free_notice', true )
 		) {
