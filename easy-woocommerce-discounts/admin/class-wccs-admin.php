@@ -73,9 +73,9 @@ class WCCS_Admin {
 	 */
 	public function __construct( $plugin_name, $version, WCCS_Loader $loader, WCCS_Service_Manager $services ) {
 		$this->plugin_name = $plugin_name;
-		$this->version     = $version;
-		$this->loader      = $loader;
-		$this->services    = $services;
+		$this->version = $version;
+		$this->loader = $loader;
+		$this->services = $services;
 
 		$this->load_dependencies();
 		$this->handle_offers();
@@ -147,6 +147,7 @@ class WCCS_Admin {
 
 		// Plugin links.
 		$this->loader->add_filter( 'plugin_row_meta', $this, 'plugin_row_meta_links', 10, 2 );
+		add_filter( 'plugin_action_links', [ $this, 'plugin_action_links' ], 10, 2 );
 	}
 
 	/**
@@ -161,12 +162,36 @@ class WCCS_Admin {
 	public function plugin_row_meta_links( $links, $file ) {
 		if ( false !== strpos( $file, 'easy-woocommerce-discounts.php' ) ) {
 			$plugin_links = array(
-				'<a href="https://www.asanaplugins.com/product/advanced-woocommerce-dynamic-pricing-discounts/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link" target="_blank" onMouseOver="this.style.color=\'#55ce5a\'" onMouseOut="this.style.color=\'#39b54a\'" style="color: #39b54a; font-weight: bold;">' . esc_html__( 'Go Pro', 'easy-woocommerce-discounts' ) . '</a>',
+				'<a href="https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link" target="_blank" onMouseOver="this.style.color=\'#55ce5a\'" onMouseOut="this.style.color=\'#39b54a\'" style="color: #39b54a; font-weight: bold;">' . esc_html__( 'Go Pro', 'easy-woocommerce-discounts' ) . '</a>',
 			);
 			$links = array_merge( $links, $plugin_links );
 		}
 
 		return $links;
+	}
+
+	/**
+	 * Plugin action links
+	 * This function adds additional links below the plugin in admin plugins page.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  array  $links    The array having default links for the plugin.
+	 * @param  string $file     The name of the plugin file.
+	 *
+	 * @return array  $links    Plugin default links and specific links.
+	 */
+	public function plugin_action_links( $links, $file ) {
+		if ( false === strpos( $file, 'easy-woocommerce-discounts.php' ) ) {
+			return $links;
+		}
+
+		$extra = [
+			'<a href="' . admin_url( 'admin.php?page=wccs-settings' ) . '">' . esc_html__( 'Settings', 'easy-woocommerce-discounts' ) . '</a>',
+			'<a href="https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link" target="_blank" onMouseOver="this.style.color=\'#55ce5a\'" onMouseOut="this.style.color=\'#39b54a\'" style="color: #39b54a; font-weight: bold;">' . esc_html__( 'Go Pro', 'easy-woocommerce-discounts' ) . '</a>',
+		];
+
+		return array_merge( $links, $extra );
 	}
 
 	protected function add_offer_notice( $offer_name, $start_date, $end_date, $message, $button_label, $button_url, $button_color = '#0071a1' ) {
@@ -195,8 +220,8 @@ class WCCS_Admin {
 		\WC_Admin_Notices::add_custom_notice(
 			$name,
 			'<p>' . $message . '<a class="button button-primary" style="margin-left: 10px; background: ' . esc_attr( $button_color ) . '; border-color: ' . esc_attr( $button_color ) . ';" target="_blank" href="' . esc_url( $button_url ) . '">' .
-				esc_html( $button_label ) .
-				'</a></p>'
+			esc_html( $button_label ) .
+			'</a></p>'
 		);
 
 		update_option( $name . '_added', 1 );

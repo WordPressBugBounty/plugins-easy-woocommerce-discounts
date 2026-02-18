@@ -128,7 +128,7 @@ final class WC_Conditions {
 			self::$instance->setup_constants();
 			self::$instance->load_dependencies();
 
-			self::$instance->plugin_name = 'woocommerce-conditions';
+			self::$instance->plugin_name = 'easy-woocommerce-discounts';
 			self::$instance->version = WCCS_VERSION;
 
 			self::$instance->custom_props = new WCCS_Custom_Props();
@@ -466,6 +466,13 @@ final class WC_Conditions {
 
 		$this->admin->define_hooks();
 		$this->public->define_hooks();
+
+		if ( class_exists( 'Automattic\WooCommerce\Blocks\Package' ) && version_compare( \Automattic\WooCommerce\Blocks\Package::get_version(), '7.2.0', 'ge' ) ) {
+			include_once dirname( __FILE__ ) . '/class-wccs-store-api.php';
+			include_once dirname( __FILE__ ) . '/class-wccs-blocks-hooks.php';
+			include_once dirname( __FILE__ ) . '/class-wccs-checkout-integration.php';
+			WCCS_Blocks_Hooks::init();
+		}
 	}
 
 	/**

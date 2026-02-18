@@ -8,8 +8,13 @@ class WCCS_Product_Validator {
 
 	protected $customer;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param WP_User|null $customer
+	 */
 	public function __construct( $customer = null ) {
-		$this->customer  = ! is_null( $customer ) ? new WCCS_Customer( $customer ) : new WCCS_Customer( wp_get_current_user() );
+		$this->customer = ! is_null( $customer ) ? new WCCS_Customer( $customer ) : new WCCS_Customer( wp_get_current_user() );
 	}
 
 	public function is_valid_product( array $items, $product, $variation = 0, array $variations = array(), $cart_item = array() ) {
@@ -108,8 +113,8 @@ class WCCS_Product_Validator {
 			return false;
 		}
 
-		$item_categories    = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $item['categories'] );
-		$product            = is_numeric( $product ) ? $product : $product->get_id();
+		$item_categories = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $item['categories'] );
+		$product = is_numeric( $product ) ? $product : $product->get_id();
 		$product_categories = wc_get_product_cat_ids( $product );
 		foreach ( $product_categories as $category ) {
 			if ( in_array( $category, $item_categories ) ) {
@@ -124,8 +129,8 @@ class WCCS_Product_Validator {
 			return false;
 		}
 
-		$item_categories    = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $item['categories'] );
-		$product            = is_numeric( $product ) ? $product : $product->get_id();
+		$item_categories = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $item['categories'] );
+		$product = is_numeric( $product ) ? $product : $product->get_id();
 		$product_categories = wc_get_product_cat_ids( $product );
 		foreach ( $product_categories as $category ) {
 			if ( in_array( $category, $item_categories ) ) {

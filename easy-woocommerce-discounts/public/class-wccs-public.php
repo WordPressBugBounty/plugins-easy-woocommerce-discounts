@@ -98,6 +98,7 @@ class WCCS_Public {
 		require_once dirname( __FILE__ ) . '/class-wccs-public-product-pricing.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-public-shipping-hooks.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-public-total-discounts-hooks.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-public-auto-add-to-cart.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-public-order-hooks.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-public-analytics-hooks.php';
 
@@ -125,6 +126,7 @@ class WCCS_Public {
 
 			$this->services->set( 'WCCS_Public_Cart_Discount_Hooks', new WCCS_Public_Cart_Discount_Hooks( $this->loader ) );
 			$this->services->set( 'WCCS_Public_Pricing_Hooks', $pricing_hooks );
+			$this->services->set( 'WCCS_Public_Auto_Add_To_Cart', new WCCS_Public_Auto_Add_To_Cart( $this->loader ) );
 
 			if ( (int) WCCS()->settings->get_setting( 'display_total_discounts', 0 ) ) {
 				$this->services->set( 'WCCS_Public_Total_Discounts_Hooks', new WCCS_Public_Total_Discounts_Hooks( $this->loader ) );

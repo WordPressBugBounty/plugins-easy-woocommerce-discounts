@@ -5,7 +5,7 @@ Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woo
 Requires at least: 4.4.2
 Tested up to: 6.9
 Requires PHP: 5.6.0
-Stable tag: 8.1.2
+Stable tag: 9.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -254,6 +254,15 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 7. WooCommerce Checkout Fee - Charge £20.00 fee when weight is greater than a specific wheight.
 
 == Changelog ==
+
+= 9.0.0 =
+* New: Added "BOGO" or "Buy One Get One free" deals support for products in free version.
+* New: Added "Buy 2 Get 1 Free" deals support for products in the free version.
+* New: Added "Buy 3 Get 1 Free" deals support for products in the free version.
+* New: Added "Add from Template" button for the rules in the admin side to create rules quickly & easily with just a few edits.
+* New: Performance improvement on get_available_variatoins for variable products.
+* Fix: Added a compatibility for the Porto theme skeleton feature for bulk pricing rules table.
+* Update: Verified compatibility with WooCommerce 10.5.2
 
 = 8.1.2 =
 * Update: Update WordPress tested version to 6.9

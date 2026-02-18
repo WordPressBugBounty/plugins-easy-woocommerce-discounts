@@ -14,11 +14,11 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 	protected $bulk_pricings;
 
+	protected $purchase_pricings;
+
 	protected $is_in_excludes;
 
 	public $product;
-
-	public $product_type;
 
 	public $product_id;
 
@@ -33,9 +33,8 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 		$wccs = WCCS();
 
-		$this->product_type = $this->product->get_type();
 		$this->product_id = $this->product->get_id();
-		$this->parent_id = 'variation' === $this->product_type ? $wccs->product_helpers->get_parent_id( $this->product ) : $this->product_id;
+		$this->parent_id = $this->product->is_type( 'variation' ) ? $wccs->product_helpers->get_parent_id( $this->product ) : $this->product_id;
 		$this->pricing = $pricing;
 		$this->apply_method = ! empty( $apply_method ) ? $apply_method : $wccs->settings->get_setting( 'product_pricing_discount_apply_method', 'first' );
 	}
@@ -50,11 +49,11 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$bulk = $this->get_bulk_price_html( $price );
 			if ( ! empty( $bulk ) ) {
 				do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
-				return apply_filters( 'wccs_public_product_pricing_' . __FUNCTION__, $bulk, $this );
+				return apply_filters( 'wccs_public_product_pricing_' . __FUNCTION__, $bulk, $this->product, $price );
 			}
 		}
 
-		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
+		if ( $this->product->is_type( 'variable' ) ) {
 			$product_discounted_price = WCCS()->product_helpers->wc_get_variation_prices( $this->product, true, false );
 			if ( empty( $product_discounted_price['price'] ) ) {
 				do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
@@ -128,7 +127,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 	}
 
 	protected function get_bulk_price_html( $price = '' ) {
-		if ( WCCS()->product_helpers->is_variation_product( $this->product ) ) {
+		if ( $this->product->is_type( 'variation' ) ) {
 			return false;
 		}
 
@@ -162,7 +161,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		$regular_price = '';
 		$prices = array();
 
-		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
+		if ( $this->product->is_type( 'variable' ) ) {
 			$variable_prices = WCCS()->product_helpers->wc_get_variation_prices( $this->product, true );
 			if ( empty( $variable_prices['price'] ) ) {
 				return false;
@@ -272,7 +271,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 	 * @return float
 	 */
 	public function get_price( $base_price = null ) {
-		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
+		if ( $this->product->is_type( 'variable' ) ) {
 			return false;
 		}
 
@@ -310,6 +309,24 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		return apply_filters(
 			'wccs_public_product_pricing_' . __FUNCTION__,
 			$base_price,
+			$product,
+			$this
+		);
+	}
+
+	public function get_base_price_to_display( $product = null ) {
+		$product = null === $product ? $this->product : $product;
+
+		$args = array( 'price' => $product->get_price( 'edit' ) );
+		if ( $product->is_on_sale( 'edit' ) ) {
+			if ( 'regular_price' === WCCS()->settings->get_setting( 'on_sale_products_price', 'on_sale_price' ) ) {
+				$args['price'] = $product->get_regular_price( 'edit' );
+			}
+		}
+
+		return apply_filters(
+			'wccs_public_product_pricing_' . __FUNCTION__,
+			wc_get_price_to_display( $product, $args ),
 			$product,
 			$this
 		);
@@ -359,7 +376,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			return false;
 		}
 
-		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
+		if ( $this->product->is_type( 'variable' ) ) {
 			$variation_ids = $this->product->get_visible_children();
 			if ( empty( $variation_ids ) ) {
 				return false;
@@ -483,13 +500,21 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 	}
 
 	public function bulk_pricing_table() {
-		$bulks = $this->get_bulk_pricings();
+		$settings = WCCS()->settings;
+		$bulks = array();
+
+		if (
+			! $this->product->get_manage_stock() ||
+			! (int) $settings->get_setting( 'quantity_table_stock_management', 0 ) ||
+			1 < $this->product->get_stock_quantity()
+		) {
+			$bulks = $this->get_bulk_pricings();
+		}
 
 		if ( ! empty( $bulks ) ) {
 			do_action( 'asnp_wccs_before_bulk_pricing_table', $bulks, $this );
 
-			$settings = WCCS()->settings;
-			$view = $settings->get_setting( 'quantity_table_layout', 'bulk-pricing-table-vertical' );
+			$view = $settings->get_setting( 'quantity_table_layout', 'bulk-pricing-table-horizontal' );
 			$cache_enabled = (int) $settings->get_setting( 'cache_quantity_table', 1 );
 			$exclude_rules = $this->pricing->get_exclude_rules();
 			$table_title = __( 'Discount per Quantity', 'easy-woocommerce-discounts' );
@@ -516,7 +541,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					'quantity_label' => $quantity_label,
 					'price_label' => $price_label,
 					'discount_label' => $discount_label,
-					'variation' => 'variation' === $this->product_type ? $this->product_id : '',
+					'variation' => $this->product->is_type( 'variation' ) ? $this->product_id : '',
 				);
 				$cache = WCCS()->WCCS_Product_Quantity_Table_Cache->get_quantity_table( $cache_args );
 
@@ -548,7 +573,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 							'price_label' => $price_label,
 							'discount_label' => $discount_label,
 							'product_id' => $this->product_id,
-							'variation' => 'variation' === $this->product_type ? $this->product_id : '',
+							'variation' => $this->product->is_type( 'variation' ) ? $this->product_id : '',
 						)
 					);
 					$table .= ob_get_clean();
@@ -562,17 +587,18 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			}
 		}
 
-		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
+		if ( $this->product->is_type( 'variable' ) ) {
 			// Disable plugin price replacer hooks to get variations main price.
 			WCCS()->WCCS_Product_Price_Replace->disable_hooks();
 			add_filter( 'woocommerce_show_variation_price', '__return_false', 100 );
-			$variations = $this->product->get_available_variations();
+			$variations = $this->product->get_available_variations( 'objects' );
 			// Enable plugin price replacer hooks.
 			WCCS()->WCCS_Product_Price_Replace->enable_hooks();
 			remove_filter( 'woocommerce_show_variation_price', '__return_false', 100 );
 			if ( ! empty( $variations ) ) {
 				foreach ( $variations as $variation ) {
-					$variation_pricing = new WCCS_Public_Product_Pricing( $variation['variation_id'], $this->pricing, $this->apply_method );
+					$variation_id = is_array( $variation ) ? $variation['variation_id'] : $variation->get_id();
+					$variation_pricing = new WCCS_Public_Product_Pricing( $variation_id, $this->pricing, $this->apply_method );
 					$variation_pricing->bulk_pricing_table();
 				}
 			}
@@ -617,17 +643,18 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			}
 		}
 
-		if ( WCCS()->product_helpers->is_variable_product( $this->product ) ) {
-			// Disable plugin price repacer hooks to get variations main price.
+		if ( $this->product->is_type( 'variable' ) ) {
+			// Disable plugin price replacer hooks to get variations main price.
 			WCCS()->WCCS_Product_Price_Replace->disable_hooks();
 			add_filter( 'woocommerce_show_variation_price', '__return_false', 100 );
-			$variations = $this->product->get_available_variations();
+			$variations = $this->product->get_available_variations( 'objects' );
 			// Enable plugin price replacer hooks.
 			WCCS()->WCCS_Product_Price_Replace->enable_hooks();
 			remove_filter( 'woocommerce_show_variation_price', '__return_false', 100 );
 			if ( ! empty( $variations ) ) {
 				foreach ( $variations as $variation ) {
-					$variation_pricing = new WCCS_Public_Product_Pricing( $variation['variation_id'], $this->pricing, $this->apply_method );
+					$variation_id = is_array( $variation ) ? $variation['variation_id'] : $variation->get_id();
+					$variation_pricing = new WCCS_Public_Product_Pricing( $variation_id, $this->pricing, $this->apply_method );
 					$variation_pricing->purchase_message();
 				}
 			}
@@ -659,8 +686,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			if ( ! empty( $cache ) ) {
 				if ( ! empty( $pricing['message_type'] ) && 'shortcode' === $pricing['message_type'] ) {
 					$message = '<div class="wccs-shortcode-purchase-message wccs-shortcode-' . esc_attr( $type ) . '"' .
-						( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '' ) .
-						( ! empty( 'variation' === $this->product_type ) ? 'style="display: none;"' : '' ) . '>' .
+						( $this->product->is_type( 'variation' ) ? "data-variation='{$this->product_id}' style='display: none;'" : '' ) .
 						do_shortcode( $cache ) .
 						'</div>';
 					return apply_filters( "wccs_purchase_{$type}", $message, $pricing, $this );
@@ -692,8 +718,10 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			return '';
 		}
 
+		$attributes = [];
+
 		if ( 'purchased_message' === $type ) {
-			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['purchased_items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['purchased_items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
 				if ( $cache_enabled ) {
 					WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
 				}
@@ -704,7 +732,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				$is_valid = false;
 				if ( ! empty( $pricing['groups'] ) ) {
 					foreach ( $pricing['groups'] as $group ) {
-						if ( ! empty( $group['items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $group['items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+						if ( ! empty( $group['items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $group['items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
 							$is_valid = true;
 							break;
 						}
@@ -717,7 +745,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					}
 					return '';
 				}
-			} elseif ( empty( $pricing['items'] ) || ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+			} elseif ( empty( $pricing['items'] ) || ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
 				if ( $cache_enabled ) {
 					WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
 				}
@@ -725,7 +753,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			}
 		}
 
-		if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+		if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
 			if ( $cache_enabled ) {
 				WCCS()->WCCS_Product_Purchase_Message_Cache->set_purchase_message( $cache_args, '' );
 			}
@@ -738,8 +766,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			}
 
 			$message = '<div class="wccs-shortcode-purchase-message wccs-shortcode-' . esc_attr( $type ) . '"' .
-				( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '' ) .
-				( ! empty( 'variation' === $this->product_type ) ? 'style="display: none;"' : '' ) . '>' .
+				( $this->product->is_type( 'variation' ) ? "data-variation='{$this->product_id}' style='display: none;'" : '' ) .
 				do_shortcode( $pricing[ $type ] ) .
 				'</div>';
 			return apply_filters( "wccs_purchase_{$type}", $message, $pricing, $this );
@@ -761,12 +788,12 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$style .= 'color: ' . $default_color . ';';
 		}
 
-		if ( 'variation' === $this->product_type ) {
+		if ( $this->product->is_type( 'variation' ) ) {
 			$style .= 'display: none;';
 		}
 
 		$message = '<div class="wccs-purchase-message wccs-' . esc_attr( $type ) . '"' .
-			( 'variation' === $this->product_type ? "data-variation='{$this->product_id}'" : '' ) .
+			( $this->product->is_type( 'variation' ) ? "data-variation='{$this->product_id}'" : '' ) .
 			( ! empty( $style ) ? "style='$style'" : '' ) . '>' . __( wp_kses_post( wp_unslash( $pricing[ $type ] ) ), 'easy-woocommerce-discounts' ) . '</div>';
 
 		if ( $cache_enabled ) {
@@ -794,11 +821,11 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				continue;
 			}
 
-			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ) ) ) {
 				continue;
 			}
 
-			if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ) ) ) {
+			if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ) ) ) {
 				continue;
 			}
 
@@ -825,13 +852,15 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			return array();
 		}
 
+		$attributes = [];
+
 		$pricings = array();
 		foreach ( $bulks as $pricing_id => $pricing ) {
-			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ), array() ) ) {
+			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
 				continue;
 			}
 
-			if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ), array() ) ) {
+			if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
 				continue;
 			}
 
@@ -844,6 +873,41 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		$this->bulk_pricings = $pricings;
+		return $pricings;
+	}
+
+	public function get_purchase_pricings() {
+		if ( isset( $this->purchase_pricings ) ) {
+			return $this->purchase_pricings;
+		}
+
+		$purchases = $this->pricing->get_purchase_pricings();
+		if ( empty( $purchases ) ) {
+			$this->purchase_pricings = array();
+			return array();
+		}
+
+		$attributes = [];
+
+		$pricings = array();
+		foreach ( $purchases as $pricing_id => $pricing ) {
+			if ( ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
+				continue;
+			}
+
+			if ( ! empty( $pricing['exclude_items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), $attributes ) ) {
+				continue;
+			}
+
+			$pricings[ $pricing_id ] = $pricing;
+		}
+
+		if ( ! empty( $pricings ) ) {
+			usort( $pricings, array( WCCS()->WCCS_Sorting, 'sort_by_order_asc' ) );
+			$pricings = $this->pricing->rules_filter->by_apply_mode( $pricings );
+		}
+
+		$this->purchase_pricings = $pricings;
 		return $pricings;
 	}
 
@@ -916,7 +980,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			return $this->is_in_excludes;
 		}
 
-		if ( $this->pricing->is_in_exclude_rules( $this->parent_id, ( 'variation' === $this->product_type ? $this->product_id : 0 ), array() ) ) {
+		if ( $this->pricing->is_in_exclude_rules( $this->parent_id, ( $this->product->is_type( 'variation' ) ? $this->product_id : 0 ), array() ) ) {
 			$this->is_in_excludes = true;
 			return true;
 		}

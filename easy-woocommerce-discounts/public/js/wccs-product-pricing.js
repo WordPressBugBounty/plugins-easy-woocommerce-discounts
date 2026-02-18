@@ -49,13 +49,11 @@
 	 */
 	ProductPricing.prototype.init = function () {
 		if ( $( '.variations_form' ).length ) {
-			( this.$bulkTables = $( '.wccs-bulk-pricing-table-container' ) ),
-				( this.$bulkTitles = $( '.wccs-bulk-pricing-table-title' ) );
-			( this.$parentTable = this.$bulkTables.not( '[data-variation]' ) ),
-				( this.$parentTableTitle = this.$bulkTitles.not(
-					'[data-variation]'
-				) );
-			this.$variationForm = $( '.variations_form' );
+			this.$bulkTables = $( '.wccs-bulk-pricing-table-container' );
+			this.$bulkTitles = $( '.wccs-bulk-pricing-table-title' );
+			this.$parentTable = this.$bulkTables.not( '[data-variation]' );
+			this.$parentTableTitle = this.$bulkTitles.not( '[data-variation]' );
+			this.$variationForm = $( '.variations_form' ).first();
 			$( document.body ).on(
 				'found_variation.wccs_product_pricing',
 				this.$variationForm,
@@ -68,7 +66,7 @@
 			);
 		}
 
-		this.$cartForm = $( '.product form.cart' );
+		this.$cartForm = $( '.product form.cart' ).first();
 		this.tracks();
 	};
 
@@ -130,6 +128,11 @@
 		}
 	};
 
+	ProductPricing.prototype.getProductId = function () {
+		var productId = $( 'button[name="add-to-cart"]' ).val();
+		return productId ? productId : $( 'input[name="add-to-cart"' ).val();
+	};
+
 	ProductPricing.prototype.tracks = function () {
 		if (
 			'undefined' === typeof wccs_product_pricing_params.analytics ||
@@ -138,10 +141,7 @@
 			return;
 		}
 
-		var productId = $( 'button[name="add-to-cart"]' ).val();
-		productId = productId
-			? productId
-			: $( 'input[name="add-to-cart"' ).val();
+		var productId = this.getProductId();
 
 		if (
 			! productId &&
@@ -188,5 +188,11 @@
 
 	$( function () {
 		$().wccs_get_product_pricing();
+	} );
+
+	// Porto theme skeleton compatibility.
+	$( document ).on( 'skeleton-loaded', '.skeleton-loading', function () {
+		var productPricing = Singleton.getInstance();
+		productPricing.init();
 	} );
 } )( jQuery );

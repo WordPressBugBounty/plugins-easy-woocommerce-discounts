@@ -6169,19 +6169,19 @@ var ProductsViewvue_type_template_id_5eaae9c3_staticRenderFns = []
 var required = __webpack_require__(6);
 var required_default = /*#__PURE__*/__webpack_require__.n(required);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectItem.vue?vue&type=template&id=1cfb1942&
-var ProductsSelectItemvue_type_template_id_1cfb1942_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wccs-products-select-item wccs-dropdown-item"},[_c('div',{class:_vm.bodyClass},[_c('products-select',{attrs:{"products":_vm.myProducts,"hidden-rows":_vm.hiddenRows,"ignoreGroups":_vm.ignoreGroups,"hiddenOptions":_vm.hiddenOptions},on:{"productsUpdated":_vm.onProductsUpdated}}),_vm._v(" "),_c('span',{staticClass:"wccs-dropdown-item-control wccs-products-select-item-delete fa fa-trash",attrs:{"title":_vm.__( 'Delete', 'easy-woocommerce-discounts' )},on:{"click":_vm.deleteItem}})],1)])}
-var ProductsSelectItemvue_type_template_id_1cfb1942_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectItem.vue?vue&type=template&id=46efaa95&
+var ProductsSelectItemvue_type_template_id_46efaa95_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wccs-products-select-item wccs-dropdown-item"},[_c('div',{class:_vm.bodyClass},[_c('products-select',{attrs:{"products":_vm.myProducts,"hidden-rows":_vm.hiddenRows,"ignoreGroups":_vm.ignoreGroups,"hiddenOptions":_vm.hiddenOptions,"disabledOptions":_vm.disabledOptions},on:{"productsUpdated":_vm.onProductsUpdated}}),_vm._v(" "),_c('span',{staticClass:"wccs-dropdown-item-control wccs-products-select-item-delete fa fa-trash",attrs:{"title":_vm.__( 'Delete', 'easy-woocommerce-discounts' )},on:{"click":_vm.deleteItem}})],1)])}
+var ProductsSelectItemvue_type_template_id_46efaa95_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelectItem.vue?vue&type=template&id=1cfb1942&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelectItem.vue?vue&type=template&id=46efaa95&
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelect.vue?vue&type=template&id=70520e48&
-var ProductsSelectvue_type_template_id_70520e48_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wccs-dropdown-content"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showRow( 'quantity' )),expression:"showRow( 'quantity' )"}],staticClass:"wccs-dropdown-element"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.myProducts.quantity),expression:"myProducts.quantity"}],staticClass:"asnp-text-field",attrs:{"type":"number","placeholder":_vm.__( 'Quantity', 'easy-woocommerce-discounts' )},domProps:{"value":(_vm.myProducts.quantity)},on:{"change":_vm.onChange,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.myProducts, "quantity", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"options":_vm.getProductsOptions()},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.item),callback:function ($$v) {_vm.$set(_vm.myProducts, "item", $$v)},expression:"myProducts.item"}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showUnionType),expression:"showUnionType"}],staticClass:"wccs-dropdown-element"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.myProducts.union_type),expression:"myProducts.union_type"}],staticClass:"asnp-select-field",on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.myProducts, "union_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.onChange]}},[_c('option',{attrs:{"value":"at_least_one_of"}},[_vm._v(_vm._s(_vm.__( 'At least one of', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"all_of"}},[_vm._v(_vm._s(_vm.__( 'All of', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"only"}},[_vm._v(_vm._s(_vm.__( 'Only', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"none_of"}},[_vm._v(_vm._s(_vm.__( 'None of', 'easy-woocommerce-discounts' )))])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showProducts),expression:"showProducts"}],staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"is-ajax":true,"ajax-type":"products","multiple":true,"minimum-input-length":3},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.products),callback:function ($$v) {_vm.$set(_vm.myProducts, "products", $$v)},expression:"myProducts.products"}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showVariations),expression:"showVariations"}],staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"is-ajax":true,"ajax-type":"variations","multiple":true,"minimum-input-length":3},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.variations),callback:function ($$v) {_vm.$set(_vm.myProducts, "variations", $$v)},expression:"myProducts.variations"}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCategories),expression:"showCategories"}],staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"is-ajax":true,"ajax-type":"categories","multiple":true,"minimum-input-length":3},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.categories),callback:function ($$v) {_vm.$set(_vm.myProducts, "categories", $$v)},expression:"myProducts.categories"}})],1)])}
-var ProductsSelectvue_type_template_id_70520e48_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelect.vue?vue&type=template&id=c29f86a8&
+var ProductsSelectvue_type_template_id_c29f86a8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wccs-dropdown-content"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showRow( 'quantity' )),expression:"showRow( 'quantity' )"}],staticClass:"wccs-dropdown-element"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.myProducts.quantity),expression:"myProducts.quantity"}],staticClass:"asnp-text-field",attrs:{"type":"number","placeholder":_vm.__( 'Quantity', 'easy-woocommerce-discounts' )},domProps:{"value":(_vm.myProducts.quantity)},on:{"change":_vm.onChange,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.myProducts, "quantity", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"options":_vm.getProductsOptions()},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.item),callback:function ($$v) {_vm.$set(_vm.myProducts, "item", $$v)},expression:"myProducts.item"}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showUnionType),expression:"showUnionType"}],staticClass:"wccs-dropdown-element"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.myProducts.union_type),expression:"myProducts.union_type"}],staticClass:"asnp-select-field",on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.myProducts, "union_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.onChange]}},[_c('option',{attrs:{"value":"at_least_one_of"}},[_vm._v(_vm._s(_vm.__( 'At least one of', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"all_of"}},[_vm._v(_vm._s(_vm.__( 'All of', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"only"}},[_vm._v(_vm._s(_vm.__( 'Only', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"none_of"}},[_vm._v(_vm._s(_vm.__( 'None of', 'easy-woocommerce-discounts' )))])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showProducts),expression:"showProducts"}],staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"is-ajax":true,"ajax-type":"products","multiple":true,"minimum-input-length":3},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.products),callback:function ($$v) {_vm.$set(_vm.myProducts, "products", $$v)},expression:"myProducts.products"}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showVariations),expression:"showVariations"}],staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"is-ajax":true,"ajax-type":"variations","multiple":true,"minimum-input-length":3},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.variations),callback:function ($$v) {_vm.$set(_vm.myProducts, "variations", $$v)},expression:"myProducts.variations"}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCategories),expression:"showCategories"}],staticClass:"wccs-dropdown-element"},[_c('select2',{attrs:{"is-ajax":true,"ajax-type":"categories","multiple":true,"minimum-input-length":3},on:{"input":_vm.onChange},model:{value:(_vm.myProducts.categories),callback:function ($$v) {_vm.$set(_vm.myProducts, "categories", $$v)},expression:"myProducts.categories"}})],1)])}
+var ProductsSelectvue_type_template_id_c29f86a8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelect.vue?vue&type=template&id=70520e48&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelect.vue?vue&type=template&id=c29f86a8&
 
 // EXTERNAL MODULE: ./admin/vue/wc-conditions/src/components/vue-datepicker.vue
 var vue_datepicker = __webpack_require__(10);
@@ -6654,6 +6654,12 @@ function ProductsSelectvue_type_script_lang_js_toPrimitive(t, r) { if ("object" 
       "default": function _default() {
         return [];
       }
+    },
+    disabledOptions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
     }
   },
   data: function data() {
@@ -6846,6 +6852,18 @@ function ProductsSelectvue_type_script_lang_js_toPrimitive(t, r) { if ("object" 
           children: taxonomies
         });
       }
+      if (this.disabledOptions && this.disabledOptions.length) {
+        options.forEach(function (group) {
+          if (group.children) {
+            group.children.forEach(function (option) {
+              if (-1 !== _this.disabledOptions.indexOf(option.id)) {
+                option.disabled = true;
+                option.text += ' - ' + Object(external_this_wp_i18n_["__"])('PRO Version', 'easy-woocommerce-discounts');
+              }
+            });
+          }
+        });
+      }
       if ((!this.ignoreGroups || !this.ignoreGroups.length) && (!this.hiddenOptions || !this.hiddenOptions.length)) {
         return options;
       }
@@ -6938,8 +6956,8 @@ function ProductsSelectvue_type_script_lang_js_toPrimitive(t, r) { if ("object" 
 
 var ProductsSelect_component = Object(componentNormalizer["a" /* default */])(
   components_ProductsSelectvue_type_script_lang_js_,
-  ProductsSelectvue_type_template_id_70520e48_render,
-  ProductsSelectvue_type_template_id_70520e48_staticRenderFns,
+  ProductsSelectvue_type_template_id_c29f86a8_render,
+  ProductsSelectvue_type_template_id_c29f86a8_staticRenderFns,
   false,
   null,
   null,
@@ -6949,6 +6967,7 @@ var ProductsSelect_component = Object(componentNormalizer["a" /* default */])(
 
 /* harmony default export */ var ProductsSelect = (ProductsSelect_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectItem.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -6986,6 +7005,12 @@ var ProductsSelect_component = Object(componentNormalizer["a" /* default */])(
       }
     },
     hiddenOptions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    disabledOptions: {
       type: Array,
       "default": function _default() {
         return [];
@@ -7046,8 +7071,8 @@ var ProductsSelect_component = Object(componentNormalizer["a" /* default */])(
 
 var ProductsSelectItem_component = Object(componentNormalizer["a" /* default */])(
   components_ProductsSelectItemvue_type_script_lang_js_,
-  ProductsSelectItemvue_type_template_id_1cfb1942_render,
-  ProductsSelectItemvue_type_template_id_1cfb1942_staticRenderFns,
+  ProductsSelectItemvue_type_template_id_46efaa95_render,
+  ProductsSelectItemvue_type_template_id_46efaa95_staticRenderFns,
   false,
   null,
   null,
@@ -9398,8 +9423,8 @@ var ProductsView_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var ProductsView = (ProductsView_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountList.vue?vue&type=template&id=51065d22&
-var DiscountListvue_type_template_id_51065d22_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-discount-list"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Discounts', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-primary",attrs:{"to":"/discount/new"}},[_vm._v(_vm._s(_vm.__( 'Add New', 'easy-woocommerce-discounts' )))])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.discountList.length),expression:"discountList.length"}],staticClass:"asnp-flex asnp-flex-col"},[_c('div',{staticClass:"asnp-my-2 asnp-overflow-x-auto sm:asnp-mx-6 lg:asnp-mx-8"},[_c('div',{staticClass:"asnp-py-2 asnp-align-middle asnp-inline-block asnp-min-w-full sm:asnp-px-6 lg:asnp-px-8"},[_c('div',{staticClass:"asnp-shadow asnp-overflow-hidden asnp-border-b asnp-border-gray-200 sm:asnp-rounded-lg"},[_c('table',{staticClass:"asnp-min-w-full asnp-divide-y asnp-divide-gray-200",attrs:{"id":"discounts-list"}},[_c('thead',{staticClass:"asnp-bg-gray-50"},[_c('tr',[_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}}),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountList.vue?vue&type=template&id=44d01bf1&
+var DiscountListvue_type_template_id_44d01bf1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-discount-list"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Discounts', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-primary",attrs:{"to":"/discount/new"}},[_vm._v(_vm._s(_vm.__( 'Add New', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary",on:{"click":function($event){_vm.showTemplatesModal = true}}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Add from Template', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.discountList.length),expression:"discountList.length"}],staticClass:"asnp-flex asnp-flex-col"},[_c('div',{staticClass:"asnp-my-2 asnp-overflow-x-auto sm:asnp-mx-6 lg:asnp-mx-8"},[_c('div',{staticClass:"asnp-py-2 asnp-align-middle asnp-inline-block asnp-min-w-full sm:asnp-px-6 lg:asnp-px-8"},[_c('div',{staticClass:"asnp-shadow asnp-overflow-hidden asnp-border-b asnp-border-gray-200 sm:asnp-rounded-lg"},[_c('table',{staticClass:"asnp-min-w-full asnp-divide-y asnp-divide-gray-200",attrs:{"id":"discounts-list"}},[_c('thead',{staticClass:"asnp-bg-gray-50"},[_c('tr',[_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}}),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
 											'ID',
 											'easy-woocommerce-discounts'
 										))+"\n\t\t\t\t\t\t\t\t")]),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
@@ -9455,12 +9480,1298 @@ var DiscountListvue_type_template_id_51065d22_render = function () {var _vm=this
 											)}},[_c('i',{staticClass:"fa fa-bar-chart",attrs:{"aria-hidden":"true"}})]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-delete",attrs:{"title":_vm.__(
 												'Delete',
 												'easy-woocommerce-discounts'
-											)},on:{"click":function($event){return _vm.showDeleteWarning( discount.id )}}},[_c('i',{staticClass:"fa fa-remove",attrs:{"aria-hidden":"true"}})])],1)])}),0)])])])])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.discountList.length),expression:"! discountList.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showDeleteModal)?_c('modal',{on:{"apply":function($event){return _vm.deleteCartDiscount()},"cancel":function($event){_vm.showDeleteModal = false}}}):_vm._e()],1)}
-var DiscountListvue_type_template_id_51065d22_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"asnp-px-6 asnp-py-4 asnp-whitespace-nowrap"},[_c('i',{staticClass:"fa fa-reorder reorder-discount-list",attrs:{"aria-hidden":"true"}})])}]
+											)},on:{"click":function($event){return _vm.showDeleteWarning( discount.id )}}},[_c('i',{staticClass:"fa fa-remove",attrs:{"aria-hidden":"true"}})])],1)])}),0)])])])])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.discountList.length),expression:"! discountList.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showDeleteModal)?_c('modal',{on:{"apply":function($event){return _vm.deleteCartDiscount()},"cancel":function($event){_vm.showDeleteModal = false}}}):_vm._e(),_vm._v(" "),(_vm.showTemplatesModal)?_c('discount-templates-modal',{on:{"cancel":function($event){_vm.showTemplatesModal = false},"add-campaign":_vm.onAddCampaign}}):_vm._e()],1)}
+var DiscountListvue_type_template_id_44d01bf1_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"asnp-px-6 asnp-py-4 asnp-whitespace-nowrap"},[_c('i',{staticClass:"fa fa-reorder reorder-discount-list",attrs:{"aria-hidden":"true"}})])}]
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountList.vue?vue&type=template&id=51065d22&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountList.vue?vue&type=template&id=44d01bf1&
 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=template&id=02f09e38&
+var DiscountTemplatesModalvue_type_template_id_02f09e38_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"asnp-modal"}},[_c('div',{staticClass:"asnp-fixed asnp-inset-0 asnp-bg-black asnp-bg-opacity-50 asnp-flex asnp-items-center asnp-justify-center asnp-transition-opacity asnp-duration-300",staticStyle:{"z-index":"9998"},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.$emit( 'cancel' )}}},[_c('div',{staticClass:"asnp-w-full",staticStyle:{"max-width":"900px","width":"90%"}},[_c('div',{staticClass:"asnp-bg-white asnp-rounded-lg asnp-shadow-lg asnp-transition-all asnp-duration-300 asnp-flex asnp-flex-col asnp-w-full discount-templates-modal",staticStyle:{"height":"650px","max-height":"90vh","scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-p-5 asnp-border-b asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex asnp-justify-between asnp-items-center"},[_c('h3',{staticClass:"asnp-m-0 asnp-text-xl asnp-font-semibold"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'Choose your desired campaign',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-bg-transparent asnp-border-none asnp-cursor-pointer asnp-text-2xl asnp-leading-none asnp-text-gray-400 asnp-p-0 hover:asnp-text-gray-600",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_c('span',{staticClass:"dashicons dashicons-no-alt"})])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-mt-4",staticStyle:{"gap":"10px"}},[_c('div',{staticClass:"asnp-relative asnp-flex-1 asnp-flex asnp-items-center"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchQuery),expression:"searchQuery"}],staticClass:"asnp-w-full asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10 asnp-placeholder-gray-400",staticStyle:{"padding-right":"40px"},attrs:{"type":"text","placeholder":_vm.__(
+										'Search templates...',
+										'easy-woocommerce-discounts'
+									)},domProps:{"value":(_vm.searchQuery)},on:{"input":function($event){if($event.target.composing){ return; }_vm.searchQuery=$event.target.value}}}),_vm._v(" "),(_vm.searchQuery)?_c('span',{staticClass:"asnp-absolute asnp-right-3 asnp-bg-gray-200 asnp-text-gray-500 asnp-rounded-full asnp-flex asnp-items-center asnp-justify-center asnp-cursor-pointer asnp-transition-all hover:asnp-bg-gray-300 hover:asnp-text-gray-700",staticStyle:{"width":"18px","height":"18px","top":"50%","transform":"translateY( -50% )"},on:{"click":function($event){_vm.searchQuery = ''}}},[_c('svg',{staticStyle:{"width":"10px","height":"10px"},attrs:{"xmlns":"http://www.w3.org/2000/svg","fill":"none","viewBox":"0 0 24 24","stroke":"currentColor","stroke-width":"3"}},[_c('path',{attrs:{"stroke-linecap":"round","stroke-linejoin":"round","d":"M6 18L18 6M6 6l12 12"}})])]):_vm._e()]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedCategory),expression:"selectedCategory"}],staticClass:"asnp-w-full md:asnp-w-auto asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.selectedCategory=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":""}},[_vm._v(_vm._s(_vm.__(
+									'All Categories',
+									'easy-woocommerce-discounts'
+								)))]),_vm._v(" "),_vm._l((_vm.categories),function(cat){return _c('option',{key:cat.id,domProps:{"value":cat.id}},[_vm._v(_vm._s(cat.label))])})],2)])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-flex-1 asnp-overflow-y-auto md:asnp-overflow-hidden asnp-p-5",staticStyle:{"scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-h-auto md:asnp-flex-1 md:asnp-overflow-y-auto asnp-pr-1 md:asnp-pr-5 asnp-pl-1 asnp-pb-1 asnp-pt-1",staticStyle:{"scrollbar-gutter":"stable"}},[_vm._l((_vm.groupedTemplates),function(groupTemplates,groupName,index){return _c('div',{key:groupName,staticClass:"template-group"},[_c('h4',{staticClass:"asnp-text-base asnp-font-bold asnp-text-indigo-600 asnp-mb-3 asnp-pb-2 asnp-border-b asnp-border-gray-100",class:index === 0 ? 'asnp-mt-0' : 'asnp-mt-6'},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.tagNames[ groupName ] || groupName)+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),(
+									groupName === 'URL Coupons' &&
+									! _vm.urlCouponsEnabled()
+								)?_c('div',{staticClass:"asnp-mb-4 asnp-p-3 asnp-bg-yellow-50 asnp-text-yellow-800 asnp-text-sm asnp-rounded-md asnp-border asnp-border-yellow-200"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+										'URL Coupons are not enabled. Please download and install the addon from',
+										'easy-woocommerce-discounts'
+									))+"\n\t\t\t\t\t\t\t\t"),_c('a',{staticClass:"asnp-font-medium asnp-underline",attrs:{"href":"https://www.asanaplugins.com/product/url-coupons-for-woocommerce/","target":"_blank"}},[_vm._v("\n\t\t\t\t\t\t\t\t\there\n\t\t\t\t\t\t\t\t")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col asnp-gap-3"},_vm._l((groupTemplates),function(template,templIndex){return _c('div',{key:templIndex,staticClass:"asnp-group asnp-relative asnp-flex asnp-items-center asnp-p-3 asnp-px-4 asnp-transition-all asnp-duration-200 asnp-border asnp-rounded-lg asnp-cursor-pointer asnp-bg-white",class:[
+										_vm.selectedTemplate === template
+											? 'asnp-border-indigo-600 asnp-ring-1 asnp-ring-indigo-600 asnp-bg-indigo-50'
+											: 'asnp-border-gray-200 hover:asnp-border-indigo-400 hover:asnp-shadow-sm',
+										groupName === 'URL Coupons' &&
+										! _vm.urlCouponsEnabled()
+											? 'asnp-opacity-60 asnp-cursor-not-allowed asnp-bg-gray-50'
+											: '' ],on:{"mouseenter":function($event){_vm.hoveredTemplate = template},"mouseleave":function($event){_vm.hoveredTemplate = null},"click":function($event){groupName === 'URL Coupons' &&
+										! _vm.urlCouponsEnabled()
+											? null
+											: _vm.selectTemplate( template )}}},[_c('div',{staticClass:"asnp-flex-1"},[_c('div',{staticClass:"asnp-text-sm asnp-font-medium asnp-transition-colors",class:_vm.selectedTemplate ===
+												template
+													? 'asnp-text-indigo-700'
+													: 'asnp-text-gray-700 group-hover:asnp-text-indigo-600'},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(template.name)+"\n\t\t\t\t\t\t\t\t\t\t\t"),(template.pro)?_c('span',{staticClass:"asnp-ml-2 asnp-inline-flex asnp-items-center asnp-px-1 asnp-py-0 asnp-rounded asnp-text-[8px] asnp-font-bold asnp-bg-emerald-100 asnp-text-emerald-700 asnp-border asnp-border-emerald-200 asnp-uppercase asnp-tracking-wider"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+														'Pro',
+														'easy-woocommerce-discounts'
+													))+"\n\t\t\t\t\t\t\t\t\t\t\t")]):_vm._e()]),_vm._v(" "),(template.sub)?_c('div',{staticClass:"asnp-text-xs asnp-text-gray-500 asnp-mt-0.5"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(template.sub)+"\n\t\t\t\t\t\t\t\t\t\t")]):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"asnp-expand"}},[(
+													_vm.selectedTemplate ===
+													template
+												)?_c('div',{staticClass:"asnp-overflow-hidden",class:[
+													template.show_timing !==
+													false
+														? 'asnp-mt-3 asnp-pt-3 asnp-border-t asnp-border-indigo-100'
+														: 'asnp-mt-3 asnp-pt-3 asnp-border-t asnp-border-indigo-100 md:asnp-mt-0 md:asnp-pt-0 md:asnp-border-t-0' ]},[_c('div',{staticClass:"md:asnp-hidden",class:template.show_timing !==
+														false
+															? 'asnp-mb-5'
+															: ''},[_c('p',{staticClass:"asnp-text-gray-600 asnp-text-xs asnp-leading-relaxed",domProps:{"innerHTML":_vm._s(
+															template.description
+														)}}),_vm._v(" "),(
+															template.examples &&
+															template
+																.examples
+																.length
+														)?_c('div',{staticClass:"asnp-mt-3 asnp-space-y-1"},_vm._l((template.examples),function(example,exIndex){return _c('div',{key:exIndex,staticClass:"asnp-text-[10px] asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t•\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"),(
+																	example.old_price
+																)?_c('span',{staticClass:"asnp-line-through"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-medium asnp-text-gray-700"},[_vm._v(_vm._s(example.new_price))])])}),0):_vm._e()]),_vm._v(" "),(
+														template.show_timing !==
+														false
+													)?_c('div',{staticClass:"asnp-mb-4"},[_c('h5',{staticClass:"asnp-text-[10px] asnp-font-bold asnp-text-gray-400 asnp-uppercase asnp-tracking-wider asnp-mb-3"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																'Campaign Timing',
+																'easy-woocommerce-discounts'
+															))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"asnp-grid asnp-grid-cols-1 sm:asnp-grid-cols-3 asnp-gap-2.5"},[_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'normal',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"normal"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"normal")},on:{"change":function($event){_vm.campaignType
+																	="normal"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'normal'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Normal',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])]),_vm._v(" "),_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'black_friday',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"black_friday"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"black_friday")},on:{"change":function($event){_vm.campaignType
+																	="black_friday"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'black_friday'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Black Friday',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])]),_vm._v(" "),_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'seasonal',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"seasonal"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"seasonal")},on:{"change":function($event){_vm.campaignType
+																	="seasonal"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'seasonal'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Seasonal',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])])])]):_vm._e()]):_vm._e()])],1)])}),0)])}),_vm._v(" "),(
+								Object.keys( _vm.groupedTemplates ).length === 0
+							)?_c('div',{staticClass:"asnp-p-5 asnp-text-center asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'No templates found.',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")]):_vm._e()],2),_vm._v(" "),_c('div',{staticClass:"asnp-hidden md:asnp-flex md:asnp-w-1/3 asnp-px-5 asnp-border-l asnp-border-gray-200 asnp-overflow-y-auto asnp-flex-col",staticStyle:{"scrollbar-gutter":"stable"}},[(_vm.activeTemplate)?_c('div',[_c('span',{staticClass:"asnp-inline-block asnp-bg-indigo-100 asnp-text-indigo-800 asnp-px-2 asnp-py-1 asnp-rounded asnp-text-xs"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.tagNames[ _vm.activeTemplate.tag ] ||
+									'General Discount')+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),(_vm.activeTemplate.pro)?_c('span',{staticClass:"asnp-inline-flex asnp-items-center asnp-px-1 asnp-py-0 asnp-ml-2 asnp-rounded asnp-text-[8px] asnp-font-bold asnp-bg-emerald-100 asnp-text-emerald-700 asnp-border asnp-border-emerald-200 asnp-uppercase asnp-tracking-wider"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+										'Pro',
+										'easy-woocommerce-discounts'
+									))+"\n\t\t\t\t\t\t\t")]):_vm._e(),_vm._v(" "),_c('h4',{staticClass:"asnp-mt-4 asnp-text-lg asnp-font-medium"},[_c('i',{staticClass:"fa fa-file-text-o asnp-text-gray-400 asnp-mr-2"}),_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.activeTemplate.name)+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mt-2 asnp-text-gray-500 asnp-text-sm",domProps:{"innerHTML":_vm._s(_vm.activeTemplate.description)}}),_vm._v(" "),(
+									_vm.activeTemplate.examples &&
+									_vm.activeTemplate.examples.length
+								)?_c('div',{staticClass:"asnp-mt-4 asnp-bg-gray-50 asnp-p-4 asnp-rounded-md asnp-border asnp-border-gray-100"},[_c('strong',{staticClass:"asnp-block asnp-mb-2 asnp-text-sm asnp-text-gray-700"},[_vm._v(_vm._s(_vm.__(
+											'Eg:',
+											'easy-woocommerce-discounts'
+										)))]),_vm._v(" "),_c('ul',{staticClass:"asnp-list-disc asnp-pl-5 asnp-m-0 asnp-text-sm asnp-text-gray-600"},_vm._l((_vm.activeTemplate.examples),function(example,index){return _c('li',{key:index,staticClass:"asnp-mb-1"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t"),(example.old_price)?_c('span',{staticClass:"asnp-line-through asnp-text-gray-400 asnp-mr-1"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-semibold asnp-text-gray-900"},[_vm._v(_vm._s(example.new_price))])])}),0)]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-text-indigo-500 asnp-block asnp-mt-4 asnp-text-xs"},[_vm._v("("+_vm._s(_vm.__(
+										'You can edit everything later.',
+										'easy-woocommerce-discounts'
+									))+")")]),_vm._v(" "),(_vm.activeTemplate.pro)?_c('div',{staticClass:"asnp-mt-6 asnp-p-3 asnp-bg-emerald-50 asnp-rounded-md asnp-border asnp-border-emerald-100 asnp-text-xs asnp-text-emerald-800 asnp-leading-relaxed"},[_c('span',{domProps:{"innerHTML":_vm._s(
+										_vm.sprintf(
+											_vm.__(
+												'This is a PRO feature. Unlock it by upgrading to the %s.',
+												'easy-woocommerce-discounts'
+											),
+											("<a href='https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link' target='_blank' class='asnp-font-bold asnp-text-emerald-700 hover:asnp-underline'>" + (_vm.__(
+												'PRO version',
+												'easy-woocommerce-discounts'
+											)) + "</a>")
+										)
+									)}})]):_vm._e()]):_vm._e()])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-justify-end asnp-p-4 asnp-px-5 asnp-border-t asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex"},[_c('button',{staticClass:"asnp-btn asnp-btn-secondary asnp-mr-2",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary",class:{
+								'asnp-opacity-50 asnp-cursor-not-allowed':
+									_vm.selectedTemplate &&
+									_vm.selectedTemplate.pro,
+							},attrs:{"disabled":_vm.selectedTemplate && _vm.selectedTemplate.pro},on:{"click":_vm.addCampaign}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'Add Campaign',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")])])])])])])])}
+var DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=template&id=02f09e38&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var DiscountTemplatesModalvue_type_script_lang_js_ = ({
+  name: 'discount-templates-modal',
+  data: function data() {
+    return {
+      searchQuery: '',
+      selectedCategory: '',
+      selectedTemplate: null,
+      hoveredTemplate: null,
+      campaignType: 'normal',
+      templates: [
+      // Automatic Coupons
+      {
+        name: this.__('Custom Discount Campaign', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-hand-paper-o',
+        description: this.__('Design a unique discount strategy perfectly tailored to your business goals.', 'easy-woocommerce-discounts'),
+        slug: 'own-campaign',
+        tag: 'general',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Storewide 20% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-percent',
+        description: this.__('Instantly boost sales by applying a 20% discount across your entire store.', 'easy-woocommerce-discounts'),
+        slug: 'auto-20-percent',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Flat Amount $20 Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-dollar',
+        description: this.__('Encourage larger purchases by offering a fixed $20 savings on the total cart value.', 'easy-woocommerce-discounts'),
+        slug: 'auto-20-price',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Targeted Product Sale (10% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tags',
+        description: this.__('Boost the visibility of specific products with a targeted percentage discount.', 'easy-woocommerce-discounts'),
+        slug: 'auto-10-percent-products',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Targeted Product Sale ($20 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Boost the visibility of specific products with a targeted fixed price discount.', 'easy-woocommerce-discounts'),
+        slug: 'auto-20-fixed-products',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Per-Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Apply a fixed $2 discount for every eligible product added to the cart.', 'easy-woocommerce-discounts'),
+        slug: 'auto-2-price-products',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Category-Wide Sale (20% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder-open',
+        description: this.__('Clearance or seasonal sale for entire product categories with 20% off.', 'easy-woocommerce-discounts'),
+        slug: 'auto-20-percent-categories',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Category-Wide Sale ($20 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Clearance or seasonal sale for entire product categories with $20 off.', 'easy-woocommerce-discounts'),
+        slug: 'auto-20-fixed-categories',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Category Item Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder',
+        description: this.__('Incentivize category purchases with a $2 discount on each item.', 'easy-woocommerce-discounts'),
+        slug: 'auto-2-price-categories',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Black Friday Mega Deal (50% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullhorn',
+        description: this.__('The ultimate holiday deal! A massive 50% discount applied automatically.', 'easy-woocommerce-discounts'),
+        slug: 'auto-bf-50',
+        tag: 'automatic',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Black Friday High-Value ($200 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullhorn',
+        description: this.__('Incentivize big spenders during Black Friday with a generous $200 discount.', 'easy-woocommerce-discounts'),
+        slug: 'auto-bf-200',
+        tag: 'automatic',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Black Friday Product Special (50% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-gift',
+        description: this.__('Select products at half price specifically for the Black Friday event.', 'easy-woocommerce-discounts'),
+        slug: 'auto-bf-50-products',
+        tag: 'automatic',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Black Friday Category Blast (50% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-bag',
+        description: this.__('Category-wide 50% savings to drive holiday traffic to specific sections.', 'easy-woocommerce-discounts'),
+        slug: 'auto-bf-50-categories',
+        tag: 'automatic',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Payment Method Incentive (20% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-bag',
+        description: this.__('Encourage the use of a specific payment method with a 20% discount.', 'easy-woocommerce-discounts'),
+        slug: 'auto-payment-20-percent',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Payment Method Reward ($5 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-bag',
+        description: this.__('Reward customers for choosing your preferred payment gateway with $5 off.', 'easy-woocommerce-discounts'),
+        slug: 'auto-payment-5-price',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('New Customer Welcome (20% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-bag',
+        description: this.__('Greet new shoppers with a 20% discount on their very first order.', 'easy-woocommerce-discounts'),
+        slug: 'auto-signup-20-percent',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Welcome Gift ($20 Off First Order)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-bag',
+        description: this.__('A generous $20 discount to convert new visitors into first-time buyers.', 'easy-woocommerce-discounts'),
+        slug: 'auto-signup-20-price',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Minimum Spend: Spend $100 Get 10% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-line-chart',
+        description: this.__('Drive higher order values by rewarding customers who spend more.', 'easy-woocommerce-discounts'),
+        slug: 'minimum-spend',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: false
+      },
+      // {
+      // 	name: this.__(
+      // 		'Free Shipping Incentive',
+      // 		'easy-woocommerce-discounts'
+      // 	),
+      // 	icon: 'fa fa-truck',
+      // 	description: this.__(
+      // 		'Boost conversions by waiving shipping costs for qualifying orders.',
+      // 		'easy-woocommerce-discounts'
+      // 	),
+      // 	slug: 'free-shipping',
+      // 	tag: 'automatic',
+      // 	show_timing: true,
+      // 	examples: [],
+      // 	pro: false,
+      // },
+
+      // Manual Coupons
+      {
+        name: this.__('Coupon: Storewide 20% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-percent',
+        description: this.__('Classic 20% off coupon code that customers can apply at checkout.', 'easy-woocommerce-discounts'),
+        slug: 'manual-20-percent',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Flat Amount $20 Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-dollar',
+        description: this.__('Reward customers with a flat $20 discount when they enter this code.', 'easy-woocommerce-discounts'),
+        slug: 'manual-20-price',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Product Special (10% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tags',
+        description: this.__('Apply a 10% discount on specific products manually using a coupon.', 'easy-woocommerce-discounts'),
+        slug: 'manual-10-percent-products',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Product Special ($20)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Apply a $20 discount on specific products manually using a coupon.', 'easy-woocommerce-discounts'),
+        slug: 'manual-20-fixed-products',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Coupon: Per-Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Apply a $2 discount for each eligible product manually.', 'easy-woocommerce-discounts'),
+        slug: 'manual-2-price-products',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Category Sale (20% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder-open',
+        description: this.__('Drive traffic to specific categories with a 20% manual discount.', 'easy-woocommerce-discounts'),
+        slug: 'manual-20-percent-categories',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Category Sale ($20 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Drive traffic to specific categories with a $20 manual discount.', 'easy-woocommerce-discounts'),
+        slug: 'manual-20-fixed-categories',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Coupon: Category Savings ($2 Off per Item)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder',
+        description: this.__('Apply a $2 discount per category item manually.', 'easy-woocommerce-discounts'),
+        slug: 'manual-2-price-categories',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Black Friday 50% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullhorn',
+        description: this.__('High-conversion 50% off coupon code for Black Friday promotions.', 'easy-woocommerce-discounts'),
+        slug: 'manual-bf-50',
+        tag: 'manual',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Black Friday $200 Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullhorn',
+        description: this.__('Incentivize big spenders during Black Friday with a generous $200 discount via coupon code.', 'easy-woocommerce-discounts'),
+        slug: 'manual-bf-200',
+        tag: 'manual',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Black Friday Product Special', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-gift',
+        description: this.__('Manual 50% discount on specific products for the holiday season.', 'easy-woocommerce-discounts'),
+        slug: 'manual-bf-50-products',
+        tag: 'manual',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Coupon: Black Friday Category Blast', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-bag',
+        description: this.__('50% manual savings on entire categories during Black Friday.', 'easy-woocommerce-discounts'),
+        slug: 'manual-bf-50-categories',
+        tag: 'manual',
+        show_timing: false,
+        examples: [],
+        pro: false
+      },
+      // URL Coupons
+      {
+        name: this.__('Link: Storewide 20% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-link',
+        description: this.__('Automatically apply a 20% discount when customers visit via this URL.', 'easy-woocommerce-discounts'),
+        slug: 'url-20-percent',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Flat Amount $20 Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-dollar',
+        description: this.__('Apply a fixed $20 discount to the cart via a direct link.', 'easy-woocommerce-discounts'),
+        slug: 'url-20-price',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Product Special (10% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tags',
+        description: this.__('Driving traffic to products? Use this link for an automatic 10% discount.', 'easy-woocommerce-discounts'),
+        slug: 'url-10-percent-products',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Product Special ($20 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Driving traffic to products? Use this link for an automatic $20 discount.', 'easy-woocommerce-discounts'),
+        slug: 'url-20-fixed-products',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Per-Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Apply a $2 discount for each eligible product via this URL.', 'easy-woocommerce-discounts'),
+        slug: 'url-2-price-products',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Category Sale (20% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder-open',
+        description: this.__('Promote your categories with a 20% discount applied via URL.', 'easy-woocommerce-discounts'),
+        slug: 'url-20-percent-categories',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Category Sale ($20 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Promote your categories with a $20 discount applied via URL.', 'easy-woocommerce-discounts'),
+        slug: 'url-20-fixed-categories',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Category Item Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder',
+        description: this.__('Apply a $2 discount per category item via an automatic link.', 'easy-woocommerce-discounts'),
+        slug: 'url-2-price-categories',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Auto-Add Products', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-plus-circle',
+        description: this.__('Automatically add products to the cart (with or without discount) via URL.', 'easy-woocommerce-discounts'),
+        slug: 'auto-add-products',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Auto-Add with 20% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cart-plus',
+        description: this.__('Add products to the cart and apply a 20% discount simultaneously via URL.', 'easy-woocommerce-discounts'),
+        slug: 'auto-add-products-20-percent',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Auto-Add Free Gift', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-gift',
+        description: this.__("Automatically add a free gift product to the customer's cart via this link.", 'easy-woocommerce-discounts'),
+        slug: 'auto-add-products-gift',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      },
+      // Recurring Coupons
+      {
+        name: this.__('Recurring: 20% Discount', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-refresh',
+        description: this.__('Apply a 20% discount that repeats for every subscription renewal.', 'easy-woocommerce-discounts'),
+        slug: 'recurring-20-percent',
+        tag: 'recurring',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Recurring: $20 Discount', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-dollar',
+        description: this.__('Apply a fixed $20 discount on every recurring subscription payment.', 'easy-woocommerce-discounts'),
+        slug: 'recurring-20-price',
+        tag: 'recurring',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Recurring: Product Special (10% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tags',
+        description: this.__('Offer a 10% recurring discount on specific subscription products.', 'easy-woocommerce-discounts'),
+        slug: 'recurring-10-percent-products',
+        tag: 'recurring',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Recurring: Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Save $2 on every billing cycle for specific subscription products.', 'easy-woocommerce-discounts'),
+        slug: 'recurring-2-price-products',
+        tag: 'recurring',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Recurring: Category Sale (20% Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder-open',
+        description: this.__('20% recurring discount across specific subscription categories.', 'easy-woocommerce-discounts'),
+        slug: 'recurring-20-percent-categories',
+        tag: 'recurring',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Recurring: Category Savings ($2 Off)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-folder',
+        description: this.__('Save $2 on every billing cycle for subscription items in specific categories.', 'easy-woocommerce-discounts'),
+        slug: 'recurring-2-price-categories',
+        tag: 'recurring',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }]
+    };
+  },
+  created: function created() {
+    if (this.templates.length > 0) {
+      this.selectedTemplate = this.templates[0];
+    }
+  },
+  computed: {
+    activeTemplate: function activeTemplate() {
+      return this.hoveredTemplate || this.selectedTemplate;
+    },
+    tagNames: function tagNames() {
+      return {
+        general: this.__('General', 'easy-woocommerce-discounts'),
+        automatic: this.__('Automatic Coupons', 'easy-woocommerce-discounts'),
+        manual: this.__('Manual Coupons', 'easy-woocommerce-discounts'),
+        url: this.__('URL Coupons', 'easy-woocommerce-discounts'),
+        recurring: this.__('Recurring Coupons', 'easy-woocommerce-discounts'),
+        other: this.__('Other', 'easy-woocommerce-discounts')
+      };
+    },
+    categories: function categories() {
+      var _this = this;
+      var categories = [];
+      var seen = new Set();
+      this.templates.forEach(function (t) {
+        if (t.tag && !seen.has(t.tag)) {
+          if (t.tag === 'recurring' && !_this.wcSubscriptions) {
+            return;
+          }
+          categories.push({
+            id: t.tag,
+            label: _this.tagNames[t.tag]
+          });
+          seen.add(t.tag);
+        }
+      });
+      return categories;
+    },
+    groupedTemplates: function groupedTemplates() {
+      var _this2 = this;
+      var filtered = this.templates;
+      if (this.searchQuery) {
+        var query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(function (t) {
+          return t.name.toLowerCase().includes(query) || t.description && t.description.toLowerCase().includes(query);
+        });
+      }
+      if (this.selectedCategory) {
+        filtered = filtered.filter(function (t) {
+          return t.tag === _this2.selectedCategory;
+        });
+      }
+      var groups = {};
+      filtered.forEach(function (t) {
+        var tag = t.tag || 'other';
+        if (!_this2.wcSubscriptions && tag === 'recurring') {
+          return;
+        }
+        if (!groups[tag]) {
+          groups[tag] = [];
+        }
+        groups[tag].push(t);
+      });
+      return groups;
+    }
+  },
+  methods: {
+    selectTemplate: function selectTemplate(template) {
+      this.selectedTemplate = template;
+    },
+    addCampaign: function addCampaign() {
+      if (this.selectedTemplate && this.selectedTemplate.pro) {
+        return;
+      }
+      this.$emit('add-campaign', {
+        template: this.selectedTemplate,
+        campaignType: this.campaignType
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_DiscountTemplatesModalvue_type_script_lang_js_ = (DiscountTemplatesModalvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue
+
+
+
+
+
+/* normalize component */
+
+var DiscountTemplatesModal_component = Object(componentNormalizer["a" /* default */])(
+  components_DiscountTemplatesModalvue_type_script_lang_js_,
+  DiscountTemplatesModalvue_type_template_id_02f09e38_render,
+  DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var DiscountTemplatesModal = (DiscountTemplatesModal_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountList.vue?vue&type=script&lang=js&
 //
 //
@@ -9747,17 +11058,34 @@ var DiscountListvue_type_template_id_51065d22_staticRenderFns = [function () {va
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ var DiscountListvue_type_script_lang_js_ = ({
   name: 'discount-list',
+  components: {
+    DiscountTemplatesModal: DiscountTemplatesModal
+  },
   data: function data() {
     return {
       discountList: cloneDeep_default()(this.$store.state.discountList),
       showLoading: false,
       showDeleteModal: false,
+      showTemplatesModal: false,
       deleteId: 0
     };
   },
@@ -9847,6 +11175,18 @@ var DiscountListvue_type_template_id_51065d22_staticRenderFns = [function () {va
       })["catch"](function (error) {
         _this4.showLoading = false;
       });
+    },
+    onAddCampaign: function onAddCampaign(_ref) {
+      var template = _ref.template,
+        campaignType = _ref.campaignType;
+      this.showTemplatesModal = false;
+      this.$router.push({
+        path: '/discount/new',
+        query: {
+          template: template.slug,
+          campaign: campaignType
+        }
+      });
     }
   }
 });
@@ -9862,8 +11202,8 @@ var DiscountListvue_type_template_id_51065d22_staticRenderFns = [function () {va
 
 var DiscountList_component = Object(componentNormalizer["a" /* default */])(
   views_DiscountListvue_type_script_lang_js_,
-  DiscountListvue_type_template_id_51065d22_render,
-  DiscountListvue_type_template_id_51065d22_staticRenderFns,
+  DiscountListvue_type_template_id_44d01bf1_render,
+  DiscountListvue_type_template_id_44d01bf1_staticRenderFns,
   false,
   null,
   null,
@@ -9872,8 +11212,8 @@ var DiscountList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var DiscountList = (DiscountList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=9f94a96e&
-var DiscountViewvue_type_template_id_9f94a96e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-discount-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Discount', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/discount-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.saveDiscount}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=2ab3c8c8&
+var DiscountViewvue_type_template_id_2ab3c8c8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-discount-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Discount', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/discount-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.saveDiscount}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There are some errors in the form please fix them and save it again.',
 					'easy-woocommerce-discounts'
 				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.name),expression:"discount.name"}],staticClass:"asnp-block asnp-text-field",class:{
@@ -9988,17 +11328,17 @@ var DiscountViewvue_type_template_id_9f94a96e_render = function () {var _vm=this
 					'There is not any condition.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('conditions-container',{attrs:{"items":_vm.discount.conditions,"ignoreGroups":_vm.ignoreGroups,"ignoreItems":_vm.ignoreItems},on:{"conditionUpdated":_vm.onDiscountConditionUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewCondition,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}})],1)}
-var DiscountViewvue_type_template_id_9f94a96e_staticRenderFns = []
+var DiscountViewvue_type_template_id_2ab3c8c8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=9f94a96e&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=2ab3c8c8&
 
 // EXTERNAL MODULE: ./node_modules/vuelidate/lib/validators/minValue.js
 var minValue = __webpack_require__(66);
 var minValue_default = /*#__PURE__*/__webpack_require__.n(minValue);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectContainer.vue?vue&type=template&id=6b2dee60&
-var ProductsSelectContainervue_type_template_id_6b2dee60_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"asnp-products-select-container"},[_vm._l((_vm.items),function(item,index){return _c('div',{key:'products-select-group-' + index},[(0 < index)?_c('div',{staticClass:"asnp-group-separator asnp-text-center asnp-text-lg asnp-text-gray-400 asnp-font-bold asnp-py-1"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'OR', 'easy-woocommerce-discounts' ))+"\n\t\t")]):_vm._e(),_vm._v(" "),_c('products-select-group',{attrs:{"items":item,"keyName":_vm.keyName,"hiddenRows":_vm.hiddenRows,"hiddenOptions":_vm.hiddenOptions,"type":_vm.type},on:{"productsUpdated":function ( products, productsIndex ) { return _vm.$emit(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectContainer.vue?vue&type=template&id=07e66f36&
+var ProductsSelectContainervue_type_template_id_07e66f36_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"asnp-products-select-container"},[_vm._l((_vm.items),function(item,index){return _c('div',{key:'products-select-group-' + index},[(0 < index)?_c('div',{staticClass:"asnp-group-separator asnp-text-center asnp-text-lg asnp-text-gray-400 asnp-font-bold asnp-py-1"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'OR', 'easy-woocommerce-discounts' ))+"\n\t\t")]):_vm._e(),_vm._v(" "),_c('products-select-group',{attrs:{"items":item,"keyName":_vm.keyName,"hiddenRows":_vm.hiddenRows,"hiddenOptions":_vm.hiddenOptions,"disabledOptions":_vm.disabledOptions,"type":_vm.type},on:{"productsUpdated":function ( products, productsIndex ) { return _vm.$emit(
 						'productsUpdated',
 						index,
 						products,
@@ -10007,22 +11347,23 @@ var ProductsSelectContainervue_type_template_id_6b2dee60_render = function () {v
 					_vm.__( '%s OR New Group', 'easy-woocommerce-discounts' ),
 					'+'
 				))+"\n\t\t")])])],2)}
-var ProductsSelectContainervue_type_template_id_6b2dee60_staticRenderFns = []
+var ProductsSelectContainervue_type_template_id_07e66f36_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelectContainer.vue?vue&type=template&id=6b2dee60&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelectContainer.vue?vue&type=template&id=07e66f36&
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectGroup.vue?vue&type=template&id=9204dd2e&
-var ProductsSelectGroupvue_type_template_id_9204dd2e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"asnp-products-select-group asnp-border-dashed asnp-border asnp-border-gray-500 asnp-rounded-md asnp-px-2 asnp-py-4 asnp-mb-2"},[_c('transition-group',{attrs:{"name":"list-fade","mode":"out-in","tag":"div"}},_vm._l((_vm.items),function(item,index){return _c('products-select-item',{key:_vm.getKey( item, _vm.keyName ),attrs:{"products":item,"index":index,"hiddenRows":_vm.hiddenRows,"hiddenOptions":_vm.hiddenOptions,"type":_vm.type},on:{"productsUpdated":function ( products ) { return _vm.$emit( 'productsUpdated', products, index ); },"deleteItem":function ( type ) { return _vm.$emit( 'deleteItem', type, index ); }}})}),1),_vm._v(" "),_c('div',[_c('button',{staticClass:"asnp-btn asnp-btn-secondary",on:{"click":function($event){return _vm.$emit( 'itemAdded' )}}},[_vm._v("\n\t\t\t"+_vm._s(_vm.sprintf(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectGroup.vue?vue&type=template&id=fbfcf706&
+var ProductsSelectGroupvue_type_template_id_fbfcf706_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"asnp-products-select-group asnp-border-dashed asnp-border asnp-border-gray-500 asnp-rounded-md asnp-px-2 asnp-py-4 asnp-mb-2"},[_c('transition-group',{attrs:{"name":"list-fade","mode":"out-in","tag":"div"}},_vm._l((_vm.items),function(item,index){return _c('products-select-item',{key:_vm.getKey( item, _vm.keyName ),attrs:{"products":item,"index":index,"hiddenRows":_vm.hiddenRows,"hiddenOptions":_vm.hiddenOptions,"disabledOptions":_vm.disabledOptions,"type":_vm.type},on:{"productsUpdated":function ( products ) { return _vm.$emit( 'productsUpdated', products, index ); },"deleteItem":function ( type ) { return _vm.$emit( 'deleteItem', type, index ); }}})}),1),_vm._v(" "),_c('div',[_c('button',{staticClass:"asnp-btn asnp-btn-secondary",on:{"click":function($event){return _vm.$emit( 'itemAdded' )}}},[_vm._v("\n\t\t\t"+_vm._s(_vm.sprintf(
 					_vm.__( '%s And New Rule', 'easy-woocommerce-discounts' ),
 					'+'
 				))+"\n\t\t")]),_vm._v(" "),_c('span',{staticClass:"asnp-float-right asnp-cursor-pointer asnp-my-2 asnp-text-lg asnp-text-rose-500 hover:asnp-text-rose-600 fa fa-trash",attrs:{"title":_vm.__( 'Delete Group', 'easy-woocommerce-discounts' )},on:{"click":function($event){return _vm.$emit( 'deleteGroup' )}}})])],1)}
-var ProductsSelectGroupvue_type_template_id_9204dd2e_staticRenderFns = []
+var ProductsSelectGroupvue_type_template_id_fbfcf706_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelectGroup.vue?vue&type=template&id=9204dd2e&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ProductsSelectGroup.vue?vue&type=template&id=fbfcf706&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectGroup.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -10079,6 +11420,12 @@ var ProductsSelectGroupvue_type_template_id_9204dd2e_staticRenderFns = []
         return [];
       }
     },
+    disabledOptions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
     hiddenRows: {
       type: Array,
       "default": function _default() {
@@ -10105,8 +11452,8 @@ var ProductsSelectGroupvue_type_template_id_9204dd2e_staticRenderFns = []
 
 var ProductsSelectGroup_component = Object(componentNormalizer["a" /* default */])(
   components_ProductsSelectGroupvue_type_script_lang_js_,
-  ProductsSelectGroupvue_type_template_id_9204dd2e_render,
-  ProductsSelectGroupvue_type_template_id_9204dd2e_staticRenderFns,
+  ProductsSelectGroupvue_type_template_id_fbfcf706_render,
+  ProductsSelectGroupvue_type_template_id_fbfcf706_staticRenderFns,
   false,
   null,
   null,
@@ -10120,6 +11467,7 @@ function ProductsSelectContainervue_type_script_lang_js_typeof(o) { "@babel/help
 function ProductsSelectContainervue_type_script_lang_js_defineProperty(e, r, t) { return (r = ProductsSelectContainervue_type_script_lang_js_toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function ProductsSelectContainervue_type_script_lang_js_toPropertyKey(t) { var i = ProductsSelectContainervue_type_script_lang_js_toPrimitive(t, "string"); return "symbol" == ProductsSelectContainervue_type_script_lang_js_typeof(i) ? i : i + ""; }
 function ProductsSelectContainervue_type_script_lang_js_toPrimitive(t, r) { if ("object" != ProductsSelectContainervue_type_script_lang_js_typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != ProductsSelectContainervue_type_script_lang_js_typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
 //
 //
 //
@@ -10190,6 +11538,12 @@ function ProductsSelectContainervue_type_script_lang_js_toPrimitive(t, r) { if (
         return [];
       }
     },
+    disabledOptions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
     hiddenRows: {
       type: Array,
       "default": function _default() {
@@ -10214,8 +11568,8 @@ function ProductsSelectContainervue_type_script_lang_js_toPrimitive(t, r) { if (
 
 var ProductsSelectContainer_component = Object(componentNormalizer["a" /* default */])(
   components_ProductsSelectContainervue_type_script_lang_js_,
-  ProductsSelectContainervue_type_template_id_6b2dee60_render,
-  ProductsSelectContainervue_type_template_id_6b2dee60_staticRenderFns,
+  ProductsSelectContainervue_type_template_id_07e66f36_render,
+  ProductsSelectContainervue_type_template_id_07e66f36_staticRenderFns,
   false,
   null,
   null,
@@ -10824,6 +12178,7 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
     ConditionsContainer: ConditionsContainer
   },
   data: function data() {
+    var _this$$route, _this$$route$query;
     var discount = {
         name: 'discount',
         private_note: '',
@@ -10836,8 +12191,8 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
         conditions: [],
         discount_type: 'percentage',
         discount_amount: '',
-        usage_limit: '',
-        ordering: 0
+        ordering: 0,
+        usage_limit: ''
       },
       id = 'new' !== this.$route.params.id ? parseInt(this.$route.params.id) : 0;
     if (id > 0) {
@@ -10847,6 +12202,12 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
           discount = DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, discount), item);
           break;
         }
+      }
+    } else if ((_this$$route = this.$route) !== null && _this$$route !== void 0 && (_this$$route$query = _this$$route.query) !== null && _this$$route$query !== void 0 && _this$$route$query.template) {
+      var _this$$route2, _this$$route2$query;
+      var template = this.getFromTemplate(this.$route.query.template, ((_this$$route2 = this.$route) === null || _this$$route2 === void 0 ? void 0 : (_this$$route2$query = _this$$route2.query) === null || _this$$route2$query === void 0 ? void 0 : _this$$route2$query.campaign) || 'normal');
+      if (template) {
+        discount = DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, discount), template);
       }
     }
     return {
@@ -11059,6 +12420,636 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
         _this.showLoading = false;
         console.log(error);
       });
+    },
+    getFromTemplate: function getFromTemplate(template) {
+      var campaign = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'normal';
+      if (!template || 'own-campaign' === template) {
+        return null;
+      }
+      var condition = this.initialCondition();
+      var products = this.initialProducts();
+      var result = null;
+      switch (template) {
+        // Automatic Coupons
+        case 'auto-20-percent':
+          result = {
+            name: this.__('Storewide 20% Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'percentage',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-20-price':
+          result = {
+            name: this.__('Flat Amount $20 Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'price',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-10-percent-products':
+          result = {
+            name: this.__('Targeted Product Sale (10% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '10'
+          };
+          break;
+        case 'auto-2-price-products':
+          result = {
+            name: this.__('Per-Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'price_discount_per_item',
+            discount_amount: '2'
+          };
+          break;
+        case 'auto-20-fixed-products':
+          result = {
+            name: this.__('Targeted Product Sale ($20 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'fixed_price',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-20-percent-categories':
+          result = {
+            name: this.__('Category-Wide Sale (20% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-2-price-categories':
+          result = {
+            name: this.__('Category Item Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'price_discount_per_item',
+            discount_amount: '2'
+          };
+          break;
+        case 'auto-20-fixed-categories':
+          result = {
+            name: this.__('Fixed Category Price ($20)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'fixed_price',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-bf-50':
+          result = {
+            name: this.__('Black Friday Mega Deal (50% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            date_time: this.getBlackFriday(),
+            discount_type: 'percentage',
+            discount_amount: '50'
+          };
+          break;
+        case 'auto-bf-200':
+          result = {
+            name: this.__('Black Friday High-Value ($200 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            date_time: this.getBlackFriday(),
+            discount_type: 'price',
+            discount_amount: '200'
+          };
+          break;
+        case 'auto-bf-50-products':
+          result = {
+            name: this.__('Black Friday Product Special (50% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            date_time: this.getBlackFriday(),
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '50'
+          };
+          break;
+        case 'auto-bf-50-categories':
+          result = {
+            name: this.__('Black Friday Category Blast (50% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765744526668
+            })]],
+            date_time: this.getBlackFriday(),
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '50'
+          };
+          break;
+        case 'auto-signup-20-percent':
+          result = {
+            name: this.__('New Customer Welcome (20% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              id: 1765884417950
+            }), DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'number_of_orders',
+              math_operation_type: 'equal_to',
+              number_value_2: '0',
+              time_type: 'all_time',
+              id: 1765884417951
+            })]],
+            discount_type: 'percentage',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-signup-20-price':
+          result = {
+            name: this.__('Welcome Gift ($20 Off First Order)', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              id: 1765884417950
+            }), DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'number_of_orders',
+              math_operation_type: 'equal_to',
+              number_value_2: '0',
+              time_type: 'all_time',
+              id: 1765884417951
+            })]],
+            discount_type: 'price',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-payment-20-percent':
+          result = {
+            name: this.__('Payment Method Incentive (20% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'payment_method',
+              math_operation_type: 'less_than',
+              id: 1765833015577
+            })]],
+            discount_type: 'percentage',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-payment-5-price':
+          result = {
+            name: this.__('Payment Method Reward ($5 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'payment_method',
+              id: 1765833015577
+            })]],
+            discount_type: 'price',
+            discount_amount: '5'
+          };
+          break;
+
+        // Manual Coupons
+        case 'manual-20-percent':
+          result = {
+            name: this.__('Coupon: Storewide 20% Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            discount_type: 'percentage',
+            discount_amount: '20'
+          };
+          break;
+        case 'manual-20-price':
+          result = {
+            name: this.__('Coupon: Flat Amount $20 Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            discount_type: 'price',
+            discount_amount: '20'
+          };
+          break;
+        case 'manual-10-percent-products':
+          result = {
+            name: this.__('Coupon: Product Special (10% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '10'
+          };
+          break;
+        case 'manual-2-price-products':
+          result = {
+            name: this.__('Coupon: Per-Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'price_discount_per_item',
+            discount_amount: '2'
+          };
+          break;
+        case 'manual-20-fixed-products':
+          result = {
+            name: this.__('Coupon: Product Special ($20)', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765828431602
+            })]],
+            discount_type: 'fixed_price',
+            discount_amount: '20'
+          };
+          break;
+        case 'manual-20-percent-categories':
+          result = {
+            name: this.__('Coupon: Category Sale (20% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '20'
+          };
+          break;
+        case 'manual-2-price-categories':
+          result = {
+            name: this.__('Coupon: Category Savings ($2 Off Items)', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'price_discount_per_item',
+            discount_amount: '2'
+          };
+          break;
+        case 'manual-20-fixed-categories':
+          result = {
+            name: this.__('Coupon: Fixed Category Price ($20)', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765828431602
+            })]],
+            discount_type: 'fixed_price',
+            discount_amount: '20'
+          };
+          break;
+        case 'manual-bf-50':
+          result = {
+            name: this.__('Coupon: Black Friday 50% Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            date_time: this.getBlackFriday(),
+            discount_type: 'percentage',
+            discount_amount: '50'
+          };
+          break;
+        case 'manual-bf-200':
+          result = {
+            name: this.__('Coupon: Black Friday $200 Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            date_time: this.getBlackFriday(),
+            discount_type: 'price',
+            discount_amount: '200'
+          };
+          break;
+        case 'manual-bf-50-products':
+          result = {
+            name: this.__('Coupon: Black Friday Product Special', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765745579765
+            })]],
+            date_time: this.getBlackFriday(),
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '50'
+          };
+          break;
+        case 'manual-bf-50-categories':
+          result = {
+            name: this.__('Coupon: Black Friday Category Blast', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765745579765
+            })]],
+            date_time: this.getBlackFriday(),
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '50'
+          };
+          break;
+
+        // URL Coupons
+        case 'url-20-percent':
+          result = {
+            name: this.__('Link: Storewide 20% Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            discount_type: 'percentage',
+            discount_amount: '20'
+          };
+          break;
+        case 'url-20-price':
+          result = {
+            name: this.__('Link: Flat Amount $20 Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            discount_type: 'price',
+            discount_amount: '20'
+          };
+          break;
+        case 'url-10-percent-products':
+          result = {
+            name: this.__('Link: Product Special (10% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765808202800
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '10'
+          };
+          break;
+        case 'url-2-price-products':
+          result = {
+            name: this.__('Link: Per-Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765825562330
+            })]],
+            discount_type: 'price_discount_per_item',
+            discount_amount: '2'
+          };
+          break;
+        case 'url-20-fixed-products':
+          result = {
+            name: this.__('Link: Product Special ($20 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765828431602
+            })]],
+            discount_type: 'fixed_price',
+            discount_amount: '20'
+          };
+          break;
+        case 'url-20-percent-categories':
+          result = {
+            name: this.__('Link: Category Sale (20% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765825562330
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '20'
+          };
+          break;
+        case 'url-2-price-categories':
+          result = {
+            name: this.__('Link: Category Item Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765825562330
+            })]],
+            discount_type: 'price_discount_per_item',
+            discount_amount: '2'
+          };
+          break;
+        case 'url-20-fixed-categories':
+          result = {
+            name: this.__('Link: Category Sale ($20 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765828431602
+            })]],
+            discount_type: 'fixed_price',
+            discount_amount: '20'
+          };
+          break;
+        case 'auto-add-products':
+          result = {
+            name: this.__('Link: Auto-Add Products', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            discount_type: 'price',
+            discount_amount: '0',
+            auto_add_items: [{
+              id: 1765826671726,
+              type: 'product',
+              product: '',
+              quantity: 1,
+              discount_type: 'product_price',
+              discount: 100,
+              removable: 0
+            }]
+          };
+          break;
+        case 'auto-add-products-20-percent':
+          result = {
+            name: this.__('Link: Auto-Add with 20% Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            discount_type: 'price',
+            discount_amount: '0',
+            auto_add_items: [{
+              id: 1765826671726,
+              type: 'product',
+              product: '',
+              quantity: 1,
+              discount_type: 'percentage_discount',
+              discount: '20',
+              removable: 0
+            }]
+          };
+          break;
+        case 'auto-add-products-gift':
+          result = {
+            name: this.__('Link: Auto-Add Free Gift', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            discount_type: 'price',
+            discount_amount: '0',
+            auto_add_items: [{
+              id: 1765826671726,
+              type: 'product',
+              product: '',
+              quantity: 1,
+              discount_type: 'percentage_discount',
+              discount: '100',
+              removable: 0
+            }]
+          };
+          break;
+
+        // Recurring Coupons
+        case 'recurring-20-percent':
+          result = {
+            name: this.__('Recurring: 20% Discount', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'recurring_percent',
+            discount_amount: '20'
+          };
+          break;
+        case 'recurring-20-price':
+          result = {
+            name: this.__('Recurring: $20 Discount', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'recurring_fee',
+            discount_amount: '20'
+          };
+          break;
+        case 'recurring-10-percent-products':
+          result = {
+            name: this.__('Recurring: Product Special (10% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765827533979
+            })]],
+            discount_type: 'recurring_percent',
+            discount_amount: '10'
+          };
+          break;
+        case 'recurring-2-price-products':
+          result = {
+            name: this.__('Recurring: Product Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765827533979
+            })]],
+            discount_type: 'recurring_fee',
+            discount_amount: '2'
+          };
+          break;
+        case 'recurring-20-percent-categories':
+          result = {
+            name: this.__('Recurring: Category Sale (20% Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765827533979
+            })]],
+            discount_type: 'recurring_percent',
+            discount_amount: '20'
+          };
+          break;
+        case 'recurring-2-price-categories':
+          result = {
+            name: this.__('Recurring: Category Savings ($2 Off)', 'easy-woocommerce-discounts'),
+            status: 1,
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765827533979
+            })]],
+            discount_type: 'recurring_fee',
+            discount_amount: '2'
+          };
+          break;
+        case 'minimum-spend':
+          result = {
+            name: this.__('Minimum Spend: Spend $100 Get 10% Off', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765835015587,
+              condition: 'subtotal_including_tax',
+              math_operation_type: 'greater_equal_to',
+              number_value_2: '100'
+            })]],
+            discount_type: 'percentage',
+            discount_amount: '10'
+          };
+          break;
+        // case 'free-shipping':
+        // 	return {
+        // 		name: this.__(
+        // 			'Free Shipping Incentive',
+        // 			'easy-woocommerce-discounts'
+        // 		),
+        // 		status: 1,
+        // 		conditions: [
+        // 			[
+        // 				{
+        // 					...condition,
+        // 					id: 1765835015588,
+        // 					condition: 'subtotal_including_tax',
+        // 					math_operation_type: 'greater_equal_to',
+        // 					number_value_2: '50',
+        // 				},
+        // 			],
+        // 		],
+        // 		discount_type: 'percentage',
+        // 		discount_amount: '0',
+        // 		private_note: this.__(
+        // 			'Apply free shipping via shipping rules using this coupon.',
+        // 			'easy-woocommerce-discounts'
+        // 		),
+        // 	};
+        // case 'abandoned-cart-recovery':
+        // 	return {
+        // 		name: this.__(
+        // 			'Cart Recovery Special',
+        // 			'easy-woocommerce-discounts'
+        // 		),
+        // 		status: 1,
+        // 		discount_type: 'percentage',
+        // 		discount_amount: '15',
+        // 		private_note: this.__(
+        // 			'Incentive for customers returning to their cart.',
+        // 			'easy-woocommerce-discounts'
+        // 		),
+        // 	};
+      }
+      if (result) {
+        if ('black_friday' === campaign) {
+          result.date_time = this.getBlackFriday();
+        } else if ('seasonal' === campaign) {
+          result.date_time = this.getSeasonalPromotionDate();
+        }
+      }
+      return result;
     }
   },
   watch: {
@@ -11099,8 +13090,8 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
 
 var DiscountView_component = Object(componentNormalizer["a" /* default */])(
   views_DiscountViewvue_type_script_lang_js_,
-  DiscountViewvue_type_template_id_9f94a96e_render,
-  DiscountViewvue_type_template_id_9f94a96e_staticRenderFns,
+  DiscountViewvue_type_template_id_2ab3c8c8_render,
+  DiscountViewvue_type_template_id_2ab3c8c8_staticRenderFns,
   false,
   null,
   null,
@@ -11109,8 +13100,8 @@ var DiscountView_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var DiscountView = (DiscountView_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingList.vue?vue&type=template&id=c6fb0f3a&
-var PricingListvue_type_template_id_c6fb0f3a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-list"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-primary",attrs:{"to":"/pricing/new"}},[_vm._v(_vm._s(_vm.__( 'Add New', 'easy-woocommerce-discounts' )))])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pricingList.length),expression:"pricingList.length"}],staticClass:"asnp-flex asnp-flex-col"},[_c('div',{staticClass:"asnp-my-2 asnp-overflow-x-auto sm:asnp-mx-6 lg:asnp-mx-8"},[_c('div',{staticClass:"asnp-py-2 asnp-align-middle asnp-inline-block asnp-min-w-full sm:asnp-px-6 lg:asnp-px-8"},[_c('div',{staticClass:"asnp-shadow asnp-overflow-hidden asnp-border-b asnp-border-gray-200 sm:asnp-rounded-lg"},[_c('table',{staticClass:"asnp-min-w-full asnp-divide-y asnp-divide-gray-200",attrs:{"id":"pricing-list"}},[_c('thead',{staticClass:"asnp-bg-gray-50"},[_c('tr',[_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}}),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingList.vue?vue&type=template&id=407cad98&
+var PricingListvue_type_template_id_407cad98_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-list"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-primary",attrs:{"to":"/pricing/new"}},[_vm._v(_vm._s(_vm.__( 'Add New', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary",on:{"click":function($event){_vm.showTemplatesModal = true}}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Add from Template', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pricingList.length),expression:"pricingList.length"}],staticClass:"asnp-flex asnp-flex-col"},[_c('div',{staticClass:"asnp-my-2 asnp-overflow-x-auto sm:asnp-mx-6 lg:asnp-mx-8"},[_c('div',{staticClass:"asnp-py-2 asnp-align-middle asnp-inline-block asnp-min-w-full sm:asnp-px-6 lg:asnp-px-8"},[_c('div',{staticClass:"asnp-shadow asnp-overflow-hidden asnp-border-b asnp-border-gray-200 sm:asnp-rounded-lg"},[_c('table',{staticClass:"asnp-min-w-full asnp-divide-y asnp-divide-gray-200",attrs:{"id":"pricing-list"}},[_c('thead',{staticClass:"asnp-bg-gray-50"},[_c('tr',[_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}}),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
 											'ID',
 											'easy-woocommerce-discounts'
 										))+"\n\t\t\t\t\t\t\t\t")]),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
@@ -11160,12 +13151,1704 @@ var PricingListvue_type_template_id_c6fb0f3a_render = function () {var _vm=this;
 											)}},[_c('i',{staticClass:"fa fa-bar-chart",attrs:{"aria-hidden":"true"}})]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-delete",attrs:{"title":_vm.__(
 												'Delete',
 												'easy-woocommerce-discounts'
-											)},on:{"click":function($event){return _vm.showDeleteWarning( pricing.id )}}},[_c('i',{staticClass:"fa fa-remove",attrs:{"aria-hidden":"true"}})])],1)])}),0)])])])])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.pricingList.length),expression:"! pricingList.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showDeleteModal)?_c('modal',{on:{"apply":function($event){return _vm.deletePricing()},"cancel":function($event){_vm.showDeleteModal = false}}}):_vm._e()],1)}
-var PricingListvue_type_template_id_c6fb0f3a_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"asnp-px-6 asnp-py-4 asnp-whitespace-nowrap"},[_c('i',{staticClass:"fa fa-reorder reorder-pricing-list",attrs:{"aria-hidden":"true"}})])}]
+											)},on:{"click":function($event){return _vm.showDeleteWarning( pricing.id )}}},[_c('i',{staticClass:"fa fa-remove",attrs:{"aria-hidden":"true"}})])],1)])}),0)])])])])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.pricingList.length),expression:"! pricingList.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showDeleteModal)?_c('modal',{on:{"apply":function($event){return _vm.deletePricing()},"cancel":function($event){_vm.showDeleteModal = false}}}):_vm._e(),_vm._v(" "),(_vm.showTemplatesModal)?_c('pricing-templates-modal',{on:{"cancel":function($event){_vm.showTemplatesModal = false},"add-campaign":_vm.handleAddCampaign}}):_vm._e()],1)}
+var PricingListvue_type_template_id_407cad98_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"asnp-px-6 asnp-py-4 asnp-whitespace-nowrap"},[_c('i',{staticClass:"fa fa-reorder reorder-pricing-list",attrs:{"aria-hidden":"true"}})])}]
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingList.vue?vue&type=template&id=c6fb0f3a&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingList.vue?vue&type=template&id=407cad98&
 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/PricingTemplatesModal.vue?vue&type=template&id=8087e16c&
+var PricingTemplatesModalvue_type_template_id_8087e16c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"asnp-modal"}},[_c('div',{staticClass:"asnp-fixed asnp-inset-0 asnp-bg-black asnp-bg-opacity-50 asnp-flex asnp-items-center asnp-justify-center asnp-transition-opacity asnp-duration-300",staticStyle:{"z-index":"9998"},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.$emit( 'cancel' )}}},[_c('div',{staticClass:"asnp-w-full",staticStyle:{"max-width":"900px","width":"90%"}},[_c('div',{staticClass:"asnp-bg-white asnp-rounded-lg asnp-shadow-lg asnp-transition-all asnp-duration-300 asnp-flex asnp-flex-col asnp-w-full pricing-templates-modal",staticStyle:{"height":"650px","max-height":"90vh","scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-p-5 asnp-border-b asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex asnp-justify-between asnp-items-center"},[_c('h3',{staticClass:"asnp-m-0 asnp-text-xl asnp-font-semibold"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'Choose your desired campaign',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-bg-transparent asnp-border-none asnp-cursor-pointer asnp-text-2xl asnp-leading-none asnp-text-gray-400 asnp-p-0 hover:asnp-text-gray-600",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_c('span',{staticClass:"dashicons dashicons-no-alt"})])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-mt-4",staticStyle:{"gap":"10px"}},[_c('div',{staticClass:"asnp-relative asnp-flex-1 asnp-flex asnp-items-center"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchQuery),expression:"searchQuery"}],staticClass:"asnp-w-full asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10 asnp-placeholder-gray-400",staticStyle:{"padding-right":"40px"},attrs:{"type":"text","placeholder":_vm.__(
+										'Search templates...',
+										'easy-woocommerce-discounts'
+									)},domProps:{"value":(_vm.searchQuery)},on:{"input":function($event){if($event.target.composing){ return; }_vm.searchQuery=$event.target.value}}}),_vm._v(" "),(_vm.searchQuery)?_c('span',{staticClass:"asnp-absolute asnp-right-3 asnp-bg-gray-200 asnp-text-gray-500 asnp-rounded-full asnp-flex asnp-items-center asnp-justify-center asnp-cursor-pointer asnp-transition-all hover:asnp-bg-gray-300 hover:asnp-text-gray-700",staticStyle:{"width":"18px","height":"18px","top":"50%","transform":"translateY( -50% )"},on:{"click":function($event){_vm.searchQuery = ''}}},[_c('svg',{staticStyle:{"width":"10px","height":"10px"},attrs:{"xmlns":"http://www.w3.org/2000/svg","fill":"none","viewBox":"0 0 24 24","stroke":"currentColor","stroke-width":"3"}},[_c('path',{attrs:{"stroke-linecap":"round","stroke-linejoin":"round","d":"M6 18L18 6M6 6l12 12"}})])]):_vm._e()]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedCategory),expression:"selectedCategory"}],staticClass:"asnp-w-full md:asnp-w-auto asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.selectedCategory=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":""}},[_vm._v(_vm._s(_vm.__(
+									'All Categories',
+									'easy-woocommerce-discounts'
+								)))]),_vm._v(" "),_vm._l((_vm.categories),function(cat){return _c('option',{key:cat.id,domProps:{"value":cat.id}},[_vm._v(_vm._s(cat.label))])})],2)])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-flex-1 asnp-overflow-y-auto md:asnp-overflow-hidden asnp-p-5",staticStyle:{"scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-h-auto md:asnp-flex-1 md:asnp-overflow-y-auto asnp-pr-1 md:asnp-pr-5 asnp-pl-1 asnp-pb-1 asnp-pt-1",staticStyle:{"scrollbar-gutter":"stable"}},[_vm._l((_vm.groupedTemplates),function(groupTemplates,groupName,index){return _c('div',{key:groupName,staticClass:"template-group"},[_c('h4',{staticClass:"asnp-text-base asnp-font-bold asnp-text-indigo-600 asnp-mb-3 asnp-pb-2 asnp-border-b asnp-border-gray-100",class:index === 0 ? 'asnp-mt-0' : 'asnp-mt-6'},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.tagNames[ groupName ] || groupName)+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col asnp-gap-3"},_vm._l((groupTemplates),function(template,templIndex){return _c('div',{key:templIndex,staticClass:"asnp-group asnp-relative asnp-flex asnp-items-center asnp-p-3 asnp-px-4 asnp-transition-all asnp-duration-200 asnp-border asnp-rounded-lg asnp-cursor-pointer asnp-bg-white",class:[
+										_vm.selectedTemplate === template
+											? 'asnp-border-indigo-600 asnp-ring-1 asnp-ring-indigo-600 asnp-bg-indigo-50'
+											: 'asnp-border-gray-200 hover:asnp-border-indigo-400 hover:asnp-shadow-sm' ],on:{"mouseenter":function($event){_vm.hoveredTemplate = template},"mouseleave":function($event){_vm.hoveredTemplate = null},"click":function($event){return _vm.selectTemplate( template )}}},[_c('div',{staticClass:"asnp-flex-1"},[_c('div',{staticClass:"asnp-text-sm asnp-font-medium asnp-transition-colors",class:_vm.selectedTemplate ===
+												template
+													? 'asnp-text-indigo-700'
+													: 'asnp-text-gray-700 group-hover:asnp-text-indigo-600'},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(template.name)+"\n\t\t\t\t\t\t\t\t\t\t\t"),(template.pro)?_c('span',{staticClass:"asnp-ml-2 asnp-inline-flex asnp-items-center asnp-px-1 asnp-py-0 asnp-rounded asnp-text-[8px] asnp-font-bold asnp-bg-emerald-100 asnp-text-emerald-700 asnp-border asnp-border-emerald-200 asnp-uppercase asnp-tracking-wider"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+														'Pro',
+														'easy-woocommerce-discounts'
+													))+"\n\t\t\t\t\t\t\t\t\t\t\t")]):_vm._e()]),_vm._v(" "),(template.sub)?_c('div',{staticClass:"asnp-text-xs asnp-text-gray-500 asnp-mt-0.5"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(template.sub)+"\n\t\t\t\t\t\t\t\t\t\t")]):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"asnp-expand"}},[(
+													_vm.selectedTemplate ===
+													template
+												)?_c('div',{staticClass:"asnp-overflow-hidden",class:[
+													template.show_timing !==
+													false
+														? 'asnp-mt-3 asnp-pt-3 asnp-border-t asnp-border-indigo-100'
+														: 'asnp-mt-3 asnp-pt-3 asnp-border-t asnp-border-indigo-100 md:asnp-mt-0 md:asnp-pt-0 md:asnp-border-t-0' ]},[_c('div',{staticClass:"md:asnp-hidden",class:template.show_timing !==
+														false
+															? 'asnp-mb-5'
+															: ''},[_c('p',{staticClass:"asnp-text-gray-600 asnp-text-xs asnp-leading-relaxed",domProps:{"innerHTML":_vm._s(
+															template.description
+														)}}),_vm._v(" "),(
+															template.examples &&
+															template
+																.examples
+																.length
+														)?_c('div',{staticClass:"asnp-mt-3 asnp-space-y-1"},_vm._l((template.examples),function(example,exIndex){return _c('div',{key:exIndex,staticClass:"asnp-text-[10px] asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t•\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"),(
+																	example.old_price
+																)?_c('span',{staticClass:"asnp-line-through"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-medium asnp-text-gray-700"},[_vm._v(_vm._s(example.new_price))])])}),0):_vm._e()]),_vm._v(" "),(
+														template.show_timing !==
+														false
+													)?_c('div',{staticClass:"asnp-mb-4"},[_c('h5',{staticClass:"asnp-text-[10px] asnp-font-bold asnp-text-gray-400 asnp-uppercase asnp-tracking-wider asnp-mb-3"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																'Campaign Timing',
+																'easy-woocommerce-discounts'
+															))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"asnp-grid asnp-grid-cols-1 sm:asnp-grid-cols-3 asnp-gap-2.5"},[_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'normal',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"normal"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"normal")},on:{"change":function($event){_vm.campaignType
+																	="normal"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'normal'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Normal',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])]),_vm._v(" "),_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'black_friday',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"black_friday"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"black_friday")},on:{"change":function($event){_vm.campaignType
+																	="black_friday"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'black_friday'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Black Friday',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])]),_vm._v(" "),_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'seasonal',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"seasonal"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"seasonal")},on:{"change":function($event){_vm.campaignType
+																	="seasonal"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'seasonal'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Seasonal',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])])])]):_vm._e()]):_vm._e()])],1)])}),0)])}),_vm._v(" "),(
+								Object.keys( _vm.groupedTemplates ).length === 0
+							)?_c('div',{staticClass:"asnp-p-5 asnp-text-center asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'No templates found.',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")]):_vm._e()],2),_vm._v(" "),_c('div',{staticClass:"asnp-hidden md:asnp-flex md:asnp-w-1/3 asnp-px-5 asnp-border-l asnp-border-gray-200 asnp-overflow-y-auto asnp-flex-col",staticStyle:{"scrollbar-gutter":"stable"}},[(_vm.activeTemplate)?_c('div',[_c('span',{staticClass:"asnp-inline-block asnp-bg-indigo-100 asnp-text-indigo-800 asnp-px-2 asnp-py-1 asnp-rounded asnp-text-xs"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.tagNames[ _vm.activeTemplate.tag ] ||
+									'Simple Adjustment')+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),(_vm.activeTemplate.pro)?_c('span',{staticClass:"asnp-inline-flex asnp-items-center asnp-px-1 asnp-py-0 asnp-ml-2 asnp-rounded asnp-text-[8px] asnp-font-bold asnp-bg-emerald-100 asnp-text-emerald-700 asnp-border asnp-border-emerald-200 asnp-uppercase asnp-tracking-wider"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+										'Pro',
+										'easy-woocommerce-discounts'
+									))+"\n\t\t\t\t\t\t\t")]):_vm._e(),_vm._v(" "),_c('h4',{staticClass:"asnp-mt-4 asnp-text-lg asnp-font-medium"},[_c('i',{staticClass:"fa fa-file-text-o asnp-text-gray-400 asnp-mr-2"}),_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.activeTemplate.name)+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mt-2 asnp-text-gray-500 asnp-text-sm",domProps:{"innerHTML":_vm._s(_vm.activeTemplate.description)}}),_vm._v(" "),(
+									_vm.activeTemplate.examples &&
+									_vm.activeTemplate.examples.length
+								)?_c('div',{staticClass:"asnp-mt-4 asnp-bg-gray-50 asnp-p-4 asnp-rounded-md asnp-border asnp-border-gray-100"},[_c('strong',{staticClass:"asnp-block asnp-mb-2 asnp-text-sm asnp-text-gray-700"},[_vm._v(_vm._s(_vm.__(
+											'Eg:',
+											'easy-woocommerce-discounts'
+										)))]),_vm._v(" "),_c('ul',{staticClass:"asnp-list-disc asnp-pl-5 asnp-m-0 asnp-text-sm asnp-text-gray-600"},_vm._l((_vm.activeTemplate.examples),function(example,index){return _c('li',{key:index,staticClass:"asnp-mb-1"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t"),(example.old_price)?_c('span',{staticClass:"asnp-line-through asnp-text-gray-400 asnp-mr-1"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-semibold asnp-text-gray-900"},[_vm._v(_vm._s(example.new_price))])])}),0)]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-text-indigo-500 asnp-block asnp-mt-4 asnp-text-xs"},[_vm._v("("+_vm._s(_vm.__(
+										'You can edit everything later.',
+										'easy-woocommerce-discounts'
+									))+")")]),_vm._v(" "),(_vm.activeTemplate.pro)?_c('div',{staticClass:"asnp-mt-6 asnp-p-3 asnp-bg-emerald-50 asnp-rounded-md asnp-border asnp-border-emerald-100 asnp-text-xs asnp-text-emerald-800 asnp-leading-relaxed"},[_c('span',{domProps:{"innerHTML":_vm._s(
+										_vm.sprintf(
+											_vm.__(
+												'This is a PRO feature. Unlock it by upgrading to the %s.',
+												'easy-woocommerce-discounts'
+											),
+											("<a href='https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link' target='_blank' class='asnp-font-bold asnp-text-emerald-700 hover:asnp-underline'>" + (_vm.__(
+												'PRO version',
+												'easy-woocommerce-discounts'
+											)) + "</a>")
+										)
+									)}})]):_vm._e()]):_vm._e()])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-justify-end asnp-p-4 asnp-px-5 asnp-border-t asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex"},[_c('button',{staticClass:"asnp-btn asnp-btn-secondary asnp-mr-2",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary",class:{
+								'asnp-opacity-50 asnp-cursor-not-allowed':
+									_vm.selectedTemplate &&
+									_vm.selectedTemplate.pro,
+							},attrs:{"disabled":_vm.selectedTemplate && _vm.selectedTemplate.pro},on:{"click":_vm.addCampaign}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'Add Campaign',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")])])])])])])])}
+var PricingTemplatesModalvue_type_template_id_8087e16c_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/PricingTemplatesModal.vue?vue&type=template&id=8087e16c&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/PricingTemplatesModal.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var PricingTemplatesModalvue_type_script_lang_js_ = ({
+  name: 'pricing-templates-modal',
+  data: function data() {
+    return {
+      searchQuery: '',
+      selectedCategory: '',
+      selectedTemplate: null,
+      hoveredTemplate: null,
+      campaignType: 'normal',
+      templates: [{
+        name: this.__('Custom Pricing Campaign', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-hand-paper-o',
+        description: this.__('Refers to a tailored pricing or promotional strategy designed specifically for your business or product offerings.', 'easy-woocommerce-discounts'),
+        slug: 'own-campaign',
+        tag: 'general',
+        show_timing: false,
+        examples: []
+      },
+      // Simple discounts
+      {
+        name: this.__('Storewide 10% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-percent',
+        description: this.__('Apply a 10% discount across your entire catalog. Essential for seasonal sales or site-wide clearances.', 'easy-woocommerce-discounts'),
+        slug: 'all-products-10-percent-off',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'T-Shirt',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: 'Hoodie',
+          old_price: '100$',
+          new_price: '90$'
+        }, {
+          item: 'Belt',
+          old_price: '30$',
+          new_price: '27$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Storewide $10 Flat Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-dollar',
+        description: this.__('Give customers a clear $10 saving on every item. Simple, transparent, and highly effective for mid-range products.', 'easy-woocommerce-discounts'),
+        slug: 'all-products-10-price-off',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'T-Shirt',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: 'Hoodie',
+          old_price: '100$',
+          new_price: '90$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Targeted Sale: 20% Off Select Items', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tag',
+        description: this.__('Feature specific products with a 20% discount. Perfect for highlighting new arrivals or clearing out specific inventory.', 'easy-woocommerce-discounts'),
+        slug: 'sale-20-percent-products',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'T-Shirt (Selected)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: 'Jeans (Selected)',
+          old_price: '80$',
+          new_price: '64$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Targeted Sale: $20 Off Select Items', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Offer a direct $20 cash discount on specific high-value products to drive immediate sales.', 'easy-woocommerce-discounts'),
+        slug: 'sale-20-price-products',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'Coat (Selected)',
+          old_price: '120$',
+          new_price: '100$'
+        }, {
+          item: 'Boots (Selected)',
+          old_price: '150$',
+          new_price: '130$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Targeted Sale: 20% Off Select Variations', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tag',
+        description: this.__('Feature specific product variations with a 20% discount. Perfect for highlighting specific sizes, colors, or styles.', 'easy-woocommerce-discounts'),
+        slug: 'sale-20-percent-variations',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'T-Shirt (Red-L)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: 'Jeans (Blue-32)',
+          old_price: '80$',
+          new_price: '64$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Targeted Sale: $20 Off Select Variations', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Offer a direct $20 cash discount on specific high-value variations to drive immediate sales.', 'easy-woocommerce-discounts'),
+        slug: 'sale-20-price-variations',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'Coat (Black-XL)',
+          old_price: '120$',
+          new_price: '100$'
+        }, {
+          item: 'Boots (Leather-9)',
+          old_price: '150$',
+          new_price: '130$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Category Discovery: 10% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tags',
+        description: this.__('Encourage category exploration by offering 10% off entire collections or departments.', 'easy-woocommerce-discounts'),
+        slug: 'sale-10-percent-categories',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'Shirt (Category: Men)',
+          old_price: '40$',
+          new_price: '36$'
+        }, {
+          item: 'Dress (Category: Women)',
+          old_price: '60$',
+          new_price: '54$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Category Deal: $10 Flat Discount', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bank',
+        description: this.__('Boost category performance with a fixed $10 saving on all qualifying items.', 'easy-woocommerce-discounts'),
+        slug: 'sale-10-price-categories',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'Shirt (Category: Men)',
+          old_price: '40$',
+          new_price: '30$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Attribute Discovery: 10% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-tags',
+        description: this.__('Encourage exploration by offering 10% off products with specific attributes (e.g. Color: Blue).', 'easy-woocommerce-discounts'),
+        slug: 'sale-10-percent-attributes',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'Shirt (Color: Blue)',
+          old_price: '40$',
+          new_price: '36$'
+        }, {
+          item: 'Dress (Size: M)',
+          old_price: '60$',
+          new_price: '54$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute Deal: $10 Flat Discount', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bank',
+        description: this.__('Boost performance of specific product attributes with a fixed $10 saving on all qualifying items.', 'easy-woocommerce-discounts'),
+        slug: 'sale-10-price-attributes',
+        tag: 'simple',
+        show_timing: true,
+        examples: [{
+          item: 'Shirt (Color: Green)',
+          old_price: '40$',
+          new_price: '30$'
+        }],
+        pro: true
+      },
+      // Black Friday discounts
+      {
+        name: this.__('Black Friday Event: 50% Off Everything', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullhorn',
+        description: this.__('Host a massive 50% sitewide sale. The headline offer for Black Friday, Cyber Monday, or seasonal clearances.', 'easy-woocommerce-discounts'),
+        slug: 'black-friday-50-percent-all-products',
+        tag: 'black_friday',
+        show_timing: false,
+        examples: [{
+          item: 'T-shirt',
+          old_price: '42$',
+          new_price: '21$'
+        }, {
+          item: 'Hoodie',
+          old_price: '100$',
+          new_price: '50$'
+        }, {
+          item: 'Belt',
+          old_price: '36$',
+          new_price: '18$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Black Friday: 50% Off Top Products', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullhorn',
+        description: this.__('Drive traffic to flagship items with an aggressive 50% discount during major sales events.', 'easy-woocommerce-discounts'),
+        slug: 'black-friday-50-percent-products',
+        tag: 'black_friday',
+        show_timing: false,
+        examples: [{
+          item: 'Smart Watch (Selected)',
+          old_price: '200$',
+          new_price: '100$'
+        }, {
+          item: 'Headphones (Selected)',
+          old_price: '80$',
+          new_price: '40$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Black Friday: 50% Off Key Collections', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-shopping-basket',
+        description: this.__('Cut category prices in half to maximize volume and average order value during peak shopping hours.', 'easy-woocommerce-discounts'),
+        slug: 'black-friday-50-percent-categories',
+        tag: 'black_friday',
+        show_timing: false,
+        examples: [{
+          item: 'Sneakers (Category: Shoes)',
+          old_price: '100$',
+          new_price: '50$'
+        }, {
+          item: 'Boots (Category: Shoes)',
+          old_price: '150$',
+          new_price: '75$'
+        }],
+        pro: false
+      },
+      // Quantity bulk discounts
+      {
+        name: this.__('Bulk Savings: Buy More, Save %', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Encourage customers to buy more units of a product by offering increasing percentage discounts. For example: "Buy 5 items, get 10% off; Buy 10 items, get 20% off". This applies the discount to all matching items.', 'easy-woocommerce-discounts'),
+        slug: 'percentage-quantity-discount-products',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item (10% off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item (20% off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more (30% off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Fixed Bulk Discount: Save $ by Quantity', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Offer a clear dollar-off discount when customers buy in bulk. This is often more effective than percentages for high-priced items because customers can see exactly how much cash they save.', 'easy-woocommerce-discounts'),
+        slug: 'price-quantity-discount-products',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item ($5 off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item ($10 off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more ($15 off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Variation Bulk Savings: Buy More, Save %', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Encourage customers to buy more units of a specific variation by offering increasing percentage discounts. For example: "Buy 5 Red T-Shirts, get 10% off".', 'easy-woocommerce-discounts'),
+        slug: 'percentage-quantity-discount-variations',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item (10% off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item (20% off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more (30% off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Variation Bulk Discount: Save $ by Quantity', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Offer a clear dollar-off discount when customers buy variations in bulk. This is often more effective than percentages for high-priced items.', 'easy-woocommerce-discounts'),
+        slug: 'price-quantity-discount-variations',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item ($5 off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item ($10 off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more ($15 off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Category Mix & Match: Buy More, Save %', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Run a category-wide promotion where customers can mix and match different products from the same category to unlock a bulk percentage discount. Perfect for clothing or accessories.', 'easy-woocommerce-discounts'),
+        slug: 'percentage-quantity-discount-categories',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item (Category: Shoes 10% off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item (Category: Shoes 20% off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more (Category: Shoes 30% off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Category Mix & Match: Save $ on Volume', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Give customers a fixed dollar discount when they buy multiple items from specific categories. It encourages shoppers to explore more of your collection to reach the discount threshold.', 'easy-woocommerce-discounts'),
+        slug: 'price-quantity-discount-categories',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item (Category: Shoes)',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item (Category: Shoes $5 off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item (Category: Shoes $10 off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more (Category: Shoes $15 off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute Mix & Match: Buy More, Save %', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Run a attribute-wide promotion where customers can mix and match different products with the same attribute to unlock a bulk percentage discount. Perfect for colors or sizes.', 'easy-woocommerce-discounts'),
+        slug: 'percentage-quantity-discount-attributes',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item (Color: Red 10% off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item (Color: Red 20% off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more (Color: Red 30% off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute Mix & Match: Save $ on Volume', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Give customers a fixed dollar discount when they buy multiple items with specific attributes. It encourages shoppers to explore more of your collection.', 'easy-woocommerce-discounts'),
+        slug: 'price-quantity-discount-attributes',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st Item (Color: Red)',
+          new_price: '50$'
+        }, {
+          item: '2nd Item to 5th Item (Color: Red $5 off)',
+          old_price: '50$',
+          new_price: '45$'
+        }, {
+          item: '6th Item to 10th Item (Color: Red $10 off)',
+          old_price: '50$',
+          new_price: '40$'
+        }, {
+          item: '11th Item & more (Color: Red $15 off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Volume Kick: 30% Off Starting from 3rd Item', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cubes',
+        description: this.__('Apply a heavy 30% discount to all matching items in the cart once the quantity reaches 3 or more. This is a strong incentive for shoppers to "stock up" on their favorite products.', 'easy-woocommerce-discounts'),
+        slug: 'sale-30-percent-from-third-quantity',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st & 2nd Items',
+          new_price: '50$'
+        }, {
+          item: '3rd Item & more (30% off)',
+          old_price: '50$',
+          new_price: '35$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Volume Kick: $5 Off Starting from 3rd Item', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-plus-square',
+        description: this.__('Give a fixed $5 discount on every matching item once the customer adds 3 or more units to their cart. Simple, effective, and easy for customers to understand.', 'easy-woocommerce-discounts'),
+        slug: 'sale-5-price-from-third-quantity',
+        tag: 'bulk',
+        show_timing: true,
+        examples: [{
+          item: '1st & 2nd Items',
+          new_price: '50$'
+        }, {
+          item: '3rd Item & more ($5 off)',
+          old_price: '50$',
+          new_price: '45$'
+        }],
+        pro: true
+      },
+      // Quantity tiered discounts
+      {
+        name: this.__('Sale % on third quantity', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-level-up',
+        description: this.__('A unique progressive discount where the regular price applies to the first two items, but the 3rd item gets 10% off. It’s a subtle way to nudge customers into adding "just one more" to their cart.', 'easy-woocommerce-discounts'),
+        slug: 'sale-10-percent-on-third-quantity',
+        tag: 'tiered',
+        show_timing: true,
+        examples: [{
+          item: '1st & 2nd Items',
+          new_price: '50$'
+        }, {
+          item: '3rd Item',
+          old_price: '50$',
+          new_price: '45$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Sale $ on third quantity', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-arrow-circle-up',
+        description: this.__('Offer a $5 discount exclusively on the 3rd item in the cart. This creates a "tiered" pricing feel where the more they add, the cheaper that specific extra item becomes.', 'easy-woocommerce-discounts'),
+        slug: 'sale-5-price-on-third-quantity',
+        tag: 'tiered',
+        show_timing: true,
+        examples: [{
+          item: '1st & 2nd Items',
+          old_price: '50$',
+          new_price: '50$'
+        }, {
+          item: '3rd Item',
+          old_price: '50$',
+          new_price: '45$'
+        }],
+        pro: true
+      },
+      // BOGO deals
+      {
+        name: this.__('BOGO: Buy 1 Get 1 Free', 'easy-woocommerce-discounts'),
+        sub: 'BOGO',
+        icon: 'fa fa-gift',
+        description: this.__('The most popular deal in retail. When a customer buys one item, they get a second unit of the same product absolutely free. Perfect for moving inventory quickly.', 'easy-woocommerce-discounts'),
+        slug: 'bogo',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 1 T-Shirt',
+          new_price: '50$'
+        }, {
+          item: 'Get 1 T-Shirt',
+          old_price: '50$',
+          new_price: '0$ (Free)'
+        }],
+        pro: false
+      }, {
+        name: this.__('BOGO: Buy 1 Get 1 50% Off', 'easy-woocommerce-discounts'),
+        sub: 'BOGO',
+        icon: 'fa fa-star-half-o',
+        description: this.__('A "Buy One, Get One Half Price" deal. It doubles your sales volume while maintaining a higher profit margin than a "Buy 1 Get 1 Free" offer.', 'easy-woocommerce-discounts'),
+        slug: 'bogo-50-percent-off',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 1 T-Shirt',
+          new_price: '50$'
+        }, {
+          item: 'Get 1 T-Shirt',
+          old_price: '50$',
+          new_price: '25$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Free Gift: Buy X, Get Y for Free', 'easy-woocommerce-discounts'),
+        sub: 'X+Y',
+        icon: 'fa fa-exchange',
+        description: this.__('Promote a specific product (Y) by giving it away for free when a customer buys a different product (X). Great for introducing new products or rewarding high-value purchases.', 'easy-woocommerce-discounts'),
+        slug: 'buy-x-get-y-free',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy Hoodie',
+          new_price: '100$'
+        }, {
+          item: 'Get Cap',
+          old_price: '40$',
+          new_price: '0$ (Free)'
+        }],
+        pro: false
+      }, {
+        name: this.__('Pairing Deal: Buy X, Get 50% Off Y', 'easy-woocommerce-discounts'),
+        sub: 'X+Y',
+        icon: 'fa fa-random',
+        description: this.__('Encourage customers to pair related items together. For example, "Buy a Camera, get 50% off a Tripod". This helps increase your average order value (AOV) by cross-selling.', 'easy-woocommerce-discounts'),
+        slug: 'buy-x-get-y-50-percent-off',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy Hoodie',
+          new_price: '100$'
+        }, {
+          item: 'Get Cap',
+          old_price: '40$',
+          new_price: '20$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Buy 2 Get 1 Free (Same Item)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-cart-plus',
+        description: this.__('Encourage customers to buy more units of the same product by offering a third one for free. This is a classic "Buy 2 Get 1" promotion that effectively increases your sales volume.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-get-1-free-product',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 2 Polo Shirts',
+          new_price: '100$'
+        }, {
+          item: 'Get 1 Polo Shirt',
+          old_price: '100$',
+          new_price: '0$ (Free)'
+        }],
+        pro: false
+      }, {
+        name: this.__('Combo Pack: Buy 2 of X, Get 1 Y Free', 'easy-woocommerce-discounts'),
+        sub: '2X+Y',
+        icon: 'fa fa-sitemap',
+        description: this.__('A specific cross-sell offer: buy exactly two units of Product X to receive one unit of Product Y for free. Great for consumable items or parts that go together.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-x-get-1-y-free-product',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 2 Jacket',
+          new_price: '100$'
+        }, {
+          item: 'Get 1 Shirt',
+          old_price: '30$',
+          new_price: '0$ (Free)'
+        }],
+        pro: false
+      }, {
+        name: this.__('B2G1: Buy 3, Cheapest Item is Free', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-sort-amount-desc',
+        description: this.__('The classic "Buy Two, Get One Free" across your whole store or selection. The system automatically finds the lowest-priced item among the three and makes it free.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-get-1-free-cheapest-item',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Item A',
+          new_price: '50$'
+        }, {
+          item: 'Item B',
+          new_price: '40$'
+        }, {
+          item: 'Item C (Cheapest)',
+          old_price: '30$',
+          new_price: '0$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Category B2G1: Buy 3, Cheapest is Free', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-object-group',
+        description: this.__('Apply the "Buy 2, Get 1 Free" rule to specific categories. Customers can mix items within that category, and the system discards the price of the cheapest one.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-get-1-free-category-cheapest-item',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Item A (Shoes)',
+          new_price: '50$'
+        }, {
+          item: 'Item B (Shoes)',
+          new_price: '40$'
+        }, {
+          item: 'Item C (Shoes - Cheapest)',
+          old_price: '30$',
+          new_price: '0$'
+        }],
+        pro: true
+      }, {
+        name: this.__('B3G1: Buy 4, Cheapest Item is Free', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-history',
+        description: this.__('A higher volume offer: the customer buys 4 items, and the cheapest one is totally free. Modern and highly effective for fashion and gift shops.', 'easy-woocommerce-discounts'),
+        slug: 'buy-3-get-1-free-cheapest-item',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: '3 Items (High Value)',
+          new_price: '150$'
+        }, {
+          item: '1 Item (Cheapest)',
+          old_price: '20$',
+          new_price: '0$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Category B3G1: Buy 4, Cheapest is Free', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-filter',
+        description: this.__('Run a "Buy 4, Get the 4th (cheapest) Free" promotion specifically within your chosen categories. Perfect for boosting sales in secondary categories.', 'easy-woocommerce-discounts'),
+        slug: 'buy-3-get-1-free-category-cheapest-item',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: '3 Items (Category A)',
+          new_price: '150$'
+        }, {
+          item: '1 Item (Category A - Cheapest)',
+          old_price: '20$',
+          new_price: '0$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Variation BOGO: Buy 1 Get 1 Free', 'easy-woocommerce-discounts'),
+        sub: 'BOGO',
+        icon: 'fa fa-gift',
+        description: this.__('Buy one variation, get another of the same variation for free. Great for clearing out specific variation stock.', 'easy-woocommerce-discounts'),
+        slug: 'bogo-variation',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 1 Red Shirt',
+          new_price: '50$'
+        }, {
+          item: 'Get 1 Red Shirt',
+          old_price: '50$',
+          new_price: '0$ (Free)'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute BOGO: Buy 1 Get 1 Free', 'easy-woocommerce-discounts'),
+        sub: 'BOGO',
+        icon: 'fa fa-gift',
+        description: this.__('Buy one item with a specific attribute, get another with the same attribute for free.', 'easy-woocommerce-discounts'),
+        slug: 'bogo-attribute',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 1 Blue Item',
+          new_price: '50$'
+        }, {
+          item: 'Get 1 Blue Item',
+          old_price: '50$',
+          new_price: '0$ (Free)'
+        }],
+        pro: true
+      }, {
+        name: this.__('Variation Buy 2 Get 1 Free (Same Item)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-sort-amount-desc',
+        description: this.__('Encourage customers to buy more units of the same produc variation by offering a third one for free. This is a classic "Buy 2 Get 1" promotion that effectively increases your sales volume.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-get-1-free-variation',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 2 Red Polo Shirts',
+          new_price: '50$'
+        }, {
+          item: 'Get 1 Red Polo Shirt',
+          old_price: '50$',
+          new_price: '0$ (Free)'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute Buy 2 Get 1 Free (Same Item)', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-object-group',
+        description: this.__('Encourage customers to buy more units of the same product attribute by offering a third one for free. This is a classic "Buy 2 Get 1" promotion that effectively increases your sales volume.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-get-1-free-attribute',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Buy 2 Polo (Size M)',
+          new_price: '50$'
+        }, {
+          item: 'Get 1 Polo (Size M)',
+          old_price: '50$',
+          new_price: '0$ (Free)'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute B2G1: Buy 3, Cheapest is Free', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-object-group',
+        description: this.__('Buy 3 items with specific attributes, and the cheapest one is free.', 'easy-woocommerce-discounts'),
+        slug: 'buy-2-get-1-free-attribute-cheapest-item',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: 'Item A (Size M)',
+          new_price: '50$'
+        }, {
+          item: 'Item B (Size M)',
+          new_price: '40$'
+        }, {
+          item: 'Item C (Size M - Cheapest)',
+          old_price: '30$',
+          new_price: '0$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Attribute B3G1: Buy 4, Cheapest is Free', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-filter',
+        description: this.__('Buy 4 items with specific attributes, get the 4th (cheapest) free.', 'easy-woocommerce-discounts'),
+        slug: 'buy-3-get-1-free-attribute-cheapest-item',
+        tag: 'bogo',
+        show_timing: true,
+        examples: [{
+          item: '3 Items (Size L)',
+          new_price: '150$'
+        }, {
+          item: '1 Item (Size L - Cheapest)',
+          old_price: '20$',
+          new_price: '0$'
+        }],
+        pro: true
+      },
+      // Bundle and Group discounts
+      {
+        name: this.__('Curated Kit: Save % on the Full Group', 'easy-woocommerce-discounts'),
+        sub: 'A+B+C',
+        icon: 'fa fa-cube',
+        description: this.__('Bundle specific products (A, B, and C) together and offer a percentage discount if the customer buys the entire set. Excellent for selling complete outfits or accessory kits.', 'easy-woocommerce-discounts'),
+        slug: 'buy-a-b-c-with-discount',
+        tag: 'bundle',
+        show_timing: true,
+        examples: [{
+          item: 'Bundle (A+B+C)',
+          old_price: '150$',
+          new_price: '120$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Value Set: All 4 for a Fixed Price', 'easy-woocommerce-discounts'),
+        sub: 'Fixed Price',
+        icon: 'fa fa-usd',
+        description: this.__('Group four specific products together for one attractive flat price. For example, "Get the Pro Camera Kit (4 parts) for just $500". Simplifies the decision for the customer.', 'easy-woocommerce-discounts'),
+        slug: 'buy-a-b-c-d-for-fixed-price',
+        tag: 'bundle',
+        show_timing: true,
+        examples: [{
+          item: 'Bundle (A+B+C+D)',
+          old_price: '600$',
+          new_price: '400$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Mix & Match Volume: Any 4 for $400', 'easy-woocommerce-discounts'),
+        sub: 'Fixed Price',
+        icon: 'fa fa-users',
+        description: this.__('Offer a "Pick Any 4" deal for a fixed price. For example, "Pick any 4 T-shirts for $100". It gives customers the freedom to choose while guaranteeing you a high-volume sale.', 'easy-woocommerce-discounts'),
+        slug: 'buy-4-items-for-400-price',
+        tag: 'bundle',
+        show_timing: true,
+        examples: [{
+          item: '4 Items Total',
+          old_price: '500$',
+          new_price: '400$'
+        }],
+        pro: true
+      },
+      // New Campaigns
+      {
+        name: this.__('Happy Hour: Flash sale 20% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-clock-o',
+        description: this.__('Create urgency with a time-limited 20% discount. Ideal for driving traffic during off-peak hours.', 'easy-woocommerce-discounts'),
+        slug: 'flash-sale-happy-hour',
+        tag: 'simple',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Role based Pricing: 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based pricing across selected products.', 'easy-woocommerce-discounts'),
+        slug: 'vip-wholesale-pricing',
+        tag: 'simple',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Members Only Secret Deal', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-secret',
+        description: this.__('Incentivize registrations by offering special fixed prices exclusive to logged-in users.', 'easy-woocommerce-discounts'),
+        slug: 'members-only-special',
+        tag: 'simple',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('First Order Bonus: 10% Off', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-rocket',
+        description: this.__('Convert new visitors into customers with a special welcome pricing on their first purchase.', 'easy-woocommerce-discounts'),
+        slug: 'first-purchase-pricing',
+        tag: 'simple',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Loyalty Perk: 15% Off for Return Buyers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-heart',
+        description: this.__('Automate rewards for repeat business. Offer a 15% discount to customers with 3 or more previous orders.', 'easy-woocommerce-discounts'),
+        slug: 'loyal-customer-discount',
+        tag: 'simple',
+        show_timing: true,
+        examples: [],
+        pro: true
+      },
+      // Group: Surcharges & Fees
+      {
+        name: this.__('Premium Handling: 5% Surcharge', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-plus-circle',
+        description: this.__('Apply a 5% handling fee to selected premium products or categories. Ideal for items requiring specialized care.', 'easy-woocommerce-discounts'),
+        slug: 'percentage-fee-products',
+        tag: 'surcharges',
+        show_timing: true,
+        examples: [{
+          item: this.__('Fragile Vase', 'easy-woocommerce-discounts'),
+          old_price: '100$',
+          new_price: '105$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Fixed Service Fee: $10 Surcharge', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-handshake-o',
+        description: this.__('Add a flat $10 service fee across specific categories or individual products.', 'easy-woocommerce-discounts'),
+        slug: 'price-fee-products',
+        tag: 'surcharges',
+        show_timing: true,
+        examples: [{
+          item: this.__('Bulk Furniture', 'easy-woocommerce-discounts'),
+          old_price: '200$',
+          new_price: '210$'
+        }],
+        pro: true
+      }, {
+        name: this.__('Eco-Tax: $2 Flat Fee', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-leaf',
+        description: this.__('Apply a small fixed fee for environmental disposal or regulatory compliance on specific categories.', 'easy-woocommerce-discounts'),
+        slug: 'eco-tax-fixed-fee',
+        tag: 'surcharges',
+        show_timing: true,
+        examples: [{
+          item: this.__('Battery Pack', 'easy-woocommerce-discounts'),
+          old_price: '20$',
+          new_price: '22$'
+        }],
+        pro: true
+      }]
+    };
+  },
+  created: function created() {
+    if (this.templates.length > 0) {
+      this.selectedTemplate = this.templates[0];
+    }
+  },
+  computed: {
+    activeTemplate: function activeTemplate() {
+      return this.hoveredTemplate || this.selectedTemplate;
+    },
+    tagNames: function tagNames() {
+      return {
+        general: this.__('General', 'easy-woocommerce-discounts'),
+        simple: this.__('Simple Adjustment', 'easy-woocommerce-discounts'),
+        black_friday: this.__('Black Friday', 'easy-woocommerce-discounts'),
+        bulk: this.__('Bulk Pricing (Quantity discount)', 'easy-woocommerce-discounts'),
+        tiered: this.__('Tiered Pricing (Quantity discount)', 'easy-woocommerce-discounts'),
+        bogo: this.__('BOGO', 'easy-woocommerce-discounts'),
+        bundle: this.__('Bundle', 'easy-woocommerce-discounts'),
+        surcharges: this.__('Surcharges & Fees', 'easy-woocommerce-discounts'),
+        other: this.__('Other', 'easy-woocommerce-discounts')
+      };
+    },
+    categories: function categories() {
+      var _this = this;
+      var categories = [];
+      var seen = new Set();
+      this.templates.forEach(function (t) {
+        if (t.tag && !seen.has(t.tag)) {
+          categories.push({
+            id: t.tag,
+            label: _this.tagNames[t.tag]
+          });
+          seen.add(t.tag);
+        }
+      });
+      return categories;
+    },
+    groupedTemplates: function groupedTemplates() {
+      var _this2 = this;
+      var filtered = this.templates;
+      if (this.searchQuery) {
+        var query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(function (t) {
+          return t.name.toLowerCase().includes(query) || t.description && t.description.toLowerCase().includes(query);
+        });
+      }
+      if (this.selectedCategory) {
+        filtered = filtered.filter(function (t) {
+          return t.tag === _this2.selectedCategory;
+        });
+      }
+      var groups = {};
+      filtered.forEach(function (t) {
+        var tag = t.tag || 'other';
+        if (!groups[tag]) {
+          groups[tag] = [];
+        }
+        groups[tag].push(t);
+      });
+      return groups;
+    }
+  },
+  methods: {
+    selectTemplate: function selectTemplate(template) {
+      this.selectedTemplate = template;
+    },
+    addCampaign: function addCampaign() {
+      if (this.selectedTemplate && this.selectedTemplate.pro) {
+        return;
+      }
+      this.$emit('add-campaign', {
+        template: this.selectedTemplate,
+        campaignType: this.campaignType
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/PricingTemplatesModal.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_PricingTemplatesModalvue_type_script_lang_js_ = (PricingTemplatesModalvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/PricingTemplatesModal.vue
+
+
+
+
+
+/* normalize component */
+
+var PricingTemplatesModal_component = Object(componentNormalizer["a" /* default */])(
+  components_PricingTemplatesModalvue_type_script_lang_js_,
+  PricingTemplatesModalvue_type_template_id_8087e16c_render,
+  PricingTemplatesModalvue_type_template_id_8087e16c_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var PricingTemplatesModal = (PricingTemplatesModal_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingList.vue?vue&type=script&lang=js&
 //
 //
@@ -11445,17 +15128,33 @@ var PricingListvue_type_template_id_c6fb0f3a_staticRenderFns = [function () {var
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ var PricingListvue_type_script_lang_js_ = ({
   name: 'pricing-list',
+  components: {
+    PricingTemplatesModal: PricingTemplatesModal
+  },
   data: function data() {
     return {
       pricingList: cloneDeep_default()(this.$store.state.pricingList),
       showLoading: false,
       showDeleteModal: false,
+      showTemplatesModal: false,
       deleteId: 0
     };
   },
@@ -11545,6 +15244,18 @@ var PricingListvue_type_template_id_c6fb0f3a_staticRenderFns = [function () {var
       })["catch"](function (error) {
         _this4.showLoading = false;
       });
+    },
+    handleAddCampaign: function handleAddCampaign(_ref) {
+      var template = _ref.template,
+        campaignType = _ref.campaignType;
+      this.showTemplatesModal = false;
+      this.$router.push({
+        path: '/pricing/new',
+        query: {
+          template: template.slug,
+          campaign: campaignType
+        }
+      });
     }
   }
 });
@@ -11560,8 +15271,8 @@ var PricingListvue_type_template_id_c6fb0f3a_staticRenderFns = [function () {var
 
 var PricingList_component = Object(componentNormalizer["a" /* default */])(
   views_PricingListvue_type_script_lang_js_,
-  PricingListvue_type_template_id_c6fb0f3a_render,
-  PricingListvue_type_template_id_c6fb0f3a_staticRenderFns,
+  PricingListvue_type_template_id_407cad98_render,
+  PricingListvue_type_template_id_407cad98_staticRenderFns,
   false,
   null,
   null,
@@ -11570,8 +15281,8 @@ var PricingList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var PricingList = (PricingList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=2eb22f43&
-var PricingViewvue_type_template_id_2eb22f43_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/pricing-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.savePricing}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=4d041271&
+var PricingViewvue_type_template_id_4d041271_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/pricing-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.savePricing}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There are some errors in the form please fix them and save it again.',
 					'easy-woocommerce-discounts'
 				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-2xl asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.name),expression:"pricing.name"}],staticClass:"asnp-block asnp-text-field",class:{
@@ -11583,17 +15294,13 @@ var PricingViewvue_type_template_id_2eb22f43_render = function () {var _vm=this;
 					' - ' +
 					_vm.__( 'PRO version', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"products_group","disabled":""}},[_vm._v(_vm._s(_vm.__( 'Products group', 'easy-woocommerce-discounts' ) +
 					' - ' +
-					_vm.__( 'PRO version', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"bogo","disabled":""}},[_vm._v(_vm._s(_vm.__(
+					_vm.__( 'PRO version', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"bogo"}},[_vm._v(_vm._s(_vm.__(
 						'Buy x Get x - same product',
 						'easy-woocommerce-discounts'
-					) +
-					' - ' +
-					_vm.__( 'PRO version', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"purchase_x_receive_y","disabled":""}},[_vm._v(_vm._s(_vm.__(
+					)))]),_vm._v(" "),_c('option',{attrs:{"value":"purchase_x_receive_y"}},[_vm._v(_vm._s(_vm.__(
 						'Buy x Get y - different product',
 						'easy-woocommerce-discounts'
-					) +
-					' - ' +
-					_vm.__( 'PRO version', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"exclude","disabled":""}},[_vm._v(_vm._s(_vm.__(
+					)))]),_vm._v(" "),_c('option',{attrs:{"value":"exclude","disabled":""}},[_vm._v(_vm._s(_vm.__(
 						'Exclude products from all rules',
 						'easy-woocommerce-discounts'
 					) +
@@ -11840,7 +15547,31 @@ var PricingViewvue_type_template_id_2eb22f43_render = function () {var _vm=this;
 				),
 				'<br>'
 			)
-		)}}),_vm._v(" "),(_vm.isBulk || _vm.isTiered)?_c('pricing-quantity-discount',{attrs:{"quantities":_vm.pricing.quantities}}):_vm._e(),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(( _vm.isBulk || _vm.isTiered ) && ! _vm.$v.pricing.quantities.required),expression:"( isBulk || isTiered ) && ! $v.pricing.quantities.required"}],staticClass:"asnp-error-msg asnp-mt-1"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Field is required.', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('h3',{staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.discountedItems)+"\n\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mb-4"},[_vm._v(_vm._s(_vm.discountedItemsDesc))]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.pricing.items.length),expression:"! pricing.items.length"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(! _vm.isProductsGroup)?_c('products-select-container',{attrs:{"items":_vm.pricing.items,"keyName":"product","hiddenRows":[ 'quantity' ],"hiddenOptions":[ 'discounted_products' ],"type":"discounted"},on:{"productsUpdated":_vm.onDiscountedItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewDiscountedProducts,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}):_vm._e(),_vm._v(" "),_c('h3',{staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Excluded Products', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mb-4"},[_vm._v("\n\t\t"+_vm._s(_vm.__(
+		)}}),_vm._v(" "),(_vm.isBulk || _vm.isTiered)?_c('pricing-quantity-discount',{attrs:{"quantities":_vm.pricing.quantities}}):_vm._e(),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(( _vm.isBulk || _vm.isTiered ) && ! _vm.$v.pricing.quantities.required),expression:"( isBulk || isTiered ) && ! $v.pricing.quantities.required"}],staticClass:"asnp-error-msg asnp-mt-1"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Field is required.', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('h3',{directives:[{name:"show",rawName:"v-show",value:(_vm.isPurchase || _vm.isPurchaseSame || _vm.isBOGO),expression:"isPurchase || isPurchaseSame || isBOGO"}],staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Purchase Rule', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.isPurchase || _vm.isPurchaseSame || _vm.isBOGO),expression:"isPurchase || isPurchaseSame || isBOGO"}],staticClass:"asnp-mb-4"},[_vm._v("\n\t\t"+_vm._s(_vm.__(
+				'Set purchase and receive quantity and discount amount.',
+				'easy-woocommerce-discounts'
+			))+"\n\t")]),_vm._v(" "),(_vm.isPurchase || _vm.isPurchaseSame || _vm.isBOGO)?_c('table',{staticClass:"widefat"},[_c('thead',[_c('tr',[_c('th',[_vm._v("\n\t\t\t\t\t"+_vm._s(_vm.__( 'Purchase', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t")]),_vm._v(" "),_c('th',[_vm._v(_vm._s(_vm.__( 'Receive', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('th',[_vm._v("\n\t\t\t\t\t"+_vm._s(_vm.__( 'Discount type', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t")]),_vm._v(" "),_c('th',[_vm._v("\n\t\t\t\t\t"+_vm._s(_vm.__( 'Discount', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t")])])]),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.purchase.purchase),expression:"pricing.purchase.purchase"}],staticClass:"asnp-text-field",attrs:{"type":"number"},domProps:{"value":(_vm.pricing.purchase.purchase)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.pricing.purchase, "purchase", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.purchase.receive),expression:"pricing.purchase.receive"}],staticClass:"asnp-text-field",attrs:{"type":"number"},domProps:{"value":(_vm.pricing.purchase.receive)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.pricing.purchase, "receive", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.purchase.discount_type),expression:"pricing.purchase.discount_type"}],staticClass:"asnp-select-field",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.pricing.purchase, "discount_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0])}}},[_c('option',{attrs:{"value":"percentage_discount"}},[_vm._v(_vm._s(_vm.__(
+								'Percentage discount',
+								'easy-woocommerce-discounts'
+							)))]),_vm._v(" "),_c('option',{attrs:{"value":"price_discount"}},[_vm._v(_vm._s(_vm.__(
+								'Price discount',
+								'easy-woocommerce-discounts'
+							)))]),_vm._v(" "),_c('option',{attrs:{"value":"fixed_price","disabled":""}},[_vm._v(_vm._s(_vm.__(
+								'Fixed price',
+								'easy-woocommerce-discounts'
+							) +
+							' - ' +
+							_vm.__(
+								'PRO version',
+								'easy-woocommerce-discounts'
+							)))])])]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.purchase.discount),expression:"pricing.purchase.discount"}],staticClass:"asnp-text-field",attrs:{"type":"number"},domProps:{"value":(_vm.pricing.purchase.discount)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.pricing.purchase, "discount", $event.target.value)}}})])])])]):_vm._e(),_vm._v(" "),_c('h3',{directives:[{name:"show",rawName:"v-show",value:(_vm.isPurchase),expression:"isPurchase"}],staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Purchased Items', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.isPurchase),expression:"isPurchase"}],staticClass:"asnp-mb-4"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Buy products list.', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(
+				_vm.isPurchase &&
+				( ! _vm.pricing.purchased_items ||
+					! _vm.pricing.purchased_items.length )
+			),expression:"\n\t\t\t\tisPurchase &&\n\t\t\t\t( ! pricing.purchased_items ||\n\t\t\t\t\t! pricing.purchased_items.length )\n\t\t\t"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+					'There is not any purchased item.',
+					'easy-woocommerce-discounts'
+				)}})],1),_vm._v(" "),(_vm.isPurchase)?_c('products-select-container',{attrs:{"items":_vm.pricing.purchased_items,"keyName":"purchaseProduct","hiddenRows":[ 'quantity' ],"hiddenOptions":[ 'discounted_products' ],"disabledOptions":_vm.itemsDisabledOptions,"type":"purchased"},on:{"productsUpdated":_vm.onPurchasedItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewPurchasedProducts,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}):_vm._e(),_vm._v(" "),_c('h3',{staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.discountedItems)+"\n\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mb-4"},[_vm._v(_vm._s(_vm.discountedItemsDesc))]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.pricing.items.length),expression:"! pricing.items.length"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(! _vm.isProductsGroup)?_c('products-select-container',{attrs:{"items":_vm.pricing.items,"keyName":"product","hiddenRows":[ 'quantity' ],"hiddenOptions":[ 'discounted_products' ],"disabledOptions":_vm.itemsDisabledOptions,"type":"discounted"},on:{"productsUpdated":_vm.onDiscountedItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewDiscountedProducts,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}):_vm._e(),_vm._v(" "),_c('h3',{staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Excluded Products', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mb-4"},[_vm._v("\n\t\t"+_vm._s(_vm.__(
 				'Exclude products from this rule.',
 				'easy-woocommerce-discounts'
 			))+"\n\t")]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.pricing.exclude_items.length),expression:"! pricing.exclude_items.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('products-select-container',{attrs:{"items":_vm.pricing.exclude_items,"keyName":"excludeProduct","hiddenRows":[ 'quantity' ],"hiddenOptions":_vm.excludeItemsHiddenOptions,"type":"excluded"},on:{"productsUpdated":_vm.onExcludedItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewExcludedProducts,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}),_vm._v(" "),_c('div',{staticClass:"asnp-my-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('h3',{staticClass:"asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Date Time', 'easy-woocommerce-discounts' ))+"\n\t\t\t"),_c('current-time')],1)]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.pricing.date_time.length),expression:"! pricing.date_time.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__(
@@ -11850,10 +15581,10 @@ var PricingViewvue_type_template_id_2eb22f43_render = function () {var _vm=this;
 					'There is not any condition.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('conditions-container',{attrs:{"items":_vm.pricing.conditions,"ignoreGroups":_vm.ignoreGroups,"ignoreItems":_vm.ignoreItems},on:{"conditionUpdated":_vm.onPricingConditionUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewCondition,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}})],1)}
-var PricingViewvue_type_template_id_2eb22f43_staticRenderFns = []
+var PricingViewvue_type_template_id_4d041271_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=2eb22f43&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=4d041271&
 
 // EXTERNAL MODULE: external {"this":["ewd","validators"]}
 var external_this_ewd_validators_ = __webpack_require__(67);
@@ -13178,6 +16909,130 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -13202,6 +17057,7 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
     ConditionsContainer: ConditionsContainer
   },
   data: function data() {
+    var _this$$route, _this$$route$query;
     var pricing = {
         name: 'Pricing',
         status: 1,
@@ -13214,17 +17070,27 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
         discount_type: 'percentage_discount',
         discount: '',
         ordering: 0,
-        message_type: 'text_message',
-        message_background_color: '',
-        message_color: '',
         quantity_based_on: 'single_product',
         quantities: [],
         display_quantity: 'yes',
         display_price: 'yes',
         display_discount: 'yes',
-        usage_limit: '',
+        set_min_quantity: false,
+        reorder: 'asc',
+        message_type: 'text_message',
+        message_background_color: '',
+        message_color: '',
+        purchase: {
+          purchase: '',
+          receive: '',
+          discount_type: 'percentage_discount',
+          discount: ''
+        },
+        repeat: false,
+        purchased_items: [],
         purchased_message: '',
-        receive_message: ''
+        receive_message: '',
+        usage_limit: ''
       },
       id = 'new' !== this.$route.params.id ? parseInt(this.$route.params.id) : 0;
     if (id > 0) {
@@ -13235,6 +17101,15 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
           break;
         }
       }
+    } else if ((_this$$route = this.$route) !== null && _this$$route !== void 0 && (_this$$route$query = _this$$route.query) !== null && _this$$route$query !== void 0 && _this$$route$query.template) {
+      var _this$$route2, _this$$route2$query;
+      var template = this.getFromTemplate(this.$route.query.template, ((_this$$route2 = this.$route) === null || _this$$route2 === void 0 ? void 0 : (_this$$route2$query = _this$$route2.query) === null || _this$$route2$query === void 0 ? void 0 : _this$$route2$query.campaign) || 'normal');
+      if (template) {
+        pricing = PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, pricing), template);
+      }
+    }
+    if ('purchase_x_receive_y_same' === pricing.mode) {
+      pricing.mode = 'purchase_x_receive_y';
     }
     return {
       id: id,
@@ -13251,6 +17126,12 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
   },
   methods: {
     onModeChange: function onModeChange(newMode) {
+      if (this.pricing.mode !== newMode) {
+        if (['bogo', 'purchase_x_receive_y', 'purchase_x_receive_y_same'].indexOf(this.pricing.mode) !== -1 || ['bogo', 'purchase_x_receive_y', 'purchase_x_receive_y_same'].indexOf(newMode) !== -1) {
+          this.pricing.items = [];
+          this.pricing.purchased_items = [];
+        }
+      }
       this.pricing.mode = newMode;
       if (this.isSimple) {
         if (-1 != ['fixed_discount_per_item', 'fixed_discount_per_group', 'fixed_price_per_item', 'fixed_price_per_group'].indexOf(this.pricing.discount_type)) {
@@ -13271,6 +17152,9 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
     },
     onExcludedItemUpdated: function onExcludedItemUpdated(groupIndex, products, index) {
       this.pricing.exclude_items[groupIndex][index] = products;
+    },
+    onPurchasedItemUpdated: function onPurchasedItemUpdated(groupIndex, products, index) {
+      this.pricing.purchased_items[groupIndex][index] = products;
     },
     onDeleteItem: function onDeleteItem(type, index) {
       var groupIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -13452,8 +17336,16 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
         if (!this.pricing.discount.length || parseFloat(this.pricing.discount) <= 0) {
           return this.saveErrors = true;
         }
+      } else if (this.isPurchase) {
+        if (!this.pricing.purchased_items || !this.pricing.purchased_items.length) {
+          return this.saveErrors = true;
+        }
       } else if (this.isBulk || this.isTiered) {
         if (!this.pricing.quantities || !this.pricing.quantities.length) {
+          return this.saveErrors = true;
+        }
+      } else if (this.isProductsGroup) {
+        if (!this.pricing.discount.length || parseFloat(this.pricing.discount) <= 0) {
           return this.saveErrors = true;
         }
       }
@@ -13487,11 +17379,26 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
       if (this.isBulk || this.isTiered) {
         data.quantity_based_on = this.pricing.quantity_based_on;
         data.quantities = this.pricing.quantities;
+        data.set_min_quantity = this.pricing.set_min_quantity;
         if (this.isBulk) {
           data.display_quantity = this.pricing.display_quantity;
           data.display_price = this.pricing.display_price;
           data.display_discount = this.pricing.display_discount;
+        } else if (this.isTiered) {
+          data.reorder = this.pricing.reorder;
         }
+      } else if (this.isPurchase || this.isPurchaseSame || this.isBOGO) {
+        data.purchase = this.pricing.purchase;
+        data.repeat = this.pricing.repeat;
+        if (!this.isBOGO) {
+          data.purchased_items = this.isPurchase ? this.pricing.purchased_items : this.pricing.items;
+          data.purchased_message = this.isPurchase ? this.pricing.purchased_message : '';
+          data.quantity_based_on = this.pricing.quantity_based_on;
+        }
+      } else if (this.isProductsGroup) {
+        data.discount_type = this.pricing.discount_type;
+        data.discount = this.pricing.discount;
+        data.repeat = this.pricing.repeat;
       } else if (this.isSimple) {
         data.discount_type = this.pricing.discount_type;
         data.discount = this.pricing.discount;
@@ -13516,6 +17423,1037 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
       var trueValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       var falseValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
       this.pricing = Object.assign({}, this.pricing, PricingViewvue_type_script_lang_js_defineProperty({}, prop, value ? trueValue : falseValue));
+    },
+    getFromTemplate: function getFromTemplate(template) {
+      var campaign = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'normal';
+      if (!template || 'own-campaign' === template) {
+        return null;
+      }
+      var products = this.initialProducts();
+      var condition = this.initialCondition();
+      var result = null;
+      switch (template) {
+        case 'all-products-10-percent-off':
+          result = {
+            name: this.__('Storewide 10% Off', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765631711484
+            })]],
+            discount: '10'
+          };
+          break;
+        case 'all-products-10-price-off':
+          result = {
+            name: this.__('Storewide $10 Flat Off', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount_type: 'price_discount',
+            discount: '10'
+          };
+          break;
+        case 'sale-20-percent-products':
+          result = {
+            name: this.__('Targeted Sale: 20% Off Select Items', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount: '20'
+          };
+          break;
+        case 'sale-20-price-products':
+          result = {
+            name: this.__('Targeted Sale: $20 Off Select Items', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount_type: 'price_discount',
+            discount: '20'
+          };
+          break;
+        case 'sale-20-percent-variations':
+          result = {
+            name: this.__('Targeted Sale: 20% Off Select Variations', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_variations_in_list',
+              id: 1765632901082
+            })]],
+            discount: '20'
+          };
+          break;
+        case 'sale-20-price-variations':
+          result = {
+            name: this.__('Targeted Sale: $20 Off Select Variations', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_variations_in_list',
+              id: 1765632901082
+            })]],
+            discount_type: 'price_discount',
+            discount: '20'
+          };
+          break;
+        case 'sale-10-percent-categories':
+          result = {
+            name: this.__('Category Discovery: 10% Off', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765632901082
+            })]],
+            discount: '10'
+          };
+          break;
+        case 'sale-10-price-categories':
+          result = {
+            name: this.__('Category Deal: $10 Flat Discount', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765632901082
+            })]],
+            discount_type: 'price_discount',
+            discount: '10'
+          };
+          break;
+        case 'sale-10-percent-attributes':
+          result = {
+            name: this.__('Attribute Discovery: 10% Off', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765632901082
+            })]],
+            discount: '10'
+          };
+          break;
+        case 'sale-10-price-attributes':
+          result = {
+            name: this.__('Attribute Deal: $10 Flat Discount', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765632901082
+            })]],
+            discount_type: 'price_discount',
+            discount: '10'
+          };
+          break;
+        case 'black-friday-50-percent-all-products':
+          result = {
+            name: this.__('Black Friday Event: 50% Off Everything', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            date_time: this.getBlackFriday(),
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount: '50'
+          };
+          break;
+        case 'black-friday-50-percent-products':
+          result = {
+            name: this.__('Black Friday: 50% Off Top Products', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            date_time: this.getBlackFriday(),
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount: '50'
+          };
+          break;
+        case 'black-friday-50-percent-categories':
+          result = {
+            name: this.__('Black Friday: 50% Off Key Collections', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            date_time: this.getBlackFriday(),
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765632901082
+            })]],
+            discount: '50'
+          };
+          break;
+        case 'percentage-quantity-discount-products':
+          result = {
+            name: this.__('Bulk Savings: Buy More, Save %', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'percentage_discount',
+              discount: '10',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'percentage_discount',
+              discount: '20',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'percentage_discount',
+              discount: '30',
+              id: 1765911447591
+            }]
+          };
+          break;
+        case 'price-quantity-discount-products':
+          result = {
+            name: this.__('Fixed Bulk Discount: Save $ by Quantity', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'price_discount',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'price_discount',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'price_discount',
+              discount: '15',
+              id: 1765911447591
+            }]
+          };
+          break;
+        case 'percentage-quantity-discount-variations':
+          result = {
+            name: this.__('Variation Bulk Savings: Buy More, Save %', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_variations_in_list',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'percentage_discount',
+              discount: '10',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'percentage_discount',
+              discount: '20',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'percentage_discount',
+              discount: '30',
+              id: 1765911447591
+            }]
+          };
+          break;
+        case 'price-quantity-discount-variations':
+          result = {
+            name: this.__('Variation Bulk Discount: Save $ by Quantity', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_variations_in_list',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'price_discount',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'price_discount',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'price_discount',
+              discount: '15',
+              id: 1765911447591
+            }]
+          };
+          break;
+        case 'percentage-quantity-discount-categories':
+          result = {
+            name: this.__('Category Mix & Match: Buy More, Save %', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'percentage_discount',
+              discount: '10',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'percentage_discount',
+              discount: '20',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'percentage_discount',
+              discount: '30',
+              id: 1765911447591
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'price-quantity-discount-categories':
+          result = {
+            name: this.__('Category Mix & Match: Save $ on Volume', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'price_discount',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'price_discount',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'price_discount',
+              discount: '15',
+              id: 1765911447591
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'percentage-quantity-discount-attributes':
+          result = {
+            name: this.__('Attribute Mix & Match: Buy More, Save %', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'percentage_discount',
+              discount: '10',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'percentage_discount',
+              discount: '20',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'percentage_discount',
+              discount: '30',
+              id: 1765911447591
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'price-quantity-discount-attributes':
+          result = {
+            name: this.__('Attribute Mix & Match: Save $ on Volume', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765911450193
+            })]],
+            quantities: [{
+              min: '2',
+              max: '5',
+              discount_type: 'price_discount',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '6',
+              max: '10',
+              discount_type: 'price_discount',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '11',
+              max: '',
+              discount_type: 'price_discount',
+              discount: '15',
+              id: 1765911447591
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'sale-30-percent-from-third-quantity':
+          result = {
+            name: this.__('Volume Kick: 30% Off Starting from 3rd Item', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            quantities: [{
+              min: '3',
+              max: '',
+              discount_type: 'percentage_discount',
+              discount: '30',
+              id: 1765650913917
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'sale-5-price-from-third-quantity':
+          result = {
+            name: this.__('Volume Kick: $5 Off Starting from 3rd Item', 'easy-woocommerce-discounts'),
+            mode: 'bulk',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            quantities: [{
+              min: '3',
+              max: '',
+              discount_type: 'price_discount',
+              discount: '5',
+              id: 1765650913917
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'sale-10-percent-on-third-quantity':
+          result = {
+            name: this.__('Sale % on third quantity', 'easy-woocommerce-discounts'),
+            mode: 'tiered',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            quantities: [{
+              min: '3',
+              max: '3',
+              discount_type: 'percentage_discount',
+              discount: '10',
+              id: 1765650913917
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'sale-5-price-on-third-quantity':
+          result = {
+            name: this.__('Sale $ on third quantity', 'easy-woocommerce-discounts'),
+            mode: 'tiered',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            quantities: [{
+              min: '3',
+              max: '3',
+              discount_type: 'price_discount',
+              discount: '5',
+              id: 1765650913917
+            }],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'bogo':
+          result = {
+            name: this.__('BOGO: Buy 1 Get 1 Free', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '1',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true
+          };
+          break;
+        case 'bogo-50-percent-off':
+          result = {
+            name: this.__('BOGO: Buy 1 Get 1 50% Off', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '1',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '50'
+            },
+            repeat: true
+          };
+          break;
+        case 'buy-x-get-y-free':
+          result = {
+            name: this.__('Free Gift: Buy X, Get Y for Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '1',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765652403069
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-x-get-y-50-percent-off':
+          result = {
+            name: this.__('Pairing Deal: Buy X, Get 50% Off Y', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '1',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '50'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765652403069
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-2-get-1-free-product':
+          result = {
+            name: this.__('Buy 2 Get 1 Free (Same Item)', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true
+          };
+          break;
+        case 'buy-2-x-get-1-y-free-product':
+          result = {
+            name: this.__('Combo Pack: Buy 2 of X, Get 1 Y Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765664125283
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-2-get-1-free-cheapest-item':
+          result = {
+            name: this.__('B2G1: Buy 3, Cheapest Item is Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765652403069
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-2-get-1-free-category-cheapest-item':
+          result = {
+            name: this.__('Category B2G1: Buy 3, Cheapest is Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664125283
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-3-get-1-free-cheapest-item':
+          result = {
+            name: this.__('B3G1: Buy 4, Cheapest Item is Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '3',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765664125283
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-3-get-1-free-category-cheapest-item':
+          result = {
+            name: this.__('Category B3G1: Buy 4, Cheapest is Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '3',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664125283
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'bogo-variation':
+          result = {
+            name: this.__('Variation BOGO: Buy 1 Get 1 Free', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_variations_in_list',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '1',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true
+          };
+          break;
+        case 'bogo-attribute':
+          result = {
+            name: this.__('Attribute BOGO: Buy 1 Get 1 Free', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765632901082
+            })]],
+            discount: '50',
+            purchase: {
+              purchase: '1',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true
+          };
+          break;
+        case 'buy-2-get-1-free-variation':
+          result = {
+            name: this.__('Variation Buy 2 Get 1 Free (Same Item)', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_variations_in_list',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true
+          };
+          break;
+        case 'buy-2-get-1-free-attribute':
+          result = {
+            name: this.__('Attribute Buy 2 Get 1 Free (Same Item)', 'easy-woocommerce-discounts'),
+            mode: 'bogo',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true
+          };
+          break;
+        case 'buy-2-get-1-free-attribute-cheapest-item':
+          result = {
+            name: this.__('Attribute B2G1: Buy 3, Cheapest is Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '2',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765664125283
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-3-get-1-free-attribute-cheapest-item':
+          result = {
+            name: this.__('Attribute B3G1: Buy 4, Cheapest is Free', 'easy-woocommerce-discounts'),
+            mode: 'purchase_x_receive_y',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765664047818
+            })]],
+            purchase: {
+              purchase: '3',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'product_attributes',
+              id: 1765664125283
+            })]],
+            quantity_based_on: 'all_products'
+          };
+          break;
+        case 'buy-a-b-c-with-discount':
+          result = {
+            name: this.__('Curated Kit: Save % on the Full Group', 'easy-woocommerce-discounts'),
+            mode: 'products_group',
+            items: [PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765664567346
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765664571266
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765664574347
+            })],
+            discount_type: 'percentage_discount',
+            discount: '20',
+            purchase: {
+              purchase: '3',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664125283
+            })]]
+          };
+          break;
+        // New Templates Logic
+        case 'flash-sale-happy-hour':
+          result = {
+            name: this.__('Happy Hour: Flash sale 20% Off', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765911450001
+            })]],
+            discount: '20',
+            date_time: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, this.initialDateTime()), {}, {
+              type: 'time',
+              start_time: '18:00',
+              end_time: '21:00',
+              id: 1765911430001
+            })]]
+          };
+          break;
+        case 'vip-wholesale-pricing':
+          result = {
+            name: this.__('Role based Pricing: 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765911450002
+            })]],
+            discount: '30',
+            conditions: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]]
+          };
+          break;
+        case 'members-only-special':
+          result = {
+            name: this.__('Members Only Secret Deal', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765911450004
+            })]],
+            discount_type: 'fixed_price',
+            discount: '49',
+            conditions: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              yes_no: 'yes',
+              id: 1765911450005
+            })]]
+          };
+          break;
+        case 'first-purchase-pricing':
+          result = {
+            name: this.__('First Order Bonus: 10% Off', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765911450006
+            })]],
+            discount: '10',
+            conditions: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              yes_no: 'yes',
+              id: 1765884417911
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'number_of_orders',
+              math_operation_type: 'equal_to',
+              number_value_2: '0',
+              time_type: 'all_time',
+              id: 1765884417951
+            })]]
+          };
+          break;
+        case 'loyal-customer-discount':
+          result = {
+            name: this.__('Loyalty Perk: 15% Off for Return Buyers', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            apply_mode: 'individually',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'all_products',
+              id: 1765911450007
+            })]],
+            discount: '15',
+            conditions: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              yes_no: 'yes',
+              id: 1765911450008
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'number_of_orders',
+              math_operation_type: 'greater_equal_to',
+              number_value_2: '3',
+              time_type: 'all_time',
+              id: 1765884418951
+            })]]
+          };
+          break;
+        case 'buy-a-b-c-d-for-fixed-price':
+          result = {
+            name: this.__('Value Set: All 4 for a Fixed Price', 'easy-woocommerce-discounts'),
+            mode: 'products_group',
+            items: [PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765664567346
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765664571266
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765664574347
+            }), PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              quantity: '1',
+              id: 1765711687543
+            })],
+            discount_type: 'fixed_price_per_group',
+            discount: '400',
+            purchase: {
+              purchase: '3',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664125283
+            })]]
+          };
+          break;
+        case 'buy-4-items-for-400-price':
+          result = {
+            name: this.__('Mix & Match Volume: Any 4 for $400', 'easy-woocommerce-discounts'),
+            mode: 'products_group',
+            items: [PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              quantity: '4',
+              id: 1765664567346
+            })],
+            discount_type: 'fixed_price_per_group',
+            discount: '400',
+            purchase: {
+              purchase: '3',
+              receive: '1',
+              discount_type: 'percentage_discount',
+              discount: '100'
+            },
+            repeat: true,
+            purchased_items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765664125283
+            })]]
+          };
+          break;
+        case 'percentage-fee-products':
+          result = {
+            name: this.__('Premium Handling: 5% Surcharge', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765632901082
+            })]],
+            discount_type: 'percentage_fee',
+            discount: '5'
+          };
+          break;
+        case 'price-fee-products':
+          result = {
+            name: this.__('Fixed Service Fee: $10 Surcharge', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765632901082
+            })]],
+            discount_type: 'price_fee',
+            discount: '10'
+          };
+          break;
+        case 'eco-tax-fixed-fee':
+          result = {
+            name: this.__('Eco-Tax: $2 Flat Fee', 'easy-woocommerce-discounts'),
+            mode: 'simple',
+            items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765632901082
+            })]],
+            discount_type: 'price_fee',
+            discount: '2'
+          };
+          break;
+        default:
+          break;
+      }
+      if (result) {
+        if ('black_friday' === campaign) {
+          result.date_time = this.getBlackFriday();
+        } else if ('seasonal' === campaign) {
+          result.date_time = this.getSeasonalPromotionDate();
+        }
+      }
+      return result;
     }
   },
   computed: {
@@ -13566,6 +18504,12 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
         return Object(external_this_wp_i18n_["__"])('Apply this rule again if more than one matching group added to the cart.', 'easy-woocommerce-discounts');
       }
       return Object(external_this_wp_i18n_["__"])('Repeat means that this discount will be applied more than once when possible.', 'easy-woocommerce-discounts');
+    },
+    itemsDisabledOptions: function itemsDisabledOptions() {
+      if (this.isBOGO || this.isPurchase || this.isPurchaseSame) {
+        return ['categories_in_list', 'categories_not_in_list', 'all_products', 'products_not_in_list'];
+      }
+      return [];
     }
   },
   watch: {
@@ -13605,8 +18549,8 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
 
 var PricingView_component = Object(componentNormalizer["a" /* default */])(
   views_PricingViewvue_type_script_lang_js_,
-  PricingViewvue_type_template_id_2eb22f43_render,
-  PricingViewvue_type_template_id_2eb22f43_staticRenderFns,
+  PricingViewvue_type_template_id_4d041271_render,
+  PricingViewvue_type_template_id_4d041271_staticRenderFns,
   false,
   null,
   null,
@@ -13671,8 +18615,8 @@ var CheckoutFeeList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var CheckoutFeeList = (CheckoutFeeList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/ShippingList.vue?vue&type=template&id=72b6c750&
-var ShippingListvue_type_template_id_72b6c750_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-shipping-list"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Shipping Methods', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-primary",attrs:{"to":"/shipping/new"}},[_vm._v(_vm._s(_vm.__( 'Add New', 'easy-woocommerce-discounts' )))])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.shippingList.length),expression:"shippingList.length"}],staticClass:"asnp-flex asnp-flex-col"},[_c('div',{staticClass:"asnp-my-2 asnp-overflow-x-auto sm:asnp-mx-6 lg:asnp-mx-8"},[_c('div',{staticClass:"asnp-py-2 asnp-align-middle asnp-inline-block asnp-min-w-full sm:asnp-px-6 lg:asnp-px-8"},[_c('div',{staticClass:"asnp-shadow asnp-overflow-hidden asnp-border-b asnp-border-gray-200 sm:asnp-rounded-lg"},[_c('table',{staticClass:"asnp-min-w-full asnp-divide-y asnp-divide-gray-200",attrs:{"id":"shipping-list"}},[_c('thead',{staticClass:"asnp-bg-gray-50"},[_c('tr',[_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}}),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/ShippingList.vue?vue&type=template&id=af3b5738&
+var ShippingListvue_type_template_id_af3b5738_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-shipping-list"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Shipping Methods', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-primary",attrs:{"to":"/shipping/new"}},[_vm._v(_vm._s(_vm.__( 'Add New', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary",on:{"click":function($event){_vm.showTemplatesModal = true}}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Add from Template', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.shippingList.length),expression:"shippingList.length"}],staticClass:"asnp-flex asnp-flex-col"},[_c('div',{staticClass:"asnp-my-2 asnp-overflow-x-auto sm:asnp-mx-6 lg:asnp-mx-8"},[_c('div',{staticClass:"asnp-py-2 asnp-align-middle asnp-inline-block asnp-min-w-full sm:asnp-px-6 lg:asnp-px-8"},[_c('div',{staticClass:"asnp-shadow asnp-overflow-hidden asnp-border-b asnp-border-gray-200 sm:asnp-rounded-lg"},[_c('table',{staticClass:"asnp-min-w-full asnp-divide-y asnp-divide-gray-200",attrs:{"id":"shipping-list"}},[_c('thead',{staticClass:"asnp-bg-gray-50"},[_c('tr',[_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}}),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
 											'ID',
 											'easy-woocommerce-discounts'
 										))+"\n\t\t\t\t\t\t\t\t")]),_vm._v(" "),_c('th',{staticClass:"asnp-px-6 asnp-py-3 asnp-text-left asnp-text-xs asnp-font-medium asnp-text-gray-500 asnp-uppercase asnp-tracking-wider",attrs:{"scope":"col"}},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
@@ -13728,12 +18672,1068 @@ var ShippingListvue_type_template_id_72b6c750_render = function () {var _vm=this
 											)}},[_c('i',{staticClass:"fa fa-bar-chart",attrs:{"aria-hidden":"true"}})]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-delete",attrs:{"title":_vm.__(
 												'Delete',
 												'easy-woocommerce-discounts'
-											)},on:{"click":function($event){return _vm.showDeleteWarning( shipping.id )}}},[_c('i',{staticClass:"fa fa-remove",attrs:{"aria-hidden":"true"}})])],1)])}),0)])])])])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.shippingList.length),expression:"! shippingList.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' ),"style-object":{ width: '600px', 'margin-top': '20px' }}})],1),_vm._v(" "),(_vm.showDeleteModal)?_c('modal',{on:{"apply":function($event){return _vm.deleteItem()},"cancel":function($event){_vm.showDeleteModal = false}}}):_vm._e()],1)}
-var ShippingListvue_type_template_id_72b6c750_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"asnp-px-6 asnp-py-4 asnp-whitespace-nowrap"},[_c('i',{staticClass:"fa fa-reorder reorder-shipping-list",attrs:{"aria-hidden":"true"}})])}]
+											)},on:{"click":function($event){return _vm.showDeleteWarning( shipping.id )}}},[_c('i',{staticClass:"fa fa-remove",attrs:{"aria-hidden":"true"}})])],1)])}),0)])])])])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.shippingList.length),expression:"! shippingList.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' ),"style-object":{ width: '600px', 'margin-top': '20px' }}})],1),_vm._v(" "),(_vm.showDeleteModal)?_c('modal',{on:{"apply":function($event){return _vm.deleteItem()},"cancel":function($event){_vm.showDeleteModal = false}}}):_vm._e(),_vm._v(" "),(_vm.showTemplatesModal)?_c('shipping-templates-modal',{on:{"cancel":function($event){_vm.showTemplatesModal = false},"add-campaign":_vm.handleAddCampaign}}):_vm._e()],1)}
+var ShippingListvue_type_template_id_af3b5738_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"asnp-px-6 asnp-py-4 asnp-whitespace-nowrap"},[_c('i',{staticClass:"fa fa-reorder reorder-shipping-list",attrs:{"aria-hidden":"true"}})])}]
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/ShippingList.vue?vue&type=template&id=72b6c750&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/ShippingList.vue?vue&type=template&id=af3b5738&
 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ShippingTemplatesModal.vue?vue&type=template&id=19cfa8b1&
+var ShippingTemplatesModalvue_type_template_id_19cfa8b1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"asnp-modal"}},[_c('div',{staticClass:"asnp-fixed asnp-inset-0 asnp-bg-black asnp-bg-opacity-50 asnp-flex asnp-items-center asnp-justify-center asnp-transition-opacity asnp-duration-300",staticStyle:{"z-index":"9998"},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.$emit( 'cancel' )}}},[_c('div',{staticClass:"asnp-w-full",staticStyle:{"max-width":"900px","width":"90%"}},[_c('div',{staticClass:"asnp-bg-white asnp-rounded-lg asnp-shadow-lg asnp-transition-all asnp-duration-300 asnp-flex asnp-flex-col asnp-w-full shipping-templates-modal",staticStyle:{"height":"650px","max-height":"90vh","scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-p-5 asnp-border-b asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex asnp-justify-between asnp-items-center"},[_c('h3',{staticClass:"asnp-m-0 asnp-text-xl asnp-font-semibold"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'Choose your desired shipping method',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-bg-transparent asnp-border-none asnp-cursor-pointer asnp-text-2xl asnp-leading-none asnp-text-gray-400 asnp-p-0 hover:asnp-text-gray-600",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_c('span',{staticClass:"dashicons dashicons-no-alt"})])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-mt-4",staticStyle:{"gap":"10px"}},[_c('div',{staticClass:"asnp-relative asnp-flex-1 asnp-flex asnp-items-center"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchQuery),expression:"searchQuery"}],staticClass:"asnp-w-full asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10 asnp-placeholder-gray-400",staticStyle:{"padding-right":"40px"},attrs:{"type":"text","placeholder":_vm.__(
+										'Search templates...',
+										'easy-woocommerce-discounts'
+									)},domProps:{"value":(_vm.searchQuery)},on:{"input":function($event){if($event.target.composing){ return; }_vm.searchQuery=$event.target.value}}}),_vm._v(" "),(_vm.searchQuery)?_c('span',{staticClass:"asnp-absolute asnp-right-3 asnp-bg-gray-200 asnp-text-gray-500 asnp-rounded-full asnp-flex asnp-items-center asnp-justify-center asnp-cursor-pointer asnp-transition-all hover:asnp-bg-gray-300 hover:asnp-text-gray-700",staticStyle:{"width":"18px","height":"18px","top":"50%","transform":"translateY( -50% )"},on:{"click":function($event){_vm.searchQuery = ''}}},[_c('svg',{staticStyle:{"width":"10px","height":"10px"},attrs:{"xmlns":"http://www.w3.org/2000/svg","fill":"none","viewBox":"0 0 24 24","stroke":"currentColor","stroke-width":"3"}},[_c('path',{attrs:{"stroke-linecap":"round","stroke-linejoin":"round","d":"M6 18L18 6M6 6l12 12"}})])]):_vm._e()]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedCategory),expression:"selectedCategory"}],staticClass:"asnp-w-full md:asnp-w-auto asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.selectedCategory=$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":""}},[_vm._v(_vm._s(_vm.__(
+									'All Categories',
+									'easy-woocommerce-discounts'
+								)))]),_vm._v(" "),_vm._l((_vm.categories),function(cat){return _c('option',{key:cat.id,domProps:{"value":cat.id}},[_vm._v(_vm._s(cat.label))])})],2)])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-flex-1 asnp-overflow-y-auto md:asnp-overflow-hidden asnp-p-5",staticStyle:{"scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-h-auto md:asnp-flex-1 md:asnp-overflow-y-auto asnp-pr-1 md:asnp-pr-5 asnp-pl-1 asnp-pb-1 asnp-pt-1",staticStyle:{"scrollbar-gutter":"stable"}},[_vm._l((_vm.groupedTemplates),function(groupTemplates,groupName,index){return _c('div',{key:groupName,staticClass:"template-group"},[_c('h4',{staticClass:"asnp-text-base asnp-font-bold asnp-text-indigo-600 asnp-mb-3 asnp-pb-2 asnp-border-b asnp-border-gray-100",class:index === 0 ? 'asnp-mt-0' : 'asnp-mt-6'},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.tagNames[ groupName ])+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col asnp-gap-3"},_vm._l((groupTemplates),function(template,templIndex){return _c('div',{key:templIndex,staticClass:"asnp-group asnp-relative asnp-flex asnp-items-center asnp-p-3 asnp-px-4 asnp-transition-all asnp-duration-200 asnp-border asnp-rounded-lg asnp-cursor-pointer asnp-bg-white",class:[
+										_vm.selectedTemplate === template
+											? 'asnp-border-indigo-600 asnp-ring-1 asnp-ring-indigo-600 asnp-bg-indigo-50'
+											: 'asnp-border-gray-200 hover:asnp-border-indigo-400 hover:asnp-shadow-sm' ],on:{"mouseenter":function($event){_vm.hoveredTemplate = template},"mouseleave":function($event){_vm.hoveredTemplate = null},"click":function($event){return _vm.selectTemplate( template )}}},[_c('div',{staticClass:"asnp-flex-1"},[_c('div',{staticClass:"asnp-text-sm asnp-font-medium asnp-transition-colors",class:_vm.selectedTemplate ===
+												template
+													? 'asnp-text-indigo-700'
+													: 'asnp-text-gray-700 group-hover:asnp-text-indigo-600'},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(template.name)+"\n\t\t\t\t\t\t\t\t\t\t\t"),(template.pro)?_c('span',{staticClass:"asnp-ml-2 asnp-inline-flex asnp-items-center asnp-px-1 asnp-py-0 asnp-rounded asnp-text-[8px] asnp-font-bold asnp-bg-emerald-100 asnp-text-emerald-700 asnp-border asnp-border-emerald-200 asnp-uppercase asnp-tracking-wider"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+														'Pro',
+														'easy-woocommerce-discounts'
+													))+"\n\t\t\t\t\t\t\t\t\t\t\t")]):_vm._e()]),_vm._v(" "),(template.sub)?_c('div',{staticClass:"asnp-text-xs asnp-text-gray-500 asnp-mt-0.5"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(template.sub)+"\n\t\t\t\t\t\t\t\t\t\t")]):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"asnp-expand"}},[(
+													_vm.selectedTemplate ===
+													template
+												)?_c('div',{staticClass:"asnp-overflow-hidden",class:[
+													template.show_timing !==
+													false
+														? 'asnp-mt-3 asnp-pt-3 asnp-border-t asnp-border-indigo-100'
+														: 'asnp-mt-3 asnp-pt-3 asnp-border-t asnp-border-indigo-100 md:asnp-mt-0 md:asnp-pt-0 md:asnp-border-t-0' ]},[_c('div',{staticClass:"md:asnp-hidden",class:template.show_timing !==
+														false
+															? 'asnp-mb-5'
+															: ''},[_c('p',{staticClass:"asnp-text-gray-600 asnp-text-xs asnp-leading-relaxed",domProps:{"innerHTML":_vm._s(
+															template.description
+														)}}),_vm._v(" "),(
+															template.examples &&
+															template
+																.examples
+																.length
+														)?_c('div',{staticClass:"asnp-mt-3 asnp-space-y-1"},_vm._l((template.examples),function(example,exIndex){return _c('div',{key:exIndex,staticClass:"asnp-text-[10px] asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t•\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"),(
+																	example.old_price
+																)?_c('span',{staticClass:"asnp-line-through"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-medium asnp-text-gray-700"},[_vm._v(_vm._s(example.new_price))])])}),0):_vm._e()]),_vm._v(" "),(
+														template.show_timing !==
+														false
+													)?_c('div',{staticClass:"asnp-mb-4"},[_c('h5',{staticClass:"asnp-text-[10px] asnp-font-bold asnp-text-gray-400 asnp-uppercase asnp-tracking-wider asnp-mb-3"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																'Campaign Timing',
+																'easy-woocommerce-discounts'
+															))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"asnp-grid asnp-grid-cols-1 sm:asnp-grid-cols-3 asnp-gap-2.5"},[_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'normal',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"normal"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"normal")},on:{"change":function($event){_vm.campaignType
+																	="normal"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'normal'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Normal',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])]),_vm._v(" "),_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'black_friday',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"black_friday"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"black_friday")},on:{"change":function($event){_vm.campaignType
+																	="black_friday"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'black_friday'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Black Friday',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])]),_vm._v(" "),_c('label',{staticClass:"asnp-timing-option-card",class:{
+																'asnp-is-active':
+																	_vm.campaignType ===
+																	'seasonal',
+															}},[_c('div',{staticClass:"asnp-timing-radio-indicator"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(
+																		_vm.campaignType
+																	),expression:"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcampaignType\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"}],staticClass:"asnp-absolute asnp-opacity-0 asnp-w-full asnp-h-full asnp-cursor-pointer",attrs:{"type":"radio","value":"seasonal"},domProps:{"checked":_vm._q(
+																		_vm.campaignType
+																	,"seasonal")},on:{"change":function($event){_vm.campaignType
+																	="seasonal"}}}),_vm._v(" "),(
+																		_vm.campaignType ===
+																		'seasonal'
+																	)?_c('div',{staticClass:"asnp-timing-radio-dot"}):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"asnp-timing-label-text"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+																		'Seasonal',
+																		'easy-woocommerce-discounts'
+																	))+"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t")])])])]):_vm._e()]):_vm._e()])],1)])}),0)])}),_vm._v(" "),(
+								Object.keys( _vm.groupedTemplates ).length === 0
+							)?_c('div',{staticClass:"asnp-p-5 asnp-text-center asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'No templates found.',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")]):_vm._e()],2),_vm._v(" "),_c('div',{staticClass:"asnp-hidden md:asnp-flex md:asnp-w-1/3 asnp-px-5 asnp-border-l asnp-border-gray-200 asnp-overflow-y-auto asnp-flex-col",staticStyle:{"scrollbar-gutter":"stable"}},[(_vm.activeTemplate)?_c('div',[_c('span',{staticClass:"asnp-inline-block asnp-bg-indigo-100 asnp-text-indigo-800 asnp-px-2 asnp-py-1 asnp-rounded asnp-text-xs"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.tagNames[ _vm.activeTemplate.tag ] ||
+									'Simple Adjustment')+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),(_vm.activeTemplate.pro)?_c('span',{staticClass:"asnp-inline-flex asnp-items-center asnp-px-1 asnp-py-0 asnp-ml-2 asnp-rounded asnp-text-[8px] asnp-font-bold asnp-bg-emerald-100 asnp-text-emerald-700 asnp-border asnp-border-emerald-200 asnp-uppercase asnp-tracking-wider"},[_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+										'Pro',
+										'easy-woocommerce-discounts'
+									))+"\n\t\t\t\t\t\t\t")]):_vm._e(),_vm._v(" "),_c('h4',{staticClass:"asnp-mt-4 asnp-text-lg asnp-font-medium"},[_c('i',{staticClass:"fa fa-truck asnp-text-gray-400 asnp-mr-2"}),_vm._v("\n\t\t\t\t\t\t\t\t"+_vm._s(_vm.activeTemplate.name)+"\n\t\t\t\t\t\t\t")]),_vm._v(" "),_c('p',{staticClass:"asnp-mt-2 asnp-text-gray-500 asnp-text-sm",domProps:{"innerHTML":_vm._s(_vm.activeTemplate.description)}}),_vm._v(" "),(
+									_vm.activeTemplate.examples &&
+									_vm.activeTemplate.examples.length
+								)?_c('div',{staticClass:"asnp-mt-4 asnp-bg-gray-50 asnp-p-4 asnp-rounded-md asnp-border asnp-border-gray-100"},[_c('strong',{staticClass:"asnp-block asnp-mb-2 asnp-text-sm asnp-text-gray-700"},[_vm._v(_vm._s(_vm.__(
+											'Eg:',
+											'easy-woocommerce-discounts'
+										)))]),_vm._v(" "),_c('ul',{staticClass:"asnp-list-disc asnp-pl-5 asnp-m-0 asnp-text-sm asnp-text-gray-600"},_vm._l((_vm.activeTemplate.examples),function(example,index){return _c('li',{key:index,staticClass:"asnp-mb-1"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t"),(example.old_price)?_c('span',{staticClass:"asnp-line-through asnp-text-gray-400 asnp-mr-1"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-semibold asnp-text-gray-900"},[_vm._v(_vm._s(example.new_price))])])}),0)]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-text-indigo-500 asnp-block asnp-mt-4 asnp-text-xs"},[_vm._v("("+_vm._s(_vm.__(
+										'You can edit everything later.',
+										'easy-woocommerce-discounts'
+									))+")")]),_vm._v(" "),(_vm.activeTemplate.pro)?_c('div',{staticClass:"asnp-mt-6 asnp-p-3 asnp-bg-emerald-50 asnp-rounded-md asnp-border asnp-border-emerald-100 asnp-text-xs asnp-text-emerald-800 asnp-leading-relaxed"},[_c('span',{domProps:{"innerHTML":_vm._s(
+										_vm.sprintf(
+											_vm.__(
+												'This is a PRO feature. Unlock it by upgrading to the %s.',
+												'easy-woocommerce-discounts'
+											),
+											("<a href='https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link' target='_blank' class='asnp-font-bold asnp-text-emerald-700 hover:asnp-underline'>" + (_vm.__(
+												'PRO version',
+												'easy-woocommerce-discounts'
+											)) + "</a>")
+										)
+									)}})]):_vm._e()]):_vm._e()])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-justify-end asnp-p-4 asnp-px-5 asnp-border-t asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex"},[_c('button',{staticClass:"asnp-btn asnp-btn-secondary asnp-mr-2",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary",class:{
+								'asnp-opacity-50 asnp-cursor-not-allowed':
+									_vm.selectedTemplate &&
+									_vm.selectedTemplate.pro,
+							},attrs:{"disabled":_vm.selectedTemplate && _vm.selectedTemplate.pro},on:{"click":_vm.addCampaign}},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+									'Add Method',
+									'easy-woocommerce-discounts'
+								))+"\n\t\t\t\t\t\t")])])])])])])])}
+var ShippingTemplatesModalvue_type_template_id_19cfa8b1_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ShippingTemplatesModal.vue?vue&type=template&id=19cfa8b1&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ShippingTemplatesModal.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var ShippingTemplatesModalvue_type_script_lang_js_ = ({
+  name: 'shipping-templates-modal',
+  data: function data() {
+    return {
+      searchQuery: '',
+      selectedCategory: '',
+      selectedTemplate: null,
+      hoveredTemplate: null,
+      campaignType: 'normal',
+      templates: [{
+        name: this.__('Custom Shipping Method', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-hand-paper-o',
+        description: this.__('Start from scratch and build your own unique shipping logic with custom rules and conditions.', 'easy-woocommerce-discounts'),
+        slug: 'own-campaign',
+        tag: 'general',
+        show_timing: false,
+        examples: [],
+        pro: false
+      }, {
+        name: this.__('Flat Rate Shipping Fee', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-money',
+        description: this.__('Charge a fixed amount for shipping (e.g., $10) regardless of the products or total order value.', 'easy-woocommerce-discounts'),
+        slug: 'cost-shipping',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Shipping Cost',
+          new_price: '20$'
+        }],
+        pro: false
+      }, {
+        name: this.__('Shipping Fee for Small Orders', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-sort-numeric-asc',
+        description: this.__('Charge a shipping fee only when the order total is below a specific amount (e.g., free shipping above $100).', 'easy-woocommerce-discounts'),
+        slug: 'shipping-cost-under-amount',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Cart Total < $200',
+          new_price: 'Shipping Cost'
+        }, {
+          item: 'Cart Total >= $200',
+          new_price: 'Free / Other'
+        }],
+        pro: false
+      }, {
+        name: this.__('International Shipping Rates', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-globe',
+        description: this.__('Set up specific shipping methods and costs for different countries across the globe.', 'easy-woocommerce-discounts'),
+        slug: 'shipping-specific-countries',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Country: USA',
+          new_price: 'Applicable'
+        }, {
+          item: 'Country: Other',
+          new_price: 'Not Applicable'
+        }],
+        pro: true
+      }, {
+        name: this.__('State Specific Shipping Rates', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-map-marker',
+        description: this.__('Define shipping costs for customers in specific states, provinces, or regional areas.', 'easy-woocommerce-discounts'),
+        slug: 'shipping-specific-states',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'State: NY',
+          new_price: 'Applicable'
+        }],
+        pro: true
+      }, {
+        name: this.__('City Specific Shipping Rates', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-map-marker',
+        description: this.__('Define shipping costs for customers in specific cities or urban areas.', 'easy-woocommerce-discounts'),
+        slug: 'shipping-specific-cities',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'City: New York',
+          new_price: 'Applicable'
+        }],
+        pro: true
+      }, {
+        name: this.__('Local Delivery via Zip Codes', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-map-pin',
+        description: this.__('Create shipping rules for specific neighborhoods or local areas based on postal code lists.', 'easy-woocommerce-discounts'),
+        slug: 'shipping-specific-zip-codes',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Zip: 90210',
+          new_price: 'Applicable'
+        }],
+        pro: true
+      }, {
+        name: this.__('Shipping Zone Specific Rates', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullseye',
+        description: this.__('Apply shipping methods to your existing WooCommerce shipping zones for better organization.', 'easy-woocommerce-discounts'),
+        slug: 'shipping-specific-zones',
+        tag: 'shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Zone: Europe',
+          new_price: 'Applicable'
+        }],
+        pro: true
+      },
+      // Free Shipping
+      {
+        name: this.__('Free Shipping Threshold', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-truck',
+        description: this.__('Offer free shipping automatically once a customer spends more than a certain amount (e.g., $200).', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-over-200',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Cart Total < $200',
+          new_price: 'Normal Shipping'
+        }, {
+          item: 'Cart Total >= $200',
+          new_price: 'Free Shipping'
+        }],
+        pro: false
+      }, {
+        name: this.__('Welcome Reward: First Order Free Shipping', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-star',
+        description: this.__('Encourage new shoppers to complete their purchase by offering free shipping on their very first order.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-first-order',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: '1st Order',
+          new_price: 'Free Shipping'
+        }, {
+          item: '2nd Order',
+          new_price: 'Normal Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Loyalty Gift: Second Order Free Shipping', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-repeat',
+        description: this.__('Reward customers who return for a second purchase with a one-time free shipping benefit.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-second-order',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: '1st Order',
+          new_price: 'Normal Shipping'
+        }, {
+          item: '2nd Order',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Free Shipping for Specific Roles', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-users',
+        description: this.__('Give free shipping as a perk to specific groups, such as Wholesale customers, VIPs, or Members.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-user-roles',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'VIP User',
+          new_price: 'Free Shipping'
+        }, {
+          item: 'Regular User',
+          new_price: 'Normal Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Personalized Free Shipping', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user',
+        description: this.__('Select individual customers by name or email and grant them the privilege of free shipping.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-specific-users',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Selected Users',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Free Shipping to Selected Countries', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-globe',
+        description: this.__('Narrow down free shipping offers to customers in specific geographical regions or countries.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-specific-countries',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Country: USA',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Free Shipping to Selected States', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-map-marker',
+        description: this.__('Limit your free shipping promotions to customers in specific states or regional locations.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-specific-states',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'State: NY',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Free Shipping to Selected Cities', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-map-marker',
+        description: this.__('Limit your free shipping promotions to customers in specific cities or urban locations.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-specific-cities',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'City: New York',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Free Shipping for Local Zip Codes', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-map-pin',
+        description: this.__('Provide free delivery for local customers based on their exact zip/postal code list.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-specific-zip-codes',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Zip: 90210',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Free Shipping for Shipping Zones', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-bullseye',
+        description: this.__('Offer free shipping to any customer whose location falls within your predefined shipping zones.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-specific-zones',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Zone: Europe',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Black Friday Free Shipping', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-calendar',
+        description: this.__('Schedule a free shipping event for Black Friday or any other special holiday promotional period.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-black-friday',
+        tag: 'free_shipping',
+        show_timing: false,
+        examples: [{
+          item: 'Black Friday',
+          new_price: 'Free Shipping'
+        }],
+        pro: false
+      }, {
+        name: this.__('Reward High-Spending Customers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-history',
+        description: this.__('Automatically provide free shipping to customers who have spent over a certain amount in your store historically.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-user-history-money',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Total Spent > $1000',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }, {
+        name: this.__('Reward Frequent Shoppers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-calculator',
+        description: this.__('Grant free shipping to loyal customers who have placed a specific number of orders in the past.', 'easy-woocommerce-discounts'),
+        slug: 'free-shipping-user-history-count',
+        tag: 'free_shipping',
+        show_timing: true,
+        examples: [{
+          item: 'Order Count > 5',
+          new_price: 'Free Shipping'
+        }],
+        pro: true
+      }]
+    };
+  },
+  created: function created() {
+    if (this.templates.length > 0) {
+      this.selectedTemplate = this.templates[0];
+    }
+  },
+  computed: {
+    activeTemplate: function activeTemplate() {
+      return this.hoveredTemplate || this.selectedTemplate;
+    },
+    tagNames: function tagNames() {
+      return {
+        general: this.__('General', 'easy-woocommerce-discounts'),
+        shipping: this.__('Standard Shipping', 'easy-woocommerce-discounts'),
+        free_shipping: this.__('Free Shipping Campaigns', 'easy-woocommerce-discounts'),
+        other: this.__('Other', 'easy-woocommerce-discounts')
+      };
+    },
+    categories: function categories() {
+      var _this = this;
+      var categories = [];
+      var seen = new Set();
+      this.templates.forEach(function (t) {
+        if (t.tag && !seen.has(t.tag)) {
+          categories.push({
+            id: t.tag,
+            label: _this.tagNames[t.tag]
+          });
+          seen.add(t.tag);
+        }
+      });
+      return categories;
+    },
+    groupedTemplates: function groupedTemplates() {
+      var _this2 = this;
+      var filtered = this.templates;
+      if (this.searchQuery) {
+        var query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(function (t) {
+          return t.name.toLowerCase().includes(query) || t.description && t.description.toLowerCase().includes(query);
+        });
+      }
+      if (this.selectedCategory) {
+        filtered = filtered.filter(function (t) {
+          return t.tag === _this2.selectedCategory;
+        });
+      }
+      var groups = {};
+      filtered.forEach(function (t) {
+        var tag = t.tag || 'other';
+        if (!groups[tag]) {
+          groups[tag] = [];
+        }
+        groups[tag].push(t);
+      });
+      return groups;
+    }
+  },
+  methods: {
+    selectTemplate: function selectTemplate(template) {
+      this.selectedTemplate = template;
+    },
+    addCampaign: function addCampaign() {
+      if (this.selectedTemplate && this.selectedTemplate.pro) {
+        return;
+      }
+      this.$emit('add-campaign', {
+        template: this.selectedTemplate,
+        campaignType: this.campaignType
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ShippingTemplatesModal.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_ShippingTemplatesModalvue_type_script_lang_js_ = (ShippingTemplatesModalvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/ShippingTemplatesModal.vue
+
+
+
+
+
+/* normalize component */
+
+var ShippingTemplatesModal_component = Object(componentNormalizer["a" /* default */])(
+  components_ShippingTemplatesModalvue_type_script_lang_js_,
+  ShippingTemplatesModalvue_type_template_id_19cfa8b1_render,
+  ShippingTemplatesModalvue_type_template_id_19cfa8b1_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var ShippingTemplatesModal = (ShippingTemplatesModal_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/ShippingList.vue?vue&type=script&lang=js&
 //
 //
@@ -14021,17 +20021,33 @@ var ShippingListvue_type_template_id_72b6c750_staticRenderFns = [function () {va
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ var ShippingListvue_type_script_lang_js_ = ({
   name: 'shipping-list',
+  components: {
+    ShippingTemplatesModal: ShippingTemplatesModal
+  },
   data: function data() {
     return {
       shippingList: cloneDeep_default()(this.$store.state.shippingList),
       showLoading: false,
       showDeleteModal: false,
+      showTemplatesModal: false,
       deleteId: 0
     };
   },
@@ -14121,6 +20137,18 @@ var ShippingListvue_type_template_id_72b6c750_staticRenderFns = [function () {va
       })["catch"](function (error) {
         _this4.showLoading = false;
       });
+    },
+    handleAddCampaign: function handleAddCampaign(_ref) {
+      var template = _ref.template,
+        campaignType = _ref.campaignType;
+      this.showTemplatesModal = false;
+      this.$router.push({
+        path: '/shipping/new',
+        query: {
+          template: template.slug,
+          campaign: campaignType
+        }
+      });
     }
   }
 });
@@ -14136,8 +20164,8 @@ var ShippingListvue_type_template_id_72b6c750_staticRenderFns = [function () {va
 
 var ShippingList_component = Object(componentNormalizer["a" /* default */])(
   views_ShippingListvue_type_script_lang_js_,
-  ShippingListvue_type_template_id_72b6c750_render,
-  ShippingListvue_type_template_id_72b6c750_staticRenderFns,
+  ShippingListvue_type_template_id_af3b5738_render,
+  ShippingListvue_type_template_id_af3b5738_staticRenderFns,
   false,
   null,
   null,
@@ -14146,8 +20174,8 @@ var ShippingList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var ShippingList = (ShippingList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/Shipping.vue?vue&type=template&id=5cd82ad0&
-var Shippingvue_type_template_id_5cd82ad0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-shipping-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Shipping Method', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/shipping-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.save}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/Shipping.vue?vue&type=template&id=2f04acea&
+var Shippingvue_type_template_id_2f04acea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-shipping-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Shipping Method', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/shipping-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.save}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There are some errors in the form please fix them and save it again.',
 					'easy-woocommerce-discounts'
 				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.shipping.name),expression:"shipping.name"}],class:{
@@ -14219,10 +20247,10 @@ var Shippingvue_type_template_id_5cd82ad0_render = function () {var _vm=this;var
 					'There is not any condition.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('conditions-container',{attrs:{"items":_vm.shipping.conditions},on:{"conditionUpdated":_vm.onConditionUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewCondition,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}})],1)}
-var Shippingvue_type_template_id_5cd82ad0_staticRenderFns = []
+var Shippingvue_type_template_id_2f04acea_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/Shipping.vue?vue&type=template&id=5cd82ad0&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/Shipping.vue?vue&type=template&id=2f04acea&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/Shipping.vue?vue&type=script&lang=js&
 function Shippingvue_type_script_lang_js_typeof(o) { "@babel/helpers - typeof"; return Shippingvue_type_script_lang_js_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, Shippingvue_type_script_lang_js_typeof(o); }
@@ -14631,6 +20659,7 @@ function Shippingvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != Shi
     ConditionsContainer: ConditionsContainer
   },
   data: function data() {
+    var _this$$route, _this$$route$query;
     var shipping = {
         name: 'Shipping',
         private_note: '',
@@ -14645,8 +20674,8 @@ function Shippingvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != Shi
         fee: 0,
         min_fee: '',
         max_fee: '',
-        usage_limit: '',
-        ordering: 0
+        ordering: 0,
+        usage_limit: ''
       },
       id = 'new' !== this.$route.params.id ? parseInt(this.$route.params.id) : 0;
     if (id > 0) {
@@ -14656,6 +20685,12 @@ function Shippingvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != Shi
           shipping = Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, shipping), item);
           break;
         }
+      }
+    } else if ((_this$$route = this.$route) !== null && _this$$route !== void 0 && (_this$$route$query = _this$$route.query) !== null && _this$$route$query !== void 0 && _this$$route$query.template) {
+      var _this$$route2, _this$$route2$query;
+      var template = this.getFromTemplate(this.$route.query.template, ((_this$$route2 = this.$route) === null || _this$$route2 === void 0 ? void 0 : (_this$$route2$query = _this$$route2.query) === null || _this$$route2$query === void 0 ? void 0 : _this$$route2$query.campaign) || 'normal');
+      if (template) {
+        shipping = Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, shipping), template);
       }
     }
     return {
@@ -14670,6 +20705,271 @@ function Shippingvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != Shi
     };
   },
   methods: {
+    getFromTemplate: function getFromTemplate(slug) {
+      var campaign = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'normal';
+      if (!slug || 'own-campaign' === slug) {
+        return null;
+      }
+      var condition = this.initialCondition();
+      var result = null; // Initialize result here
+      switch (slug) {
+        case 'cost-shipping':
+          result = {
+            name: this.__('Flat Rate Shipping Fee', 'easy-woocommerce-discounts'),
+            cost: 20
+          };
+          break;
+        case 'shipping-cost-under-amount':
+          result = {
+            name: this.__('Shipping Fee for Small Orders', 'easy-woocommerce-discounts'),
+            cost: 20,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417001,
+              condition: 'subtotal_including_tax',
+              math_operation_type: 'less_than',
+              number_value_2: 200
+            })]]
+          };
+          break;
+        case 'shipping-specific-countries':
+          result = {
+            name: this.__('International Shipping Rates', 'easy-woocommerce-discounts'),
+            cost: 20,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417002,
+              condition: 'shipping_country',
+              select_type: 'selected',
+              countries: []
+            })]]
+          };
+          break;
+        case 'shipping-specific-states':
+          result = {
+            name: this.__('State Specific Shipping Rates', 'easy-woocommerce-discounts'),
+            cost: 20,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417003,
+              condition: 'shipping_state',
+              select_type: 'selected',
+              states: []
+            })]]
+          };
+          break;
+        case 'shipping-specific-cities':
+          result = {
+            name: this.__('City Specific Shipping Rates', 'easy-woocommerce-discounts'),
+            cost: 20,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417004,
+              condition: 'shipping_city',
+              string_operation_type: 'equal_to'
+            })]]
+          };
+          break;
+        case 'shipping-specific-zip-codes':
+          result = {
+            name: this.__('Local Delivery via Zip Codes', 'easy-woocommerce-discounts'),
+            cost: 20,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417005,
+              condition: 'shipping_postcode',
+              match: 'match',
+              post_code: ''
+            })]]
+          };
+          break;
+        case 'shipping-specific-zones':
+          result = {
+            name: this.__('Shipping Zone Specific Rates', 'easy-woocommerce-discounts'),
+            cost: 20,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417006,
+              condition: 'shipping_zone',
+              select_type: 'selected',
+              zones: []
+            })]]
+          };
+          break;
+        case 'free-shipping-over-200':
+          result = {
+            name: this.__('Free Shipping Threshold', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417007,
+              condition: 'subtotal_including_tax',
+              math_operation_type: 'greater_equal_to',
+              number_value_2: 200
+            })]]
+          };
+          break;
+        case 'free-shipping-first-order':
+          result = {
+            name: this.__('Welcome Reward: First Order Free Shipping', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              id: 1765884417008
+            }), Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417009,
+              condition: 'number_of_orders',
+              math_operation_type: 'equal_to',
+              number_value_2: 0,
+              time_type: 'all_time'
+            })]]
+          };
+          break;
+        case 'free-shipping-second-order':
+          result = {
+            name: this.__('Loyalty Gift: Second Order Free Shipping', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'is_logged_in',
+              id: 1765884417010
+            }), Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417011,
+              condition: 'number_of_orders',
+              math_operation_type: 'equal_to',
+              number_value_2: 1,
+              time_type: 'all_time'
+            })]]
+          };
+          break;
+        case 'free-shipping-user-roles':
+          result = {
+            name: this.__('Free Shipping for Specific Roles', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417012,
+              condition: 'roles',
+              select_type: 'selected',
+              roles: []
+            })]]
+          };
+          break;
+        case 'free-shipping-specific-users':
+          result = {
+            name: this.__('Personalized Free Shipping', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417013,
+              condition: 'customers',
+              select_type: 'selected',
+              customers: []
+            })]]
+          };
+          break;
+        case 'free-shipping-specific-countries':
+          result = {
+            name: this.__('Free Shipping to Selected Countries', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417014,
+              condition: 'shipping_country',
+              select_type: 'selected',
+              countries: []
+            })]]
+          };
+          break;
+        case 'free-shipping-specific-states':
+          result = {
+            name: this.__('Free Shipping to Selected States', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417015,
+              condition: 'shipping_state',
+              select_type: 'selected',
+              states: []
+            })]]
+          };
+          break;
+        case 'free-shipping-specific-cities':
+          result = {
+            name: this.__('Free Shipping to Selected Cities', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417016,
+              condition: 'shipping_city',
+              string_operation_type: 'equal_to'
+            })]]
+          };
+          break;
+        case 'free-shipping-specific-zip-codes':
+          result = {
+            name: this.__('Free Shipping for Local Zip Codes', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417017,
+              condition: 'shipping_postcode',
+              match: 'match',
+              post_code: ''
+            })]]
+          };
+          break;
+        case 'free-shipping-specific-zones':
+          result = {
+            name: this.__('Free Shipping for Shipping Zones', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417018,
+              condition: 'shipping_zone',
+              select_type: 'selected',
+              zones: []
+            })]]
+          };
+          break;
+        case 'free-shipping-black-friday':
+          result = {
+            name: this.__('Black Friday Free Shipping', 'easy-woocommerce-discounts'),
+            cost: 0,
+            date_time: this.getBlackFriday()
+          };
+          break;
+        case 'free-shipping-user-history-money':
+          result = {
+            name: this.__('Reward High-Spending Customers', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417019,
+              condition: 'money_spent',
+              math_operation_type: 'greater_equal_to',
+              number_value_2: 100,
+              time_type: 'all_time'
+            }), Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417020,
+              condition: 'user_usage_limit',
+              number_value_2: 1
+            })]]
+          };
+          break;
+        case 'free-shipping-user-history-count':
+          result = {
+            name: this.__('Reward Frequent Shoppers', 'easy-woocommerce-discounts'),
+            cost: 0,
+            conditions: [[Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417020,
+              condition: 'number_of_orders',
+              math_operation_type: 'greater_equal_to',
+              number_value_2: 5,
+              time_type: 'all_time'
+            }), Shippingvue_type_script_lang_js_objectSpread(Shippingvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              id: 1765884417021,
+              condition: 'user_usage_limit',
+              number_value_2: 1
+            })]]
+          };
+          break;
+        default:
+          break;
+      }
+      if (result) {
+        if ('black_friday' === campaign) {
+          result.date_time = this.getBlackFriday();
+        } else if ('seasonal' === campaign) {
+          result.date_time = this.getSeasonalPromotionDate();
+        }
+      }
+      return result;
+    },
     onConditionUpdated: function onConditionUpdated(groupIndex, condition, index) {
       this.shipping.conditions[groupIndex][index] = condition;
     },
@@ -14782,8 +21082,8 @@ function Shippingvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != Shi
         fee: this.shipping.fee,
         min_fee: this.shipping.min_fee,
         max_fee: this.shipping.max_fee,
-        usage_limit: this.shipping.usage_limit,
-        ordering: this.ordering
+        ordering: this.ordering,
+        usage_limit: this.shipping.usage_limit
       }).then(function (response) {
         if (1 == response.success) {
           if (!_this.id) {
@@ -14834,8 +21134,8 @@ function Shippingvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != Shi
 
 var Shipping_component = Object(componentNormalizer["a" /* default */])(
   views_Shippingvue_type_script_lang_js_,
-  Shippingvue_type_template_id_5cd82ad0_render,
-  Shippingvue_type_template_id_5cd82ad0_staticRenderFns,
+  Shippingvue_type_template_id_2f04acea_render,
+  Shippingvue_type_template_id_2f04acea_staticRenderFns,
   false,
   null,
   null,
@@ -31491,6 +37791,97 @@ var BlackFriday_component = Object(componentNormalizer["a" /* default */])(
               }
           }
           return result;
+        },
+        getBlackFriday: function getBlackFriday() {
+          var format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'object';
+          var today = new Date();
+          var year = today.getFullYear();
+          var firstOfNov = new Date(year, 10, 1);
+          var day = firstOfNov.getDay();
+          var offset = (11 - day) % 7;
+          var blackFridayParams = 23 + offset;
+          var bfDate = new Date(year, 10, blackFridayParams);
+          var y = bfDate.getFullYear();
+          var m = String(bfDate.getMonth() + 1).padStart(2, '0');
+          var d = String(bfDate.getDate()).padStart(2, '0');
+          var blackFriday = "".concat(y, "-").concat(m, "-").concat(d);
+          if ('date' === format || 'day' === format) {
+            return blackFriday;
+          }
+          return [[{
+            type: 'date_time',
+            start: {
+              time: "".concat(blackFriday, "  00:00")
+            },
+            end: {
+              time: "".concat(blackFriday, " 23:59")
+            },
+            start_time: '00:00',
+            end_time: '23:59',
+            date: {
+              time: "".concat(blackFriday)
+            },
+            days: '',
+            id: Date.now()
+          }]];
+        },
+        getSeasonalPromotionDate: function getSeasonalPromotionDate() {
+          var format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'object';
+          var today = new Date();
+          var year = today.getFullYear();
+          var month = today.getMonth(); // 0-indexed
+
+          var start, end;
+
+          // Define seasonal windows based on current month
+          if (month === 0) {
+            // January: Winter Clearance
+            start = new Date(year, 0, 1);
+            end = new Date(year, 0, 31);
+          } else if (month === 1) {
+            // February: Valentine's
+            start = new Date(year, 1, 7);
+            end = new Date(year, 1, 14);
+          } else if (month >= 2 && month <= 4) {
+            // Spring
+            start = new Date(year, 2, 20);
+            end = new Date(year, 3, 30);
+          } else if (month >= 5 && month <= 7) {
+            // Summer
+            start = new Date(year, 5, 21);
+            end = new Date(year, 7, 31);
+          } else {
+            // Autumn/Holiday
+            start = new Date(year, 10, 1);
+            end = new Date(year, 11, 31);
+          }
+          var formatDate = function formatDate(d) {
+            var y = d.getFullYear();
+            var m = String(d.getMonth() + 1).padStart(2, '0');
+            var day = String(d.getDate()).padStart(2, '0');
+            return "".concat(y, "-").concat(m, "-").concat(day);
+          };
+          var startDate = formatDate(start);
+          var endDate = formatDate(end);
+          if ('date' === format) {
+            return startDate;
+          }
+          return [[{
+            type: 'date_time',
+            start: {
+              time: "".concat(startDate, " 00:00")
+            },
+            end: {
+              time: "".concat(endDate, " 23:59")
+            },
+            start_time: '00:00',
+            end_time: '23:59',
+            date: {
+              time: "".concat(startDate)
+            },
+            days: '',
+            id: Date.now()
+          }]];
         }
       }
     });

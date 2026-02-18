@@ -12,15 +12,22 @@ class WCCS_Condition_Validator {
 
 	protected $cart;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param WP_User|null          $customer
+	 * @param WCCS_Products|null    $products
+	 * @param WCCS_Cart|null        $cart
+	 */
 	public function __construct(
 		$customer = null,
-		WCCS_Products $products = null,
-		WCCS_Cart $cart = null
+		$products = null,
+		$cart = null
 	) {
-		$wccs            = WCCS();
-		$this->customer  = ! is_null( $customer ) ? new WCCS_Customer( $customer ) : new WCCS_Customer( wp_get_current_user() );
-		$this->products  = ! is_null( $products ) ? $products : $wccs->products;
-		$this->cart      = ! is_null( $cart ) ? $cart : $wccs->cart;
+		$wccs = WCCS();
+		$this->customer = ! is_null( $customer ) ? new WCCS_Customer( $customer ) : new WCCS_Customer( wp_get_current_user() );
+		$this->products = ! is_null( $products ) ? $products : $wccs->products;
+		$this->cart = ! is_null( $cart ) ? $cart : $wccs->cart;
 	}
 
 	protected function init_cart() {
@@ -41,7 +48,7 @@ class WCCS_Condition_Validator {
 		} else {
 			$rule = null;
 		}
-		
+
 		if ( empty( $conditions ) ) {
 			return true;
 		}
@@ -89,7 +96,7 @@ class WCCS_Condition_Validator {
 
 		$is_valid = false;
 		if ( is_callable( array( $this, $condition['condition'] ) ) ) {
-            $is_valid = call_user_func_array( array( $this, $condition['condition'] ), array( $condition, $rule ) );
+			$is_valid = call_user_func_array( array( $this, $condition['condition'] ), array( $condition, $rule ) );
 		}
 
 		return apply_filters( 'wccs_condition_validator_is_valid_' . $condition['condition'], $is_valid, $condition );
@@ -148,8 +155,8 @@ class WCCS_Condition_Validator {
 		if ( ! $rule || ! $rule->id ) {
 			return false;
 		}
-		
-        $value = ! empty( $condition['number_value_2'] ) ? floatval( $condition['number_value_2'] ) : 0;
+
+		$value = ! empty( $condition['number_value_2'] ) ? floatval( $condition['number_value_2'] ) : 0;
 		if ( 0 >= $value ) {
 			return false;
 		}
@@ -160,10 +167,10 @@ class WCCS_Condition_Validator {
 		}
 
 		try {
-			$model = WCCS()->container()->get( WCCS_DB_User_Usage_Logs::class );
+			$model = WCCS()->container()->get( WCCS_DB_User_Usage_Logs::class);
 			$usage_count = $model->get_user_usage_count( (int) $rule->id, $used_by );
 			return $usage_count < $value;
-		} catch ( Exception $e ) {
+		} catch (Exception $e) {
 			return false;
 		}
 	}

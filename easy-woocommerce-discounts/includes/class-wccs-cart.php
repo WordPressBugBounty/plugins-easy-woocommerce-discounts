@@ -207,10 +207,10 @@ class WCCS_Cart {
 
 		$cart_items = array();
 		foreach ( $cart_contents as $cart_item_key => $cart_item ) {
-			$product   = $cart_item['data'];
+			$product = $cart_item['data'];
 			$variation = (int) $cart_item['variation_id'];
 			if ( 0 < $variation ) {
-				$product   = (int) $cart_item['product_id'];
+				$product = (int) $cart_item['product_id'];
 				$variation = $cart_item['data'];
 			}
 
@@ -316,7 +316,7 @@ class WCCS_Cart {
 			return array();
 		}
 
-		$pricing          = WCCS()->pricing;
+		$pricing = WCCS()->pricing;
 		$valid_cart_items = array();
 
 		if ( array( 'all_products' ) === $include || array( 'all_categories' ) === $include ) {
@@ -385,10 +385,17 @@ class WCCS_Cart {
 	 * @param  array|null $cart_items        When it is null it use default cart items.
 	 * @param  string     $sort              Possible values is price
 	 * @param  string     $order             Possible values are asc, desc
+	 * @param  boolean    $include_hierarchy Include hierarchy is usefull when items has hierarchy like product categories.
 	 *
 	 * @return array
 	 */
-	public function get_cart_quantities_based_on( $quantity_based_on = 'single_product', array $cart_items = null, $sort = '', $order = 'desc' ) {
+	public function get_cart_quantities_based_on(
+		$quantity_based_on = 'single_product',
+		$cart_items = null,
+		$sort = '',
+		$order = 'desc',
+		$include_hierarchy = false
+	) {
 		if ( empty( $quantity_based_on ) ) {
 			return array();
 		} elseif ( ! $this->cart_initialized() ) {
@@ -407,7 +414,7 @@ class WCCS_Cart {
 		$cart_quantities = array();
 
 		switch ( $quantity_based_on ) {
-			case 'single_product' :
+			case 'single_product':
 				foreach ( $cart_items as $cart_item_key => $cart_item ) {
 					if ( ! isset( $cart_quantities[ $cart_item['product_id'] ] ) ) {
 						$cart_quantities[ $cart_item['product_id'] ] = array(
@@ -421,7 +428,7 @@ class WCCS_Cart {
 				}
 				break;
 
-			case 'all_products' :
+			case 'all_products':
 				foreach ( $cart_items as $cart_item_key => $cart_item ) {
 					if ( ! isset( $cart_quantities['all_products'] ) ) {
 						$cart_quantities['all_products'] = array(
@@ -435,7 +442,7 @@ class WCCS_Cart {
 				}
 				break;
 
-			default :
+			default:
 				break;
 		}
 

@@ -22,15 +22,22 @@ class WCCS_Cart_Discount {
 
 	const DISCOUNT_SUFFIX = 'wccs_cart_discount_';
 
-	public function __construct( array $discounts, WCCS_Cart $cart = null, $apply_method = null ) {
+	/**
+	 * Constructor.
+	 *
+	 * @param array          $discounts
+	 * @param WCCS_Cart|null $cart
+	 * @param string|null    $apply_method
+	 */
+	public function __construct( array $discounts, $cart = null, $apply_method = null ) {
 		$wccs = WCCS();
 
-		$this->discounts           = $discounts;
-		$this->cart                = null === $cart ? $wccs->cart : $cart;
-		$this->apply_method        = null === $apply_method ? $wccs->settings->get_setting( 'cart_discount_apply_method', 'sum' ) : $apply_method;
+		$this->discounts = $discounts;
+		$this->cart = null === $cart ? $wccs->cart : $cart;
+		$this->apply_method = null === $apply_method ? $wccs->settings->get_setting( 'cart_discount_apply_method', 'sum' ) : $apply_method;
 		$this->date_time_validator = $wccs->WCCS_Date_Time_Validator;
 		$this->condition_validator = $wccs->WCCS_Condition_Validator;
-		$this->rules_filter        = new WCCS_Rules_Filter();
+		$this->rules_filter = new WCCS_Rules_Filter();
 	}
 
 	public function get_discounts() {
@@ -66,11 +73,11 @@ class WCCS_Cart_Discount {
 			return array();
 		}
 
-		$valid_discounts   = array();
-		$applied_coupons   = WC()->cart->get_applied_coupons();
-		$applying_coupon   = WCCS_Helpers::get_applying_coupon();
+		$valid_discounts = array();
+		$applied_coupons = WC()->cart->get_applied_coupons();
+		$applying_coupon = WCCS_Helpers::get_applying_coupon();
 		$individual_manual = false;
-		$manuals           = array();
+		$manuals = array();
 
 		foreach ( $this->discounts as $discount ) {
 			// Skip URL-based coupons.
@@ -90,30 +97,30 @@ class WCCS_Cart_Discount {
 			if ( ! $this->condition_validator->is_valid_conditions( $discount, isset( $discount->conditions_match_mode ) ? $discount->conditions_match_mode : 'all' ) ) {
 				continue;
 			}
-	
+
 			// Handle manual discounts
 			if ( ! empty( $discount->manual ) ) {
 				$code = wc_format_coupon_code( $discount->name );
 				$is_applying = ( $code === $applying_coupon );
 				$is_individual = ( isset( $discount->apply_mode ) && 'individually' === $discount->apply_mode );
-	
+
 				if ( $is_applying && $is_individual ) {
 					$individual_manual = $discount->id;
 				}
-	
+
 				if ( in_array( $code, $applied_coupons, true ) || $is_applying ) {
 					$manuals[] = $discount;
 				} else {
 					continue;
 				}
 			}
-	
+
 			$valid_discounts[] = $discount;
 		}
-	
+
 		if ( $individual_manual ) {
 			// Remove all other applied coupons when individual-use coupon is applied
-			$applied_coupons = array_filter( $applied_coupons, function( $applied ) use ( $manuals, $individual_manual ) {
+			$applied_coupons = array_filter( $applied_coupons, function ( $applied ) use ( $manuals, $individual_manual ) {
 				foreach ( $manuals as $manual ) {
 					$code = wc_format_coupon_code( $manual->name );
 					if ( $code === $applied && $manual->id !== $individual_manual ) {
@@ -121,14 +128,14 @@ class WCCS_Cart_Discount {
 					}
 				}
 				return true;
-			});
-	
+			} );
+
 			WC()->cart->applied_coupons = array_values( $applied_coupons );
-	
+
 			// Filter valid discounts to include only the individual-use discount
-			$valid_discounts = array_filter( $valid_discounts, function( $discount ) use ( $individual_manual ) {
+			$valid_discounts = array_filter( $valid_discounts, function ( $discount ) use ( $individual_manual ) {
 				return empty( $discount->manual ) || $discount->id === $individual_manual;
-			});
+			} );
 		}
 
 		$valid_discounts = apply_filters( 'wccs_cart_discount_valid_discounts', $valid_discounts, $this );
@@ -143,20 +150,20 @@ class WCCS_Cart_Discount {
 
 	public function get_possible_discounts() {
 		$valids = $this->get_valid_discounts();
-        if ( empty( $valids ) ) {
-            return array();
+		if ( empty( $valids ) ) {
+			return array();
 		}
 
 		$prices_include_tax = wc_prices_include_tax();
-		$cart_subtotal      = $prices_include_tax ? $this->cart->subtotal : $this->cart->subtotal_ex_tax;
+		$cart_subtotal = $prices_include_tax ? $this->cart->subtotal : $this->cart->subtotal_ex_tax;
 		if ( 0 >= (float) $cart_subtotal ) {
 			return array();
 		}
 
 		$possibles = array();
-        foreach ( $valids as $discount ) {
-            if ( empty( $discount->discount_amount ) ) {
-                continue;
+		foreach ( $valids as $discount ) {
+			if ( empty( $discount->discount_amount ) ) {
+				continue;
 			}
 
 			$discount = $this->get_discount_data( $discount, $prices_include_tax );
@@ -164,38 +171,38 @@ class WCCS_Cart_Discount {
 				continue;
 			}
 
-            $possibles[ $discount->code ] = $discount;
-        }
+			$possibles[ $discount->code ] = $discount;
+		}
 
-        if ( ! empty( $possibles ) ) {
-            if ( 'first' === $this->apply_method ) {
+		if ( ! empty( $possibles ) ) {
+			if ( 'first' === $this->apply_method ) {
 				$first = array_shift( $possibles );
-                return array( $first->code => $first );
-            } elseif ( 'max' === $this->apply_method ) {
+				return array( $first->code => $first );
+			} elseif ( 'max' === $this->apply_method ) {
 				$max = array_shift( $possibles );
 				foreach ( $possibles as $discount ) {
 					if ( $discount->discount_amount > $max->discount_amount ) {
-                        $max = $discount;
-                    }
+						$max = $discount;
+					}
 				}
-                return array( $max->code => $max );
-            } elseif ( 'min' === $this->apply_method ) {
+				return array( $max->code => $max );
+			} elseif ( 'min' === $this->apply_method ) {
 				$min = array_shift( $possibles );
 				foreach ( $possibles as $discount ) {
 					if ( $discount->discount_amount < $min->discount_amount ) {
-                        $min = $discount;
-                    }
+						$min = $discount;
+					}
 				}
-                return array( $min->code => $min );
-            }
-        }
+				return array( $min->code => $min );
+			}
+		}
 
-        return $possibles;
+		return $possibles;
 	}
 
 	protected function get_discount_data( $discount, $prices_include_tax = null, $limit = null ) {
 		$prices_include_tax = null === $prices_include_tax ? wc_prices_include_tax() : $prices_include_tax;
-		$cart_subtotal      = $prices_include_tax ? $this->cart->subtotal : $this->cart->subtotal_ex_tax;
+		$cart_subtotal = $prices_include_tax ? $this->cart->subtotal : $this->cart->subtotal_ex_tax;
 		if ( 0 >= (float) $cart_subtotal ) {
 			return false;
 		}
@@ -214,11 +221,11 @@ class WCCS_Cart_Discount {
 		$discount_amount = (float) $discount->discount_amount;
 		if ( 'percentage' === $discount->discount_type ) {
 			$discount->amount = $discount_amount;
-			$discount_amount  = $discount_amount / 100 * $cart_subtotal;
+			$discount_amount = $discount_amount / 100 * $cart_subtotal;
 		} elseif ( 'percentage_discount_per_item' === $discount->discount_type ) {
-			$discount->amount      = $discount_amount;
+			$discount->amount = $discount_amount;
 			$discount->product_ids = array();
-			$discount_amount       = 0;
+			$discount_amount = 0;
 
 			if ( ! empty( $discount->items ) ) {
 				$cart_items = $this->cart->filter_cart_items( $discount->items, false, ! empty( $discount->exclude_items ) ? $discount->exclude_items : array() );
@@ -247,9 +254,9 @@ class WCCS_Cart_Discount {
 				$discount_amount = (float) $discount->discount_amount / 100 * $discount_amount;
 			}
 		} elseif ( 'price_discount_per_item' === $discount->discount_type ) {
-			$discount->amount      = $discount_amount;
+			$discount->amount = $discount_amount;
 			$discount->product_ids = array();
-			$discount_amount       = 0;
+			$discount_amount = 0;
 
 			if ( ! empty( $discount->items ) ) {
 				$cart_items = $this->cart->filter_cart_items( $discount->items, false, ! empty( $discount->exclude_items ) ? $discount->exclude_items : array() );
@@ -279,9 +286,9 @@ class WCCS_Cart_Discount {
 				$discount->product_ids[] = $product_id;
 			}
 		} elseif ( 'fixed_price' === $discount->discount_type ) {
-			$avail_discount        = $discount_amount;
+			$avail_discount = $discount_amount;
 			$discount->product_ids = array();
-			$discount_amount       = 0;
+			$discount_amount = 0;
 
 			if ( ! empty( $discount->items ) ) {
 				$cart_items = $this->cart->filter_cart_items( $discount->items, false, ! empty( $discount->exclude_items ) ? $discount->exclude_items : array() );
@@ -309,7 +316,7 @@ class WCCS_Cart_Discount {
 				}
 
 				$discount_amount += $item_discount;
-				$avail_discount  -= $item_discount;
+				$avail_discount -= $item_discount;
 			}
 
 			if ( 0 < $discount_amount ) {
@@ -371,13 +378,13 @@ class WCCS_Cart_Discount {
 		$possibles = $this->get_possible_discounts();
 		if ( ! isset( $possibles[ $coupon_code ] ) ) {
 			foreach ( $this->discounts as $discount ) {
-				if ( 
-					isset( $discount->manual ) && 
+				if (
+					isset( $discount->manual ) &&
 					1 == $discount->manual &&
-					1 == $discount->status && 
-					wc_format_coupon_code( $discount->name ) === $coupon_code 
+					1 == $discount->status &&
+					wc_format_coupon_code( $discount->name ) === $coupon_code
 				) {
-					return apply_filters( 'wccs_get_manual_coupon', $this->get_discount_data( $discount ), $coupon_code );		
+					return apply_filters( 'wccs_get_manual_coupon', $this->get_discount_data( $discount ), $coupon_code );
 				}
 			}
 
@@ -386,7 +393,7 @@ class WCCS_Cart_Discount {
 
 		$discount = $possibles[ $coupon_code ];
 		if ( isset( $discount->manual ) && 1 == $discount->manual ) {
-			return apply_filters( 'wccs_get_manual_coupon', $discount, $coupon_code );		
+			return apply_filters( 'wccs_get_manual_coupon', $discount, $coupon_code );
 		}
 
 		return false;
@@ -399,7 +406,7 @@ class WCCS_Cart_Discount {
 
 		foreach ( $this->discounts as $discount ) {
 			if ( isset( $discount->manual ) && 1 == $discount->manual && wc_format_coupon_code( $discount->name ) === $coupon_code ) {
-				return true;		
+				return true;
 			}
 		}
 

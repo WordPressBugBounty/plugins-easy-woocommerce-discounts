@@ -76,7 +76,7 @@ class WCCS_Admin_Select_Data_Provider {
 
 		$products = array_filter( $products );
 
-		return ! empty( $products ) ? static::prepare_product_select( $products, array( 'variation' ) ) : array();
+		return ! empty( $products ) ? static::prepare_product_select( $products, array( 'variation', 'subscription_variation' ) ) : array();
 	}
 
 	public static function get_variations( array $args = array() ) {
@@ -90,7 +90,7 @@ class WCCS_Admin_Select_Data_Provider {
 			return array();
 		}
 
-		return static::prepare_product_select( $products, array( 'variation' ) );
+		return static::prepare_product_select( $products, array( 'variation', 'subscription_variation' ) );
 	}
 
 	protected static function prepare_product_select( array $products, $allowed_types = array() ) {
@@ -118,7 +118,7 @@ class WCCS_Admin_Select_Data_Provider {
 				$identifier = '#' . $product->get_id();
 			}
 
-			if ( 'variation' === $product->get_type() ) {
+			if ( $product->is_type( 'variation' ) ) {
 				$formatted_variation_list = wc_get_formatted_variation( $product, true );
 				$text = sprintf( '%2$s (%1$s)', $identifier, $product->get_title() ) . ' ' . $formatted_variation_list;
 			} else {

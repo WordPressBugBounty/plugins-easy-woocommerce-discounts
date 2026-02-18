@@ -43,15 +43,25 @@ class WCCS_Public_Cart_Item_Pricing {
 
 	public $product;
 
-	public function __construct( $cart_item_id, $cart_item, WCCS_Pricing $pricing, $apply_method = '', $cart = null, WCCS_Cart_Pricing_Cache $pricing_cache = null ) {
-		$this->item          = $cart_item;
-		$this->pricing       = $pricing;
-		$this->apply_method  = ! empty( $apply_method ) ? $apply_method : WCCS()->settings->get_setting( 'product_pricing_discount_apply_method', 'first' );
-		$this->product_id    = $cart_item['product_id'];
-		$this->variation_id  = $cart_item['variation_id'];
-		$this->product       = ! empty( $this->variation_id ) ? wc_get_product( $this->variation_id ) : wc_get_product( $this->product_id );
-		$this->cart          = null !== $cart ? $cart : WCCS()->cart;
-		$this->discounts     = new WCCS_Cart_Item_Pricing_Discounts( $cart_item_id, $this->item, $this->pricing, $this->cart, $pricing_cache );
+	/**
+	 * Constructor.
+	 *
+	 * @param string                       $cart_item_id
+	 * @param array                        $cart_item
+	 * @param WCCS_Pricing                 $pricing
+	 * @param string                       $apply_method
+	 * @param WCCS_Cart|null               $cart
+	 * @param WCCS_Cart_Pricing_Cache|null $pricing_cache
+	 */
+	public function __construct( $cart_item_id, $cart_item, WCCS_Pricing $pricing, $apply_method = '', $cart = null, $pricing_cache = null ) {
+		$this->item = $cart_item;
+		$this->pricing = $pricing;
+		$this->apply_method = ! empty( $apply_method ) ? $apply_method : WCCS()->settings->get_setting( 'product_pricing_discount_apply_method', 'first' );
+		$this->product_id = $cart_item['product_id'];
+		$this->variation_id = $cart_item['variation_id'];
+		$this->product = ! empty( $this->variation_id ) ? wc_get_product( $this->variation_id ) : wc_get_product( $this->product_id );
+		$this->cart = null !== $cart ? $cart : WCCS()->cart;
+		$this->discounts = new WCCS_Cart_Item_Pricing_Discounts( $cart_item_id, $this->item, $this->pricing, $this->cart, $pricing_cache );
 	}
 
 	/**
@@ -65,14 +75,14 @@ class WCCS_Public_Cart_Item_Pricing {
 		if ( ! $this->product ) {
 			return false;
 		}
-		
+
 		if ( $this->pricing->is_in_exclude_rules( $this->product_id, $this->variation_id, ( ! empty( $this->item['variation'] ) ? $this->item['variation'] : array() ) ) ) {
 			return apply_filters( 'wccs_public_cart_item_pricing_' . __FUNCTION__, false, $this );
 		}
 
 		do_action( 'wccs_public_cart_item_pricing_before_get_price', $this );
 
-		$base_price     = $this->get_base_price();
+		$base_price = $this->get_base_price();
 		$adjusted_price = $this->apply_discounts( $base_price, $this->item['data']->get_price( 'edit' ) );
 
 		if ( $base_price != $adjusted_price ) {
@@ -130,35 +140,70 @@ class WCCS_Public_Cart_Item_Pricing {
 	 *
 	 * @since  2.7.0
 	 *
-	 * @param  array $applied_discounts // An array of applied discounts to the item.
+	 * @param  array $applied_discounts     // An array of applied discounts to the item.
+	 * @param  float $product_display_price // Product display price.
 	 *
 	 * @return void
 	 */
-	protected function set_applied_prices( array $applied_discounts ) {
+	protected function set_applied_prices( array $applied_discounts, $product_display_price ) {
 		$this->prices = array();
 
 		if ( empty( $this->discount_prices ) || empty( $applied_discounts ) ) {
 			return;
 		}
 
+		$product_display_price = (string) wc_format_decimal( $product_display_price, '' );
+
+		// All quantities of the product that exists in one of discounted_prices.
+		$all_quantities = 0;
+		$all_qty_processed = false;
 		foreach ( $this->discount_prices as $discount_id => $prices ) {
 			if ( in_array( $discount_id, $applied_discounts ) ) {
 				foreach ( $prices as $price => $quantity ) {
-					$price = (string) WCCS()->product_helpers->wc_get_price_to_display( $this->product, array( 'price' => $price ) );
-					if ( isset( $this->prices[ $price ] ) ) {
-						$this->prices[ $price ] += $quantity;
-					} else {
-						$this->prices[ $price ] = $quantity;
+					if ( ! $all_qty_processed ) {
+						$all_quantities += $quantity;
 					}
+
+					$price = (string) wc_format_decimal( WCCS()->product_helpers->wc_get_price_to_display( $this->product, array( 'price' => $price ) ), '' );
+					if ( isset( $this->prices[ $price ] ) ) {
+						/**
+						 * Do not apply product_display_price when method is sum.
+						 * Because maybe product_display_price included twice times by different rules.
+						 */
+						if ( 'sum' !== $this->apply_method || $price != $product_display_price ) {
+							$this->prices[ $price ] += $quantity;
+						}
+					} else {
+						// Do not set quantity of product_display_price when apply_method is sum and calculate it later.
+						if ( 'sum' === $this->apply_method && $price == $product_display_price ) {
+							$this->prices[ $price ] = 0;
+						} else {
+							$this->prices[ $price ] = $quantity;
+						}
+					}
+				}
+
+				$all_qty_processed = true;
+			}
+		}
+
+		// Calculate product_display_price quantity when apply_method is sum.
+		if ( 'sum' === $this->apply_method && 0 < $all_quantities ) {
+			if ( isset( $this->prices[ $product_display_price ] ) ) {
+				// If quantity of display price greater than 0 then display it otherwise remove it.
+				if ( 0 < $all_quantities - array_sum( array_values( $this->prices ) ) ) {
+					$this->prices[ $product_display_price ] = $all_quantities - array_sum( array_values( $this->prices ) );
+				} else {
+					unset( $this->prices[ $product_display_price ] );
 				}
 			}
 		}
 	}
 
 	protected function apply_discounts( $base_price, $in_cart_price ) {
-		$this->prices            = array();
+		$this->prices = array();
 		$this->applied_discounts = array();
-		$discounts               = $this->discounts->get_discounts();
+		$discounts = $this->discounts->get_discounts();
 		if ( empty( $discounts ) ) {
 			return $base_price;
 		}
@@ -172,23 +217,23 @@ class WCCS_Public_Cart_Item_Pricing {
 				break;
 			}
 
-			$discount_amount = $this->calculate_discount_amount( $discount, $base_price, $discount['id'], $discount_limit );
+			$discount_amount = $this->calculate_discount_amount( $discount, $base_price, $in_cart_price, $discount['id'], $discount_limit );
 			if ( false !== $discount_amount ) {
 				if ( '' !== $discount_limit ) {
 					$discount_limit -= $discount_amount;
 				}
 
 				$discount_amounts[] = array(
-					'id'                    => $discount['id'],
-					'name'                  => $discount['name'],
-					'description'           => $discount['description'],
-					'type'                  => 'discount',
-					'mode'                  => ! empty( $discount['mode'] ) ? $discount['mode'] : '',
-					'apply_mode'            => ! empty( $discount['apply_mode'] ) ? $discount['apply_mode'] : '',
-					'discount_type'         => ! empty( $discount['discount_type'] ) ? $discount['discount_type'] : '',
-					'discount'              => ! empty( $discount['discount'] ) ? $discount['discount'] : 0,
-					'amount'                => $discount_amount,
-					'date_time'             => $discount['date_time'],
+					'id' => $discount['id'],
+					'name' => $discount['name'],
+					'description' => $discount['description'],
+					'type' => 'discount',
+					'mode' => ! empty( $discount['mode'] ) ? $discount['mode'] : '',
+					'apply_mode' => ! empty( $discount['apply_mode'] ) ? $discount['apply_mode'] : '',
+					'discount_type' => ! empty( $discount['discount_type'] ) ? $discount['discount_type'] : '',
+					'discount' => ! empty( $discount['discount'] ) ? $discount['discount'] : 0,
+					'amount' => $discount_amount,
+					'date_time' => $discount['date_time'],
 					'date_times_match_mode' => $discount['date_times_match_mode'],
 				);
 			}
@@ -199,36 +244,36 @@ class WCCS_Public_Cart_Item_Pricing {
 		}
 
 		$applied_discounts = array();
-		$discount_amount   = 0;
+		$discount_amount = 0;
 		if ( 'first' === $this->apply_method ) {
-			$discount_amount            = $discount_amounts[0]['amount'];
-			$applied_discounts[0]       = $discount_amounts[0]['id'];
+			$discount_amount = $discount_amounts[0]['amount'];
+			$applied_discounts[0] = $discount_amounts[0]['id'];
 			$this->applied_discounts[0] = $discount_amounts[0];
 		} elseif ( 'max' === $this->apply_method ) {
-			$discount_amount            = $discount_amounts[0]['amount'];
-			$applied_discounts[0]       = $discount_amounts[0]['id'];
+			$discount_amount = $discount_amounts[0]['amount'];
+			$applied_discounts[0] = $discount_amounts[0]['id'];
 			$this->applied_discounts[0] = $discount_amounts[0];
 			for ( $i = 1; $i < count( $discount_amounts ); $i++ ) {
 				if ( $discount_amount < $discount_amounts[ $i ]['amount'] ) {
-					$discount_amount            = $discount_amounts[ $i ]['amount'];
-					$applied_discounts[0]       = $discount_amounts[ $i ]['id'];
+					$discount_amount = $discount_amounts[ $i ]['amount'];
+					$applied_discounts[0] = $discount_amounts[ $i ]['id'];
 					$this->applied_discounts[0] = $discount_amounts[ $i ];
 				}
 			}
 		} elseif ( 'min' === $this->apply_method ) {
-			$discount_amount            = $discount_amounts[0]['amount'];
-			$applied_discounts[0]       = $discount_amounts[0]['id'];
+			$discount_amount = $discount_amounts[0]['amount'];
+			$applied_discounts[0] = $discount_amounts[0]['id'];
 			$this->applied_discounts[0] = $discount_amounts[0];
 			for ( $i = 1; $i < count( $discount_amounts ); $i++ ) {
 				if ( $discount_amount > $discount_amounts[ $i ]['amount'] ) {
-					$discount_amount            = $discount_amounts[ $i ]['amount'];
-					$applied_discounts[0]       = $discount_amounts[ $i ]['id'];
+					$discount_amount = $discount_amounts[ $i ]['amount'];
+					$applied_discounts[0] = $discount_amounts[ $i ]['id'];
 					$this->applied_discounts[0] = $discount_amounts[ $i ];
 				}
 			}
 		} elseif ( 'sum' === $this->apply_method ) {
-			$discount_amount         = array_sum( wp_list_pluck( $discount_amounts, 'amount' ) );
-			$applied_discounts       = wp_list_pluck( $discount_amounts, 'id' );
+			$discount_amount = array_sum( wp_list_pluck( $discount_amounts, 'amount' ) );
+			$applied_discounts = wp_list_pluck( $discount_amounts, 'id' );
 			$this->applied_discounts = $discount_amounts;
 		}
 
@@ -243,41 +288,96 @@ class WCCS_Public_Cart_Item_Pricing {
 		return $base_price;
 	}
 
-	protected function calculate_discount_amount( $discount, $base_price, $discount_id, $discount_limit ) {
+	protected function calculate_discount_amount( $discount, $base_price, $in_cart_price, $discount_id, $discount_limit ) {
 		$this->discount_prices[ $discount_id ] = array();
 
-		if ( 'percentage_discount' === $discount['discount_type'] ) {
-			if ( (float) $discount['discount'] / 100 * $base_price > 0 ) {
-				// Limit discount amount if limit exists.
-				$discount_amount = (float) $discount['discount'] / 100 * $base_price;
-				if ( '' !== $discount_limit && (float) $discount_amount > (float) $discount_limit ) {
-					$discount_amount = (float) $discount_limit;
-				}
+		if ( 'purchase' === $discount['mode'] || 'products_group' === $discount['mode'] ) {
+			if ( 'percentage_discount' === $discount['discount_type'] ) {
+				if ( (float) $discount['discount'] / 100 * $base_price > 0 ) {
+					// Limit discount amount if limit exists.
+					$discount_amount = (float) $discount['discount'] / 100 * $base_price;
+					if ( '' !== $discount_limit && (float) $discount_amount > (float) $discount_limit ) {
+						$discount_amount = (float) $discount_limit;
+					}
 
-				// Set discount prices.
-				if ( 0 <= $base_price - $discount_amount ) {
-					$this->discount_prices[ $discount_id ][ strval( $base_price - $discount_amount ) ] = 1;
-				}
+					$discounted_price = $base_price - $discount_amount;
+					if ( $discounted_price >= 0 ) {
+						if ( $this->item['quantity'] > $discount['receive_quantity'] ) {
+							$product_discounted_price = $discount['receive_quantity'] * $discounted_price + ( $this->item['quantity'] - $discount['receive_quantity'] ) * $in_cart_price;
+							// Set discount prices.
+							$this->discount_prices[ $discount_id ][ (string) $discounted_price ] = $discount['receive_quantity'];
+							$this->discount_prices[ $discount_id ][ (string) $in_cart_price ] = ! empty( $this->discount_prices[ $discount_id ][ (string) $in_cart_price ] ) ?
+								$this->discount_prices[ $discount_id ][ (string) $in_cart_price ] + ( $this->item['quantity'] - $discount['receive_quantity'] ) :
+								( $this->item['quantity'] - $discount['receive_quantity'] );
+						} else {
+							$product_discounted_price = $this->item['quantity'] * $discounted_price;
+							// Set discount prices.
+							$this->discount_prices[ $discount_id ][ (string) $discounted_price ] = $this->item['quantity'];
+						}
 
-				return $discount_amount;
-			}
-		} elseif ( 'price_discount' === $discount['discount_type'] ) {
-			if ( $discount['discount'] > 0 ) {
+						return $base_price - ( $product_discounted_price / $this->item['quantity'] );
+					}
+				}
+			} elseif ( 'price_discount' === $discount['discount_type'] || 'fixed_discount_per_item' === $discount['discount_type'] ) {
 				// Limit discount amount if limit exists.
 				$discount_amount = (float) $discount['discount'];
 				if ( '' !== $discount_limit && (float) $discount_amount > (float) $discount_limit ) {
 					$discount_amount = (float) $discount_limit;
 				}
 
-				// Set discount prices.
-				if ( 0 <= $base_price - $discount_amount ) {
-					$this->discount_prices[ $discount_id ][ strval( $base_price - $discount_amount ) ] = 1;
-				} else {
-					$discount_amount = $base_price;
-					$this->discount_prices[ $discount_id ]['0'] = 1;
-				}
+				$discounted_price = $base_price - $discount_amount;
+				$discounted_price = 0 > (float) $discounted_price ? 0 : $discounted_price;
+				if ( $discounted_price >= 0 ) {
+					if ( $this->item['quantity'] > $discount['receive_quantity'] ) {
+						$product_discounted_price = $discount['receive_quantity'] * $discounted_price + ( $this->item['quantity'] - $discount['receive_quantity'] ) * $in_cart_price;
+						// Set discount prices.
+						$this->discount_prices[ $discount_id ][ (string) $discounted_price ] = $discount['receive_quantity'];
+						$this->discount_prices[ $discount_id ][ (string) $in_cart_price ] = ! empty( $this->discount_prices[ $discount_id ][ (string) $in_cart_price ] ) ?
+							$this->discount_prices[ $discount_id ][ (string) $in_cart_price ] + ( $this->item['quantity'] - $discount['receive_quantity'] ) :
+							( $this->item['quantity'] - $discount['receive_quantity'] );
+					} else {
+						$product_discounted_price = $this->item['quantity'] * $discounted_price;
+						// Set discount prices.
+						$this->discount_prices[ $discount_id ][ (string) $discounted_price ] = $this->item['quantity'];
+					}
 
-				return $discount_amount;
+					return $base_price - ( $product_discounted_price / $this->item['quantity'] );
+				}
+			}
+		} else {
+			if ( 'percentage_discount' === $discount['discount_type'] ) {
+				if ( (float) $discount['discount'] / 100 * $base_price > 0 ) {
+					// Limit discount amount if limit exists.
+					$discount_amount = (float) $discount['discount'] / 100 * $base_price;
+					if ( '' !== $discount_limit && (float) $discount_amount > (float) $discount_limit ) {
+						$discount_amount = (float) $discount_limit;
+					}
+
+					// Set discount prices.
+					if ( 0 <= $base_price - $discount_amount ) {
+						$this->discount_prices[ $discount_id ][ strval( $base_price - $discount_amount ) ] = 1;
+					}
+
+					return $discount_amount;
+				}
+			} elseif ( 'price_discount' === $discount['discount_type'] ) {
+				if ( $discount['discount'] > 0 ) {
+					// Limit discount amount if limit exists.
+					$discount_amount = (float) $discount['discount'];
+					if ( '' !== $discount_limit && (float) $discount_amount > (float) $discount_limit ) {
+						$discount_amount = (float) $discount_limit;
+					}
+
+					// Set discount prices.
+					if ( 0 <= $base_price - $discount_amount ) {
+						$this->discount_prices[ $discount_id ][ strval( $base_price - $discount_amount ) ] = 1;
+					} else {
+						$discount_amount = $base_price;
+						$this->discount_prices[ $discount_id ]['0'] = 1;
+					}
+
+					return $discount_amount;
+				}
 			}
 		}
 

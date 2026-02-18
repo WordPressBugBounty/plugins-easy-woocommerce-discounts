@@ -151,6 +151,19 @@ class WCCS_Admin_Ajax {
 						if ( isset( $data['id'] ) ) {
 							$delete_meta = array( 'discount_type', 'discount', 'purchase', 'purchased_items', 'purchased_message', 'repeat' );
 						}
+					} elseif ( 'purchase_x_receive_y' === $_POST['mode'] || 'purchase_x_receive_y_same' === $_POST['mode'] || 'bogo' === $_POST['mode'] ) {
+						$meta_data['purchase'] = ! empty( $_POST['purchase'] ) ? map_deep( $_POST['purchase'], 'sanitize_text_field' ) : (object) array( 'purchase' => '', 'receive' => '', 'discount_type' => 'percentage_discount', 'discount' => '' );
+						$meta_data['repeat'] = ! empty( $_POST['repeat'] ) ? sanitize_text_field( $_POST['repeat'] ) : 'false';
+
+						if ( 'bogo' !== $_POST['mode'] ) {
+							$meta_data['purchased_items'] = ! empty( $_POST['purchased_items'] ) ? map_deep( $_POST['purchased_items'], 'sanitize_text_field' ) : array();
+							$meta_data['purchased_message'] = ! empty( $_POST['purchased_message'] ) ? wp_kses_post( $_POST['purchased_message'] ) : '';
+							$meta_data['quantity_based_on'] = ! empty( $_POST['quantity_based_on'] ) ? sanitize_text_field( $_POST['quantity_based_on'] ) : 'all_products';
+						}
+
+						if ( isset( $data['id'] ) ) {
+							$delete_meta = array( 'discount_type', 'discount', 'quantities' );
+						}
 					} elseif ( 'simple' === $_POST['mode'] ) {
 						$meta_data['discount_type'] = ! empty( $_POST['discount_type'] ) ? sanitize_text_field( $_POST['discount_type'] ) : 'percentage_discount';
 						$meta_data['discount'] = ! empty( $_POST['discount'] ) ? (float) $_POST['discount'] : 0;
@@ -537,13 +550,7 @@ class WCCS_Admin_Ajax {
 			$items = WCCS_Admin_Select_Data_Provider::get_rules( [ 'name' => $term, 'number' => $limit ] );
 		}
 
-		die(
-			json_encode(
-				array(
-					'items' => $items
-				)
-			)
-		);
+		die( json_encode( array( 'items' => $items ) ) );
 	}
 
 	/**

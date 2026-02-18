@@ -121,7 +121,7 @@ class WCCS_Helpers {
 
 		if ( $term->parent && ( $term->parent != $term->term_id ) && ! in_array( $term->parent, $visited ) ) {
 			$visited[] = $term->parent;
-			$chain     .= self::get_term_hierarchy_name( $term->parent, $taxonomy, $separator, $nicename, $visited );
+			$chain .= self::get_term_hierarchy_name( $term->parent, $taxonomy, $separator, $nicename, $visited );
 		}
 
 		$chain .= $name . $separator;
@@ -165,7 +165,7 @@ class WCCS_Helpers {
 		}
 
 		$cent_precision = pow( 10, wc_get_price_decimals() );
-		$value          = $value * $cent_precision;
+		$value = $value * $cent_precision;
 		return $round ? round( $value, self::wc_get_rounding_precision() - wc_get_price_decimals() ) : $value;
 	}
 
@@ -253,10 +253,28 @@ class WCCS_Helpers {
 			return false;
 		}
 
-		$rest_prefix         = trailingslashit( rest_get_url_prefix() );
+		$rest_prefix = trailingslashit( rest_get_url_prefix() );
 		$is_rest_api_request = ( false !== strpos( $_SERVER['REQUEST_URI'], $rest_prefix ) ); // phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		return apply_filters( 'woocommerce_is_rest_api_request', $is_rest_api_request );
+	}
+
+	/**
+	 * Check is the cart item automatically added by the plugin or no.
+	 *
+	 * @param  array $cart_item
+	 *
+	 * @return boolean
+	 * @throws Exception
+	 */
+	public static function is_auto_added_product( $cart_item ) {
+		if ( ! $cart_item ) {
+			throw new Exception( 'Cart item is required.' );
+		}
+
+		return isset( $cart_item[ WCCS_Public_Auto_Add_To_Cart::CART_ITEM_ID ] ) ||
+			isset( $cart_item['_ewd_auto_added_product'] ) ||
+			isset( $cart_item['_ewd_urlc_auto_added_product'] );
 	}
 
 	/**
@@ -321,7 +339,7 @@ class WCCS_Helpers {
 		if ( 'all' !== $change && 'simple' !== $change ) {
 			return false;
 		}
-		
+
 		$simples = WCCS()->pricing->get_simple_pricings();
 		if ( ! empty( $simples ) ) {
 			return true;
@@ -334,6 +352,32 @@ class WCCS_Helpers {
 		$bulks = WCCS()->pricing->get_bulk_pricings();
 
 		return ! empty( $bulks );
+	}
+
+	public static function is_allowed_auto_add_product_type( $type ) {
+		if ( empty( $type ) ) {
+			return false;
+		}
+
+		$types = apply_filters(
+			'wccs_not_allowed_auto_add_product_types',
+			array(
+				'variable',
+				'composite',
+				'booking',
+			)
+		);
+
+		foreach ( $types as $not_allowed ) {
+			if (
+				$type === $not_allowed ||
+				false !== strpos( $type, $not_allowed )
+			) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public static function maybe_get_exact_item_id( $id, $type = 'product' ) {
@@ -377,18 +421,18 @@ class WCCS_Helpers {
 
 	public static function get_applying_coupon() {
 		// If it's a WooCommerce REST request (Cart Block), retrieve the 'code' parameter from JSON payload
-		if ( 
+		if (
 			! empty( $_SERVER['REQUEST_URI'] ) &&
-			false !== strpos( $_SERVER['REQUEST_URI'], '/wc/store' ) 
+			false !== strpos( $_SERVER['REQUEST_URI'], '/wc/store' )
 		) {
 			$data = file_get_contents( 'php://input' );
 			$data = json_decode( $data, true );
-	
-			if ( 
-				is_array( $data ) && 
+
+			if (
+				is_array( $data ) &&
 				isset( $data['requests'][0]['path'] ) &&
-				false !== strpos( $data['requests'][0]['path'], '/apply-coupon' ) && 
-				isset( $data['requests'][0]['data']['code'] ) 
+				false !== strpos( $data['requests'][0]['path'], '/apply-coupon' ) &&
+				isset( $data['requests'][0]['data']['code'] )
 			) {
 				return wc_format_coupon_code( wp_unslash( $data['requests'][0]['data']['code'] ) );
 			}
@@ -397,27 +441,27 @@ class WCCS_Helpers {
 		if ( ! check_ajax_referer( 'apply-coupon', 'security', false ) ) {
 			return '';
 		}
-	
+
 		// Fallback for traditional WooCommerce cart form submission
 		return ! empty( $_POST['coupon_code'] ) ? wc_format_coupon_code( wp_unslash( $_POST['coupon_code'] ) ) : '';
 	}
 
 	public static function get_billing_email() {
-        if ( empty( $_GET['wc-ajax'] ) || ! in_array( $_GET['wc-ajax'], array( 'checkout', 'update_order_review' ) ) ) {
-            return '';
-        }
+		if ( empty( $_GET['wc-ajax'] ) || ! in_array( $_GET['wc-ajax'], array( 'checkout', 'update_order_review' ) ) ) {
+			return '';
+		}
 
-        $email = '';
-        if ( ! empty( $_POST['billing_email'] ) ) {
-            $email = strtolower( sanitize_email( $_POST['billing_email'] ) );
-        } elseif ( ! empty( $_POST['post_data'] ) ) {
-            parse_str( $_POST['post_data'], $post );
-            if ( ! empty( $post['billing_email'] ) ) {
-                $email = strtolower( sanitize_email( $post['billing_email'] ) );
-            }
-        }
-        return is_email( $email ) ? $email : '';
-    }
+		$email = '';
+		if ( ! empty( $_POST['billing_email'] ) ) {
+			$email = strtolower( sanitize_email( $_POST['billing_email'] ) );
+		} elseif ( ! empty( $_POST['post_data'] ) ) {
+			parse_str( $_POST['post_data'], $post );
+			if ( ! empty( $post['billing_email'] ) ) {
+				$email = strtolower( sanitize_email( $post['billing_email'] ) );
+			}
+		}
+		return is_email( $email ) ? $email : '';
+	}
 
 	public static function get_used_by() {
 		$used_by = get_current_user_id();
@@ -434,14 +478,14 @@ class WCCS_Helpers {
 		global $wp_version;
 
 		$handles = array(
-			'wp-i18n'      => array( '6.0', array() ),
-			'wp-hooks'     => array( '6.0', array() ),
+			'wp-i18n' => array( '6.0', array() ),
+			'wp-hooks' => array( '6.0', array() ),
 			'wp-api-fetch' => array( '6.0', array() ),
-			'moment'       => array( '2.29.4', array() ),
-			'lodash'       => array( '4.17.21', array() ),
+			'moment' => array( '2.29.4', array() ),
+			'lodash' => array( '4.17.21', array() ),
 		);
 		if ( $react ) {
-			$handles['react']     = array( '17.0.2', array() );
+			$handles['react'] = array( '17.0.2', array() );
 			$handles['react-dom'] = array( '17.0.2', array( 'react' ) );
 		}
 

@@ -247,8 +247,7 @@ class WCCS_Settings_Manager {
 									),
 									'purchase' => array(
 										'id' => 'purchase',
-										'name' => __( 'Show sale badge on purchase pricing products.', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
-										'disabled' => true,
+										'name' => __( 'Show sale badge on purchase pricing products.', 'easy-woocommerce-discounts' ),
 									),
 									'products_group' => array(
 										'id' => 'products_group',
@@ -355,17 +354,6 @@ class WCCS_Settings_Manager {
 									// 'exclude'       => 'Exclude on-sale products from pricing rules',
 								),
 							),
-							'round_product_adjustment' => array(
-								'id' => 'round_product_adjustment',
-								'name' => __( 'Round Adjustment', 'easy-woocommerce-discounts' ),
-								'desc' => sprintf( __( 'If set to yes it will round product adjusted price.%1$s exp: Subtotal of 2 quantities of a product with price %2$s and %3$s discount will be %4$s when round is enabled otherwise it will be %5$s', 'easy-woocommerce-discounts' ), '<br>', '0.99$', '2.5%', '1.94$', '1.93$' ),
-								'type' => 'select',
-								'std' => 'no',
-								'options' => array(
-									'yes' => __( 'Yes', 'easy-woocommerce-discounts' ),
-									'no' => __( 'No', 'easy-woocommerce-discounts' ),
-								),
-							),
 							'product_pricing_limit_type' => array(
 								'id' => 'product_pricing_limit_type',
 								'name' => __( 'Discount Limit Type', 'easy-woocommerce-discounts' ),
@@ -386,6 +374,17 @@ class WCCS_Settings_Manager {
 										),
 										'disabled_options' => array( 'price_price_limit', 'price_percentage_limit' ),
 									),
+								),
+							),
+							'round_product_adjustment' => array(
+								'id' => 'round_product_adjustment',
+								'name' => __( 'Round Adjustment', 'easy-woocommerce-discounts' ),
+								'desc' => sprintf( __( 'If set to yes it will round product adjusted price.%1$s exp: Subtotal of 2 quantities of a product with price %2$s and %3$s discount will be %4$s when round is enabled otherwise it will be %5$s', 'easy-woocommerce-discounts' ), '<br>', '0.99$', '2.5%', '1.94$', '1.93$' ),
+								'type' => 'select',
+								'std' => 'no',
+								'options' => array(
+									'yes' => __( 'Yes', 'easy-woocommerce-discounts' ),
+									'no' => __( 'No', 'easy-woocommerce-discounts' ),
 								),
 							),
 							'product_pricing_discount_limit' => array(
@@ -430,10 +429,9 @@ class WCCS_Settings_Manager {
 								'type' => 'select',
 								'std' => 1,
 								'options' => array(
-									1 => __( 'Yes', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
+									1 => __( 'Yes', 'easy-woocommerce-discounts' ),
 									0 => __( 'No', 'easy-woocommerce-discounts' ),
 								),
-								'disabled_options' => array( 1 ),
 							),
 							'set_min_quantity' => array(
 								'id' => 'set_min_quantity',
@@ -446,6 +444,17 @@ class WCCS_Settings_Manager {
 									0 => __( 'No', 'easy-woocommerce-discounts' ),
 								),
 								'disabled_options' => array( 1 ),
+							),
+							'show_free_gift_badge' => array(
+								'id' => 'show_free_gift_badge',
+								'name' => __( 'Show Free Gift Emoji', 'easy-woocommerce-discounts' ),
+								'desc' => __( 'Show a free gift emoji for free gift products in the cart and checkout.', 'easy-woocommerce-discounts' ),
+								'type' => 'select',
+								'std' => 1,
+								'options' => array(
+									1 => __( 'Yes', 'easy-woocommerce-discounts' ),
+									0 => __( 'No', 'easy-woocommerce-discounts' ),
+								),
 							),
 						)
 					),
