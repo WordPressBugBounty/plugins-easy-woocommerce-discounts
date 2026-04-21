@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 9.0.1 =
+* Fix: Fixed checkout integration js file doesn't load issue.
+* Update: Verified compatibility with WooCommerce 10.7.0
+
 = 9.0.0 =
 * New: Added "BOGO" or "Buy One Get One free" deals support for products in free version.
 * New: Added "Buy 2 Get 1 Free" deals support for products in the free version.
