@@ -1,5 +1,16 @@
 == Changelog ==
 
+= 9.1.0 =
+* New: Added order total coupon rules.
+* New: Added products subtotal coupon rules.
+* New: Added minimum spend templates.
+* New: Added cart total coupons templates.
+* New: Added generate coupon code button to generate coupon codes easily.
+* New: Added user role based coupon code templates to create coupons fast & easy.
+* Fix: Fixed quantity based on field in bulk pricing for variations templates.
+* Update: Verified compatibility with WooCommerce 10.8.1
+* Update: Verified compatibility with WordPress 7.0
+
 = 9.0.1 =
 * Fix: Fixed checkout integration js file doesn't load issue.
 * Update: Verified compatibility with WooCommerce 10.7.0

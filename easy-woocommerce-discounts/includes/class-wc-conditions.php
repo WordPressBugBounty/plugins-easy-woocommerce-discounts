@@ -328,7 +328,8 @@ final class WC_Conditions {
 		/**
 		 * The class responsible for cart discount.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wccs-cart-discount.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-cart-discount.php';
+		require_once dirname( __FILE__ ) . '/class-wccs-order-total-discount.php';
 
 		/**
 		 * The class responsible for pricing.

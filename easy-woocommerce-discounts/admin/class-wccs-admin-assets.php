@@ -142,6 +142,10 @@ class WCCS_Admin_Assets {
 					'saleBadgesAdv' => ! defined( 'ASNP_WESB_VERSION' ),
 					'pluginUrl' => WCCS_PLUGIN_URL,
 					'wcSubscriptions' => class_exists( 'WC_Subscriptions' ),
+					'couponCharacters' => apply_filters( 'woocommerce_coupon_code_generator_characters', 'ABCDEFGHJKMNPQRSTUVWXYZ23456789' ),
+					'couponCharLength' => apply_filters( 'woocommerce_coupon_code_generator_character_length', 8 ),
+					'couponPrefix' => apply_filters( 'woocommerce_coupon_code_generator_prefix', '' ),
+					'couponSuffix' => apply_filters( 'woocommerce_coupon_code_generator_suffix', '' ),
 				);
 		}
 

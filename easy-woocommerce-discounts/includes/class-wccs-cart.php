@@ -110,7 +110,7 @@ class WCCS_Cart {
 			return false;
 		}
 
-		return WCCS()->WCCS_Cart_Items_Helpers->products_exists_in_items(
+		return WCCS_Cart_Items_Helpers::products_exists_in_items(
 			$this->get_cart(),
 			$products,
 			$type,
@@ -127,7 +127,7 @@ class WCCS_Cart {
 			return false;
 		}
 
-		return WCCS()->WCCS_Cart_Items_Helpers->categories_exists_in_items(
+		return WCCS_Cart_Items_Helpers::categories_exists_in_items(
 			$this->get_cart(),
 			$categories,
 			$type,
@@ -195,7 +195,35 @@ class WCCS_Cart {
 		return apply_filters( 'wccs_cart_' . __FUNCTION__, (float) $subtotal, $items, $include_tax, $exclude_excluded_products );
 	}
 
-	public function filter_cart_items( array $items, $exclude_excluded_products = false, array $exclude_items = array() ) {
+	/**
+	 * Get given cart items subtotal.
+	 * 
+	 * @param array $cart_items
+	 * @param boolean $include_tax
+	 * 
+	 * @return float
+	 */
+	public function get_cart_items_subtotal( $cart_items, $include_tax = true ) {
+		if ( empty( $cart_items ) ) {
+			return 0;
+		}
+
+		$subtotal = 0;
+		foreach ( $cart_items as $cart_item ) {
+			$subtotal += $include_tax ?
+				apply_filters( 'wccs_cart_item_line_subtotal', $cart_item['line_subtotal'], $cart_item ) +
+				apply_filters( 'wccs_cart_item_line_subtotal_tax', $cart_item['line_subtotal_tax'], $cart_item ) :
+				apply_filters( 'wccs_cart_item_line_subtotal', $cart_item['line_subtotal'], $cart_item );
+		}
+
+		return apply_filters( 'wccs_cart_get_cart_items_subtotal', (float) $subtotal, $cart_items, $include_tax );
+	}
+
+	public function filter_cart_items( 
+		array $items, 
+		$exclude_excluded_products = false, 
+		array $exclude_items = array() 
+	) {
 		if ( ! $this->cart_initialized() || empty( $items ) ) {
 			return array();
 		}

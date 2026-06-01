@@ -98,6 +98,19 @@ class WCCS_Cart_Discount {
 				continue;
 			}
 
+			$discount = clone $discount;
+
+			// Handle order total discount.
+			if ( WCCS_Order_Total_Discount::is_order_total_discount( $discount ) ) {
+				$order_discount = WCCS_Order_Total_Discount::get_discount( $discount );
+				if ( ! $order_discount ) {
+					continue;
+				}
+
+				$discount->discount_type = $order_discount['discount_type'];
+				$discount->discount_amount = $order_discount['discount'];
+			}
+
 			// Handle manual discounts
 			if ( ! empty( $discount->manual ) ) {
 				$code = wc_format_coupon_code( $discount->name );

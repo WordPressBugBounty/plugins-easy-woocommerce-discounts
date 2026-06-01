@@ -241,12 +241,6 @@ module.exports = cloneDeep;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["jQuery"]; }());
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -270,6 +264,12 @@ var _default = (0, _common.withParams)({
 });
 
 exports.default = _default;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["jQuery"]; }());
 
 /***/ }),
 /* 7 */
@@ -5376,7 +5376,7 @@ var external_Vuex_default = /*#__PURE__*/__webpack_require__.n(external_Vuex_);
 var external_this_wp_hooks_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: external "jQuery"
-var external_jQuery_ = __webpack_require__(5);
+var external_jQuery_ = __webpack_require__(6);
 var external_jQuery_default = /*#__PURE__*/__webpack_require__.n(external_jQuery_);
 
 // EXTERNAL MODULE: external {"this":["wp","i18n"]}
@@ -6166,7 +6166,7 @@ var ProductsViewvue_type_template_id_5eaae9c3_staticRenderFns = []
 // CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/ProductsView.vue?vue&type=template&id=5eaae9c3&
 
 // EXTERNAL MODULE: ./node_modules/vuelidate/lib/validators/required.js
-var required = __webpack_require__(6);
+var required = __webpack_require__(5);
 var required_default = /*#__PURE__*/__webpack_require__.n(required);
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/ProductsSelectItem.vue?vue&type=template&id=46efaa95&
@@ -9486,8 +9486,8 @@ var DiscountListvue_type_template_id_44d01bf1_staticRenderFns = [function () {va
 
 // CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountList.vue?vue&type=template&id=44d01bf1&
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=template&id=02f09e38&
-var DiscountTemplatesModalvue_type_template_id_02f09e38_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"asnp-modal"}},[_c('div',{staticClass:"asnp-fixed asnp-inset-0 asnp-bg-black asnp-bg-opacity-50 asnp-flex asnp-items-center asnp-justify-center asnp-transition-opacity asnp-duration-300",staticStyle:{"z-index":"9998"},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.$emit( 'cancel' )}}},[_c('div',{staticClass:"asnp-w-full",staticStyle:{"max-width":"900px","width":"90%"}},[_c('div',{staticClass:"asnp-bg-white asnp-rounded-lg asnp-shadow-lg asnp-transition-all asnp-duration-300 asnp-flex asnp-flex-col asnp-w-full discount-templates-modal",staticStyle:{"height":"650px","max-height":"90vh","scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-p-5 asnp-border-b asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex asnp-justify-between asnp-items-center"},[_c('h3',{staticClass:"asnp-m-0 asnp-text-xl asnp-font-semibold"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=template&id=84719396&
+var DiscountTemplatesModalvue_type_template_id_84719396_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"asnp-modal"}},[_c('div',{staticClass:"asnp-fixed asnp-inset-0 asnp-bg-black asnp-bg-opacity-50 asnp-flex asnp-items-center asnp-justify-center asnp-transition-opacity asnp-duration-300",staticStyle:{"z-index":"9998"},on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.$emit( 'cancel' )}}},[_c('div',{staticClass:"asnp-w-full",staticStyle:{"max-width":"900px","width":"90%"}},[_c('div',{staticClass:"asnp-bg-white asnp-rounded-lg asnp-shadow-lg asnp-transition-all asnp-duration-300 asnp-flex asnp-flex-col asnp-w-full discount-templates-modal",staticStyle:{"height":"650px","max-height":"90vh","scrollbar-gutter":"stable"}},[_c('div',{staticClass:"asnp-p-5 asnp-border-b asnp-border-gray-200"},[_c('div',{staticClass:"asnp-flex asnp-justify-between asnp-items-center"},[_c('h3',{staticClass:"asnp-m-0 asnp-text-xl asnp-font-semibold"},[_vm._v("\n\t\t\t\t\t\t\t"+_vm._s(_vm.__(
 									'Choose your desired campaign',
 									'easy-woocommerce-discounts'
 								))+"\n\t\t\t\t\t\t")]),_vm._v(" "),_c('button',{staticClass:"asnp-bg-transparent asnp-border-none asnp-cursor-pointer asnp-text-2xl asnp-leading-none asnp-text-gray-400 asnp-p-0 hover:asnp-text-gray-600",on:{"click":function($event){return _vm.$emit( 'cancel' )}}},[_c('span',{staticClass:"dashicons dashicons-no-alt"})])]),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-flex-col md:asnp-flex-row asnp-mt-4",staticStyle:{"gap":"10px"}},[_c('div',{staticClass:"asnp-relative asnp-flex-1 asnp-flex asnp-items-center"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchQuery),expression:"searchQuery"}],staticClass:"asnp-w-full asnp-py-2 asnp-px-3 asnp-border asnp-border-gray-200 asnp-rounded-md asnp-text-sm asnp-outline-none focus:asnp-border-indigo-500 focus:asnp-ring-2 focus:asnp-ring-indigo-500/10 asnp-placeholder-gray-400",staticStyle:{"padding-right":"40px"},attrs:{"type":"text","placeholder":_vm.__(
@@ -9537,7 +9537,9 @@ var DiscountTemplatesModalvue_type_template_id_02f09e38_render = function () {va
 																.length
 														)?_c('div',{staticClass:"asnp-mt-3 asnp-space-y-1"},_vm._l((template.examples),function(example,exIndex){return _c('div',{key:exIndex,staticClass:"asnp-text-[10px] asnp-text-gray-500"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t•\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(example.item)+":\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"),(
 																	example.old_price
-																)?_c('span',{staticClass:"asnp-line-through"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"asnp-font-medium asnp-text-gray-700"},[_vm._v(_vm._s(example.new_price))])])}),0):_vm._e()]),_vm._v(" "),(
+																)?_c('span',{staticClass:"asnp-line-through"},[_vm._v(_vm._s(example.old_price))]):_vm._e(),_vm._v(" "),(
+																	example.new_price
+																)?_c('span',{staticClass:"asnp-font-medium asnp-text-gray-700"},[_vm._v(_vm._s(example.new_price))]):_vm._e()])}),0):_vm._e()]),_vm._v(" "),(
 														template.show_timing !==
 														false
 													)?_c('div',{staticClass:"asnp-mb-4"},[_c('h5',{staticClass:"asnp-text-[10px] asnp-font-bold asnp-text-gray-400 asnp-uppercase asnp-tracking-wider asnp-mb-3"},[_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.__(
@@ -9625,12 +9627,15 @@ var DiscountTemplatesModalvue_type_template_id_02f09e38_render = function () {va
 									'Add Campaign',
 									'easy-woocommerce-discounts'
 								))+"\n\t\t\t\t\t\t")])])])])])])])}
-var DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns = []
+var DiscountTemplatesModalvue_type_template_id_84719396_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=template&id=02f09e38&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=template&id=84719396&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/DiscountTemplatesModal.vue?vue&type=script&lang=js&
+//
+//
+//
 //
 //
 //
@@ -10375,14 +10380,91 @@ var DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns = []
         examples: [],
         pro: true
       }, {
-        name: this.__('Minimum Spend: Spend $100 Get 10% Off', 'easy-woocommerce-discounts'),
+        name: this.__('Minimum Spend (incl tax): Spend $100 Get 5% Off,...', 'easy-woocommerce-discounts'),
         icon: 'fa fa-line-chart',
         description: this.__('Drive higher order values by rewarding customers who spend more.', 'easy-woocommerce-discounts'),
-        slug: 'minimum-spend',
+        slug: 'minimum-spend-incl-tax',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [{
+          item: this.__('Spend 100$ Get 5% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 200$ Get 10% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 300$ Get 15% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 400$ Get 20% Off', 'easy-woocommerce-discounts')
+        }],
+        pro: false
+      }, {
+        name: this.__('Minimum Spend (excl tax): Spend $100 Get 5% Off,...', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-line-chart',
+        description: this.__('Drive higher order values by rewarding customers who spend more.', 'easy-woocommerce-discounts'),
+        slug: 'minimum-spend-excl-tax',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [{
+          item: this.__('Spend 100$ Get 5% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 200$ Get 10% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 300$ Get 15% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 400$ Get 20% Off', 'easy-woocommerce-discounts')
+        }],
+        pro: true
+      }, {
+        name: this.__('Minimum Spend (products): Spend $100 Get 5% Off,...', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-line-chart',
+        description: this.__('Drive higher order values by rewarding customers who spend more on selected products.', 'easy-woocommerce-discounts'),
+        slug: 'minimum-spend-products',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [{
+          item: this.__('Spend 100$ for jacket Get 5% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 200$ for jacket Get 10% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 300$ for jacket Get 15% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 400$ for jacket Get 20% Off', 'easy-woocommerce-discounts')
+        }],
+        pro: true
+      }, {
+        name: this.__('Minimum Spend (categories): Spend $100 Get 5% Off,...', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-line-chart',
+        description: this.__('Drive higher order values by rewarding customers who spend more on selected categories.', 'easy-woocommerce-discounts'),
+        slug: 'minimum-spend-categories',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [{
+          item: this.__('Spend 100$ for hoodies Get 5% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 200$ for hoodies Get 10% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 300$ for hoodies Get 15% Off', 'easy-woocommerce-discounts')
+        }, {
+          item: this.__('Spend 400$ for hoodies Get 20% Off', 'easy-woocommerce-discounts')
+        }],
+        pro: true
+      }, {
+        name: this.__('Role based Discount: 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based discount.', 'easy-woocommerce-discounts'),
+        slug: 'auto-vip-wholesale-discount',
         tag: 'automatic',
         show_timing: true,
         examples: [],
-        pro: false
+        pro: true
+      }, {
+        name: this.__('Role based Discount (Product): 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based discount across selected products.', 'easy-woocommerce-discounts'),
+        slug: 'auto-vip-wholesale-discount-product',
+        tag: 'automatic',
+        show_timing: true,
+        examples: [],
+        pro: true
       },
       // {
       // 	name: this.__(
@@ -10510,6 +10592,24 @@ var DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns = []
         show_timing: false,
         examples: [],
         pro: false
+      }, {
+        name: this.__('Coupon: Role based Discount 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based discount.', 'easy-woocommerce-discounts'),
+        slug: 'manual-vip-wholesale-discount',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Coupon: (Product) Role based Discount 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based discount across selected products.', 'easy-woocommerce-discounts'),
+        slug: 'manual-vip-wholesale-discount-product',
+        tag: 'manual',
+        show_timing: true,
+        examples: [],
+        pro: true
       },
       // URL Coupons
       {
@@ -10607,6 +10707,24 @@ var DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns = []
         icon: 'fa fa-gift',
         description: this.__("Automatically add a free gift product to the customer's cart via this link.", 'easy-woocommerce-discounts'),
         slug: 'auto-add-products-gift',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: Role based Discount 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based discount.', 'easy-woocommerce-discounts'),
+        slug: 'url-vip-wholesale-discount',
+        tag: 'url',
+        show_timing: true,
+        examples: [],
+        pro: true
+      }, {
+        name: this.__('Link: (Product) Role based Discount 30% Off for Wholesalers', 'easy-woocommerce-discounts'),
+        icon: 'fa fa-user-circle-o',
+        description: this.__('Reward your best customers or partners with exclusive, role based discount across selected products.', 'easy-woocommerce-discounts'),
+        slug: 'url-vip-wholesale-discount-product',
         tag: 'url',
         show_timing: true,
         examples: [],
@@ -10762,8 +10880,8 @@ var DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns = []
 
 var DiscountTemplatesModal_component = Object(componentNormalizer["a" /* default */])(
   components_DiscountTemplatesModalvue_type_script_lang_js_,
-  DiscountTemplatesModalvue_type_template_id_02f09e38_render,
-  DiscountTemplatesModalvue_type_template_id_02f09e38_staticRenderFns,
+  DiscountTemplatesModalvue_type_template_id_84719396_render,
+  DiscountTemplatesModalvue_type_template_id_84719396_staticRenderFns,
   false,
   null,
   null,
@@ -11212,13 +11330,16 @@ var DiscountList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var DiscountList = (DiscountList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=2ab3c8c8&
-var DiscountViewvue_type_template_id_2ab3c8c8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-discount-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Discount', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/discount-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.saveDiscount}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=66e4f82b&
+var DiscountViewvue_type_template_id_66e4f82b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-discount-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Discount', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/discount-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.saveDiscount}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There are some errors in the form please fix them and save it again.',
 					'easy-woocommerce-discounts'
-				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.name),expression:"discount.name"}],staticClass:"asnp-block asnp-text-field",class:{
+				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.name),expression:"discount.name"}],ref:"name",staticClass:"asnp-block asnp-text-field",class:{
 					'wccs-field-error': _vm.$v.discount.name.$error,
-				},attrs:{"type":"text"},domProps:{"value":(_vm.discount.name)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.$set(_vm.discount, "name", $event.target.value)},function($event){return _vm.$v.discount.name.$touch()}]}}),_vm._v(" "),_c('label',{staticClass:"asnp-block"},[_vm._v(_vm._s(_vm.__( 'Enter a unique name.', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(! _vm.$v.discount.name.required),expression:"! $v.discount.name.required"}],staticClass:"asnp-error-msg asnp-block"},[_vm._v(_vm._s(_vm.__( 'Field is required.', 'easy-woocommerce-discounts' )))])]),_vm._v(" "),_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Private Note', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.private_note),expression:"discount.private_note"}],staticClass:"asnp-block asnp-text-field",attrs:{"type":"text"},domProps:{"value":(_vm.discount.private_note)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.discount, "private_note", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"asnp-space-y-1"},[_c('label',{staticClass:"asnp-inline-flex asnp-space-x-2 asnp-items-center"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Status', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('toggle',{attrs:{"value":_vm.toBool( _vm.discount.status )},on:{"input":function($event){return _vm.setToggle( $event, 'status', 1, 0 )}}})],1),_vm._v(" "),_c('label',{staticClass:"asnp-block"},[_vm._v(_vm._s(_vm.__(
+				},attrs:{"type":"text"},domProps:{"value":(_vm.discount.name)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.$set(_vm.discount, "name", $event.target.value)},function($event){return _vm.$v.discount.name.$touch()}],"change":function($event){return _vm.getCouponUrl( true, 'name' )}}}),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-secondary",staticStyle:{"float":"right"},attrs:{"type":"button"},on:{"click":_vm.generateCouponCode}},[_vm._v("\n\t\t\t\t"+_vm._s(_vm.__(
+						'Generate coupon code',
+						'easy-woocommerce-discounts'
+					))+"\n\t\t\t")]),_vm._v(" "),_c('label',{staticClass:"asnp-block"},[_vm._v(_vm._s(_vm.__( 'Enter a unique name.', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(! _vm.$v.discount.name.required),expression:"! $v.discount.name.required"}],staticClass:"asnp-error-msg asnp-block"},[_vm._v(_vm._s(_vm.__( 'Field is required.', 'easy-woocommerce-discounts' )))])]),_vm._v(" "),_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Private Note', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.private_note),expression:"discount.private_note"}],staticClass:"asnp-block asnp-text-field",attrs:{"type":"text"},domProps:{"value":(_vm.discount.private_note)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.discount, "private_note", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"asnp-space-y-1"},[_c('label',{staticClass:"asnp-inline-flex asnp-space-x-2 asnp-items-center"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Status', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('toggle',{attrs:{"value":_vm.toBool( _vm.discount.status )},on:{"input":function($event){return _vm.setToggle( $event, 'status', 1, 0 )}}})],1),_vm._v(" "),_c('label',{staticClass:"asnp-block"},[_vm._v(_vm._s(_vm.__(
 					'Enable or disable the rule.',
 					'easy-woocommerce-discounts'
 				)))])]),_vm._v(" "),_c('div',{staticClass:"asnp-space-y-1"},[_c('label',{staticClass:"asnp-inline-flex asnp-space-x-2 asnp-items-center"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Manual Coupon', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('toggle',{attrs:{"value":_vm.toBool( _vm.discount.manual )},on:{"input":function($event){return _vm.setToggle( $event, 'manual', 1, 0 )}}})],1),_vm._v(" "),_c('label',{staticClass:"asnp-block"},[_vm._v(_vm._s(_vm.__(
@@ -11250,7 +11371,20 @@ var DiscountViewvue_type_template_id_2ab3c8c8_render = function () {var _vm=this
 						)))]),_vm._v(" "),_c('option',{attrs:{"value":"percentage_discount_per_item"}},[_vm._v(_vm._s(_vm.__(
 							'Percentage discount per item',
 							'easy-woocommerce-discounts'
-						)))])]),_vm._v(" "),(_vm.wcSubscriptions)?_c('optgroup',{attrs:{"label":_vm.__(
+						)))])]),_vm._v(" "),_c('optgroup',{attrs:{"label":_vm.__( 'Order Total', 'easy-woocommerce-discounts' )}},[_c('option',{attrs:{"value":"cart_subtotal_including_tax"}},[_vm._v(_vm._s(_vm.__(
+							'Cart subtotal including tax',
+							'easy-woocommerce-discounts'
+						)))]),_vm._v(" "),_c('option',{attrs:{"value":"cart_subtotal_excluding_tax","disabled":""}},[_vm._v(_vm._s(_vm.__(
+							'Cart subtotal excluding tax',
+							'easy-woocommerce-discounts'
+						) +
+						' - ' +
+						_vm.__( 'PRO Version', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('option',{attrs:{"value":"products_subtotal","disabled":""}},[_vm._v(_vm._s(_vm.__(
+							'Products subtotal',
+							'easy-woocommerce-discounts'
+						) +
+						' - ' +
+						_vm.__( 'PRO Version', 'easy-woocommerce-discounts' )))])]),_vm._v(" "),(_vm.wcSubscriptions)?_c('optgroup',{attrs:{"label":_vm.__(
 							'Recurring Discount',
 							'easy-woocommerce-discounts'
 						)}},[_c('option',{attrs:{"value":"recurring_fee","disabled":""}},[_vm._v(_vm._s(_vm.__(
@@ -11272,7 +11406,7 @@ var DiscountViewvue_type_template_id_2ab3c8c8_render = function () {var _vm=this
 						'<strong>',
 						'</strong>'
 					)
-				)}})]),_vm._v(" "),_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Discount Amount', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.discount_amount),expression:"discount.discount_amount"}],class:{
+				)}})]),_vm._v(" "),(_vm.showDiscountAmount)?_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Discount Amount', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.discount_amount),expression:"discount.discount_amount"}],class:{
 					'asnp-block': true,
 					'asnp-text-field': true,
 					'wccs-field-error': _vm.$v.discount.discount_amount.$error,
@@ -11285,7 +11419,7 @@ var DiscountViewvue_type_template_id_2ab3c8c8_render = function () {var _vm=this
 				)))]),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(! _vm.$v.discount.discount_amount.required),expression:"! $v.discount.discount_amount.required"}],staticClass:"asnp-error-msg asnp-block"},[_vm._v(_vm._s(_vm.__( 'Field is required.', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('label',{directives:[{name:"show",rawName:"v-show",value:(! _vm.$v.discount.discount_amount.minValue),expression:"! $v.discount.discount_amount.minValue"}],staticClass:"asnp-error-msg asnp-block"},[_vm._v(_vm._s(_vm.__(
 						'Please enter a valid value.',
 						'easy-woocommerce-discounts'
-					)))])]),_vm._v(" "),_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Usage Limit', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.usage_limit),expression:"discount.usage_limit"}],class:{
+					)))])]):_vm._e(),_vm._v(" "),_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Usage Limit', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.discount.usage_limit),expression:"discount.usage_limit"}],class:{
 					'asnp-block': true,
 					'asnp-text-field': true,
 				},attrs:{"type":"number"},domProps:{"value":(_vm.discount.usage_limit)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.discount, "usage_limit", $event.target.value)}}}),_vm._v(" "),_c('label',{staticClass:"asnp-block"},[_vm._v(_vm._s(_vm.__(
@@ -11321,17 +11455,25 @@ var DiscountViewvue_type_template_id_2ab3c8c8_render = function () {var _vm=this
 					))+"\n\t\t\t")])]):_vm._e()]),_vm._v(" "),_c('h3',{directives:[{name:"show",rawName:"v-show",value:(_vm.showItems),expression:"showItems"}],staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Items', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showItems && ! _vm.discount.items.length),expression:"showItems && ! discount.items.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Applies to all items.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showItems)?_c('products-select-container',{attrs:{"items":_vm.discount.items,"keyName":"product","hiddenRows":[ 'quantity' ],"hiddenOptions":_vm.hiddenOptions,"type":"item"},on:{"productsUpdated":_vm.onItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewItem,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}):_vm._e(),_vm._v(" "),_c('h3',{directives:[{name:"show",rawName:"v-show",value:(_vm.showItems),expression:"showItems"}],staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Excluded Products', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.showItems),expression:"showItems"}],staticClass:"asnp-mb-4"},[_vm._v("\n\t\t"+_vm._s(_vm.__(
 				'Exclude products from this rule.',
 				'easy-woocommerce-discounts'
-			))+"\n\t")]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showItems && ! _vm.discount.exclude_items.length),expression:"showItems && ! discount.exclude_items.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showItems)?_c('products-select-container',{attrs:{"items":_vm.discount.exclude_items,"keyName":"excludeProduct","hiddenRows":[ 'quantity' ],"hiddenOptions":_vm.excludeItemsHiddenOptions,"type":"excluded"},on:{"productsUpdated":_vm.onExcludedItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewExcludedProducts,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"asnp-my-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('h3',{staticClass:"asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Date Time', 'easy-woocommerce-discounts' ))+"\n\t\t\t"),_c('current-time')],1)]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.discount.date_time.length),expression:"! discount.date_time.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+			))+"\n\t")]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showItems && ! _vm.discount.exclude_items.length),expression:"showItems && ! discount.exclude_items.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'There is not any item.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),(_vm.showItems)?_c('products-select-container',{attrs:{"items":_vm.discount.exclude_items,"keyName":"excludeProduct","hiddenRows":[ 'quantity' ],"hiddenOptions":_vm.excludeItemsHiddenOptions,"type":"excluded"},on:{"productsUpdated":_vm.onExcludedItemUpdated,"deleteItem":_vm.onDeleteItem,"itemAdded":_vm.addNewExcludedProducts,"groupAdded":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}):_vm._e(),_vm._v(" "),_c('h3',{directives:[{name:"show",rawName:"v-show",value:(_vm.showRanges),expression:"showRanges"}],staticClass:"asnp-my-4 asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Order Total Ranges', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.showRanges),expression:"showRanges"}],staticClass:"asnp-mb-4",domProps:{"innerHTML":_vm._s(
+			_vm.sprintf(
+				_vm.__(
+					'Add discount based on order total ranges.%1$s Set total ranges and each range discount amount.%1$s Leave subtotal maximum empty to setting no limit for range.',
+					'easy-woocommerce-discounts'
+				),
+				'<br>'
+			)
+		)}}),_vm._v(" "),(_vm.showRanges)?_c('order-total-discount',{attrs:{"ranges":_vm.discount.ranges}}):_vm._e(),_vm._v(" "),_c('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.showRanges && ! _vm.$v.discount.ranges.required),expression:"showRanges && ! $v.discount.ranges.required"}],staticClass:"asnp-error-msg asnp-mt-1"},[_vm._v("\n\t\t"+_vm._s(_vm.__( 'Field is required.', 'easy-woocommerce-discounts' ))+"\n\t")]),_vm._v(" "),_c('div',{staticClass:"asnp-my-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('h3',{staticClass:"asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Date Time', 'easy-woocommerce-discounts' ))+"\n\t\t\t"),_c('current-time')],1)]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.discount.date_time.length),expression:"! discount.date_time.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There is not any date time.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('date-time-container',{attrs:{"items":_vm.discount.date_time},on:{"dateTimeUpdated":_vm.onDateTimeItemUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewDateTime,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}}),_vm._v(" "),_c('div',{staticClass:"asnp-my-4 asnp-max-w-lg asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('h3',{staticClass:"asnp-text-gray-700 asnp-text-lg asnp-font-semibold"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Conditions', 'easy-woocommerce-discounts' ))+"\n\t\t")])]),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(! _vm.discount.conditions.length),expression:"! discount.conditions.length"}],attrs:{"type":"info","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There is not any condition.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('conditions-container',{attrs:{"items":_vm.discount.conditions,"ignoreGroups":_vm.ignoreGroups,"ignoreItems":_vm.ignoreItems},on:{"conditionUpdated":_vm.onDiscountConditionUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewCondition,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}})],1)}
-var DiscountViewvue_type_template_id_2ab3c8c8_staticRenderFns = []
+var DiscountViewvue_type_template_id_66e4f82b_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=2ab3c8c8&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=template&id=66e4f82b&
 
 // EXTERNAL MODULE: ./node_modules/vuelidate/lib/validators/minValue.js
 var minValue = __webpack_require__(66);
@@ -11578,6 +11720,213 @@ var ProductsSelectContainer_component = Object(componentNormalizer["a" /* defaul
 )
 
 /* harmony default export */ var ProductsSelectContainer = (ProductsSelectContainer_component.exports);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/OrderTotalDiscount.vue?vue&type=template&id=08e758e2&
+var OrderTotalDiscountvue_type_template_id_08e758e2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('table',{staticClass:"widefat"},[_c('thead',[_c('tr',[_c('th',[_vm._v("\n\t\t\t\t"+_vm._s(_vm.__( 'Subtotal minimum', 'easy-woocommerce-discounts' ))+"\n\t\t\t")]),_vm._v(" "),_c('th',[_vm._v("\n\t\t\t\t"+_vm._s(_vm.__( 'Subtotal maximum', 'easy-woocommerce-discounts' ))+"\n\t\t\t")]),_vm._v(" "),_c('th',[_vm._v("\n\t\t\t\t"+_vm._s(_vm.__( 'Discount type', 'easy-woocommerce-discounts' ))+"\n\t\t\t")]),_vm._v(" "),_c('th',[_vm._v(_vm._s(_vm.__( 'Discount', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('th')])]),_vm._v(" "),_c('tbody',[_vm._l((_vm.myRanges),function(range,index){return _c('tr',{key:_vm.getKey( range, 'range' )},[_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(range.min),expression:"range.min"}],staticClass:"asnp-text-field",attrs:{"type":"number","placeholder":_vm.__( 'Min', 'easy-woocommerce-discounts' )},domProps:{"value":(range.min)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(range, "min", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(range.max),expression:"range.max"}],staticClass:"asnp-text-field",attrs:{"type":"number","placeholder":_vm.__(
+							'Max - No limit (Optional)',
+							'easy-woocommerce-discounts'
+						)},domProps:{"value":(range.max)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(range, "max", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('select',{directives:[{name:"model",rawName:"v-model",value:(range.discount_type),expression:"range.discount_type"}],staticClass:"asnp-select-field",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(range, "discount_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0])}}},[_c('option',{attrs:{"value":"percentage"}},[_vm._v(_vm._s(_vm.__(
+							'Percentage discount',
+							'easy-woocommerce-discounts'
+						)))]),_vm._v(" "),_c('option',{attrs:{"value":"price"}},[_vm._v(_vm._s(_vm.__( 'Price discount', 'easy-woocommerce-discounts' )))])])]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(range.discount),expression:"range.discount"}],staticClass:"asnp-text-field",attrs:{"type":"number"},domProps:{"value":(range.discount)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(range, "discount", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('button',{staticClass:"asnp-btn asnp-btn-delete",on:{"click":function($event){return _vm.deleteRange( index )}}},[_vm._v("\n\t\t\t\t\t"+_vm._s(_vm.__( 'Delete', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t")])])])}),_vm._v(" "),_c('tr',[_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newRange.min),expression:"newRange.min"}],staticClass:"asnp-text-field",attrs:{"type":"number","placeholder":_vm.__( 'Min', 'easy-woocommerce-discounts' )},domProps:{"value":(_vm.newRange.min)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newRange, "min", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newRange.max),expression:"newRange.max"}],staticClass:"asnp-text-field",attrs:{"type":"number","placeholder":_vm.__(
+							'Max - No limit (Optional)',
+							'easy-woocommerce-discounts'
+						)},domProps:{"value":(_vm.newRange.max)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newRange, "max", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.newRange.discount_type),expression:"newRange.discount_type"}],staticClass:"asnp-select-field",on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.newRange, "discount_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0])}}},[_c('option',{attrs:{"value":"percentage"}},[_vm._v(_vm._s(_vm.__(
+							'Percentage discount',
+							'easy-woocommerce-discounts'
+						)))]),_vm._v(" "),_c('option',{attrs:{"value":"price"}},[_vm._v(_vm._s(_vm.__( 'Price discount', 'easy-woocommerce-discounts' )))])])]),_vm._v(" "),_c('td',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newRange.discount),expression:"newRange.discount"}],staticClass:"asnp-text-field",attrs:{"type":"number"},domProps:{"value":(_vm.newRange.discount)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.newRange, "discount", $event.target.value)}}})]),_vm._v(" "),_c('td',[_c('button',{staticClass:"asnp-btn asnp-btn-primary",on:{"click":_vm.addRange}},[_vm._v("\n\t\t\t\t\t"+_vm._s(_vm.__( 'Add', 'easy-woocommerce-discounts' ))+"\n\t\t\t\t")])])])],2)])}
+var OrderTotalDiscountvue_type_template_id_08e758e2_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/OrderTotalDiscount.vue?vue&type=template&id=08e758e2&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/components/OrderTotalDiscount.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var OrderTotalDiscountvue_type_script_lang_js_ = ({
+  name: 'order-total-discount',
+  props: {
+    ranges: {
+      type: Array
+    }
+  },
+  data: function data() {
+    return {
+      myRanges: this.ranges,
+      newRange: this.initialRange()
+    };
+  },
+  methods: {
+    addRange: function addRange() {
+      this.myRanges.push(this.newRange);
+      this.myRanges.sort(function (a, b) {
+        return a.min - b.min;
+      });
+      this.newRange = this.initialRange();
+    },
+    deleteRange: function deleteRange(index) {
+      this.myRanges.splice(index, 1);
+    },
+    initialRange: function initialRange() {
+      return {
+        min: '',
+        max: '',
+        discount_type: 'percentage',
+        discount: 0
+      };
+    }
+  }
+});
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/OrderTotalDiscount.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_OrderTotalDiscountvue_type_script_lang_js_ = (OrderTotalDiscountvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/components/OrderTotalDiscount.vue
+
+
+
+
+
+/* normalize component */
+
+var OrderTotalDiscount_component = Object(componentNormalizer["a" /* default */])(
+  components_OrderTotalDiscountvue_type_script_lang_js_,
+  OrderTotalDiscountvue_type_template_id_08e758e2_render,
+  OrderTotalDiscountvue_type_template_id_08e758e2_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var OrderTotalDiscount = (OrderTotalDiscount_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/DiscountView.vue?vue&type=script&lang=js&
 function DiscountViewvue_type_script_lang_js_typeof(o) { "@babel/helpers - typeof"; return DiscountViewvue_type_script_lang_js_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, DiscountViewvue_type_script_lang_js_typeof(o); }
 function DiscountViewvue_type_script_lang_js_toConsumableArray(r) { return DiscountViewvue_type_script_lang_js_arrayWithoutHoles(r) || DiscountViewvue_type_script_lang_js_iterableToArray(r) || DiscountViewvue_type_script_lang_js_unsupportedIterableToArray(r) || DiscountViewvue_type_script_lang_js_nonIterableSpread(); }
@@ -12160,6 +12509,79 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -12175,7 +12597,8 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
   components: {
     ProductsSelectContainer: ProductsSelectContainer,
     DateTimeContainer: DateTimeContainer,
-    ConditionsContainer: ConditionsContainer
+    ConditionsContainer: ConditionsContainer,
+    OrderTotalDiscount: OrderTotalDiscount
   },
   data: function data() {
     var _this$$route, _this$$route$query;
@@ -12192,7 +12615,8 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
         discount_type: 'percentage',
         discount_amount: '',
         ordering: 0,
-        usage_limit: ''
+        usage_limit: '',
+        ranges: []
       },
       id = 'new' !== this.$route.params.id ? parseInt(this.$route.params.id) : 0;
     if (id > 0) {
@@ -12228,10 +12652,16 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
   },
   computed: {
     showItems: function showItems() {
-      return -1 < ['price_discount_per_item', 'percentage_discount_per_item'].indexOf(this.discount.discount_type);
+      return -1 < ['price_discount_per_item', 'percentage_discount_per_item', 'fixed_price', 'recurring_fee', 'recurring_percent', 'products_subtotal'].indexOf(this.discount.discount_type);
     },
     showUrlCouponFields: function showUrlCouponFields() {
       return this.toBool(this.urlCoupon) && !this.toBool(this.discount.manual);
+    },
+    showDiscountAmount: function showDiscountAmount() {
+      return -1 == ['cart_subtotal_including_tax', 'cart_subtotal_excluding_tax', 'products_subtotal'].indexOf(this.discount.discount_type);
+    },
+    showRanges: function showRanges() {
+      return -1 < ['cart_subtotal_including_tax', 'cart_subtotal_excluding_tax', 'products_subtotal'].indexOf(this.discount.discount_type);
     },
     urlCouponDesc: function urlCouponDesc() {
       return Object(external_this_wp_i18n_["sprintf"])(Object(external_this_wp_i18n_["__"])('Requires %1$s + %2$s.', 'easy-woocommerce-discounts'), '<a href="https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/" target="_blank" class="asnp-underline asnp-italic">PRO version</a>', '<a href="https://www.asanaplugins.com/product/url-coupons-for-woocommerce/" target="_blank" class="asnp-underline asnp-italic">URL Coupons addon</a>');
@@ -12384,7 +12814,7 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
     checkErrors: function checkErrors() {
       if (!this.discount.name.trim().length) {
         return this.saveErrors = true;
-      } else if (!this.discount.discount_amount.length || 0 > parseFloat(this.discount.discount_amount)) {
+      } else if (this.showDiscountAmount && (!this.discount.discount_amount.length || 0 > parseFloat(this.discount.discount_amount))) {
         return this.saveErrors = true;
       }
       return this.saveErrors = false;
@@ -12624,6 +13054,38 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
             discount_amount: '5'
           };
           break;
+        case 'auto-vip-wholesale-discount':
+          result = {
+            name: this.__('wholesale', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]],
+            discount_type: 'percentage',
+            discount_amount: '30'
+          };
+          break;
+        case 'auto-vip-wholesale-discount-product':
+          result = {
+            name: this.__('wholesale', 'easy-woocommerce-discounts'),
+            status: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]],
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '30'
+          };
+          break;
 
         // Manual Coupons
         case 'manual-20-percent':
@@ -12768,6 +13230,40 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
             date_time: this.getBlackFriday(),
             discount_type: 'percentage_discount_per_item',
             discount_amount: '50'
+          };
+          break;
+        case 'manual-vip-wholesale-discount':
+          result = {
+            name: this.__('wholesale', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]],
+            discount_type: 'percentage',
+            discount_amount: '30'
+          };
+          break;
+        case 'manual-vip-wholesale-discount-product':
+          result = {
+            name: this.__('wholesale', 'easy-woocommerce-discounts'),
+            status: 1,
+            manual: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]],
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '30'
           };
           break;
 
@@ -12922,6 +13418,40 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
             }]
           };
           break;
+        case 'url-vip-wholesale-discount':
+          result = {
+            name: this.__('wholesale', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]],
+            discount_type: 'percentage',
+            discount_amount: '30'
+          };
+          break;
+        case 'url-vip-wholesale-discount-product':
+          result = {
+            name: this.__('wholesale', 'easy-woocommerce-discounts'),
+            status: 1,
+            url_coupon: 1,
+            conditions: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, condition), {}, {
+              condition: 'roles',
+              roles: 'administrator',
+              // Just a placeholder, users can edit
+              id: 1765911450003
+            })]],
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'products_in_list',
+              id: 1765744526668
+            })]],
+            discount_type: 'percentage_discount_per_item',
+            discount_amount: '30'
+          };
+          break;
 
         // Recurring Coupons
         case 'recurring-20-percent':
@@ -13002,6 +13532,141 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
             discount_amount: '10'
           };
           break;
+        case 'minimum-spend-incl-tax':
+          result = {
+            name: this.__('Minimum Spend', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'cart_subtotal_including_tax',
+            ranges: [{
+              min: '100',
+              max: '',
+              discount_type: 'percentage',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '200',
+              max: '',
+              discount_type: 'percentage',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '300',
+              max: '',
+              discount_type: 'percentage',
+              discount: '15',
+              id: 1765911447591
+            }, {
+              min: '400',
+              max: '',
+              discount_type: 'percentage',
+              discount: '20',
+              id: 1765911447674
+            }]
+          };
+          break;
+        case 'minimum-spend-excl-tax':
+          result = {
+            name: this.__('Minimum Spend', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'cart_subtotal_excluding_tax',
+            ranges: [{
+              min: '100',
+              max: '',
+              discount_type: 'percentage',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '200',
+              max: '',
+              discount_type: 'percentage',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '300',
+              max: '',
+              discount_type: 'percentage',
+              discount: '15',
+              id: 1765911447591
+            }, {
+              min: '400',
+              max: '',
+              discount_type: 'percentage',
+              discount: '20',
+              id: 1765911447674
+            }]
+          };
+          break;
+        case 'minimum-spend-products':
+          result = {
+            name: this.__('Minimum Spend', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'products_subtotal',
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              id: 1765911450193
+            })]],
+            ranges: [{
+              min: '100',
+              max: '',
+              discount_type: 'percentage',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '200',
+              max: '',
+              discount_type: 'percentage',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '300',
+              max: '',
+              discount_type: 'percentage',
+              discount: '15',
+              id: 1765911447591
+            }, {
+              min: '400',
+              max: '',
+              discount_type: 'percentage',
+              discount: '20',
+              id: 1765911447674
+            }]
+          };
+          break;
+        case 'minimum-spend-categories':
+          result = {
+            name: this.__('Minimum Spend', 'easy-woocommerce-discounts'),
+            status: 1,
+            discount_type: 'products_subtotal',
+            items: [[DiscountViewvue_type_script_lang_js_objectSpread(DiscountViewvue_type_script_lang_js_objectSpread({}, products), {}, {
+              item: 'categories_in_list',
+              id: 1765911450193
+            })]],
+            ranges: [{
+              min: '100',
+              max: '',
+              discount_type: 'percentage',
+              discount: '5',
+              id: 1765911430671
+            }, {
+              min: '200',
+              max: '',
+              discount_type: 'percentage',
+              discount: '10',
+              id: 1765911438950
+            }, {
+              min: '300',
+              max: '',
+              discount_type: 'percentage',
+              discount: '15',
+              id: 1765911447591
+            }, {
+              min: '400',
+              max: '',
+              discount_type: 'percentage',
+              discount: '20',
+              id: 1765911447674
+            }]
+          };
+          break;
         // case 'free-shipping':
         // 	return {
         // 		name: this.__(
@@ -13050,6 +13715,15 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
         }
       }
       return result;
+    },
+    generateCouponCode: function generateCouponCode() {
+      var result = '';
+      for (var i = 0; i < wcConditions.couponCharLength; i++) {
+        result += wcConditions.couponCharacters.charAt(Math.floor(Math.random() * wcConditions.couponCharacters.length));
+      }
+      result = wcConditions.couponPrefix + result + wcConditions.couponSuffix;
+      this.discount.name = result;
+      this.$refs.name.focus();
     }
   },
   watch: {
@@ -13074,6 +13748,9 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
       discount_amount: {
         required: required_default.a,
         minValue: minValue_default()(0)
+      },
+      ranges: {
+        required: required_default.a
       }
     }
   }
@@ -13090,8 +13767,8 @@ function DiscountViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" !=
 
 var DiscountView_component = Object(componentNormalizer["a" /* default */])(
   views_DiscountViewvue_type_script_lang_js_,
-  DiscountViewvue_type_template_id_2ab3c8c8_render,
-  DiscountViewvue_type_template_id_2ab3c8c8_staticRenderFns,
+  DiscountViewvue_type_template_id_66e4f82b_render,
+  DiscountViewvue_type_template_id_66e4f82b_staticRenderFns,
   false,
   null,
   null,
@@ -15281,8 +15958,8 @@ var PricingList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var PricingList = (PricingList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=4d041271&
-var PricingViewvue_type_template_id_4d041271_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/pricing-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.savePricing}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=096ef0a3&
+var PricingViewvue_type_template_id_096ef0a3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/pricing-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.savePricing}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There are some errors in the form please fix them and save it again.',
 					'easy-woocommerce-discounts'
 				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-2xl asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.name),expression:"pricing.name"}],staticClass:"asnp-block asnp-text-field",class:{
@@ -15581,10 +16258,10 @@ var PricingViewvue_type_template_id_4d041271_render = function () {var _vm=this;
 					'There is not any condition.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('conditions-container',{attrs:{"items":_vm.pricing.conditions,"ignoreGroups":_vm.ignoreGroups,"ignoreItems":_vm.ignoreItems},on:{"conditionUpdated":_vm.onPricingConditionUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewCondition,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}})],1)}
-var PricingViewvue_type_template_id_4d041271_staticRenderFns = []
+var PricingViewvue_type_template_id_096ef0a3_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=4d041271&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=096ef0a3&
 
 // EXTERNAL MODULE: external {"this":["ewd","validators"]}
 var external_this_ewd_validators_ = __webpack_require__(67);
@@ -17669,7 +18346,8 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
               discount_type: 'percentage_discount',
               discount: '30',
               id: 1765911447591
-            }]
+            }],
+            quantity_based_on: 'single_product_variation'
           };
           break;
         case 'price-quantity-discount-variations':
@@ -17698,7 +18376,8 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
               discount_type: 'price_discount',
               discount: '15',
               id: 1765911447591
-            }]
+            }],
+            quantity_based_on: 'single_product_variation'
           };
           break;
         case 'percentage-quantity-discount-categories':
@@ -18549,8 +19228,8 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
 
 var PricingView_component = Object(componentNormalizer["a" /* default */])(
   views_PricingViewvue_type_script_lang_js_,
-  PricingViewvue_type_template_id_4d041271_render,
-  PricingViewvue_type_template_id_4d041271_staticRenderFns,
+  PricingViewvue_type_template_id_096ef0a3_render,
+  PricingViewvue_type_template_id_096ef0a3_staticRenderFns,
   false,
   null,
   null,

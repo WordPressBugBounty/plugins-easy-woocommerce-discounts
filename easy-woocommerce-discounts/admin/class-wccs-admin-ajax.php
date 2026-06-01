@@ -95,15 +95,14 @@ class WCCS_Admin_Ajax {
 
 			$meta_data = array(
 				'date_time' => ! empty( $_POST['date_time'] ) ? map_deep( $_POST['date_time'], 'sanitize_text_field' ) : array(),
-				'date_times_match_mode' => ! empty( $_POST['date_times_match_mode'] ) && in_array( $_POST['date_times_match_mode'], array( 'one', 'all' ) ) ? sanitize_text_field( $_POST['date_times_match_mode'] ) : 'one',
-				'conditions_match_mode' => ! empty( $_POST['conditions_match_mode'] ) && in_array( $_POST['conditions_match_mode'], array( 'one', 'all' ) ) ? sanitize_text_field( $_POST['conditions_match_mode'] ) : 'all',
 			);
 
 			// Products list condition meta data.
 			if ( 'products-list' === $type ) {
 				$meta_data['include'] = ! empty( $_POST['include'] ) ? map_deep( $_POST['include'], 'sanitize_text_field' ) : array();
 				$meta_data['exclude'] = ! empty( $_POST['exclude'] ) ? map_deep( $_POST['exclude'], 'sanitize_text_field' ) : array();
-			}  // Cart Discount condition meta data.
+				$meta_data['paginate'] = ! empty( $_POST['paginate'] ) ? sanitize_text_field( $_POST['paginate'] ) : 'true';
+			} // Cart Discount condition meta data.
 			elseif ( 'cart-discount' === $type ) {
 				$meta_data['private_note'] = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
 				$meta_data['apply_mode'] = ! empty( $_POST['apply_mode'] ) ? sanitize_text_field( $_POST['apply_mode'] ) : 'all';
@@ -113,6 +112,10 @@ class WCCS_Admin_Ajax {
 				$meta_data['exclude_items'] = ! empty( $_POST['exclude_items'] ) ? map_deep( $_POST['exclude_items'], 'sanitize_text_field' ) : array();
 				$meta_data['manual'] = ! empty( $_POST['manual'] ) ? absint( $_POST['manual'] ) : 0;
 				$meta_data['usage_limit'] = ! empty( $_POST['usage_limit'] ) ? absint( $_POST['usage_limit'] ) : '';
+
+				if ( in_array( $meta_data['discount_type'], array( 'cart_subtotal_including_tax', 'cart_subtotal_excluding_tax', 'products_subtotal' ) ) ) {
+					$meta_data['ranges'] = ! empty( $_POST['ranges'] ) ? map_deep( $_POST['ranges'], 'sanitize_text_field' ) : array();
+				}
 			} // Shipping method condition meta data.
 			elseif ( 'shipping' === $type ) {
 				$meta_data['private_note'] = ! empty( $_POST['private_note'] ) ? sanitize_text_field( $_POST['private_note'] ) : '';
@@ -247,18 +250,21 @@ class WCCS_Admin_Ajax {
 		}
 
 		$condition = WCCS()->conditions->get_condition( $id );
-		$delete = WCCS()->conditions->delete( $id );
 
-		if ( $delete ) {
-			do_action( 'wccs_condition_deleted', $condition );
-			die(
-				json_encode(
-					array(
-						'success' => 1,
-						'message' => __( 'Condition deleted successfully.', 'easy-woocommerce-discounts' ),
+		if ( $condition ) {
+			$delete = WCCS()->conditions->delete( $id );
+
+			if ( $delete ) {
+				do_action( 'wccs_condition_deleted', $condition );
+				die(
+					json_encode(
+						array(
+							'success' => 1,
+							'message' => __( 'Condition deleted successfully.', 'easy-woocommerce-discounts' ),
+						)
 					)
-				)
-			);
+				);
+			}
 		}
 
 		die(
@@ -471,7 +477,7 @@ class WCCS_Admin_Ajax {
 			);
 		}
 
-		$condition_id = WCCS()->conditions->duplicate( (int) $_POST['id'] );
+		$condition_id = WCCS()->conditions->duplicate( intval( $_POST['id'] ) );
 		if ( ! $condition_id ) {
 			die(
 				json_encode(
