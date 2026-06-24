@@ -5,7 +5,7 @@ Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woo
 Requires at least: 4.4.2
 Tested up to: 7.0
 Requires PHP: 5.6.0
-Stable tag: 9.1.0
+Stable tag: 9.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -254,6 +254,10 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 7. WooCommerce Checkout Fee - Charge £20.00 fee when weight is greater than a specific wheight.
 
 == Changelog ==
+
+= 9.1.1 =
+* Fix: When a product updates, the background price updater now updates only that product.
+* Update: Verified compatibility with WooCommerce 10.8.1
 
 = 9.1.0 =
 * New: Added order total coupon rules.

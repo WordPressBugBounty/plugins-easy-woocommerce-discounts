@@ -13,6 +13,8 @@ class WCCS_Background_Batch_Price_Updater {
      */
     protected $background_process;
 
+    protected $products_to_update = [];
+
     public function init() {
         if ( ! apply_filters( 'wccs_background_products_price_updates', true ) ) {
             return;
@@ -26,10 +28,11 @@ class WCCS_Background_Batch_Price_Updater {
 
         // Automatically update prices if enabled.
         if ( (int) apply_filters( 'wccs_background_auto_update_products_price', WCCS()->settings->get_setting( 'auto_update_products_price', 0 ) ) ) {
-            add_action( 'woocommerce_update_product', array( &$this, 'maybe_update_prices' ) );
-            add_action( 'woocommerce_update_product_variation', array( &$this, 'maybe_update_prices' ) );
-            add_action( 'woocommerce_settings_saved', array( &$this, 'maybe_update_prices' ) );
-            add_action( 'update_option_wccs_settings', array( &$this, 'maybe_update_prices' ) );
+            add_action( 'woocommerce_update_product', array( &$this, 'maybe_update_product_price' ), 100 );
+            add_action( 'woocommerce_update_product_variation', array( &$this, 'maybe_update_product_price' ), 100 );
+            add_action( 'woocommerce_settings_saved', array( &$this, 'maybe_update_prices' ), 100 );
+            add_action( 'update_option_wccs_settings', array( &$this, 'maybe_update_prices' ), 100 );
+            add_action( 'shutdown', [ $this, 'maybe_update_products_price' ] );
         }
 
         add_action( 'admin_init', array( &$this, 'updating_prices_notice' ) );
@@ -50,6 +53,32 @@ class WCCS_Background_Batch_Price_Updater {
 
     public function maybe_update_prices() {
         $this->queue_update_prices();
+    }
+
+    public function maybe_update_product_price( $product_id ) {
+        if ( ! in_array( $product_id, $this->products_to_update ) ) {
+            $this->products_to_update[] = $product_id;
+        }
+    }
+
+    public function maybe_update_products_price() {
+        if ( empty( $this->products_to_update ) ) {
+            return;
+        }
+
+        if ( $this->background_process->is_updating() ) {
+            return;
+        }
+
+        // First lets cancel existing running queue to avoid running it more than once.
+        $this->background_process->kill_process();
+
+        foreach ( $this->products_to_update as $product_id ) {
+            $this->background_process->push_to_queue( [ 'product_id' => $product_id ] );
+        }
+                
+        // Lets dispatch the queue to start processing.
+		$this->background_process->save()->dispatch();
     }
 
     public function queue_update_prices() {

@@ -2,14 +2,14 @@
 # This file is distributed under the http://www.gnu.org/licenses/gpl-2.0.html.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 9.1.0\n"
+"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 9.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-woocommerce-discounts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-31T19:32:19+00:00\n"
+"POT-Creation-Date: 2026-06-23T19:49:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: easy-woocommerce-discounts\n"
@@ -325,8 +325,8 @@ msgstr ""
 msgid "Action not found."
 msgstr ""
 
-#: includes/class-wccs-background-batch-price-updater.php:94
-#: includes/class-wccs-background-batch-price-updater.php:96
+#: includes/class-wccs-background-batch-price-updater.php:123
+#: includes/class-wccs-background-batch-price-updater.php:125
 msgid "Cancelled product price update job."
 msgstr ""
 

@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 9.1.1 =
+* Fix: When a product updates, the background price updater now updates only that product.
+* Update: Verified compatibility with WooCommerce 10.8.1
+
 = 9.1.0 =
 * New: Added order total coupon rules.
 * New: Added products subtotal coupon rules.
