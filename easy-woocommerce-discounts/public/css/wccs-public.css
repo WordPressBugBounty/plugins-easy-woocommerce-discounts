@@ -100,3 +100,59 @@ div.wccs-purchase-message {
 	font-size: 20px;
 	color: #000000;
 }
+
+/* 1. Turn the Cart and Checkout summary blocks into flex layouts */
+.wp-block-woocommerce-cart-order-summary-block,
+.wc-block-components-checkout-order-summary__content {
+	display: flex !important;
+	flex-direction: column !important;
+}
+
+/* 2. Unwrap slot containers so children become independent flex items */
+.slot-wrapper,
+.wc-block-components-order-meta {
+	display: contents !important;
+}
+
+/* 3. Global structural layout for you-saved row only */
+.asnp-ewd-you-saved-row {
+	order: 5 !important; /* Positions it right above the grand total */
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	padding-top: 12px !important;
+	padding-bottom: 12px !important;
+}
+
+/* 4. Match Cart Padding (Always 0, as per WooCommerce Cart CSS) */
+.wc-block-cart .asnp-ewd-you-saved-row {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+/* 5. Match Checkout Padding (Responsive, as per WooCommerce Sidebar CSS) */
+.wc-block-checkout__sidebar .asnp-ewd-you-saved-row {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+@container (min-width: 700px) {
+	.wc-block-checkout__sidebar .asnp-ewd-you-saved-row {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
+}
+
+/* 6. Enforce Grand/Estimated Total layout block priority position */
+.wp-block-woocommerce-cart-order-summary-block
+	> .wc-block-components-totals-wrapper:has( .wc-block-components-totals-footer-item ),
+.wc-block-components-checkout-order-summary__content
+	> .wc-block-components-totals-wrapper:has( .wc-block-components-totals-footer-item ) {
+	order: 10 !important;
+}
+
+/* 7. ISOLATION: Safe-fallback to push any OTHER third-party plugin items to the very bottom */
+.wc-block-components-order-meta > *:not( .asnp-ewd-you-saved-row ) {
+	order: 15 !important;
+}

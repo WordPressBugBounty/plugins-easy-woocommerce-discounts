@@ -129,7 +129,7 @@ class WCCS_Public {
 			$this->services->set( 'WCCS_Public_Auto_Add_To_Cart', new WCCS_Public_Auto_Add_To_Cart( $this->loader ) );
 
 			if ( (int) WCCS()->settings->get_setting( 'display_total_discounts', 0 ) ) {
-				$this->services->set( 'WCCS_Public_Total_Discounts_Hooks', new WCCS_Public_Total_Discounts_Hooks( $this->loader ) );
+				$this->services->set( 'WCCS_Public_Total_Discounts_Hooks', new WCCS_Public_Total_Discounts_Hooks() );
 			}
 
 			if ( (int) WCCS()->settings->get_setting( 'enable_analytics', 1 ) ) {
@@ -158,7 +158,7 @@ class WCCS_Public {
 	public function enqueue_styles() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		if ( WCCS_Helpers::is_product_page() || is_cart() ) {
+		if ( WCCS_Helpers::is_product_page() || is_cart() || is_checkout() ) {
 			wp_enqueue_style( 'wccs-public', plugin_dir_url( __FILE__ ) . 'css/wccs-public' . $suffix . '.css' );
 		}
 	}

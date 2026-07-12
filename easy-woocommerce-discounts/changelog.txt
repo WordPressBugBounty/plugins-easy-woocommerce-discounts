@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 9.2.0 =
+* New: Added "You Saved" block to the cart and checkout blocks.
+* Update: Verified compatibility with WooCommerce 10.9.4
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 9.1.1 =
 * Fix: When a product updates, the background price updater now updates only that product.
 * Update: Verified compatibility with WooCommerce 10.8.1
@@ -74,7 +79,6 @@
 * Added usage restrictions per user to the rules.
 * Verified compatibility with WooCommerce version 9.8.4.
 * Verified compatibility with WordPress version 6.8.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 7.3.4 =
 * Fixed an issue in getting applied coupon with WooCommerce cart block.

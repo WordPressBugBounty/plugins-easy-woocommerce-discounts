@@ -77,7 +77,7 @@ class WCCS_Settings_Manager {
 				'quantity-table' => __( 'Quantity Table', 'easy-woocommerce-discounts' ),
 				'live-price' => __( 'Live Price', 'easy-woocommerce-discounts' ),
 				'messages' => __( 'Messages', 'easy-woocommerce-discounts' ),
-				'total-discounts' => __( 'Total Discounts', 'easy-woocommerce-discounts' ),
+				'total-discounts' => __( 'You Saved', 'easy-woocommerce-discounts' ),
 				'countdown-timer' => __( 'Countdown Timer', 'easy-woocommerce-discounts' ),
 				'discount-page' => __( 'Discount Page', 'easy-woocommerce-discounts' ),
 			) ),
@@ -656,6 +656,18 @@ class WCCS_Settings_Manager {
 								),
 								'disabled_options' => array( 'client', 'server' ),
 							),
+							'bulk_pricing_display_type' => array(
+									'id'      => 'bulk_pricing_display_type',
+									'name'    => __( 'Price Display Mode', 'easy-woocommerce-discounts' ),
+									'desc'    => __( 'Choose whether to show the unit price per item or the total price for the selected quantity. "Unit Price" shows the cost per item (e.g., $10 each), while "Total Price" shows the combined cost for the full quantity (e.g., $30 for 3 items).', 'easy-woocommerce-discounts' ),
+									'type'    => 'select',
+									'std'     => 'unit',
+									'options' => array(
+										'unit'  => __( 'Unit price (per item)', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
+										'total' => __( 'Total price (for quantity)', 'easy-woocommerce-discounts' ) . ' - ' . __( 'Pro Version', 'easy-woocommerce-discounts' ),
+									),
+									'disabled_options' => array( 'unit', 'total' ),
+								),
 							'variation_pirce_update' => array(
 								'id' => 'variation_pirce_update',
 								'name' => __( 'Variation Price Update', 'easy-woocommerce-discounts' ),
@@ -805,8 +817,19 @@ class WCCS_Settings_Manager {
 						array(
 							'display_total_discounts' => array(
 								'id' => 'display_total_discounts',
-								'name' => __( 'Display Total Discounts', 'easy-woocommerce-discounts' ),
-								'desc' => __( 'If enabled displays total discounts that the user get for the current order in the cart and checkout pages.', 'easy-woocommerce-discounts' ),
+								'name' => __( 'Display You Saved', 'easy-woocommerce-discounts' ),
+								'desc' => __( 'If enabled displays you saved amount that the user get for the current order in the cart and checkout pages.', 'easy-woocommerce-discounts' ),
+								'type' => 'select',
+								'std' => 0,
+								'options' => array(
+									1 => __( 'Yes', 'easy-woocommerce-discounts' ),
+									0 => __( 'No', 'easy-woocommerce-discounts' ),
+								),
+							),
+							'you_saved_negative_sign' => array(
+								'id' => 'you_saved_negative_sign',
+								'name' => __( 'You Saved Negative Sign', 'easy-woocommerce-discounts' ),
+								'desc' => __( 'If enabled displays a negative sign before the you saved amount.', 'easy-woocommerce-discounts' ),
 								'type' => 'select',
 								'std' => 0,
 								'options' => array(
@@ -816,10 +839,10 @@ class WCCS_Settings_Manager {
 							),
 							'total_discounts_label' => array(
 								'id' => 'total_discounts_label',
-								'name' => __( 'Total Discounts Label', 'easy-woocommerce-discounts' ),
-								'desc' => __( 'Label of the total discounts.', 'easy-woocommerce-discounts' ),
+								'name' => __( 'You Saved Label', 'easy-woocommerce-discounts' ),
+								'desc' => __( 'Label of the you saved amount.', 'easy-woocommerce-discounts' ),
 								'type' => 'text',
-								'std' => __( 'Total Discounts', 'easy-woocommerce-discounts' ),
+								'std' => __( 'You Saved', 'easy-woocommerce-discounts' ),
 							),
 							'total_discounts_position_cart' => array(
 								'id' => 'total_discounts_position_cart',
@@ -846,7 +869,7 @@ class WCCS_Settings_Manager {
 							'total_discounts_include_cart_discounts' => array(
 								'id' => 'total_discounts_include_cart_discounts',
 								'name' => __( 'Include Cart Discounts And Coupons', 'easy-woocommerce-discounts' ),
-								'desc' => __( 'If enabled cart discounts and cart coupons amount will be included in the total discounts.', 'easy-woocommerce-discounts' ),
+								'desc' => __( 'If enabled cart discounts and cart coupons amount will be included in the you saved amount.', 'easy-woocommerce-discounts' ),
 								'type' => 'select',
 								'std' => 1,
 								'options' => array(

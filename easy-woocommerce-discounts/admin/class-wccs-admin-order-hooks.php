@@ -40,6 +40,11 @@ class WCCS_Admin_Order_Hooks extends WCCS_Admin_Controller {
             $label = WCCS()->settings->get_setting( 'total_discounts_label', $label );
         }
 
+        $value = wc_price( $discount, array( 'currency' => $order->get_currency() ) );
+		if ( (int) WCCS()->settings->get_setting( 'you_saved_negative_sign', 0 ) ) {
+			$value = apply_filters( 'wccs_cart_total_discounts_html_prefix', '-' ) . ' ' . $value;
+		}
+
         $this->render_view(
             'order.total-discounts',
             array(
@@ -47,6 +52,7 @@ class WCCS_Admin_Order_Hooks extends WCCS_Admin_Controller {
                 'order'      => $order,
                 'discount'   => $discount,
                 'label'      => $label,
+                'value'      => $value,
             )
         );
     }

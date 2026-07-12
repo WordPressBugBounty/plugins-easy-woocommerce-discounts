@@ -1,259 +1,579 @@
 === Discount Rules and Dynamic Pricing for WooCommerce ===
 Contributors: asanaplugins
 Donate link: https://www.asanaplugins.com/
-Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woocommerce discounts, woocommerce pricing deals, woocommerce Buy One Get One Free, bulk coupons, gift coupons, signup coupons, advanced coupons, woocommerce bulk discounts, woocommerce pricing, woocommerce price rules, woocommerce advanced discounts, woocommerce pricing deals, woocommerce bulk discounts, woocommerce cart discounts, woocommerce pricing deals, woocommerce discount rules, discount rules for woocommerce, woocommerce shipping, dynamic shipping, url coupons for woocommerce
+Tags: woocommerce, discounts, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4.2
 Tested up to: 7.0
 Requires PHP: 5.6.0
-Stable tag: 9.1.1
+Stable tag: 9.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce discount plugin, pricing and discounts, category discount, smart coupon, quantity discount, bulk discount, shipping method, storewide.
+WooCommerce discount plugin & dynamic pricing: bulk discount, BOGO (buy one get one free), quantity discount, category discount & auto-apply coupons — no coding needed.
 
 == Description ==
 
-Looking for the best <strong>WooCommerce discount</strong> plugin to boost your sales? Look no further than the <strong>WooCommerce Dynamic Pricing & Discounts</strong> - <strong>Easy WooCommerce Discounts</strong> plugin! With its easy-to-use interface and comprehensive features, you can easily create bulk discounts, percentage category discounts, smart coupons, storewide offers, auto-apply coupons, product offers, product variation offers, advanced coupons, tiered-offs, and product quantity-based offers. This plugin offers well-defined solutions to help you set the best offers on your WooCommerce store, making it the perfect choice for beginners and professional users alike.
+**Discount Rules and Dynamic Pricing for WooCommerce - Easy WooCommerce Discounts** is the most complete free WooCommerce discount plugin and dynamic pricing tool. Create bulk discounts, quantity discounts, BOGO deals (buy one get one free), category discounts, storewide percentage discounts, cart-total offers, and auto-apply coupons — all without writing a single line of code. It's a proven sales strategy for increasing average order value, reducing cart abandonment, and driving ecommerce conversions without manually re-pricing a single product.
 
-[FRONT-END DEMO](https://pricing-and-discounts.asanaplugins.com/demo/) | [BACK-END DEMO](https://pricing-and-discounts.asanaplugins.com/) | [Ask Questions](https://www.asanaplugins.com/support/) | [DOCUMENTATION](https://www.asanaplugins.com/knowledgebase/wccs-overview/) | [VIDEO TOTURIALS](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-videos/) | **[PRO WITH UPTO 75% DISCOUNT](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
+Whether you need a **buy 2 get 1 free** promotion, a **WooCommerce dynamic pricing rule**, a **scheduled flash sale**, a **cart total discount**, a **category-wide sale**, or a **WooCommerce coupon** that applies automatically — the free version handles every core scenario from a single admin panel. It works with simple products and variable products right out of the box.
+
+Need advanced features like **wholesale pricing**, **user role-based pricing**, **tiered pricing**, **live price display**, **purchase history rules**, **checkout fees**, or **product bundle discounts**? Those are available in the **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**.
+
+[LIVE DEMO (Front-End)](https://pricing-and-discounts.asanaplugins.com/demo/) | [LIVE DEMO (Back-End)](https://pricing-and-discounts.asanaplugins.com/) | [Ask a Question](https://www.asanaplugins.com/support/) | [Documentation](https://www.asanaplugins.com/knowledgebase/wccs-overview/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLhHtdiA_Y8yNxHyrJm8mENp1QZdZXXabv) | [All Tutorials](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-free-plugin/) | **[GET PRO — UP TO 75% OFF](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
 
 https://youtu.be/79uJ1WzTxFM
 
-== WooCommerce Discount Free Version Features ==
-* <strong>[WooCommerce dynamic pricing and discounts free plugin](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-free-plugin/)</strong>
-* <strong>[WooCommerce Discount Rules](https://www.asanaplugins.com/how-to-create-cart-discount-in-woocommerce-easily/) | [Video Tutorial](https://youtu.be/ECWdimYEMM0)</strong>
-* <strong>[Create Category Discount](https://www.asanaplugins.com/how-to-create-woocommerce-category-discounts/)</strong>
-* <strong>[Percentage OFFs](https://www.asanaplugins.com/how-to-create-woocommerce-percentage-discounts/)</strong>
-* <strong>Bulk pricing (Example: Buy 2 to 5 with 5%, 6 to 10 with 10%, 11 to 15 with 20%, 16 and greater with 25%)</strong>
-* <strong>Display quantity table on product page</strong>
-* <strong>Product based OFFs</strong>
-* <strong>Scheduled product OFFs</strong>
-* <strong>Cart offers (Example: Get 20% OFF on Black Friday or get 15% OFF on specific date)</strong>
-* <strong>cart total based offers(Example: Spend more than $500, get 20% OFF)</strong>
-* <strong>Order total based offers</strong>
-* <strong>Exclude selected products from rules (product price based rules)</strong>
-* <strong>Date based rules(validity)</strong>
-* <strong>Show bulk table or quantity table on the product pages</strong>
-* <strong>A shortcode for quantity based table or bulk pricing table</strong>
-* <strong>Option to set rules expiry date (From Date , To Date)</strong>
-* <strong>Weight based shipping</strong>
-* <strong>Free shipping based on cart total amount condition</strong>
-* <strong>Shipping method based on cart total amount, number of cart items, date or date period, cart weight, cart total amount</strong>
-* <strong>Scheduled shipping methods</strong>
+---
 
-**[Buy it Now with an offer](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)** | **[Buy it + Addons with a big OFF](https://www.asanaplugins.com/advanced-discounts-woocommerce/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
+== ✅ Free Version Features ==
 
-== WooCommerce Bulk Discount ==
-Bulk discount and quantity discount are popular pricing strategies used by retailers and e-commerce businesses to drive sales and attract customers. A bulk coupon offers a flat percentage off the total purchase price for a specific quantity of items, while a quantity discount may offer incremental discounts based on the number of items purchased. Both of these strategies can be implemented easily on websites built on the WooCommerce platform. With these strategies, businesses can attract more buyers to their online store, ultimately leading to increased sales volume.
+**Product Discounts**
 
-This powerful plugin empowers you with advanced rules that enable you to offer your customers irresistible OFFs based on the number of items in their shopping cart. In addition, you can also create quantity-based rules for your products and categories, giving your shoppers even more reasons to buy from you. With this feature-packed plugin, you can take your e-commerce business to new heights and keep your customers coming back for more.
+- **[Bulk Discount / Quantity Discount](https://www.asanaplugins.com/woocommerce-bulk-discounts/)** — Buy 2–5 get 5% off, buy 6–10 get 10% off, buy 11+ get 20% off
+- **[Category Discount](https://www.asanaplugins.com/how-to-create-woocommerce-category-discounts/)** — Apply a percentage or fixed discount to entire product categories
+- **[Percentage Discounts](https://www.asanaplugins.com/how-to-create-woocommerce-percentage-discounts/)** — Storewide or product-specific percentage off
+- **Product-based discounts** — Apply discounts to specific simple or variable products
+- **Storewide discounts** — Apply a discount to all products in your store at once
+- **Scheduled product discounts** — Set a start date and end date for any rule
+- **BOGO — Buy One Get One Free** — Buy 1 get 1, Buy 2 get 1, Buy 3 get 1, and Buy X Get Y for simple and variable products
+- **Exclude products from rules** — Exclude selected products from any pricing rule
 
-== WooCommerce Category Discount ==
-Using category discounts in WooCommerce can increase sales and customer loyalty. Merchants can attract customers looking for specific products and encourage them to purchase more by offering coupons on categories. Optimizing this strategy can drive more traffic and increase sales while building a loyal customer base.
+**Cart & Order Discounts**
 
-The plugin offers category discounts and pricing to edit category prices with a pricing rule or apply it to a category or group of categories.
+- **[Cart Discount Rules](https://www.asanaplugins.com/how-to-create-cart-discount-in-woocommerce-easily/)** — e.g. 20% off sitewide on Black Friday, 15% off on specific dates
+- **Cart total-based discounts** — e.g. Spend over $100, get 15% off
+- **Order total-based discounts** — Reward customers who spend more
+- **Auto-apply coupons** — WooCommerce coupons applied automatically at checkout, no code entry needed
+- **Manual coupons** — Activate a discount rule with a specific coupon code
 
-== WooCommerce Scheduled Coupon ==
-Scheduled coupons can be used by online businesses to offer discounts to customers during specific dates and times. This can increase sales and customer loyalty, making it a powerful marketing tool. The rules can be scheduled for specific days, date and time, or a range of dates and times.
+**Display & Notifications**
 
-== Auto Apply Coupon ==
-Auto Apply Coupon is a feature that automatically applies coupon codes at checkout without shoppers having to search and enter codes manually. It saves time and effort, ensures customers don't miss out on offers, and enhances the shopping experience for both customers and businesses.
+- **Quantity table / bulk pricing table** — Displayed on the product page to show shoppers their savings
+- **Shortcode for bulk pricing table** — Display the pricing table anywhere with `[wccs_bulk_table]`
+- **Product page messages** — Inform customers of active discount rules before they add to cart
+- **"You Saved" display** — Show total savings in the cart and at checkout
+- **Rules analytics** — Track rule impressions and performance in the admin dashboard
+- **Discount templates** — Pre-built rule templates to launch your first discount in minutes
 
-== PRO Version ==
-The plugin has a PRO version that helps to create a wide range of discounts like BOGO deals, buy 1 get 1 free deal, buy 2 get 1 free, buy 3 get 1 free, auto add free product to cart, Offer gift products, product attributes, product tags and product meta fields, product bundle, product group, checkout fee, payment method, cart subtotal, sign up and first order offs, free shipping, history based, weight and subtotal shipping methods, purchase history, user spend amount, user role, customer and customer email, last order amount, and more.
+**Shipping**
 
-== BOGO Deals (PRO Version) ==
-BOGO deals, also known as "buy one, get one" deals, are great for saving money when shopping. These deals offer customers the opportunity to purchase one item and receive another item of equal or lesser value for free or at a discounted price. These deals are often used by businesses as a marketing tactic to attract customers and increase sales. For consumers, BOGO deals provide a chance to stretch their dollars further and get more value for their money.
+- **Free shipping** based on cart total (e.g. free shipping over $50)
+- **Weight-based shipping methods**
+- **Scheduled shipping methods** — Enable specific shipping options on specific dates or date ranges
+- **Shipping method rules** — Show or hide shipping methods based on cart total, item count, cart weight, or date
 
-BOGO deals have some variations like Buy two Get one deal, Buy three Get one deal and etc. You can create all variations of BOGO deals in the plugin.
+**[Get PRO with Discount](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)** | **[PRO + All Addons Bundle](https://www.asanaplugins.com/advanced-discounts-woocommerce/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
 
-== Product Group or Bundles (PRO Version) ==
-Product groups or bundles are a marketing strategy where multiple products are packaged together and sold as a single entity. This technique is commonly used to increase the value and appeal of offerings to consumers, create a perception of value, cross-sell related items, and introduce customers to other products they may not have considered purchasing. It can be an effective way for businesses to increase sales, improve customer satisfaction, and gain a competitive edge in the market.
+---
 
-== Conditional Shipping Methods (PRO Version) ==
-Conditional shipping methods allow e-commerce businesses to determine shipping options based on various conditions such as location, time of day, or products in the customer's cart. This allows for a more personalized and efficient shipping experience for customers, resulting in increased satisfaction and loyalty. Furthermore, these methods can streamline logistics and reduce costs by only offering certain shipping options when necessary. Overall, conditional methods are a valuable tool for optimizing shipping processes and improving the customer experience.
+== 📦 WooCommerce Bulk Discount & Quantity Discount ==
 
-== Conditional Checkout Fees (PRO Version) ==
-Conditional checkout fees are additional charges that are applied to a purchase based on certain conditions being met. For example, an online retailer may charge a fee for expedited shipping or for a specific payment method. These fees are typically disclosed upfront so that the customer understands the total cost of their purchase. While some customers may find these fees to be an inconvenience, they are often necessary for businesses to cover the costs associated with these services. It is important for businesses to be transparent about these fees to avoid any confusion or frustration among customers.
+A **WooCommerce bulk discount** (also called a **quantity discount**) rewards customers who buy more by automatically reducing the per-unit price as quantity increases. It is one of the most effective strategies for increasing average order value and moving inventory faster.
 
-== Auto Add Gift Products (PRO Version Addon) ==
-Additionally, it is worth noting that the [Auto Add Products to Cart](https://www.asanaplugins.com/auto-add-products-to-cart-in-woocommerce/) addon can also be utilized when a customer reaches a certain spending threshold. In other words, if a customer spends a certain amount of money, they can automatically receive a gift product. This feature can be a powerful tool in encouraging customers to spend more and boost sales.
+Many store owners also search for this as **tiered pricing** — the concept is the same: set price breaks at different quantity thresholds. Basic quantity-based bulk discounts are available in the free version. Advanced tiered pricing rules with per-tier percentages and role-based conditions are available in the **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**.
 
-Auto Add Products to Cart is available as an addon for the PRO version.
+With the free version you can create unlimited bulk pricing tiers for any product, category, or your entire store:
 
-== WooCommerce Shipping Discount (PRO Version Addon) ==
-[Shipping discount](https://www.asanaplugins.com/how-to-add-shipping-discounts-in-woocommerce/) refers to the reduced cost of delivering products to customers. It is a promotional strategy commonly used by online retailers to attract customers and increase sales. Shipping can be a significant expense for buyers, especially for those located far from the seller's location. A shipping offer can incentivize buyers to purchase more items or make larger purchases, knowing that they will save money on delivery fees. Sellers can also benefit from offering shipping discounts by gaining more sales and repeat customers. Overall, shipping OFFs are a win-win for both buyers and sellers as they help lower costs and increase customer satisfaction.
+- **Buy 1–5 units** → 0% off (regular price)
+- **Buy 6–10 units** → 10% off
+- **Buy 11–20 units** → 20% off
+- **Buy 21+ units** → 30% off
 
-It is an addon for the PRO version.
+The quantity table is displayed automatically on the product page so shoppers can see their savings before adding to cart — a proven conversion driver. You can also use the `[wccs_bulk_table]` shortcode to place it anywhere.
 
-== URL Coupon (PRO Version Addon) ==
-URL coupons are digital offers that can be redeemed by clicking on a link. They are convenient and can be used for various marketing campaigns. Additionally, the addon has a feature where products can be automatically added to the cart when a customer visits the URL.
+**Common bulk discount use cases:**
 
-URL Coupons is an addon for the PRO version.
+- Inventory clearance — move slow-selling stock with quantity-based markdowns
+- B2B stores — show volume pricing tiers to business buyers
+- Seasonal promotions — scheduled bulk pricing for holiday periods
+- WooCommerce discount for multiple items — reward customers buying in larger quantities
 
-== 📕 WooCommerce Discount PRO VERSION Tutorials and Features ==
-* <strong>[Dynamic Pricing for WooCommerce](https://www.asanaplugins.com/how-to-use-dynamic-pricing-in-woocommerce/)</strong>
-* <strong>[WooCommerce percentage OFF](https://www.asanaplugins.com/how-to-create-woocommerce-percentage-discounts/) | [Video Tutorial](https://youtu.be/W5hwOb5tflw)</strong>
-* <strong>[WooCommerce BOGO deals or Buy One Get One Free in WooCommerce](https://www.asanaplugins.com/how-to-create-buy-one-get-one-free-bogo-deals-in-woocommerce/)</strong>
-* <strong>[Buy 2 Get 1 Free in WooCommerce](https://www.asanaplugins.com/buy-2-get-1-free-woocommerce-discount/) | [Video Tutorial](https://youtu.be/OtzozKCz_ks)</strong>
-* <strong>[Buy 3 Get 1 Free Offer](https://www.asanaplugins.com/create-a-buy-3-get-1-free-deal-for-woocommerce/)</strong>
-* <strong>[Buy A Get B](https://youtu.be/FxbnrqUnhYI)</strong>
-* <strong>[Automatically add free products to cart for BOGO deals](https://youtu.be/A7lWDWAiNG8)</strong>
-* <strong>[Give free gift products](https://www.asanaplugins.com/provide-free-gift-products-in-woocommerce-complete-guide/)</strong>
-* <strong>[Offer one or more free gift products](https://www.asanaplugins.com/provide-free-gift-products-in-woocommerce-complete-guide/)</strong>
-* <strong>[WooCommerce Bulk pricing](https://www.asanaplugins.com/woocommerce-bulk-discounts/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link) | [Video Tutorial](https://youtu.be/hm77PqMcA_0)</strong>
-* <strong>[WooCommerce tiered pricing](https://www.asanaplugins.com/woocommerce-tiered-discounts/)</strong>
-* <strong>[Products Group Pricing](https://www.asanaplugins.com/how-to-create-bundle-discounts-in-woocommerce/)</strong>
-* <strong>[Create WooCommerce Bundle / Package Deals](https://www.asanaplugins.com/how-to-create-bundle-discounts-in-woocommerce/)</strong>
-* <strong>[OFF product variations](https://www.asanaplugins.com/how-to-create-discounts-for-product-variations-in-woocommerce/) | [Video Tutorial](https://youtu.be/vIFE3yPGIkc)</strong>
-* <strong>[OFF categories](https://www.asanaplugins.com/how-to-create-woocommerce-category-discounts/) | [Video Tutorial](https://youtu.be/11_LJBTvgng)</strong>
-* <strong>[Product attributes](https://www.asanaplugins.com/how-to-create-woocommerce-product-attributes-discounts/)</strong>
-* <strong>Product tags</strong>
-* <strong>[Create User Role Based Rules](https://www.asanaplugins.com/user-role-based-pricing-for-woocommerce-detailed-guide/)</strong>
-* <strong>Create Black Friday or Cyber Mondey discount deals</strong>
-* <strong>[Create WholeSale deals](https://www.asanaplugins.com/how-to-setup-wholesale-discounts-for-products-in-woocommerce/)</strong>
-* <strong>Dependant product (Buy Product A and get discount on Product B)</strong>
-* <strong>Purchase history (Customers who spent $100 in previously get 10%)</strong>
-* <strong>Rules for number of orders placed earlier (Example: 10% for customers with 5 or more orders)</strong>
-* <strong>User based offers</strong>
-* <strong>[First Order rule](https://www.asanaplugins.com/how-to-give-first-order-discount-in-woocommerce/)</strong>
-* <strong>[payment methods](https://www.asanaplugins.com/create-payment-method-discount-in-woocommerce/)</strong>
-* <strong>[Shipping state offers](https://youtu.be/jJtZ5de1568)</strong>
-* <strong>Create shipping or delivery location based offers</strong>
-* <strong>Advanced Checkout Fees</strong>
-* <strong>Live Price</strong>
-* <strong>Advanced WooCommerce Coupons</strong>
-* <strong>Advanced WooCommerce Shipping Methods</strong>
-* <strong>[Checkout Fee for specific Payment Methods](https://www.asanaplugins.com/create-payment-gateway-fees-in-woocommerce/)</strong>
-* <strong>[Checkout Fee for specific Shipping postcodes](https://youtu.be/837u3oJD2J0)</strong>
-* <strong>[Checkout Fee for specific products](https://youtu.be/YWm5lhyi5jY)</strong>
-* <strong>Powerful Conditional Logic</strong>
-* <strong>WooCommerce Countdown Timer</strong>
-* <strong>Fixed price offers (Get 10$ discount for purchasing over 6 items).</strong>
-* <strong>User role based pricing (Example: Wholesale customers get a discounted price).</strong>
-* <strong>[All Products or Storewide offers](https://www.asanaplugins.com/woocommerce-apply-discount-to-all-products/)</strong>
-* <strong>Signup Offer</strong>
-* <strong>Discount Manager Plugin</strong>
-* <strong>[WooCommerce smart coupons](https://www.asanaplugins.com/how-to-create-smart-coupons-in-woocommerce/)</strong>
-* <strong>And More</strong>
+---
+
+== 🏷️ WooCommerce Category Discount ==
+
+A **WooCommerce category discount** lets you apply a pricing rule to an entire product category in one step — no need to edit individual products. The free version lets you:
+
+- Set a **percentage discount** on any category (e.g. 20% off all "Winter Jackets")
+- Set a **fixed amount discount** on any category (e.g. $10 off all "Accessories")
+- Apply rules to **multiple categories at once**
+- Combine category discounts with conditions like date range or minimum cart total
+- **Exclude individual products** from a category-wide rule
+
+Category discounts are ideal for seasonal sales, clearance events, and promotional campaigns targeting a specific product range.
+
+---
+
+== 🛒 WooCommerce BOGO Deals — Buy One Get One Free ==
+
+**BOGO deals** (Buy One Get One Free) are one of the highest-converting promotional tactics in e-commerce. The free version fully supports the most common BOGO variations for **simple and variable products**:
+
+- **Buy 1 Get 1 Free** — Classic buy one get one free
+- **Buy 2 Get 1 Free** — Buy two, get the third at no cost
+- **Buy 3 Get 1 Free** — Perfect for multi-pack promotions
+- **Buy X Get Y** — Buy product A and receive product B free or at a discount
+- **Buy One Get One 50% Off** — Buy one item, get the second at half price
+
+In the free version, BOGO rules apply to **simple products and variable products**. Category-based BOGO deals and product variation-based BOGO deals are available in the **PRO version**.
+
+BOGO products are **automatically added to the cart** when the buy condition is met — customers don't need to add the free item manually.
+
+The **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)** unlocks Buy X Get X (same product in one rule), category-based BOGO deals, variation-based BOGO deals, and the 🎁 gift emoji on free cart items.
+
+**BOGO use cases:**
+
+- Cosmetics and personal care — buy one shampoo, get conditioner free
+- Food and grocery — buy 3, pay for 2 multi-pack deals
+- Apparel — buy two shirts, get one free to clear end-of-season stock
+- SaaS or digital products — buy one license, get a second at no charge
+
+---
+
+== 💲 WooCommerce Dynamic Pricing ==
+
+**WooCommerce dynamic pricing** means product prices and discount rules change automatically based on conditions you define — no manual price editing, no coupon codes required. The free version supports:
+
+- Quantity-based dynamic pricing (more items = lower price per unit)
+- Cart-total dynamic pricing (spend $X, get Y% off)
+- Date-based dynamic pricing (flash sales and scheduled promotions)
+- Category-based dynamic pricing (automatic discounts on entire product categories)
+
+The **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)** adds:
+
+- **Live price display** — product page price updates in real time as the customer changes quantity
+- **Role-based dynamic pricing** — wholesale and VIP customers see different prices
+- **Purchase-history dynamic pricing** — reward returning customers based on total amount spent
+- **Tiered pricing rules** — advanced per-tier pricing with powerful conditions
+
+Dynamic pricing rules replace the need for coupon codes. Discounts are applied automatically when the customer meets the conditions you have set.
+
+---
+
+== 📊 WooCommerce Tiered Pricing (PRO) ==
+
+**Tiered pricing** (also called volume pricing or quantity-based pricing) gives progressively larger discounts as customers buy more — a step up from flat bulk discounts. Many store owners search for "tiered pricing" or "tiered discounts" when looking for quantity discount functionality in WooCommerce.
+
+Basic quantity-based bulk discounts are fully available in the **free version**. The full **WooCommerce tiered pricing** feature — with advanced per-tier percentage rules, role-based tiers, and attribute-based conditions — is available in the **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**.
+
+PRO tiered pricing example:
+
+- Quantity 1–4: regular price
+- Quantity 5–9: 5% off
+- Quantity 10–19: 12% off
+- Quantity 20+: 20% off — plus an additional 5% off for wholesale user role
+
+A pricing table on the product page displays all tiers clearly, motivating shoppers to add more items to unlock the next discount level.
+
+---
+
+== 🔖 WooCommerce Scheduled Discounts & Flash Sales ==
+
+Create time-limited promotions that start and end automatically — fully available in the free version:
+
+- Set a **start date and end date** for any discount rule
+- Schedule rules to run on **specific days of the week**
+- Run **recurring scheduled discounts** (e.g. every weekend, every Monday)
+
+Scheduled discounts are perfect for **WooCommerce flash sales**, Black Friday, Cyber Monday, holiday sales, and any time-limited promotional campaign. The **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)** adds a **Countdown Timer** on product pages to drive urgency.
+
+---
+
+== 🎫 WooCommerce Coupon & Auto-Apply Coupon ==
+
+**WooCommerce coupons** and **discount rules** are the most-used promotional tools in e-commerce. This plugin extends WooCommerce's native coupon system with powerful automation — turning discount rules into auto-applied coupons with no code entry needed. Removing the extra step of typing a code is a simple way to reduce cart abandonment and keep shoppers moving toward checkout:
+
+- **Auto-apply coupons** — the WooCommerce coupon is applied automatically at checkout when conditions are met, no code entry needed
+- **Manual coupons** — activate a discount rule only when a specific code is entered
+- **Cart total coupons** — apply a coupon when a customer spends over a set threshold
+- **Order total coupon rules** — trigger coupons based on order total ranges
+- **Scheduled coupons** — coupons that activate and deactivate on specific dates automatically
+- **User role coupon templates** — create coupon rules for specific user roles quickly (PRO version)
+
+The PRO version adds **smart coupons** and **URL coupons** — share a link that auto-applies a WooCommerce coupon and optionally adds products to the cart.
+
+---
+
+== 💳 WooCommerce Checkout Fee (PRO) ==
+
+A **WooCommerce checkout fee** lets you add conditional surcharges or extra charges at checkout based on rules you define. The plugin supports advanced checkout fee rules in the **PRO version**:
+
+- **Payment method fees** — add a surcharge for specific payment gateways (e.g. 2% fee for credit card payments)
+- **Shipping postcode fees** — charge extra for deliveries to specific postcodes or regions
+- **Product-based fees** — apply a fee when specific products are in the cart
+- **Cart weight fees** — add a handling fee when the cart exceeds a weight threshold
+- **Negative checkout fees** — use a negative fee value as an additional discount at checkout
+- **Tax-aware fees** — fees correctly include or exclude tax based on your WooCommerce tax settings
+
+Checkout fees work with the full PRO condition library — you can combine any condition (user role, cart total, shipping zone, payment method, products in cart) to create highly targeted fee rules.
+
+[Learn how to create payment gateway fees in WooCommerce →](https://www.asanaplugins.com/create-payment-gateway-fees-in-woocommerce/)
+
+---
+
+== 🚚 WooCommerce Shipping Rules ==
+
+Control shipping options with conditional shipping rules. The following are available in the free version:
+
+- **Free shipping** based on cart total (e.g. free shipping over $50)
+- **Weight-based shipping methods**
+- **Scheduled shipping** — offer free shipping only on specific dates or periods
+- **Shipping method rules** — show or hide shipping methods based on cart total, item count, cart weight, or date
+
+The **[PRO version](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)** adds advanced conditional shipping with the full PRO condition library, including:
+
+- Shipping country, state, city, postcode, and zone conditions
+- Products, categories, variations, attributes, and tags in cart conditions
+- Payment method conditions
+- Customer role, purchase history, and money spent conditions
+
+The **[Shipping Discount addon](https://www.asanaplugins.com/how-to-add-shipping-discounts-in-woocommerce/)** (PRO addon) extends this further with discounted shipping rates — apply a percentage or fixed discount to any shipping method based on cart conditions.
+
+---
+
+== ⭐ PRO Version Features ==
+
+**[Get PRO with up to 75% off →](https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts&utm_medium=link)**
+
+The PRO version unlocks every advanced scenario:
+
+**Live Price & Dynamic Pricing**
+
+- **Live price display** — product page price updates in real time as the customer changes quantity
+- **Tiered pricing rules** — advanced per-tier pricing with role, history, and attribute conditions
+- **Price change on product page** — show the discounted price on archive and product pages based on bulk pricing rules
+
+**Advanced BOGO & Gift Rules**
+
+- Buy X Get X — same-product BOGO with one single rule
+- Category-based BOGO deals
+- Product variation-based BOGO deals
+- Gift emoji 🎁 displayed on free items in cart and checkout
+- **[Auto Add Products to Cart addon](https://www.asanaplugins.com/auto-add-products-to-cart-in-woocommerce/)** — automatically add a free gift product to the cart when a customer reaches a spending threshold (PRO addon)
+
+**User Role & Wholesale Pricing**
+
+- [User role-based pricing](https://www.asanaplugins.com/user-role-based-pricing-for-woocommerce-detailed-guide/) — show different prices to different customer roles
+- [Wholesale pricing](https://www.asanaplugins.com/how-to-setup-wholesale-discounts-for-products-in-woocommerce/) — give wholesale or B2B customers automatic discounts on login
+- VIP / member pricing — exclusive prices for specific user roles
+
+**Advanced Targeting Conditions (PRO)**
+
+Powered by a full condition library covering:
+
+_Customer conditions:_ customer, user role, logged-in status, user capability, user meta, email, usage limit per user
+
+_Customer value conditions:_ money spent, number of orders, average order value, last order date, last order amount, number of reviews, number of product reviews
+
+_Cart conditions:_ cart subtotal (inc/exc tax), number of cart items, cart total weight, cart item dimensions (width, height, length), minimum stock of cart items, coupons applied
+
+_Cart item conditions:_ products in cart, product variations in cart, product categories in cart, product attributes in cart, product tags in cart, shipping classes in cart, featured products in cart, on-sale products in cart
+
+_Cart item subtotals:_ subtotal of specific products, variations, categories, attributes, tags, regular products, on-sale products (inc/exc tax)
+
+_Cart item quantities:_ quantity of specific products, variations, categories, attributes, or tags in cart
+
+_Purchase history:_ bought products, variations, categories, attributes, tags, featured products, on-sale products — with quantity and amount sub-conditions
+
+_Checkout conditions:_ payment method, shipping method
+
+_Shipping address:_ shipping country, state, city, postcode, zone
+
+_Shipping package:_ package total weight, number of package items, quantity of package items
+
+_Shipping package items:_ products, variations, categories, attributes, tags, and shipping classes in shipping package
+
+_Custom taxonomies:_ any custom product taxonomy in cart, subtotal, quantity, or purchase history
+
+**Pricing & Discount Types (PRO)**
+
+- [Bundle / product group discounts](https://www.asanaplugins.com/how-to-create-bundle-discounts-in-woocommerce/) — discount when specific products are purchased together
+- [Individual product variation discounts](https://www.asanaplugins.com/how-to-create-discounts-for-product-variations-in-woocommerce/) — target specific variations of a variable product
+- [Product attribute discounts](https://www.asanaplugins.com/how-to-create-woocommerce-product-attributes-discounts/)
+- Recurring discounts for WooCommerce Subscriptions
+- [First order discount](https://www.asanaplugins.com/how-to-give-first-order-discount-in-woocommerce/) — reward new customers automatically
+- Sign-up / new user discounts
+
+**Payment, Checkout & Shipping (PRO)**
+
+- [Payment method discount](https://www.asanaplugins.com/create-payment-method-discount-in-woocommerce/) — offer a discount for paying by bank transfer or a specific gateway
+- [WooCommerce checkout fee](https://www.asanaplugins.com/create-payment-gateway-fees-in-woocommerce/) — conditional surcharges at checkout based on payment method, postcode, products, or cart weight
+- Advanced conditional shipping methods with full condition library
+- [Shipping Discount addon](https://www.asanaplugins.com/how-to-add-shipping-discounts-in-woocommerce/) — apply discounts to shipping methods
+
+**Marketing & Visibility (PRO)**
+
+- WooCommerce Countdown Timer on product pages
+- [Smart coupons](https://www.asanaplugins.com/how-to-create-smart-coupons-in-woocommerce/)
+- [URL coupons](https://www.asanaplugins.com/product/url-coupons-for-woocommerce/) — share a link that auto-applies a coupon and optionally adds products to cart
+- Usage restrictions — limit how many times a rule can fire, per store or per user
+
+---
+
+== 📚 Tutorials ==
+
+Learn how to set up every type of WooCommerce discount with our comprehensive guides:
+
+**Bulk Discount & Quantity Discount**
+
+- [How to Create WooCommerce Bulk Discounts?](https://www.asanaplugins.com/woocommerce-bulk-discounts/)
+- [WooCommerce Quantity Discount: A Comprehensive Guide](https://www.asanaplugins.com/woocommerce-quantity-discount/)
+- [WooCommerce Discount for Multiple Items](https://www.asanaplugins.com/woocommerce-discount-for-multiple-items/)
+- [Comprehensive Guide to WooCommerce Discounts: BOGO, Bulk, and Tiered Pricing](https://www.asanaplugins.com/comprehensive-guide-to-woocommerce-discounts/)
+
+**BOGO — Buy One Get One Free**
+
+- [How To Create Buy One Get One – BOGO Deals in WooCommerce](https://www.asanaplugins.com/how-to-create-buy-one-get-one-free-bogo-deals-in-woocommerce/)
+- [How To Create Buy 2 Get 1 Free Discount Offer in WooCommerce](https://www.asanaplugins.com/buy-2-get-1-free-woocommerce-discount/)
+- [Create a Buy 3 Get 1 Free Deal for WooCommerce](https://www.asanaplugins.com/create-a-buy-3-get-1-free-deal-for-woocommerce/)
+- [WooCommerce Buy One Get One 50% Off](https://www.asanaplugins.com/woocommerce-buy-one-get-one-50-off/)
+- [Provide Free Gift Products in WooCommerce — Complete Guide](https://www.asanaplugins.com/provide-free-gift-products-in-woocommerce-complete-guide/)
+
+**Category & Product Discounts**
+
+- [How to Create WooCommerce Category Discounts?](https://www.asanaplugins.com/how-to-create-woocommerce-category-discounts/)
+- [How to Add Discounts on WooCommerce Products?](https://www.asanaplugins.com/how-to-add-discounts-on-woocommerce-products/)
+- [How To Create WooCommerce Percentage Discounts?](https://www.asanaplugins.com/how-to-create-woocommerce-percentage-discounts/)
+- [WooCommerce Apply Discount to All Products](https://www.asanaplugins.com/woocommerce-apply-discount-to-all-products/)
+
+**Tiered Pricing & Dynamic Pricing**
+
+- [How To Create Tiered Discounts in WooCommerce](https://www.asanaplugins.com/woocommerce-tiered-discounts/)
+- [How to Use Dynamic Pricing in WooCommerce?](https://www.asanaplugins.com/how-to-use-dynamic-pricing-in-woocommerce/)
+- [WooCommerce Dynamic Pricing and Discounts Free Plugin](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-free-plugin/)
+
+**Flash Sales & Scheduled Discounts**
+
+- [WooCommerce Flash Sale: Plugins + Complete Guide](https://www.asanaplugins.com/woocommerce-flash-sale/)
+
+**Cart Discounts & Coupons**
+
+- [How to Create Cart Discount in WooCommerce Easily?](https://www.asanaplugins.com/how-to-create-cart-discount-in-woocommerce-easily/)
+- [How To Create WooCommerce Discount Rules – Free Plugin](https://www.asanaplugins.com/woocommerce-discount-rules/)
+- [How to Create Smart Coupons in WooCommerce?](https://www.asanaplugins.com/how-to-create-smart-coupons-in-woocommerce/)
+
+**First Order & User-Based Discounts**
+
+- [How to Give First Order Discount in WooCommerce](https://www.asanaplugins.com/how-to-give-first-order-discount-in-woocommerce/)
+- [User Role Based Pricing for WooCommerce — Detailed Guide](https://www.asanaplugins.com/user-role-based-pricing-for-woocommerce-detailed-guide/)
+- [How to Setup Wholesale Discounts for Products in WooCommerce](https://www.asanaplugins.com/how-to-setup-wholesale-discounts-for-products-in-woocommerce/)
+
+**Bundle & Variation Discounts**
+
+- [How to Create Bundle Discounts in WooCommerce?](https://www.asanaplugins.com/how-to-create-bundle-discounts-in-woocommerce/)
+- [How to Create Discounts for Product Variations in WooCommerce?](https://www.asanaplugins.com/how-to-create-discounts-for-product-variations-in-woocommerce/)
+- [How to Create WooCommerce Product Attributes Discounts?](https://www.asanaplugins.com/how-to-create-woocommerce-product-attributes-discounts/)
+
+**Shipping & Checkout**
+
+- [How to Add Shipping Discounts in WooCommerce](https://www.asanaplugins.com/how-to-add-shipping-discounts-in-woocommerce/)
+- [WooCommerce Free Shipping Based on Cart Subtotal](https://www.asanaplugins.com/woocommerce-free-shipping-cart-subtotal/)
+- [Create Payment Method Discount in WooCommerce](https://www.asanaplugins.com/create-payment-method-discount-in-woocommerce/)
+- [Create Payment Gateway Fees in WooCommerce](https://www.asanaplugins.com/create-payment-gateway-fees-in-woocommerce/)
+
+**Auto Add Products**
+
+- [Auto Add Products to Cart in WooCommerce](https://www.asanaplugins.com/auto-add-products-to-cart-in-woocommerce/)
+
+---
+
+== 📋 Video Tutorials ==
+
+Watch all video tutorials on our **[YouTube Playlist](https://www.youtube.com/playlist?list=PLhHtdiA_Y8yNxHyrJm8mENp1QZdZXXabv)**.
+
+- [WooCommerce Product Discount](https://youtu.be/kZM8LoRvy7o) — Learn how to create powerful WooCommerce product discounts in WordPress!
+- [WooCommerce Bulk Pricing Setup](https://youtu.be/VmMi6NUbMXk) — Create a quantity discount table (free)
+- [WooCommerce BOGO Deals](https://youtu.be/OtzozKCz_ks) — Buy 2 Get 1 Free step by step (free)
+- [WooComemrce Coupons Tutorial](https://youtu.be/oPKrXSSZFnA) — Learn how to create powerful WooCommerce coupons
+- [WooCommerce Dynamic Pricing & Discounts](https://youtu.be/_6mKnrXXhn0) — Master WooCommerce dynamic pricing and discounts for products, categories, quantity breaks, and user roles
+- [Buy A Get B — different products](https://youtu.be/FxbnrqUnhYI)
+- [Auto Add Free Gift to Cart](https://youtu.be/A7lWDWAiNG8) — BOGO with automatic cart addition (free)
+- [Percentage Discount](https://youtu.be/W5hwOb5tflw) — Storewide and product-specific (free)
+- [Category Discount](https://youtu.be/11_LJBTvgng) — Apply a rule to a whole category (free)
+- [Product Variation Discount](https://youtu.be/vIFE3yPGIkc) — Target specific variations (PRO)
+- [Shipping Discount](https://youtu.be/Qs3A-ZbXDM8) (PRO)
+
+---
 
 == 🎉 Our Other Free Plugins ==
-* <strong>[WooCommerce Product Bundles](https://wordpress.org/plugins/easy-product-bundles-for-woocommerce/)
-* <strong>[Sale Badge and Product Label](https://wordpress.org/plugins/easy-sale-badges-for-woocommerce/)
-* <strong>[Upsells, Related Products and Product Recommendations](https://wordpress.org/plugins/easy-upsells-for-woocommerce/)
-* <strong>[AI Content Writing and WhatsApp Chat](https://wordpress.org/plugins/live-chat-button/)
+
+- [WooCommerce Product Bundles](https://wordpress.org/plugins/easy-product-bundles-for-woocommerce/)
+- [Sale Badge and Product Label](https://wordpress.org/plugins/easy-sale-badges-for-woocommerce/)
+- [Upsells, Related Products and Product Recommendations](https://wordpress.org/plugins/easy-upsells-for-woocommerce/)
+- [AI Content Writing and WhatsApp Chat](https://wordpress.org/plugins/live-chat-button/)
 
 == 💡 Our Other Pro Plugins ==
-* <strong>[WooCommerce Product Bundles Pro](https://www.asanaplugins.com/product/woocommerce-product-bundles/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts-free&utm_medium=link)
-* <strong>[Sale Badges and Product Labels Pro](https://www.asanaplugins.com/product/woocommerce-sale-badges-and-product-labels/)
-* <strong>[Upsells, Related Products and Product Recommendations Pro](https://www.asanaplugins.com/product/woocommerce-upsells-related-products/)
-* <strong>[AI Content Writing and WhatsApp Chat Pro](https://www.asanaplugins.com/product/whatsapp-chat-wordpress/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts-free&utm_medium=link)
 
-= Tags =
+- [WooCommerce Product Bundles Pro](https://www.asanaplugins.com/product/woocommerce-product-bundles/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts-free&utm_medium=link)
+- [Sale Badges and Product Labels Pro](https://www.asanaplugins.com/product/woocommerce-sale-badges-and-product-labels/)
+- [Upsells, Related Products and Product Recommendations Pro](https://www.asanaplugins.com/product/woocommerce-upsells-related-products/)
+- [AI Content Writing and WhatsApp Chat Pro](https://www.asanaplugins.com/product/whatsapp-chat-wordpress/?utm_source=wp-org&utm_campaign=easy-woocommerce-discounts-free&utm_medium=link)
 
-woocommerce, discounts, dynamic pricing, Buy One Get One Free, pricing deals, price rules, bulk discounts, advanced discounts, pricing deals, WooCommerce bulk discounts, WooCommerce cart discounts, WooCommerce pricing deals, WooCommerce discount rules, discount rules for WooCommerce, woocommerce shipping, dynamic shipping
+---
 
 == Installation ==
 
-1. Upload `easy-woocommerce-discounts` to the `/wp-content/plugins/` directory.
-2. Activate `WooCommerce` in your wordpress site if it is not activated already.
-3. Activate `Easy WooCommerce Discounts - WooCommerce Dynamic Pricing & Shipping` through the 'Plugins' menu in WordPress.
-4. For detailed setup instructions, vist the official [Documentation](https://www.asanaplugins.com/knowledgebase/wccs-installation/) page.
+1. In your WordPress admin, go to **Plugins → Add New**.
+2. Search for **"Discount Rules and Dynamic Pricing for WooCommerce"**.
+3. Click **Install Now**, then **Activate**.
+4. Go to **Woo Pricing & Discounts** menu to create your first discount rule.
+
+Or upload manually:
+
+1. Upload the `easy-woocommerce-discounts` folder to `/wp-content/plugins/`.
+2. Activate through **Plugins** in the WordPress admin.
+3. Visit the [Documentation](https://www.asanaplugins.com/knowledgebase/wccs-installation/) for detailed setup instructions.
 
 = Minimum Requirements =
 
-* WordPress 4.4.1 or greater
-* WooCommerce 3.0.0 or greater
-* PHP version 5.6.0 or greater
-* MySQL version 5.0 or greater
+- WordPress 4.4.1 or greater
+- WooCommerce 3.0.0 or greater
+- PHP 5.6.0 or greater
+- MySQL 5.0 or greater
+
+---
 
 == Frequently Asked Questions ==
 
-= Are multiple discounts possible ? What is the limit for the number of rules ? =
+= How do I create a bulk discount in WooCommerce? =
 
-Yes. It is possible to create multiple discount and you can setup any number of discount rules in your store.
+Install the plugin, go to **Woo Pricing & Discounts → Pricing tab → Add from Template**, and select the **Bulk Savings: Buy More, Save %** template. Set your quantity ranges and discount amounts (percentage or fixed). The bulk pricing table will appear automatically on the product page. You can also use the `[wccs_bulk_table]` shortcode to display it anywhere. Available in the free version. Full tutorial: [WooCommerce Bulk Discounts](https://www.asanaplugins.com/woocommerce-bulk-discounts/).
 
-= Is it possible to exclude products on SALE? =
+= How do I create a BOGO (buy one get one free) deal in WooCommerce? =
 
-Yes. You can exclude the products on sale from the discount rules.
+Go to **Woo Pricing & Discounts → Pricing tab → Add from Template** and select one of the "BOGO: Buy 1 Get 1 Free" or "Free Gift: Buy X, Get Y for Free" templates. Select your buy and get products. The free product is added to the cart automatically. Buy 1 Get 1, Buy 2 Get 1, Buy 3 Get 1, and Buy X Get Y are all available in the free version. Full tutorial: [BOGO Deals in WooCommerce](https://www.asanaplugins.com/how-to-create-buy-one-get-one-free-bogo-deals-in-woocommerce/).
 
-= Can I set discounts on variable products and its variations? =
+= How do I create a buy 2 get 1 free deal in WooCommerce? =
 
-Yes, you can set pricing on variable products, also you can select each of its variations and set pricing on them.
+Go to **Woo Pricing & Discounts → Pricing tab → Add from Template** and select the "Buy 2 Get 1 Free (Same Item)" or "Combo Pack: Buy 2 of X, Get 1 Y Free" template. Select your buy and get products. The free item is added to the cart automatically. Available in the free version. Full tutorial: [Buy 2 Get 1 Free in WooCommerce](https://www.asanaplugins.com/buy-2-get-1-free-woocommerce-discount/).
 
-= Can I offer a different discount for different customers and roles? =
+= How do I create a category discount in WooCommerce? =
 
-Yes, you can offer a different discount for each of your customers and roles, both for cart discounts and product discounts.
+Go to **Woo Pricing & Discounts → Pricing tab → Add from Template** and select the "Category Discovery" template. Choose **Percentage** or **Price** for the Adjustment Type, then under **Discounted Products** select **Categories**. The discount applies to all products in those categories automatically. Available in the free version. Full tutorial: [WooCommerce Category Discounts](https://www.asanaplugins.com/how-to-create-woocommerce-category-discounts/).
 
-= Does this plugin notifies users about special offers, sales? =
+= How do I create a tiered pricing rule in WooCommerce? =
 
-Yes, this plugin notifies users about special offers in cart and checkout page. Also, you can use its shortcode to showing discounted products and special offers.
+Basic quantity-based tiered discounts (buy more, save more) are available in the free version — go to **Woo Pricing & Discounts → Pricing tab → Add from Template** and select the **Bulk Savings: Buy More, Save %** template. Add multiple quantity ranges with different discount percentages. Advanced tiered pricing with role-based conditions, attribute targeting, and live price display is available in the **PRO version**. Full tutorial: [Tiered Discounts in WooCommerce](https://www.asanaplugins.com/woocommerce-tiered-discounts/).
 
-= Can I offer a discount based on the purchase history of the customer? =
+= What is the difference between bulk discount and tiered pricing? =
 
-Yes. You can offer a discount based on the purchase history, total amount spent by the customer in his previous orders or based on the total number of orders placed by a customer.
+They refer to the same concept. "Bulk discount" and "quantity discount" mean giving a lower price when customers buy more items. "Tiered pricing" and "volume pricing" describe the same strategy with multiple price levels at different quantity thresholds. Basic bulk/quantity discounts are available in the free version. Advanced tiered pricing rules with additional conditions are available in PRO.
 
-= Is it possible to provide discount for wholesale customers? =
+= How do I set up a WooCommerce coupon that applies automatically? =
 
-Yes. The plugin has a user role specific discount rule. You can create a discount for specific user roles like Wholesale customers.
+Create a **Cart Discount** rule and set your conditions (date, cart total, products, etc.). When a customer meets those conditions, the WooCommerce coupon discount is applied at checkout automatically — no code needed. You can also create **manual coupons** that require a specific code. Both modes are available in the free version.
 
-= How to create a bulk discount in WooCommerce? =
+= How do I create a WooCommerce coupon based on cart total? =
 
-Just install the plugin and create a bulk pricing rule for your product.
+Go to **Woo Pricing & Discounts → Discounts tab → Add from Template** and select the **Minimum Spend** template. Set the cart total threshold and the associated discount. For example: spend over $100, get 15% off. Available in the free version.
 
-= How to create a BOGO in WooCommerce? =
+= How do I create a WooCommerce checkout fee? =
 
-Just install the plugin and create a purchase X receive Y pricing rule.
+WooCommerce checkout fees are available in the **PRO version**. Go to **Woo Pricing & Discounts → Fees tab** to create a checkout fee rule. You can base fees on payment method, cart weight, shipping postcode, or specific products in the cart. Full tutorial: [Create Payment Gateway Fees in WooCommerce](https://www.asanaplugins.com/create-payment-gateway-fees-in-woocommerce/).
 
-= How to create a user role based discount in WooCommerce? =
+= Can I add a surcharge for a specific payment method in WooCommerce? =
 
-Just install the plugin and create a pricing rule and add specific roles for your pricing or discount rule.
+Yes, this is a **PRO version** feature. Create a **Checkout Fee** rule and add a **Payment Method** condition. For example: add a 2% surcharge when a customer pays by credit card. You can also use a negative fee value to give a discount for choosing bank transfer. Full tutorial: [Payment Method Discount in WooCommerce](https://www.asanaplugins.com/create-payment-method-discount-in-woocommerce/).
 
-= How to set Bulk Discount ? =
+= Can I offer wholesale pricing or different prices per user role? =
 
-You can specify the Maximum and minimum quantity for the discount to be applied.
-Eg:
-* Quantity 1 - 5 = $10 Discount or 10% discount
-* Quantity 5 - 10 = $15 Discount or 15% discount
+This is a **PRO version** feature. With PRO, create a pricing rule and add a **User Role** condition. For example, wholesale customers get 25% off all products automatically when they log in. Full tutorial: [User Role Based Pricing for WooCommerce](https://www.asanaplugins.com/user-role-based-pricing-for-woocommerce-detailed-guide/).
 
-= Can I set a global discount for all products ? =
+= Can I create a flash sale or scheduled discount? =
 
-Yes. You can set discount for all products at global level.
+Yes, available in the free version. Every rule has a **Date Range** option (From Date / To Date). Set the start and end date and the rule activates and deactivates automatically. You can also target specific days of the week. The **PRO version** adds a **Countdown Timer** on product pages. Full tutorial: [WooCommerce Flash Sale](https://www.asanaplugins.com/woocommerce-flash-sale/).
 
-= Is it possible to provide Bogo deals ? =
+= Does this plugin show a quantity pricing table on the product page? =
 
-Yes. You can provide buy 1 get 1 offers in your store.
+Yes, available in the free version. When you create a bulk pricing rule, a quantity table appears on the product page automatically. Customize its position and style in the plugin settings. Use `[wccs_bulk_table]` shortcode to place it anywhere.
 
-= If I have one or more rules for the same product, which will be applied ? =
+= Can I create discounts based on cart total? =
 
-In that case, the rule with the higher priority will be applied.
+Yes, available in the free version. Go to **Woo Pricing & Discounts → Discounts tab → Add from Template**, select the **Minimum Spend** template, and set your cart total ranges and discount amounts.
 
-= Can I set discount based on Billing Country and City ? =
+= Can I offer a discount based on purchase history? =
 
-Yes. It is possible to set discount rule based on the Customer city. Eg:Customers from Texas gets 15% discount. The discount will be applied at the cart level.
+This is a **PRO version** feature. Add a **Purchase History** condition to any rule — for example, customers who spent $200+ in previous orders get 10% off their next order. You can also target by number of previous orders, quantity of bought products, or amount spent on specific categories.
 
-= How to setup BOGO (Buy One get One) deals in WooCommerce? =
+= Does this plugin support variable products and product variations? =
 
-Just install the plugin and create a purchase X receive Y pricing rule.
+The free version supports discount rules on **variable products as a whole**. Targeting **individual product variations** specifically (e.g. only Size: XL of a shirt) is a **PRO version** feature.
 
-= How to set buy one get one free on Wordpress =
+= Can I give a discount on a customer's first order? =
 
-Just install the plugin pro version and create a purchase rule easily and we have video tutorials [here](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-videos/).
+This is a **PRO version** feature. Go to **Woo Pricing & Discounts → Discounts tab → Add from Template** and select the "New Customer Welcome" or "Welcome Gift" template. Full tutorial: [First Order Discount in WooCommerce](https://www.asanaplugins.com/how-to-give-first-order-discount-in-woocommerce/).
 
-= How to set buy one get one free on WooCommerce =
+= How do I create a storewide discount in WooCommerce? =
 
-Just install the plugin pro version and create a purchase rule easily and we have video tutorials [here](https://www.asanaplugins.com/woocommerce-dynamic-pricing-and-discounts-videos/).
+Go to **Woo Pricing & Discounts → Pricing tab → Add from Template**, select the **Storewide** template, and set your discount type and amount. Available in the free version. Add date conditions to make it a scheduled storewide sale. Full tutorial: [WooCommerce Apply Discount to All Products](https://www.asanaplugins.com/woocommerce-apply-discount-to-all-products/).
+
+= Is it possible to exclude products from a discount rule? =
+
+Yes, available in the free version. Every rule has an **Excluded Products** section where you can select individual products or categories to exclude — for example, exclude already on-sale products from a storewide discount.
+
+= Can I offer free shipping as a discount? =
+
+Yes, available in the free version. Create a shipping rule with a cart total condition (e.g. free shipping over $50). The PRO version adds advanced conditions from the full condition library. The **Shipping Discount addon** (PRO addon) applies percentage or fixed discounts to existing shipping methods. Full tutorial: [WooCommerce Free Shipping Based on Cart Subtotal](https://www.asanaplugins.com/woocommerce-free-shipping-cart-subtotal/).
+
+= Can I automatically add a free gift product to the cart? =
+
+The **Auto Add Products to Cart** feature is available as an **addon for the PRO version**. When a customer reaches a spending threshold, a free gift product is automatically added to their cart. Full tutorial: [Auto Add Products to Cart in WooCommerce](https://www.asanaplugins.com/auto-add-products-to-cart-in-woocommerce/).
+
+= Does this plugin support WooCommerce Subscriptions? =
+
+Yes. The plugin includes compatibility with WooCommerce Subscriptions, including recurring discount types.
+
+= How many discount rules can I create? =
+
+Unlimited in both free and PRO versions. Rules are applied by priority — you control which rule takes precedence when multiple rules match.
+
+= Does this plugin work with WooCommerce Blocks (cart and checkout blocks)? =
+
+Yes. The plugin includes compatibility with the WooCommerce cart block and checkout block.
+
+= Is this plugin compatible with WPML and multilingual setups? =
+
+Yes. The plugin is compatible with WPML for multilingual WooCommerce stores.
+
+= Can I create a discount based on shipping country or city? =
+
+This is a **PRO version** feature. Add a **Shipping Country**, **Shipping State**, or **Shipping City** condition to any rule. For example: customers shipping to Texas get 15% off.
+
+= Does the plugin display how much a customer has saved? =
+
+Yes, available in the free version. The "You Saved" total is displayed in the cart and at checkout so customers clearly see the value of their discount.
+
+= Are multiple discount rules possible at the same time? =
+
+Yes. You can run multiple pricing rules simultaneously in both free and PRO versions. Rules are applied based on priority — you control which discount rule takes precedence when multiple rules match the same product or cart.
+
+= Can I use this plugin without coupon codes? =
+
+Yes. This is one of the core advantages of this WooCommerce discount plugin. Pricing rules and cart discount rules apply automatically when customers meet the conditions — no coupon code required. This removes checkout friction and ensures customers never miss a discount offer.
+
+= What types of WooCommerce discount rules can I create? =
+
+In the free version: bulk/quantity discounts, category discounts, storewide percentage discounts, BOGO deals (Buy 1 Get 1, Buy 2 Get 1, Buy 3 Get 1, Buy X Get Y), cart total discounts, scheduled discounts, and auto-apply coupons. In PRO: tiered pricing, user role pricing, wholesale pricing, product bundle discounts, first order discounts, purchase history discounts, and checkout fees.
+
+---
 
 == Screenshots ==
-1. Bulk pricing discount.
-2. Bulk pricing discount for Variable and Variation products.
-3. Cart discount based on cart subtotal - Get 10% discount when subtotal is greater than 100£.
-4. Simple pricing discount - Apply 10% discount on Cap when subtotal is greater than £50.
-5. BOGO Deals - Automatically add free products to cart for BOGO deals.
-6. Products group discount.
-7. WooCommerce Checkout Fee - Charge £20.00 fee when weight is greater than a specific wheight.
+
+1. Bulk pricing discount table on the product page — showing quantity tiers with discounted prices.
+2. Bulk pricing for variable products.
+3. Cart discount rule — 10% off when cart subtotal exceeds $100.
+4. Simple product discount — 10% off a specific product when subtotal condition is met.
+5. BOGO deal — free product automatically added to cart when buy condition is met.
+6. Product group / bundle discount configuration.
+7. Checkout fee rule — charge a fee based on cart weight.
+
+---
 
 == Changelog ==
+
+= 9.2.0 =
+* New: Added "You Saved" block to the cart and checkout blocks.
+* Update: Verified compatibility with WooCommerce 10.9.4
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 9.1.1 =
 * Fix: When a product updates, the background price updater now updates only that product.
@@ -307,675 +627,4 @@ Just install the plugin pro version and create a purchase rule easily and we hav
 * New: Added rules analytics to the plugin admin page.
 * Update: Verified compatibility with WooCommerce 10.3.3
 
-= 7.6.1 =
-* Fix: Fixed the total discount issue with product bundle plugin.
-* Fix: Format coupon name for cart discount rules on creating a new cart discount rule.
-* Update: Verified compatibility with WooCommerce 10.1.2
-
-= 7.6.0 =
-* New: Added product page messages for all pricing rules to better inform customers.
-* New: Added product page messages shortcode.
-* New: Added a "Buy x Get x - same product" option to create Buy One Get One deals for the same product with a single rule. (PRO)
-* Fix: Resolved a null cart issue in the Store API.
-* Update: Verified compatibility with WooCommerce 9.9.5.
-
-= 7.5.0 =
-* Added a compatibility with WooCommerce WholeSale Prices.
-* Fixed price suffix issue in the quantity table.
-* Verified compatibility with WooCommerce version 9.8.5.
-
-= 7.4.0 =
-* Added usage restrictions to the rules.
-* Added usage restrictions per user to the rules.
-* Verified compatibility with WooCommerce version 9.8.4.
-* Verified compatibility with WordPress version 6.8.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
-
-= 7.3.4 =
-* Fixed an issue in getting applied coupon with WooCommerce cart block.
-* Fixed an issue in checking pricing existance.
-* Verified compatibility with WooCommerce version 9.7.1.
-
-= 7.3.3 =
-* Fixed a compatibility issue with currency switcher plugins.
-* Verified compatibility with WooCommerce version 9.6.1.
-
-= 7.3.2 =
-* Fixed change product price issue with bulk pricing rules.
-* Verified compatibility with WooCommerce version 9.6.0.
-
-= 7.3.1 =
-* Fixed an issue in changing product bundle price.
-* Checkout Fees adjusted to consider if the subtotal includes or excludes tax based on cart configuration. (PRO)
-* Verified compatibility with WooCommerce version 9.4.3.
-
-= 7.3.0 =
-* Added basic compatibility of simple pricing rules with Product Bundle Builder plugin.
-
-= 7.2.1 =
-* Minor changes.
-* Verified compatibility with WooCommerce version 9.4.2.
-
-= 7.2.0 =
-* Fixed an issue with individual use manual coupons.
-* Verified compatibility with WooCommerce version 9.4.1.
-* Verified compatibility with WordPress version 6.7.0.
-
-= 7.1.1 =
-* Added "subtotal including tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
-* Added "subtotal excluding tax excluding coupons" condition to the shipping methods, shipping discount, checkout fees, auto add products rules.
-* Verified compatibility with WooCommerce version 9.3.3.
-
-= 7.1.0 =
-* Added manual coupons feature that makes a cart discount rule similar to a manual coupon.
-* Added an option to toggle between client-side or server-side handling for bulk pricing rule adjustments.
-* Introduced a new option for bulk pricing rules in the plugin settings that allows to automatically update the product price based on variation price changes when a variation is selected.
-* Resolved an issue affecting product variation price changes under bulk pricing rules.
-* Corrected a problem with the wccs_change_cart_item_price filter hook.
-* Addressed a compatibility issue with manual coupons in the WooCommerce REST API.
-* Fixed a total price calculation issue in the live price feature.
-* mproved compatibility with WooCommerce Payments to resolve specific conflicts.
-* Fixed an issue where removing cart discount coupons interfered with checkout fee rules.
-* Verified compatibility with WooCommerce version 9.3.2.
-* Verified compatibility with WordPress version 6.6.2.
-
-= 7.0.0 =
-* Added a custom cache table to store plugin data such as pricing, quantity tables, messages, badges, and more, improving performance.
-* Introduced options to selectively disable caching of prices, quantity tables, messages, and badges, providing more flexibility.
-* Resolved an issue where the product price suffix was not properly displayed with tax in the quantity table prices.
-* Fixed quantity table compatibility issues with some third-party styles.
-* Fixed an issue in grouped product discount types. (PRO)
-* Fixed the discounted products shortcode issue with WPML multilingual.
-* Added compatibility for auto-added products with cart and checkout blocks. (PRO)
-* Added a free gift emoji 🎁 to the free items in the cart and checkout. (PRO)
-* Added an option to Enable/Disable free gift emoji 🎁 in the cart and checkout. (PRO)
-* Verified compatibility with WooCommerce version 9.0.0.
-
-= 6.5.0 =
-* Added a compatibility with Elementor mini-cart.
-* Verified compatibility with WordPress version 6.5.2.
-* Verified compatibility with WooCommerce version 8.8.2.
-
-= 6.4.0 =
-* Resolved issues related to changing product prices on the product page to accommodate bulk pricing rules.
-* Implemented a feature allowing modification of product prices using bulk pricing rule ranges. (PRO)
-* Integrated WooCommerce on-sale products into the [wccs_discounted_products] shortcode. (PRO)
-* Verified compatibility with WooCommerce version 8.6.1.
-
-= 6.3.0 =
-* Added an option to change product price based on bulk pricing rules on archive and product page.
-* Ensured compatibility with WooCommerce 8.5.2
-
-= 6.2.0 =
-* Implemented a filter hook to disable changing the cart item price.
-* Implemented a cache mechanism for discounted products.
-* Resolved the issue where the countdown timer was not being displayed after adding OR conditions.
-* Ensured compatibility with WooCommerce 8.4.0
-
-= 6.1.0 =
-* Fixed add products issue to the product bundle or group rules.
-* Fixed add products issue to the products list rules.
-* Ensured compatibility with WordPress 6.4
-* Ensured compatibility with WooCommerce 8.3.0
-
-= 6.0.1 =
-* Update the plugin admin area interface.
-* Add support for OR conditions, products and exclude products.
-* Add ajax laod for categories.
-* Compatibility with WooComemrce 8.2.1
-
-= 5.21.0 =
-* Add WooCommerce HPOS(High Performance Order Storage) support.
-* Lock quantity change for auto added products in Woodmart theme mini cart.
-* Lock quantity change for auto added products in checkout.
-* Make WCCS_Cart_Totals more compatible with PHP 8.2 and above.
-* Fix check cart initialized on validating conditinos.
-* Update on sale products default price to onsale price.
-* Update cart discount apply method to all of applicable rules.
-* Update checkout feeds apply method to all of applicable rules.
-* Use WCCS_Helpers class static methods.
-* Compatibility with WooComemrce 8.0.2
-* Compatibility with WordPress 6.3
-
-= 5.20.0 =
-* Add server time component to the date time field.
-* Use apply sum of discounts for cart discounts as default value.
-* Add base of rest api classes.
-* Fix validating time when 12 am is in the time.
-* Fix variation product issue with product attributes validator.
-* Fix an issue in checking product simple attributes in conditions.
-* Fix an issue in checking variation attributes in orders.
-* Compatibility with WooComemrce 7.9.0
-
-= 5.19.1 =
-* Fix : Fix apply price discounts when discount amount is greater than the product price.
-* Compatibility with WooComemrce 7.7.0
-
-= 5.19.0 =
-* New : Add exchange price to subtotal conditions.
-* Fix : Fix an issue in validating product attributes.
-* Compatibility with WooComemrce 7.6.1
-
-= 5.18.1 =
-* Compatibility with WordPress 6.2
-
-= 5.18.0 =
-* New : Added select products by attributes in the discounted products shortcode.
-* Fix : Fix showing deprecated warning message for $applied_discounts property in php 8.2
-* Compatibility with WooCommerce 7.5.1
-
-= 5.17.0 =
-* Fix : Use custom props class for php 8.2 or above instead of php 8.0
-* Compatibility check with WooComemrce 7.4.1
-
-= 5.16.0 =
-* Fix : Fix PHP 8.2 dynamic property issue.
-* Compatibility with WooCommerce 7.3.0
-
-= 5.15.1 =
-* Fix : Fix cart not init fatal error on admin.
-
-= 5.15.0 =
-* New : woocommerce category discount is added.
-* Compatibility with WooComemrce 7.2.2
-
-= 5.14.0 =
-* New : Add a feature to list shipping methods in the Cash On Delivery payment method settings.
-* Fix : Fix string * float issue in php 8
-* Compatibility with WooCommerce 7.2.1
-
-= 5.13.0 =
-* New : Add an option to remove zero values from zero amount coupons.
-* Compatibility with WooCommerce 7.1.0
-
-= 5.12.0 =
-* New : Add price suffix to the live price.
-* New : Remove woocommerce sale badge from simple pricing rules when it is disabled in the plugin settings.
-* Compatibility with WordPress 6.1
-* Compatibility with WooCommerce 7.0.1
-
-= 5.11.0 =
-* Compatibility with WooCommerce 7.0.0
-
-= 5.10.0 =
-* New : Allow bundle products for auto add to the cart.
-* New : Support 0 value for URL Coupons for WooCommerce.
-* Fix : Fix issue of displaying quantity table when product does not exists.
-* Fix : Fix issue of displaying purchase message when product does not exists.
-* Fix : Import validators in a right way to support treeshaking.
-* Fix : Fix tabs outline issue in the backend.
-* Compatibility check with WooCommerce 6.9.2
-
-= 5.9.0 =
-* New : Add stock management option to the quantity table settings.
-* New : Add compatibility with product filter plugins for products list shortcodes.
-* Fix : Fix the live price issue with the TM EPO Extra Product Options plugin.
-* Fix : Fix dispalying the live price when elements added after page load.
-* Fix : Fix order by price issue in the discounted products shortcode.
-* Fix : Fix call to undefined method should_change_display_price_html in the sale flash shortcode.
-* Fix : Check product exists in auto add to cart.
-* Compatibility check with WooCommerce 6.8.0
-
-= 5.8.0 =
-* New : Add an option to the performance tab to control search items limit value.
-* Fix : Fix compatibility issue with CURCY Multi Currency for WooCommerce premium plugin.
-* Fix : Fix the quantity table discount value when taxes are enabled.
-* Compatibility check with WooCommerce 6.6.1
-
-= 5.7.0 =
-* New : Adding a compatibility for the CURCY Multi Currency for WooCommerce plugin.
-* Fix : Fix an issue in shipping methods conditions.
-* Fix : Fix issue in checkout fee amount when it is include or exclude taxes.
-* Compatibility check with WordPress 6.0
-* Compatibility check with WooCommerce 6.5.1
-
-= 5.6.0 =
-* New : Adding fixed price discount type to the cart discount rules.
-* Fix : Fixing an issue in sale_flash shortcode.
-* Fix : Adding limit to search products and variations.
-* Fix : Fix an issue in checking weight, lenght, width and height conditions.
-* Fix : Fix applying pricing rules with WooCommerce subscriptions.
-* Dev : Adding wccs_public_cart_item_pricing_get_price filter hook.
-* Dev : Adding wccs_public_cart_item_pricing_get_prices filter hook.
-* Dev : Adding wccs_public_cart_item_pricing_get_ranges_prices filter hook.
-* Compatibility check with WooCommerce 6.4.1
-
-= 5.5.0 =
-* New : Adding comma separated list support for meta field conditions.
-* New : Adding comma separated list support for city condition.
-* Fix : Fixing issue in calculating discount amount in price_discount_per_item.
-* Fix : Return product price when discount is not available in the quantity table.
-* Fix : Fix polyfills issue in older wordpress versions.
-* Fix : Fix an issue in the WooCommerce product bundles compatibility.
-* Fix : Fixing an issue in auto add product rules when product is a variable product.
-* Fix : Fixing an issue in auto add products to the cart when discount type is fixed_price.
-* Fix : Fix issue of generating cart_item_data for auto add products.
-* Fix : Exchange price and price_per_item discount types in coupons.
-* Compatibility check with WooCommerce 6.3.1
-* Compatibility check with Wordpress 5.9
-
-= 5.4.0 =
-* New : Adding support for the URL Coupons for WooCommerce adddon.
-* New : New algorightm for auto add products in bogo deals which supports add/remove gift products based on buy product changes.
-* New : Adding search by title and type for shipping methods.
-* New : Adding an option to control apply first discounts on expensive or chepeast products for tiered pricing rules.
-* New : Adding email conditions.
-* Tweak : Checking billing email for guest users in conditinos.
-* Fix : Fixing an issue in products multi select when it has more items.
-* Fix : Fixing issues in database update.
-* Compatibility check with WooCommerce 6.0.0
-
-= 5.3.0 =
-* New : Adding compatibility for the WooCommerce All Products For Subscriptions plugin.
-* New : Adding compatibility for the WooCommerce cart block.
-* New : Adding compatibility for the WooCommerce checkout block.
-* Fix : compatibility issue with Improved Product Options for WooCommerce plugin.
-* Fix : Fixed compatibility issue with WooCommerce subscription.
-* Fix : Fixing a compatibility issue with UNI CPO product options plugin.
-* Fix : Do not use price suffix for the discounted price.
-* Compatibility check with WooCommerce 5.8.0
-
-= 5.2.0 =
-* New : Added compatibility with WooCommerce brands or Product Brands for WooCommerce plugin.
-* New : Added conditions for product custom taxonomies.
-* New : Added a feature to filter products by product custom taxonomies.
-* New : Added WooCommerce cart subtotal condition to pricing rules.
-* New : Added WooCommerce cart total weight condition to pricing rules.
-* New : Added number of cart items conditions to pricing ruels.
-* New : Added WooCommerce cart total weight condition to WooCommerce coupon rules.
-* Fix : Fixed subtotal condition issues in the pricing rules.
-* Fix : Fixing setting discounted products as onsale products in the cart.
-* Compatibility check with WooCommerce 5.5.2
-* Compatibility check with Wordpress 5.8
-
-= 5.1.0 =
-* New : Adding compatibility with WooCommerce product bundles plugin.
-* New : Using "percent" and "fixed_product" coupon types in cart discounts.
-* Fix : Fixing pricing issues with WPC product bundles plugin.
-* Fix : Fixing issue of applying coupon on specific products.
-* Fix : BOGO deal does not work properly if the Get item is inside the Buy items.
-* Fix : Auto add products, do not add free product to the cart when decreasing quantities in the cart.
-* Compatibility check with WooCommerce 5.4.1
-
-= 5.0.0 =
-* New : Adding product based discounts.
-* New : Adding advanced cart discount rules.
-* New : Updating WooCommerce quantity discount table structure.
-* New : Adding percentage based product discounts.
-* New : Adding product based price discounts.
-* New : Adding quantity based price discounts.
-* New : Display you saved or total discounts in the cart.
-* Compatibility check with WooComemrce 5.3.0
-
-= 4.14.0 =
-* Fix : Fixing an issue of the products list in some themes like Astra theme.
-* Fix : Fixing an issue in the plugin update checker.
-* Fix : Fixing an issue in found_variation and hide_variation events.
-* Compatibility check with WooCommerce 5.2.2
-
-= 4.13.0 =
-* New : Adding a compatibility with the Product Feed Pro plugin.
-* Fix : Using billing email for logged in users.
-* Fix : Discounted price revert to original price in checkout when "Consider Product Sale Price" option is enabled.
-* Fix : Fixing issue of float numbers in setting applied prices.
-* Fix : Fixing an issue in the cart item prices when using a BOGO deal.
-* Fix : Removing notices from the plugin pages in the admin.
-* Compatibility check with Wordpress 5.7
-* Compatibility check with WooCommerce 5.1.0
-
-= 4.12.0 =
-* New : WPC Product Bundles basic compatibility added.
-* New : Measurement price calculator plugin compatibility added.
-* Fix : Fixing issue of variable product prices inside the quantity table when taxes applied.
-
-= 4.11.1 =
-* New : Updating plugin logos.
-* Fix : Plugin display name change.
-
-= 4.11.0 =
-* New : Adding a condition for user is not logged in.
-* New : Adding consider product onsale price option when applying max or min discounts.
-* New : Adding a feature to add free product to the cart when quantity chanegs inside the cart.
-* New : Using in cart price for the product quantities that don't get the discount on applying discounts.
-* Fix : Fixing an issue in listening quantity change events in the product page.
-* Fix : Fixing issue of not considering excluded items from purchase products in the purchase pricing rules.
-* Fix : Fixing an issue in total discounts float numbers.
-* Fix : Fixing an issue in the wccs_cart_item_before_discounted_price hook arguments.
-* Fix : Using minimum 3 characters for select products with ajax search.
-* Compatibility check with WooCommerce 4.9.1
-
-= 4.10.0 =
-* New : Adding the plugin shipping methods to the shipping methods condition.
-* New : Adding an option to apply discounts on cart item price to make it compatible with plugins like Name Your Price plugin.
-* New : Adding Compatibility with the Custom Product Boxes plugin to total discounts.
-* Fix : Checking for customer exists when using WooCommerce customer.
-* Fix : Fixing not loading the plugin main page issue when Skyverge plugins are enabled.
-* Compatibility check with WooCommerce 4.7.1
-
-= 4.9.0 =
-* Fix : Include live price js codes in the product-page shortcode.
-* Fix : Fixing issue of applying multiple products group discount on a category.
-* Fix : Fixing issue of applying tax on live price total price.
-* Fix : Fixing an issue in the condition validator related to not initialized WC session.
-* Compatibility check with WooCommerce 4.6.2
-
-= 4.8.0 =
-* New : Adding js codes to check min quantity and do not allow to enter a value less than specified min quantity.
-* New : Adding shipping city condition.
-* New : Allow zero value for fee amount in the checkout fee rules.
-* Fix : Does not discount products by simple pricing rules in the Rest API request.
-* Fix : Fixed incorrect concatenation of variation sale prices with ".00".
-* Fix : Fixing an issue of not considering exclude items in products group rules.
-* Dev : Adding arguments to the wccs_product_price_replace_should_replace filter.
-
-= 4.7.0 =
-* New : Adding previous days, weeks, months, years condition.
-* New : Adding percentage fee option to the bulk and tiered pricing rules.
-* New : Adding price fee option to the bulk and tiered pricing rules.
-* New : Do not update pricing on yith product options that sold individually.
-* New : Setting min quantity of a product based on min quantity in the bulk or tiered pricing rules when this option enabled in the plugin settings.
-* Fix : Fixing WC_Background_Process not found issue in older versions of WooCommerce.
-* Fix : Fixing an issue in the live price styles.
-* Fix : Fixing an issue in searching products with the product title.
-* Fix : Fixing updating apply mode in updating shipping condition.
-* Fix : Fixing not applying discount on the products when there is a subtotal conditions the pricing rules.
-* Fix : Fixing issue of do not setting sale price on cart items that gets discount from the plugin pricing rules.
-* Fix : Fixing issue of product price does not change after discount time end in variable products.
-* Fix : Fixing product price issue with tax when a simple discount with fixed price applied to a product.
-* Fix : Fixing issue of sending cart form data in the ajax request to the live price calculator.
-* Compatibility check with WooCommerce 4.3.3
-* Compatibility check with Wordpress 5.5
-
-= 4.6.2 =
-* Compatibility check with WooCommerce 4.3.0
-
-= 4.6.1 =
-* Fix : Fixing get_cart issue on woocommerce_init after version 4.6.0 update.
-* Compatibility check with WooCommerce 4.2.2
-
-= 4.6.0 =
-* New : Adding Total Discounts promotion that will display total discount on cart, checkout and order.
-* New : Adding an option to the products list to enable/disable the pagination.
-* New : Checking billing email for guest users history like money spent, bought products, etc and it is usefull for first purchase discounts or coupons.
-* New : Adding compatibility with WooCommerce Bookings plugin.
-* Fix : Fixing a compatibility issue with WooCommerce Smart Coupons Plugin.
-* Fix : Reduce number of transients that generated by the plugin.
-* Fix : Fixing checkout fees issue with WooCommerce Subscriptions plugin.
-* Fix : Change products price only when a simple pricing available.
-* Fix : Fixing returning null in the woocommerce_variation_prices filter hook function that caused issue for WooCommerce Product Bundles plugin.
-* Compatibility check with WooCommerce 4.2.0
-
-= 4.5.0 =
-* New : Using manage_woocommerce capability instead of manage_options capability.
-* New : Imporve performance of the plugin in validating products with categories.
-* New : Imporove performance of the plugin in validating products with tags.
-* New : Compatibility with WooCommerce 4.1.0
-* Fix : Purchase pricing rules issue when an item from category should receive discount.
-* Fix : Checking for cart_discount existance on cart discount hooks.
-* Fix : Fixing an issue in checking categories inside the cart.
-* Fix : Fixing an issue in tiered pricing rules to apply discount on cheapest products first.
-* Fix : Percentage discount calculation issue fixed.
-* Fix : Fixing an issue in tiered pricing rules when applying the discount on all products or categories.
-
-= 4.4.0 =
-* New : Live price improvement to display multiple prices with associated quantities when multiple prices available.
-* New : Adding an option to subtotal conditions to exclude selected items subtotal from the cart subtotal.
-* New : Adding exclude products for cart discount rules.
-* New : Adding exclude items from checkout fees.
-* New : Feature to search products by title and sku in product select fields in the plugin backend.
-* Fix : Fixing an issue related to caching variable products price.
-* Fix : Delete old transients for cached items that increased amount of transients on the database.
-* Fix : Fixing categories hierarchy issue in the quantities of categories conditions.
-
-= 4.3.0 =
-* New : Adding update products price in background feature.
-* Fix : Fixing tax issue in simple pricing rules.
-* Fix : Fixing get price suffix issue in the bulk pricing table.
-* Fix : Compatibility issue with WooCommerce Currency Switcher(WOOCS) when multiple currency allowed.
-* Fix : Fixing cart discount issue with taxes.
-* Fix : Percentage discount badge value issue on some themes like flatsome.
-* Fix : Percentage badge values can be shown on variable products too.
-* Dev : Adding a filter to bulk pricing table to filter its content.
-
-= 4.2.1 =
-* New : Change WooCommerce supported version to 3.9.3
-
-= 4.2.0 =
-* New : Adding a feature to show live price always or when a discount available.
-* New : Adding jQuery function to get an instance of plugin public javascript classes.
-* New : Compatibility of live price with TM Extra Product Options.
-* Fix : Fixing issue of updating price in mini cart when quantity updated inside mini cart.
-* Fix : Fixing issue of products list in some themes like Electro theme.
-
-= 4.1.0 =
-* New : Dispalying discount amount inside sale flash for simple pricing rules, supports both percentage and price discounts.
-* New : Adding a shortcode for sale flash.
-* Fix : Fixing issue of text translation on multilingual sites.
-* Fix : Fixing bulk pricing table prices issue with taxes.
-* Fix : Fixing automatically adding free products to the cart with taxes.
-
-= 4.0.0 =
-* New : Adding WooCommerce dynamic shipping methods to the plugin.
-* New : Adding quantity based purchase pricings.
-* New : Adding a feature to add purchase pricing to all variations of a variable product with one purchase rule.
-* New : Adding subtotal of regular products condition.
-* New : Adding subtotal of onsale products condition.
-* Fix : Fixing an issue of auto add to cart when more than 1 bogo rule exists.
-* Fix : Fixing an issue in group quantities based on category.
-
-= 3.10.0 =
-* New : Adding compatibility with Booster for WooCommerce multicurrency.
-* Fix : Fixing an issue in Automatically adding free products to the cart.
-
-= 3.9.0 =
-* New : Adding compatibility with product addons plugin.
-* New : Adding a feature to countdown timer to show when discounts available.
-* New : Adding at_least_number_of to union type conditions.
-* Fix : Fixing an issue in showing html content in purchase messages.
-* Fix : Fixing an issue in product meta field check.
-
-= 3.8.3 =
-* Fix : Fixing plugin update checker issue.
-
-= 3.8.2 =
-* Fix : Fixing live price update on quantity change on some of sites.
-* Fix : Checking is WooCommerce card initialized to avoid issues in WooCommerce API.
-* Fix : Fixing an issue in BOGO same receive items quantity.
-* Fix : Fixing issues related to variable products in live price and quantity table.
-* Fix : Fixing issues related to variable product price change.
-* Fix : Fixing a compatibility issue with WooCommerce Min/Max Quantity plugin.
-* Fix : Fixing issues related to replace variable products prices.
-* Fix : Fixing quantity issue in mini cart for purchase pricing rules.
-* Fix : Fixing price change issue for simple rules.
-
-= 3.8.1 =
-* Fix : Fixing an issue that caused product pricing replace price does not take effect.
-
-= 3.8.0 =
-* Important : Rename the plugin folder and main file to easy-woocommerce-discounts-pro to fix conflict issue with the free version.
-* New : Adding compatibility with woocommerce subscriptions plugin.
-* Fix : Fixing an issue related to replace variable product prices.
-* Fix : Fixing an issue related to tiered pricing.
-
-= 3.7.1 =
-* Fix : Fixing links issue.
-
-= 3.7.0 =
-* New : Organize plugin settings.
-* New : Adding WooCommerce Countdown Timer feature - pro version.
-* Fix : Fixing issue of applying bulk discount on categories.
-* Fix : Fixing an issue in cart discounts when cart subtotal is zero.
-* Fix : Fixing issue of calculating quantities for variation products.
-
-= 3.6.0 =
-* New : Adding an option to settings to display total price in live price.
-* New : Adding purchase x receive y same products mode to use it for BOGO rules when buy and get products are same.
-
-= 3.5.0 =
-* New : Making bulk pricing table compatible with currency switcher plugins.
-* New : Making cart prices compatible with WooCommerce TM Extra Product Options plugin.
-* New : Making cart prices compatible with YITH WooCommerce Product Add-ons plugin.
-
-= 3.4.0 =
-* New : Adding options to the plugin settings to add sale badge on all types of product pricing rules.
-* Fix : Fixing an issue in product quantity based on category.
-* Fix : Fixing an issue in purchase pricing rules for categories.
-
-= 3.3.1 =
-* Fix : Fixing esc_html issue on quantity table values.
-
-= 3.3.0 =
-* Important : Plugin renamed to easy-woocommerce-discounts.
-* Important : Plugin text domain renamed to easy-woocommerce-discounts.
-* Fix : Fixing quantity table prices issues with taxes for fixed prices.
-* Fix : Sanitize user inputs to make it more secure.
-* Fix : Escaping outputs to make it more secure.
-
-= 3.2.0 =
-* New : Add an option to live price to calculate price by ignoring in the cart quantities of a product.
-
-= 3.1.1 =
-* Fix : Fixing an issue in apply subtotal condition pricing on checkout page.
-* Fix : Remove exceptions from live price that generate errors.
-* Fix : Fix an issue in calculating cart discount amount for percentage discounts.
-* New : Add a filter hook for get cart subtotal.
-
-= 3.1.0 =
-* New : Automatically add free products to the cart for BOGO rules.
-
-= 3.0.1 =
-* Fix : Fixing an issue in product purchase messages.
-* Fix : Fixing an issue in html price override.
-* Fix : Fixing override of cart item price on ajax add to cart.
-* Fix : Fixing issue in the cart items price after adding price override feature.
-
-= 3.0.0 =
-* New : Adding new price override feature that override products price in a right way.
-* New : Improve performance of the plugin by adding a cache solution.
-* New : Adding a cache for products price.
-* New : Adding a cache for products quantity table.
-* New : Adding a cache for products purchase messages.
-
-= 2.8.0 =
-* New : Adding payment method condition to the pricing rules.
-* New : Adding shipping method condition to the pricing rules.
-* New : Adding shipping country condition to the pricing rules.
-* New : Adding shipping state condition to the pricing rules.
-* New : Adding shipping postcode condition to the pricing rules.
-* New : Adding shipping zone condition to the pricing rules.
-* New : Adding an option to control change display price.
-* New : Adding an option to control set onsale for products.
-* New : Adding discount column to the quantity table.
-* New : Adding a shortcode for purchase message.
-* New : Adding wccs_quantity_table_quantity filter to quantity table quantity column.
-* New : Adding wccs_quantity_table_discount filter to quantity table discount column.
-* New : Adding wccs_quantity_table_price filter to quantity table price column.
-* New : Adding “before add to cart form” and “after add to cart form” to supported positions of quantity table, purchase message and live price.
-* Fix : Fixing an issue in hiding variations quantity table.
-* Fix : Do not show price range if min and max are same and only show min in the quantity table.
-* Fix : Fixing an issue when user add item to the cart with ajax request.
-
-= 2.7.0 =
-* New : Display prices with their associated quantities in the cart.
-* New : Adding shortcode support for purchase x receive y rules messages.
-* New : Adding colors for purchase x receive y rules text messages.
-* New : Removing quantity from purchase and products group rules to make them simple and function like previous versions.
-* Fix : Fixing issue of applying tax on discounted prices.
-* Fix : Fixing limit discount issue when discount type is fixed price.
-* Fix : Fixing discount limit issues.
-
-= 2.6.0 =
-* Fix : Fixing issues in purchase x receive y pricing rules.
-* Fix : Fixing issues in live price when price is 0.
-* Fix : Fixing issue of displaying review in products list shortcode.
-* Fix : Fixing reference error in posts_where method.
-* New : Adding a feature to caching purchase pricing rules.
-
-= 2.5.0 =
-* New : Adding Subtotal of products include tax to the conditions.
-* New : Adding Subtotal of products exclude tax to the conditions.
-* New : Adding Subtotal of variations include tax to the conditions.
-* New : Adding Subtotal of variations exclude tax to the conditions.
-* New : Adding Subtotal of categories include tax to the conditions.
-* New : Adding Subtotal of categories exclude tax to the conditions.
-* New : Adding Subtotal of attributes include tax to the conditions.
-* New : Adding Subtotal of attributes exclude tax to the conditions.
-* New : Adding Subtotal of tags include tax to the conditions.
-* New : Adding Subtotal of tags exclude tax to the conditions.
-
-= 2.4.0 =
-* Improvement : Making products & variations & coupons & customers select field as a autocomplete select field.
-
-= 2.3.0 =
-* Important : WooCommerce minimum supported version is 3.0.0 from now on.
-* New : Adding Checkout Fee rules.
-* New : Adding price discount per item to the cart discounts.
-* New : Adding percentage discount per item to the cart discounts.
-* Adding items to cart discounts to apply discount to the specified items in the cart.
-* New : Adding a feature to displaying cart discounts name as discount label in the cart.
-* New : Adding a feature to combining cart discounts and displaying them as a total discount with specified label from settings.
-* New : Rename menu and page title in the Dashboard.
-* New : Adding payment method checking condition.
-* New : Adding shipping method checking condition.
-* New : Adding shipping country checking condition.
-* New : Adding shipping state checking condition.
-* New : Adding shipping postcode checking condition.
-* New : Adding shipping zone checking condition.
-* New : Adding styles to the bulk pricing tables.
-* New : Adding scroll to the bulk pricing horizontal table.
-* New : Adding a feature to apply or not apply cart discounts with individual cart coupons.
-* New : Adding a feature to apply or not apply cart discounts with cart regular coupons.
-* Fix : Fixing bulk pricing horizontal table labels issue.
-* Fix : Fixing cart discount removing issue on WooCommerce 3.2 and above.
-
-= 2.2.4 =
-* Fix : Fixing issue of not including tax in adjusted prices when include tax enabled.
-
-= 2.2.3 =
-* Fix : Fixing issues in fixed prices.
-* New : Adding a shortcode for the live price.
-
-= 2.2.2 =
-* Fix : Fixing pricing issues with subtotal conditions.
-
-= 2.2.1 =
-* Fix : Do not show live price when discounts are not available for the product.
-* Fix : Fixing issue of get_product_attributes in WooCommerce 2.6
-
-= 2.2.0 =
-* New : Live price feature that shows discounted price in product page.
-* Fix : Fixing products name in select for woocommerce 2.6
-* Fix : Fixing repeat issue in products group pricing.
-* Fix : Fixing select2 issue in woocommerce 2.6
-* Fix : Fixing issue of cart discount coupon in Russian language.
-
-= 2.1.1 =
-* Fix : Fixing empty function issue on php 5.5 and previous.
-* Version 2.1.0 – 27.04.2018
-* New : Adding duplicate rule feature.
-
-= 2.0.0 =
-* New : Adding more conditions to products pricing.
-* New : Adding more options to discounted products in pricing.
-* New : Adding tiered pricing type.
-* New : Adding fee adjustment to simple pricing.
-* New : Adding a shortcode for bulk pricing table.
-* Fix : Making products listing compatible with WooCommerce 3.2 and greater.
-
-= 1.2.0 =
-* New : Making Adming UI user friendly.
-* New : Adding limit option for cart discount in settings.
-* New : Adding limit option for products pricing in settings.
-* Fix : Fixing an issue in displaying discounted products.
-
-= 1.1.0 =
-* New : Adding products group rule to pricing rules.
-* New : Adding exclude products rule to discount and pricing rules.
-* New : Adding excluded products from rule to pricing rules.
-* New : Adding Apply Mode to pricing and discount rules.
-* New : Adding matching mode to conditions and date times.
-
-= 1.0.0 =
-* First release.
-
-== Upgrade Notice ==
+[See changelog for all versions](https://plugins.svn.wordpress.org/easy-woocommerce-discounts/trunk/changelog.txt).

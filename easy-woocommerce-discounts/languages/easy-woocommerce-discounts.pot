@@ -2,14 +2,14 @@
 # This file is distributed under the http://www.gnu.org/licenses/gpl-2.0.html.
 msgid ""
 msgstr ""
-"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 9.1.1\n"
+"Project-Id-Version: Discount Rules and Dynamic Pricing for WooCommerce 9.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-woocommerce-discounts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-23T19:49:43+00:00\n"
+"POT-Creation-Date: 2026-07-11T18:35:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: easy-woocommerce-discounts\n"
@@ -199,10 +199,6 @@ msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #: admin/class-wccs-admin-order-hooks.php:38
-#: includes/class-wccs-settings-manager.php:80
-#: includes/class-wccs-settings-manager.php:822
-#: public/class-wccs-public-total-discounts-hooks.php:26
-#: public/class-wccs-public-total-discounts-hooks.php:66
 #: admin/js/conditions/index.js:36969
 msgid "Total Discounts"
 msgstr ""
@@ -394,13 +390,21 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
+#: includes/class-wccs-settings-manager.php:80
+#: includes/class-wccs-settings-manager.php:845
+#: includes/class-wccs-store-api.php:194
+#: public/class-wccs-public-total-discounts-hooks.php:17
+#: public/class-wccs-public-total-discounts-hooks.php:57
+msgid "You Saved"
+msgstr ""
+
 #: includes/class-wccs-settings-manager.php:81
 msgid "Countdown Timer"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:82
-#: includes/class-wccs-settings-manager.php:1055
-#: includes/class-wccs-settings-manager.php:1077
+#: includes/class-wccs-settings-manager.php:1078
+#: includes/class-wccs-settings-manager.php:1100
 msgid "Discount Page"
 msgstr ""
 
@@ -457,18 +461,19 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:569
 #: includes/class-wccs-settings-manager.php:580
 #: includes/class-wccs-settings-manager.php:598
-#: includes/class-wccs-settings-manager.php:682
 #: includes/class-wccs-settings-manager.php:694
-#: includes/class-wccs-settings-manager.php:767
-#: includes/class-wccs-settings-manager.php:813
-#: includes/class-wccs-settings-manager.php:853
-#: includes/class-wccs-settings-manager.php:1095
-#: includes/class-wccs-settings-manager.php:1139
-#: includes/class-wccs-settings-manager.php:1150
-#: includes/class-wccs-settings-manager.php:1161
-#: includes/class-wccs-settings-manager.php:1172
-#: includes/class-wccs-settings-manager.php:1194
-#: includes/class-wccs-settings-manager.php:1205
+#: includes/class-wccs-settings-manager.php:706
+#: includes/class-wccs-settings-manager.php:779
+#: includes/class-wccs-settings-manager.php:825
+#: includes/class-wccs-settings-manager.php:836
+#: includes/class-wccs-settings-manager.php:876
+#: includes/class-wccs-settings-manager.php:1118
+#: includes/class-wccs-settings-manager.php:1162
+#: includes/class-wccs-settings-manager.php:1173
+#: includes/class-wccs-settings-manager.php:1184
+#: includes/class-wccs-settings-manager.php:1195
+#: includes/class-wccs-settings-manager.php:1217
+#: includes/class-wccs-settings-manager.php:1228
 #: admin/js/conditions/index.js:37764
 msgid "Yes"
 msgstr ""
@@ -484,19 +489,20 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:570
 #: includes/class-wccs-settings-manager.php:581
 #: includes/class-wccs-settings-manager.php:599
-#: includes/class-wccs-settings-manager.php:683
 #: includes/class-wccs-settings-manager.php:695
-#: includes/class-wccs-settings-manager.php:768
-#: includes/class-wccs-settings-manager.php:814
-#: includes/class-wccs-settings-manager.php:854
-#: includes/class-wccs-settings-manager.php:878
-#: includes/class-wccs-settings-manager.php:1096
-#: includes/class-wccs-settings-manager.php:1140
-#: includes/class-wccs-settings-manager.php:1151
-#: includes/class-wccs-settings-manager.php:1162
-#: includes/class-wccs-settings-manager.php:1173
-#: includes/class-wccs-settings-manager.php:1195
-#: includes/class-wccs-settings-manager.php:1206
+#: includes/class-wccs-settings-manager.php:707
+#: includes/class-wccs-settings-manager.php:780
+#: includes/class-wccs-settings-manager.php:826
+#: includes/class-wccs-settings-manager.php:837
+#: includes/class-wccs-settings-manager.php:877
+#: includes/class-wccs-settings-manager.php:901
+#: includes/class-wccs-settings-manager.php:1119
+#: includes/class-wccs-settings-manager.php:1163
+#: includes/class-wccs-settings-manager.php:1174
+#: includes/class-wccs-settings-manager.php:1185
+#: includes/class-wccs-settings-manager.php:1196
+#: includes/class-wccs-settings-manager.php:1218
+#: includes/class-wccs-settings-manager.php:1229
 msgid "No"
 msgstr ""
 
@@ -516,7 +522,7 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:157
 #: includes/class-wccs-settings-manager.php:364
 #: includes/class-wccs-settings-manager.php:494
-#: includes/class-wccs-settings-manager.php:923
+#: includes/class-wccs-settings-manager.php:946
 msgid "No Limit"
 msgstr ""
 
@@ -559,44 +565,46 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:654
 #: includes/class-wccs-settings-manager.php:655
 #: includes/class-wccs-settings-manager.php:666
-#: includes/class-wccs-settings-manager.php:682
+#: includes/class-wccs-settings-manager.php:667
+#: includes/class-wccs-settings-manager.php:678
 #: includes/class-wccs-settings-manager.php:694
-#: includes/class-wccs-settings-manager.php:720
-#: includes/class-wccs-settings-manager.php:721
-#: includes/class-wccs-settings-manager.php:722
-#: includes/class-wccs-settings-manager.php:723
-#: includes/class-wccs-settings-manager.php:724
-#: includes/class-wccs-settings-manager.php:725
-#: includes/class-wccs-settings-manager.php:726
-#: includes/class-wccs-settings-manager.php:888
-#: includes/class-wccs-settings-manager.php:889
-#: includes/class-wccs-settings-manager.php:890
-#: includes/class-wccs-settings-manager.php:891
-#: includes/class-wccs-settings-manager.php:892
-#: includes/class-wccs-settings-manager.php:893
-#: includes/class-wccs-settings-manager.php:894
-#: includes/class-wccs-settings-manager.php:923
-#: includes/class-wccs-settings-manager.php:924
-#: includes/class-wccs-settings-manager.php:925
-#: includes/class-wccs-settings-manager.php:926
-#: includes/class-wccs-settings-manager.php:927
-#: includes/class-wccs-settings-manager.php:928
-#: includes/class-wccs-settings-manager.php:942
+#: includes/class-wccs-settings-manager.php:706
+#: includes/class-wccs-settings-manager.php:732
+#: includes/class-wccs-settings-manager.php:733
+#: includes/class-wccs-settings-manager.php:734
+#: includes/class-wccs-settings-manager.php:735
+#: includes/class-wccs-settings-manager.php:736
+#: includes/class-wccs-settings-manager.php:737
+#: includes/class-wccs-settings-manager.php:738
+#: includes/class-wccs-settings-manager.php:911
+#: includes/class-wccs-settings-manager.php:912
+#: includes/class-wccs-settings-manager.php:913
+#: includes/class-wccs-settings-manager.php:914
+#: includes/class-wccs-settings-manager.php:915
+#: includes/class-wccs-settings-manager.php:916
+#: includes/class-wccs-settings-manager.php:917
+#: includes/class-wccs-settings-manager.php:946
+#: includes/class-wccs-settings-manager.php:947
+#: includes/class-wccs-settings-manager.php:948
+#: includes/class-wccs-settings-manager.php:949
 #: includes/class-wccs-settings-manager.php:950
-#: includes/class-wccs-settings-manager.php:958
-#: includes/class-wccs-settings-manager.php:966
-#: includes/class-wccs-settings-manager.php:974
-#: includes/class-wccs-settings-manager.php:982
-#: includes/class-wccs-settings-manager.php:990
+#: includes/class-wccs-settings-manager.php:951
+#: includes/class-wccs-settings-manager.php:965
+#: includes/class-wccs-settings-manager.php:973
+#: includes/class-wccs-settings-manager.php:981
+#: includes/class-wccs-settings-manager.php:989
 #: includes/class-wccs-settings-manager.php:997
-#: includes/class-wccs-settings-manager.php:1004
-#: includes/class-wccs-settings-manager.php:1011
-#: includes/class-wccs-settings-manager.php:1018
-#: includes/class-wccs-settings-manager.php:1025
-#: includes/class-wccs-settings-manager.php:1032
-#: includes/class-wccs-settings-manager.php:1047
+#: includes/class-wccs-settings-manager.php:1005
+#: includes/class-wccs-settings-manager.php:1013
+#: includes/class-wccs-settings-manager.php:1020
+#: includes/class-wccs-settings-manager.php:1027
+#: includes/class-wccs-settings-manager.php:1034
+#: includes/class-wccs-settings-manager.php:1041
 #: includes/class-wccs-settings-manager.php:1048
-#: includes/class-wccs-settings-manager.php:1049
+#: includes/class-wccs-settings-manager.php:1055
+#: includes/class-wccs-settings-manager.php:1070
+#: includes/class-wccs-settings-manager.php:1071
+#: includes/class-wccs-settings-manager.php:1072
 msgid "Pro Version"
 msgstr ""
 
@@ -702,8 +710,8 @@ msgid "Sale"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:267
-#: includes/class-wccs-settings-manager.php:1113
-#: includes/class-wccs-settings-manager.php:1115
+#: includes/class-wccs-settings-manager.php:1136
+#: includes/class-wccs-settings-manager.php:1138
 #: public/class-wccs-public-cart-discount-hooks.php:256
 #: public/class-wccs-public-product-pricing.php:522
 #: admin/js/conditions/index.js:11334
@@ -867,14 +875,14 @@ msgstr ""
 #: includes/class-wccs-settings-manager.php:420
 #: includes/class-wccs-settings-manager.php:564
 #: includes/class-wccs-settings-manager.php:642
-#: includes/class-wccs-settings-manager.php:666
-#: includes/class-wccs-settings-manager.php:1090
+#: includes/class-wccs-settings-manager.php:678
+#: includes/class-wccs-settings-manager.php:1113
 msgid "Enabled"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:421
 #: includes/class-wccs-settings-manager.php:643
-#: includes/class-wccs-settings-manager.php:667
+#: includes/class-wccs-settings-manager.php:679
 msgid "Disabled"
 msgstr ""
 
@@ -1007,60 +1015,60 @@ msgid "Quantity Table Position"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:614
-#: includes/class-wccs-settings-manager.php:720
-#: includes/class-wccs-settings-manager.php:777
-#: includes/class-wccs-settings-manager.php:888
+#: includes/class-wccs-settings-manager.php:732
+#: includes/class-wccs-settings-manager.php:789
+#: includes/class-wccs-settings-manager.php:911
 msgid "Before \"Add to cart\" button"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:615
-#: includes/class-wccs-settings-manager.php:721
-#: includes/class-wccs-settings-manager.php:778
-#: includes/class-wccs-settings-manager.php:889
+#: includes/class-wccs-settings-manager.php:733
+#: includes/class-wccs-settings-manager.php:790
+#: includes/class-wccs-settings-manager.php:912
 msgid "After \"Add to cart\" button"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:616
-#: includes/class-wccs-settings-manager.php:722
-#: includes/class-wccs-settings-manager.php:779
-#: includes/class-wccs-settings-manager.php:890
+#: includes/class-wccs-settings-manager.php:734
+#: includes/class-wccs-settings-manager.php:791
+#: includes/class-wccs-settings-manager.php:913
 msgid "Before \"Add to cart\" form"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:617
-#: includes/class-wccs-settings-manager.php:723
-#: includes/class-wccs-settings-manager.php:780
-#: includes/class-wccs-settings-manager.php:891
+#: includes/class-wccs-settings-manager.php:735
+#: includes/class-wccs-settings-manager.php:792
+#: includes/class-wccs-settings-manager.php:914
 msgid "After \"Add to cart\" form"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:618
-#: includes/class-wccs-settings-manager.php:724
-#: includes/class-wccs-settings-manager.php:781
-#: includes/class-wccs-settings-manager.php:892
+#: includes/class-wccs-settings-manager.php:736
+#: includes/class-wccs-settings-manager.php:793
+#: includes/class-wccs-settings-manager.php:915
 msgid "Before product excerpt"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:619
-#: includes/class-wccs-settings-manager.php:725
-#: includes/class-wccs-settings-manager.php:782
-#: includes/class-wccs-settings-manager.php:893
+#: includes/class-wccs-settings-manager.php:737
+#: includes/class-wccs-settings-manager.php:794
+#: includes/class-wccs-settings-manager.php:916
 msgid "After product excerpt"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:620
-#: includes/class-wccs-settings-manager.php:726
-#: includes/class-wccs-settings-manager.php:783
-#: includes/class-wccs-settings-manager.php:894
+#: includes/class-wccs-settings-manager.php:738
+#: includes/class-wccs-settings-manager.php:795
+#: includes/class-wccs-settings-manager.php:917
 msgid "After product meta"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:621
-#: includes/class-wccs-settings-manager.php:727
-#: includes/class-wccs-settings-manager.php:784
-#: includes/class-wccs-settings-manager.php:832
-#: includes/class-wccs-settings-manager.php:843
-#: includes/class-wccs-settings-manager.php:895
+#: includes/class-wccs-settings-manager.php:739
+#: includes/class-wccs-settings-manager.php:796
+#: includes/class-wccs-settings-manager.php:855
+#: includes/class-wccs-settings-manager.php:866
+#: includes/class-wccs-settings-manager.php:918
 #: admin/js/conditions/index.js:20876
 msgid "None"
 msgstr ""
@@ -1102,386 +1110,410 @@ msgid "Server side"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:661
-msgid "Variation Price Update"
+msgid "Price Display Mode"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:662
+msgid "Choose whether to show the unit price per item or the total price for the selected quantity. \"Unit Price\" shows the cost per item (e.g., $10 each), while \"Total Price\" shows the combined cost for the full quantity (e.g., $30 for 3 items)."
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:666
+msgid "Unit price (per item)"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:667
+msgid "Total price (for quantity)"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:673
+msgid "Variation Price Update"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:674
 msgid "When enabled, the product price will automatically update to reflect the selected variation's price when a variation is chosen on the product page."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:677
+#: includes/class-wccs-settings-manager.php:689
 msgid "Display Live Price"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:678
+#: includes/class-wccs-settings-manager.php:690
 msgid "If enabled displays product discounted price in the product page."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:689
-msgid "Display Live Total Price"
-msgstr ""
-
-#: includes/class-wccs-settings-manager.php:690
-#, php-format
-msgid "If enabled displays product discounted total price in the product page.%1$s Note: It calculates total price based on %2$slive price * quantity%3$s."
-msgstr ""
-
 #: includes/class-wccs-settings-manager.php:701
-msgid "Display Type"
+msgid "Display Live Total Price"
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:702
 #, php-format
+msgid "If enabled displays product discounted total price in the product page.%1$s Note: It calculates total price based on %2$slive price * quantity%3$s."
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:713
+msgid "Display Type"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:714
+#, php-format
 msgid "Discount Available: Displays live price when a discount available for the product.%1$s Always: Displays live price always."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:706
+#: includes/class-wccs-settings-manager.php:718
 msgid "Discount Available"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:707
-#: includes/class-wccs-settings-manager.php:1047
+#: includes/class-wccs-settings-manager.php:719
+#: includes/class-wccs-settings-manager.php:1070
 msgid "Always"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:716
+#: includes/class-wccs-settings-manager.php:728
 msgid "Live Price Position"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:742
+#: includes/class-wccs-settings-manager.php:754
 msgid "Live Pricing Label"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:743
+#: includes/class-wccs-settings-manager.php:755
 msgid "Label of the live price."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:745
+#: includes/class-wccs-settings-manager.php:757
 msgid "Your Price"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:750
+#: includes/class-wccs-settings-manager.php:762
 msgid "Live Total Price Label"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:751
+#: includes/class-wccs-settings-manager.php:763
 msgid "Label of the live total price."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:753
+#: includes/class-wccs-settings-manager.php:765
 msgid "Total Price"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:762
+#: includes/class-wccs-settings-manager.php:774
 msgid "Display Message"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:763
+#: includes/class-wccs-settings-manager.php:775
 msgid "Display pricing rule message in the product page."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:773
+#: includes/class-wccs-settings-manager.php:785
 msgid "Message Position"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:790
+#: includes/class-wccs-settings-manager.php:802
 #: admin/js/conditions/index.js:16155
 msgid "Message Background Color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:791
+#: includes/class-wccs-settings-manager.php:803
 msgid "Default background color of messages in the message box."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:797
+#: includes/class-wccs-settings-manager.php:809
 #: admin/js/conditions/index.js:16161
 msgid "Message Color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:798
+#: includes/class-wccs-settings-manager.php:810
 msgid "Default color of messages in the message box."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:808
-msgid "Display Total Discounts"
-msgstr ""
-
-#: includes/class-wccs-settings-manager.php:809
-msgid "If enabled displays total discounts that the user get for the current order in the cart and checkout pages."
-msgstr ""
-
-#: includes/class-wccs-settings-manager.php:819
-msgid "Total Discounts Label"
-msgstr ""
-
 #: includes/class-wccs-settings-manager.php:820
-msgid "Label of the total discounts."
+msgid "Display You Saved"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:826
-msgid "Position In Cart"
-msgstr ""
-
-#: includes/class-wccs-settings-manager.php:830
-#: includes/class-wccs-settings-manager.php:841
-msgid "Before order total"
+#: includes/class-wccs-settings-manager.php:821
+msgid "If enabled displays you saved amount that the user get for the current order in the cart and checkout pages."
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:831
+msgid "You Saved Negative Sign"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:832
+msgid "If enabled displays a negative sign before the you saved amount."
+msgstr ""
+
 #: includes/class-wccs-settings-manager.php:842
-msgid "After order total"
+msgid "You Saved Label"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:837
-msgid "Position In Checkout"
-msgstr ""
-
-#: includes/class-wccs-settings-manager.php:848
-msgid "Include Cart Discounts And Coupons"
+#: includes/class-wccs-settings-manager.php:843
+msgid "Label of the you saved amount."
 msgstr ""
 
 #: includes/class-wccs-settings-manager.php:849
-msgid "If enabled cart discounts and cart coupons amount will be included in the total discounts."
+msgid "Position In Cart"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:863
+#: includes/class-wccs-settings-manager.php:853
+#: includes/class-wccs-settings-manager.php:864
+msgid "Before order total"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:854
+#: includes/class-wccs-settings-manager.php:865
+msgid "After order total"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:860
+msgid "Position In Checkout"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:871
+msgid "Include Cart Discounts And Coupons"
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:872
+msgid "If enabled cart discounts and cart coupons amount will be included in the you saved amount."
+msgstr ""
+
+#: includes/class-wccs-settings-manager.php:886
 msgid "Display Countdown Timer"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:865
+#: includes/class-wccs-settings-manager.php:888
 #, php-format
 msgid "If enabled displays Countdown Timer in the product page.%1$sWhen a discount available: If the product has a pricing rule with a date-time condition then show the countdown timer based on <strong>Threshold Time Value</strong>.%1$sWhen a discount can apply: If the product has a pricing rule with a date-time condition then check all of that rule conditions and if all conditions are true then show the countdown timer based on <strong>Threshold Time Value</strong>."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:876
+#: includes/class-wccs-settings-manager.php:899
 msgid "Yes - When a discount available"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:877
+#: includes/class-wccs-settings-manager.php:900
 msgid "Yes - When a discount can apply"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:884
+#: includes/class-wccs-settings-manager.php:907
 msgid "Countdown Timer Position"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:910
+#: includes/class-wccs-settings-manager.php:933
 msgid "Threshold Time Value"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:911
+#: includes/class-wccs-settings-manager.php:934
 #, php-format
 msgid "Display Countdown Timer when its close to the end time of the rule.%1$s e.g: If its value is 1 and \"Threshold Time Type\" is \"Day\" Countdown Timer will display before 1day to the end time of the rule."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:918
+#: includes/class-wccs-settings-manager.php:941
 msgid "Threshold Time Type"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:919
+#: includes/class-wccs-settings-manager.php:942
 #, php-format
 msgid "e.g: If its value is \"Day\" and \"Threshold Time Value\" is \"1\" Countdown Timer will display before 1day to the end time of the rule.%1$s Note: Please note that when its value is \"No Limit\" Countdown Timer will display always if pricing rule has date/time condition."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:924
+#: includes/class-wccs-settings-manager.php:947
 msgid "Minute"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:925
+#: includes/class-wccs-settings-manager.php:948
 msgid "Hour"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:926
+#: includes/class-wccs-settings-manager.php:949
 #: admin/js/conditions/index.js:7579
 msgid "Day"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:927
+#: includes/class-wccs-settings-manager.php:950
 #: admin/js/conditions/index.js:7579
 msgid "Week"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:928
+#: includes/class-wccs-settings-manager.php:951
 #: admin/js/conditions/index.js:7579
 msgid "Month"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:941
+#: includes/class-wccs-settings-manager.php:964
 msgid "Title"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:942
+#: includes/class-wccs-settings-manager.php:965
 msgid "Title of Countdown Timer."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:944
+#: includes/class-wccs-settings-manager.php:967
 msgid "Limited-time offer! Sale ends in"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:949
-#: includes/class-wccs-settings-manager.php:952
+#: includes/class-wccs-settings-manager.php:972
+#: includes/class-wccs-settings-manager.php:975
 #: admin/js/conditions/index.js:7105
 msgid "Days"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:950
+#: includes/class-wccs-settings-manager.php:973
 msgid "Days label in Countdown Timer heading."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:957
-#: includes/class-wccs-settings-manager.php:960
+#: includes/class-wccs-settings-manager.php:980
+#: includes/class-wccs-settings-manager.php:983
 msgid "Hours"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:958
+#: includes/class-wccs-settings-manager.php:981
 msgid "Hours label in Countdown Timer heading."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:965
-#: includes/class-wccs-settings-manager.php:968
+#: includes/class-wccs-settings-manager.php:988
+#: includes/class-wccs-settings-manager.php:991
 msgid "Minutes"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:966
+#: includes/class-wccs-settings-manager.php:989
 msgid "Minutes label in Countdown Timer heading."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:973
-#: includes/class-wccs-settings-manager.php:976
+#: includes/class-wccs-settings-manager.php:996
+#: includes/class-wccs-settings-manager.php:999
 msgid "Seconds"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:974
+#: includes/class-wccs-settings-manager.php:997
 msgid "Seconds label in Countdown Timer heading."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:981
+#: includes/class-wccs-settings-manager.php:1004
 msgid "Title Font Size"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:982
+#: includes/class-wccs-settings-manager.php:1005
 msgid "Countdown Timer title font-size."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:989
+#: includes/class-wccs-settings-manager.php:1012
 msgid "Title color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:990
+#: includes/class-wccs-settings-manager.php:1013
 msgid "Countdown Timer title color."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:996
+#: includes/class-wccs-settings-manager.php:1019
 msgid "Heading color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:997
+#: includes/class-wccs-settings-manager.php:1020
 msgid "Days, Hours, Minutes, Seconds text color."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1003
+#: includes/class-wccs-settings-manager.php:1026
 msgid "Rotor top color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1004
+#: includes/class-wccs-settings-manager.php:1027
 msgid "Color of rotor top."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1010
+#: includes/class-wccs-settings-manager.php:1033
 msgid "Rotor top background color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1011
+#: includes/class-wccs-settings-manager.php:1034
 msgid "Background color of rotor top."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1017
+#: includes/class-wccs-settings-manager.php:1040
 msgid "Rotor bottom color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1018
+#: includes/class-wccs-settings-manager.php:1041
 msgid "Color of rotor bottom."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1024
+#: includes/class-wccs-settings-manager.php:1047
 msgid "Rotor bottom background color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1025
+#: includes/class-wccs-settings-manager.php:1048
 msgid "Background color of rotor bottom."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1031
+#: includes/class-wccs-settings-manager.php:1054
 msgid "Hinge color"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1032
+#: includes/class-wccs-settings-manager.php:1055
 msgid "Hinge color of rotor."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1042
+#: includes/class-wccs-settings-manager.php:1065
 msgid "Show Discount Page"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1043
+#: includes/class-wccs-settings-manager.php:1066
 msgid "Showing discount page in cart and checkout pages as a notice to user."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1048
+#: includes/class-wccs-settings-manager.php:1071
 msgid "Discounts available"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1049
+#: includes/class-wccs-settings-manager.php:1072
 msgid "Never"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1056
+#: includes/class-wccs-settings-manager.php:1079
 msgid "Discount page that shows discounted products."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1059
+#: includes/class-wccs-settings-manager.php:1082
 msgid "Not Selected"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1064
+#: includes/class-wccs-settings-manager.php:1087
 msgid "Discount Page Message"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1065
+#: includes/class-wccs-settings-manager.php:1088
 msgid "This message will show in the cart page."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1066
+#: includes/class-wccs-settings-manager.php:1089
 #, php-format
 msgid "Example Message : Visit our %s to view new discounted products based on your cart."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1067
+#: includes/class-wccs-settings-manager.php:1090
 #, php-format
 msgid "%s is a placeholder for discount page url and should be exists in the message."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1069
+#: includes/class-wccs-settings-manager.php:1092
 #, php-format
 msgid "Visit our %1$s to view new discounted products based on your cart."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1074
+#: includes/class-wccs-settings-manager.php:1097
 msgid "Discount Page Title"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1075
+#: includes/class-wccs-settings-manager.php:1098
 #, php-format
 msgid "This title will replace with %s placeholder in discount page message."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1091
+#: includes/class-wccs-settings-manager.php:1114
 #, php-format
 msgid "Enable it to use local texts or labels.%1$s Note: Disable it on a multilingual site and just translate texts that appears in front-end of your site which are exists in the langulage file of the plugin."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1101
-#: includes/class-wccs-settings-manager.php:1103
+#: includes/class-wccs-settings-manager.php:1124
+#: includes/class-wccs-settings-manager.php:1126
 #: public/class-wccs-public-product-pricing.php:521
 #: admin/js/conditions/index.js:16186
 #: admin/js/conditions/index.js:16276
@@ -1489,85 +1521,85 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1107
-#: includes/class-wccs-settings-manager.php:1109
+#: includes/class-wccs-settings-manager.php:1130
+#: includes/class-wccs-settings-manager.php:1132
 #: public/class-wccs-public-product-pricing.php:523
 #: admin/js/conditions/index.js:6180
 msgid "Quantity"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1126
+#: includes/class-wccs-settings-manager.php:1149
 msgid "Update Products Price"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1127
+#: includes/class-wccs-settings-manager.php:1150
 msgid "Cache products price based on simple pricing rules to improve performance in the front-end."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1134
+#: includes/class-wccs-settings-manager.php:1157
 msgid "Auto Update Products Price"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1135
+#: includes/class-wccs-settings-manager.php:1158
 msgid "Automatically update products price in the background when a new rule added or the plugin settings updated or WooCommerce settings updated or a product added or updated."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1145
+#: includes/class-wccs-settings-manager.php:1168
 msgid "Enable Analytics"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1146
+#: includes/class-wccs-settings-manager.php:1169
 msgid "Enable/Disable Analytics"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1156
+#: includes/class-wccs-settings-manager.php:1179
 msgid "Cache Prices"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1157
+#: includes/class-wccs-settings-manager.php:1180
 #, php-format
 msgid "Enable/Disable price caching.%s <strong>Note:</strong> Disabling this feature can potentially reduce your website's loading speed."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1167
+#: includes/class-wccs-settings-manager.php:1190
 msgid "Cache Quantity Table"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1168
+#: includes/class-wccs-settings-manager.php:1191
 msgid "Enable/Disable quantity table caching."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1189
+#: includes/class-wccs-settings-manager.php:1212
 msgid "Cache Onsale Badge"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1190
+#: includes/class-wccs-settings-manager.php:1213
 msgid "Enable/Disable onsale badge caching."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1200
+#: includes/class-wccs-settings-manager.php:1223
 msgid "Disable Calculate Cart Totals"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1201
+#: includes/class-wccs-settings-manager.php:1224
 #, php-format
 msgid "Disable calculate cart totals option to fix compatibility issues with some plugins.%1$s %2$sOnly use it when necessary because it can cause issues for mini-cart prices and pricing rules that are using subtotal conditions.%3$s"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1211
+#: includes/class-wccs-settings-manager.php:1234
 msgid "Search Items Limit"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1212
+#: includes/class-wccs-settings-manager.php:1235
 #, php-format
 msgid "Limit search result of search inputs in the admin.%1$s Set it to %2$s-1%3$s for no limit."
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1225
+#: includes/class-wccs-settings-manager.php:1248
 msgid "License/Purchase Key"
 msgstr ""
 
-#: includes/class-wccs-settings-manager.php:1226
+#: includes/class-wccs-settings-manager.php:1249
 msgid "Enter your license key to enable and receive automatic updates."
 msgstr ""
 
@@ -1576,7 +1608,11 @@ msgstr ""
 msgid "Dynamic Shipping"
 msgstr ""
 
-#: includes/class-wccs-store-api.php:94
+#: includes/class-wccs-store-api.php:89
+msgid "Total discounts data."
+msgstr ""
+
+#: includes/class-wccs-store-api.php:138
 msgid "Discount data"
 msgstr ""
 

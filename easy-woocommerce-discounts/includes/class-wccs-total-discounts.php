@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WCCS_Total_Discounts {
 
-    public function get_discounts() {
+    public static function get_discounts() {
         if ( ! WC()->cart ) {
             return false;
         }
@@ -63,12 +63,14 @@ class WCCS_Total_Discounts {
         return apply_filters( 'wccs_total_discounts_' . __FUNCTION__, $discounts, $include_tax );
     }
 
-    public function get_discounts_html( $discounts = null ) {
-        $discounts = null === $discounts ? $this->get_discounts() : $discounts;
+    public static function get_discounts_html( $discounts = null ) {
+        $discounts = null === $discounts ? static::get_discounts() : $discounts;
         if ( false === $discounts ) {
             return '';
         }
-        $value = '<strong>' . apply_filters( 'wccs_cart_total_discounts_html_prefix', '-' ) . wc_price( $discounts ) . '</strong>';
+
+        $value = '<strong>'. ( 1 === (int) WCCS()->settings->get_setting( 'you_saved_negative_sign', 0 ) ? apply_filters( 'wccs_cart_total_discounts_html_prefix', '-' ) : '' ) . wc_price( $discounts ) . '</strong>';
+
         return apply_filters( 'wccs_total_discounts_' . __FUNCTION__, $value );
     }
 

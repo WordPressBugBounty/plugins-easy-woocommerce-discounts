@@ -3,6 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\StoreApi\Schemas\ExtendSchema;
+use Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CartItemSchema;
 
 class WCCS_Store_API {
@@ -40,6 +41,16 @@ class WCCS_Store_API {
 		if ( is_callable( [ self::$extend, 'register_endpoint_data' ] ) ) {
 			self::$extend->register_endpoint_data(
 				[
+					'endpoint'        => CartSchema::IDENTIFIER,
+					'namespace'       => self::IDENTIFIER,
+					'data_callback'   => [ __CLASS__, 'extend_cart_data' ],
+					'schema_callback' => [ __CLASS__, 'extend_cart_schema' ],
+					'schema_type'     => ARRAY_A,
+				]
+			);
+
+			self::$extend->register_endpoint_data(
+				[
 					'endpoint'        => CartItemSchema::IDENTIFIER,
 					'namespace'       => self::IDENTIFIER,
 					'data_callback'   => [ __CLASS__, 'extend_cart_item_data' ],
@@ -48,6 +59,39 @@ class WCCS_Store_API {
 				]
 			);
 		}
+	}
+
+	/**
+	 * Register total discount data into cart endpoint.
+	 *
+	 * @return array Registered data or empty array if condition is not satisfied.
+	 */
+	public static function extend_cart_data() {
+		$total_discounts = static::get_total_discounts_data();
+
+		if ( empty( $total_discounts ) ) {
+			return [];
+		}
+
+		return [
+			'total_discounts' => $total_discounts,
+		];
+	}
+
+	/**
+	 * Register total discount schema into cart endpoint.
+	 *
+	 * @return array Registered schema.
+	 */
+	public static function extend_cart_schema() {
+		return [
+			'total_discounts' => [
+				'description' => __( 'Total discounts data.', 'easy-woocommerce-discounts' ),
+				'type'        => [ 'object', 'null' ],
+				'context'     => [ 'view', 'edit' ],
+				'readonly'    => true,
+			],
+		];
 	}
 
 	/**
@@ -135,6 +179,28 @@ class WCCS_Store_API {
 		$response->set_data( $data );
 
 		return $response;
+	}
+
+	protected static function get_total_discounts_data() {
+		if ( ! (int) WCCS()->settings->get_setting( 'display_total_discounts', 0 ) ) {
+			return [];
+		}
+
+		$discount = WCCS_Total_Discounts::get_discounts();
+		if ( ! $discount ) {
+			return [];
+		}
+
+		$label = __( 'You Saved', 'easy-woocommerce-discounts' );
+		if ( (int) WCCS()->settings->get_setting( 'localization_enabled', 1 ) ) {
+			$label = WCCS()->settings->get_setting( 'total_discounts_label', $label );
+		}
+
+		return [
+			'amount' => static::prepare_money_response( $discount, wc_get_price_decimals() ),
+			'label'  => $label,
+			'value'  => WCCS_Total_Discounts::get_discounts_html( $discount ),
+		];
 	}
 
 	protected static function item_quantity_limits( $cart_item, $quantity_limits ) {
