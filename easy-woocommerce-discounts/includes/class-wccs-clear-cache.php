@@ -11,11 +11,11 @@ class WCCS_Clear_Cache {
      *
      * @return void
      */
-    public function enable_hooks() {
-        add_action( 'woocommerce_update_product', array( &$this, 'delete_product_cache' ) );
-        add_action( 'woocommerce_update_product_variation', array( &$this, 'delete_product_cache' ) );
-        add_action( 'woocommerce_delete_product_transients', array( &$this, 'delete_product_cache' ) );
-        add_action( 'woocommerce_settings_saved', array( &$this, 'clear_pricing_caches' ) );
+    public static function enable_hooks() {
+        add_action( 'woocommerce_update_product', array( __CLASS__, 'delete_product_cache' ) );
+        add_action( 'woocommerce_update_product_variation', array( __CLASS__, 'delete_product_cache' ) );
+        add_action( 'woocommerce_delete_product_transients', array( __CLASS__, 'delete_product_cache' ) );
+        add_action( 'woocommerce_settings_saved', array( __CLASS__, 'clear_pricing_caches' ) );
     }
 
     /**
@@ -23,7 +23,7 @@ class WCCS_Clear_Cache {
      *
      * @return void
      */
-    public function clear_pricing_caches() {
+    public static function clear_pricing_caches() {
         WCCS()->WCCS_Product_Price_Cache->clear_cache();
         WCCS()->WCCS_Product_Quantity_Table_Cache->clear_cache();
         WCCS()->WCCS_Product_Purchase_Message_Cache->clear_cache();
@@ -38,8 +38,9 @@ class WCCS_Clear_Cache {
      *
      * @return void
      */
-    public function delete_product_cache( $product_id ) {
+    public static function delete_product_cache( $product_id ) {
         WCCS()->WCCS_DB_Cache->delete_item_by_product( $product_id );
+        WCCS()->WCCS_Product_Quantity_Table_Cache->delete_product_cache( $product_id );
     }
 
 }

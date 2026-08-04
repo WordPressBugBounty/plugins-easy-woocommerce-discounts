@@ -143,7 +143,7 @@ class WCCS_Admin {
 		$order_hooks->enable_hooks();
 
 		// Cache Clear Hooks.
-		WCCS()->WCCS_Clear_Cache->enable_hooks();
+		WCCS_Clear_Cache::enable_hooks();
 
 		// Plugin links.
 		$this->loader->add_filter( 'plugin_row_meta', $this, 'plugin_row_meta_links', 10, 2 );

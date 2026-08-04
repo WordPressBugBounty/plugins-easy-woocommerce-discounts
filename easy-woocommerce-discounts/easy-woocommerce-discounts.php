@@ -3,10 +3,10 @@
  * @wordpress-plugin
  * Plugin Name: Discount Rules and Dynamic Pricing for WooCommerce
  * Plugin URI: https://www.asanaplugins.com/product/woocommerce-dynamic-pricing-and-discounts-plugin/?utm_source=easy-woocommerce-discounts-free&utm_campaign=easy-woocommerce-discounts&utm_medium=link
- * Description: All purpose WooCommerce discounts, pricing, shipping and promotion tool.
+ * Description: All purpose WooCommerce discounts, dynamic pricing, checkout fees, shipping and promotion tool.
  * Tags: discount, coupon, bulk discount, category discount, bogo, woocommerce, woocommerce discounts, woocommerce pricing deals, woocommerce Buy One Get One Free, bulk coupons, gift coupons, signup coupons, advanced coupons, woocommerce bulk discounts, woocommerce pricing, woocommerce price rules, woocommerce advanced discounts, woocommerce pricing deals, woocommerce bulk discounts, woocommerce cart discounts, woocommerce pricing deals, woocommerce discount rules, discount rules for woocommerce, woocommerce shipping, dynamic shipping, url coupons for woocommerce
- * Version: 9.2.0
- * Author: Discount Team
+ * Version: 9.3.0
+ * Author: AsanaPlugins
  * Author URI: https://www.asanaplugins.com/
  * License: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: easy-woocommerce-discounts
@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Plugin version.
 if ( ! defined( 'WCCS_VERSION' ) ) {
-	define( 'WCCS_VERSION', '9.2.0' );
+	define( 'WCCS_VERSION', '9.3.0' );
 }
 
 /**

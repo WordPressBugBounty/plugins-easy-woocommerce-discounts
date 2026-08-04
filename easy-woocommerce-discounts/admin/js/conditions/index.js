@@ -15958,8 +15958,8 @@ var PricingList_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var PricingList = (PricingList_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=096ef0a3&
-var PricingViewvue_type_template_id_096ef0a3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/pricing-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.savePricing}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=b11edb3a&
+var PricingViewvue_type_template_id_b11edb3a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wccs-pricing-view"}},[_c('loading',{attrs:{"show":_vm.showLoading}}),_vm._v(" "),_c('div',{staticClass:"asnp-flex asnp-space-x-2"},[_c('h1',{staticClass:"asnp-heading-inline"},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Pricing', 'easy-woocommerce-discounts' ))+"\n\t\t")]),_vm._v(" "),_c('router-link',{staticClass:"asnp-btn asnp-btn-secondary wccs-page-title-action",attrs:{"to":"/pricing-list","tag":"button"}},[_vm._v(_vm._s(_vm.__( 'Cancel', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('button',{staticClass:"asnp-btn asnp-btn-primary wccs-page-title-action",attrs:{"type":"button"},on:{"click":_vm.savePricing}},[_vm._v("\n\t\t\t"+_vm._s(_vm.__( 'Save', 'easy-woocommerce-discounts' ))+"\n\t\t")])],1),_vm._v(" "),(_vm.saleBadgesAdv)?_c('product-labels'):_vm._e(),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.showSave),expression:"showSave"}],attrs:{"type":"danger","title":_vm.__( 'Info!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Please save changes.', 'easy-woocommerce-discounts' )}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.saveErrors),expression:"saveErrors"}],attrs:{"type":"danger","title":_vm.__( 'Warning!', 'easy-woocommerce-discounts' ),"message":_vm.__(
 					'There are some errors in the form please fix them and save it again.',
 					'easy-woocommerce-discounts'
 				),"dismissable":true},on:{"dismiss":function($event){_vm.saveErrors = false}}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"alert-fade","mode":"out-in"}},[_c('alert',{directives:[{name:"show",rawName:"v-show",value:(_vm.savedSuccessfully),expression:"savedSuccessfully"}],attrs:{"type":"success","title":_vm.__( 'Success!', 'easy-woocommerce-discounts' ),"message":_vm.__( 'Saved successfully.', 'easy-woocommerce-discounts' ),"dismissable":true},on:{"dismiss":function($event){_vm.savedSuccessfully = false}}})],1),_vm._v(" "),_c('div',{staticClass:"asnp-mt-4 asnp-max-w-2xl asnp-grid asnp-grid-cols-1 asnp-gap-6"},[_c('label',{staticClass:"asnp-block asnp-space-y-1"},[_c('span',{staticClass:"asnp-field-title"},[_vm._v(_vm._s(_vm.__( 'Name', 'easy-woocommerce-discounts' )))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.pricing.name),expression:"pricing.name"}],staticClass:"asnp-block asnp-text-field",class:{
@@ -16258,10 +16258,10 @@ var PricingViewvue_type_template_id_096ef0a3_render = function () {var _vm=this;
 					'There is not any condition.',
 					'easy-woocommerce-discounts'
 				)}})],1),_vm._v(" "),_c('conditions-container',{attrs:{"items":_vm.pricing.conditions,"ignoreGroups":_vm.ignoreGroups,"ignoreItems":_vm.ignoreItems},on:{"conditionUpdated":_vm.onPricingConditionUpdated,"deleteItem":_vm.onDeleteItem,"addItem":_vm.addNewCondition,"addGroup":_vm.onAddGroup,"deleteGroup":_vm.onDeleteGroup}})],1)}
-var PricingViewvue_type_template_id_096ef0a3_staticRenderFns = []
+var PricingViewvue_type_template_id_b11edb3a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=096ef0a3&
+// CONCATENATED MODULE: ./admin/vue/wc-conditions/src/views/PricingView.vue?vue&type=template&id=b11edb3a&
 
 // EXTERNAL MODULE: external {"this":["ewd","validators"]}
 var external_this_ewd_validators_ = __webpack_require__(67);
@@ -18504,6 +18504,7 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
           result = {
             name: this.__('Volume Kick: 30% Off Starting from 3rd Item', 'easy-woocommerce-discounts'),
             mode: 'bulk',
+            apply_mode: 'individually',
             items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
               item: 'all_products',
               id: 1765632901082
@@ -18523,6 +18524,7 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
           result = {
             name: this.__('Volume Kick: $5 Off Starting from 3rd Item', 'easy-woocommerce-discounts'),
             mode: 'bulk',
+            apply_mode: 'individually',
             items: [[PricingViewvue_type_script_lang_js_objectSpread(PricingViewvue_type_script_lang_js_objectSpread({}, products), {}, {
               item: 'all_products',
               id: 1765632901082
@@ -19228,8 +19230,8 @@ function PricingViewvue_type_script_lang_js_toPrimitive(t, r) { if ("object" != 
 
 var PricingView_component = Object(componentNormalizer["a" /* default */])(
   views_PricingViewvue_type_script_lang_js_,
-  PricingViewvue_type_template_id_096ef0a3_render,
-  PricingViewvue_type_template_id_096ef0a3_staticRenderFns,
+  PricingViewvue_type_template_id_b11edb3a_render,
+  PricingViewvue_type_template_id_b11edb3a_staticRenderFns,
   false,
   null,
   null,

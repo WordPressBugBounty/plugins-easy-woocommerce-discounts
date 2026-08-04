@@ -5,7 +5,7 @@ Tags: woocommerce, discounts, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4.2
 Tested up to: 7.0
 Requires PHP: 5.6.0
-Stable tag: 9.2.0
+Stable tag: 9.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -570,6 +570,17 @@ In the free version: bulk/quantity discounts, category discounts, storewide perc
 
 == Changelog ==
 
+= 9.3.0 =
+* New: Completely redesigned the quantity table with a modern, user-friendly interface.
+* New: Introduced a selection of pre-built themes for the quantity table, accessible via plugin settings.
+* New: Added a live preview feature to the settings panel, allowing you to see table changes in real time.
+* New: Added Chamevo product customizer plugin compatibility for quantity table.
+* New: Added capability to set an active tier for the quantity table when using server-side pricing.
+* Fix: Resolved volume kick pricing template apply mode set to *Individually*.
+* Fix: Horizontally centered table content for improved UI consistency.
+* Update: Changed the default quantity table layout from *Horizontal* to *Vertical*.
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 9.2.0 =
 * New: Added "You Saved" block to the cart and checkout blocks.
 * Update: Verified compatibility with WooCommerce 10.9.4
@@ -622,9 +633,5 @@ Note: We kindly request your support in spreading the word by leaving a 5-star r
 = 8.0.1 =
 * Fix: Fixed an issue in logging variation products impressions.
 * Update: Verified compatibility with WooCommerce 10.3.4
-
-= 8.0.0 =
-* New: Added rules analytics to the plugin admin page.
-* Update: Verified compatibility with WooCommerce 10.3.3
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/easy-woocommerce-discounts/trunk/changelog.txt).

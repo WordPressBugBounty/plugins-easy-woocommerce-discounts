@@ -36,7 +36,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		$this->product_id = $this->product->get_id();
 		$this->parent_id = $this->product->is_type( 'variation' ) ? $wccs->product_helpers->get_parent_id( $this->product ) : $this->product_id;
 		$this->pricing = $pricing;
-		$this->apply_method = ! empty( $apply_method ) ? $apply_method : $wccs->settings->get_setting( 'product_pricing_discount_apply_method', 'first' );
+		$this->apply_method = ! empty( $apply_method ) ? $apply_method : $wccs->settings->get_setting( 'product_pricing_discount_apply_method', 'sum' );
 	}
 
 	public function get_price_html( $price = '' ) {
@@ -514,7 +514,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		if ( ! empty( $bulks ) ) {
 			do_action( 'asnp_wccs_before_bulk_pricing_table', $bulks, $this );
 
-			$view = $settings->get_setting( 'quantity_table_layout', 'bulk-pricing-table-horizontal' );
+			$view = $settings->get_setting( 'quantity_table_layout', 'bulk-pricing-table-vertical' );
 			$cache_enabled = (int) $settings->get_setting( 'cache_quantity_table', 1 );
 			$exclude_rules = $this->pricing->get_exclude_rules();
 			$table_title = __( 'Discount per Quantity', 'easy-woocommerce-discounts' );
@@ -531,24 +531,23 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$cache = false;
 			if ( $cache_enabled ) {
 				$cache_args = array(
-					'product_id' => $this->product_id,
-					'parent_id' => $this->parent_id,
-					'price_html' => WCCS()->product_helpers->wc_get_price_html( $this->product ),
-					'rules' => $bulks,
-					'exclude_rules' => $exclude_rules,
-					'view' => $view,
-					'table_title' => $table_title,
+					'product_id'     => $this->product_id,
+					'parent_id'      => $this->parent_id,
+					'base_price'     => $this->get_base_price_to_display(),
+					'currency'       => get_woocommerce_currency(),
+					'rules'          => $bulks,
+					'exclude_rules'  => $exclude_rules,
+					'view'           => $view,
+					'table_title'    => $table_title,
 					'quantity_label' => $quantity_label,
-					'price_label' => $price_label,
+					'price_label'    => $price_label,
 					'discount_label' => $discount_label,
-					'variation' => $this->product->is_type( 'variation' ) ? $this->product_id : '',
+					'variation'      => $this->product->is_type( 'variation' ) ? $this->product_id : '',
 				);
 				$cache = WCCS()->WCCS_Product_Quantity_Table_Cache->get_quantity_table( $cache_args );
 
-				if ( false !== $cache ) {
-					if ( ! empty( $cache ) ) {
-						echo apply_filters( 'wccs_product_pricing_bulk_pricing_table', $cache, $this );
-					}
+				if ( false !== $cache && ! empty( $cache ) ) {
+					echo apply_filters( 'wccs_product_pricing_bulk_pricing_table', $cache, $this );
 				}
 			}
 

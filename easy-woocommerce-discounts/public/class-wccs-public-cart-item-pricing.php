@@ -56,7 +56,7 @@ class WCCS_Public_Cart_Item_Pricing {
 	public function __construct( $cart_item_id, $cart_item, WCCS_Pricing $pricing, $apply_method = '', $cart = null, $pricing_cache = null ) {
 		$this->item = $cart_item;
 		$this->pricing = $pricing;
-		$this->apply_method = ! empty( $apply_method ) ? $apply_method : WCCS()->settings->get_setting( 'product_pricing_discount_apply_method', 'first' );
+		$this->apply_method = ! empty( $apply_method ) ? $apply_method : WCCS()->settings->get_setting( 'product_pricing_discount_apply_method', 'sum' );
 		$this->product_id = $cart_item['product_id'];
 		$this->variation_id = $cart_item['variation_id'];
 		$this->product = ! empty( $this->variation_id ) ? wc_get_product( $this->variation_id ) : wc_get_product( $this->product_id );

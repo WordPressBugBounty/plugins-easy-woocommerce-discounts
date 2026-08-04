@@ -225,7 +225,7 @@ class WCCS_Admin_Settings_Menu extends WCCS_Admin_Controller {
 	 * @return void
 	 */
 	public function settings_updated( $old_value, $value, $option ) {
-		WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+		WCCS_Clear_Cache::clear_pricing_caches();
 	}
 
 }

@@ -307,6 +307,9 @@ class WCCS_Activator {
 			'7.3.3' => array(
 				'WCCS_Updates::clear_pricing_caches',
 			),
+			'9.3.0' => array(
+				'WCCS_Updates::clear_table_cache',
+			),
 		);
 	}
 
@@ -334,7 +337,7 @@ class WCCS_Activator {
 	 */
 	private static function maybe_update_db_version() {
 		if ( self::needs_db_update() ) {
-			if ( apply_filters( 'woocommerce_conditions_enable_auto_update_db', false ) ) {
+			if ( apply_filters( 'woocommerce_conditions_enable_auto_update_db', true ) ) {
 				self::init_background_updater();
 				self::update();
 			} else {

@@ -29,7 +29,7 @@ class WCCS_Admin_Conditions_Hooks {
         }
 
         if ( 'pricing' === $condition->type ) {
-            WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+            WCCS_Clear_Cache::clear_pricing_caches();
             if ( $this->auto_update_prices ) {
                 WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
             }
@@ -42,7 +42,7 @@ class WCCS_Admin_Conditions_Hooks {
         }
 
         if ( 'pricing' === $condition->type ) {
-            WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+            WCCS_Clear_Cache::clear_pricing_caches();
             if ( $this->auto_update_prices ) {
                 WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
             }
@@ -55,7 +55,7 @@ class WCCS_Admin_Conditions_Hooks {
         }
 
         if ( 'pricing' === $condition->type ) {
-            WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+            WCCS_Clear_Cache::clear_pricing_caches();
             if ( $this->auto_update_prices ) {
                 WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
             }
@@ -69,7 +69,7 @@ class WCCS_Admin_Conditions_Hooks {
 
         $condition = WCCS()->conditions->get_condition( $condition_id );
         if ( 'pricing' === $condition->type ) {
-            WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+            WCCS_Clear_Cache::clear_pricing_caches();
             if ( $this->auto_update_prices ) {
                 WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
             }
@@ -78,7 +78,7 @@ class WCCS_Admin_Conditions_Hooks {
 
     public function conditions_ordering_updated( $type ) {
         if ( 'pricing' === $type ) {
-            WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+            WCCS_Clear_Cache::clear_pricing_caches();
             if ( $this->auto_update_prices ) {
                 WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
             }

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WCCS_Updates {
 
 	public static function clear_pricing_caches() {
-		WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+		WCCS_Clear_Cache::clear_pricing_caches();
 	}
 
 	public static function update_110_conditions() {
@@ -83,11 +83,11 @@ class WCCS_Updates {
 	}
 
 	public static function update_301() {
-		WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+		WCCS_Clear_Cache::clear_pricing_caches();
 	}
 
 	public static function update_460() {
-		WCCS()->WCCS_Clear_Cache->clear_pricing_caches();
+		WCCS_Clear_Cache::clear_pricing_caches();
 
 		if ( wp_using_ext_object_cache() ) {
             return;
@@ -140,6 +140,10 @@ class WCCS_Updates {
 		WCCS()->WCCS_Product_Price_Cache->clear_cache_deprecated();
         WCCS()->WCCS_Product_Quantity_Table_Cache->clear_cache_deprecated();
         WCCS()->WCCS_Product_Onsale_Cache->clear_cache_deprecated();
+	}
+
+	public static function clear_table_cache() {
+		WCCS()->WCCS_Product_Quantity_Table_Cache->clear_cache();
 	}
 
 	public static function update_required() {

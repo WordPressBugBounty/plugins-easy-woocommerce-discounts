@@ -1,32 +1,752 @@
-(function( $, window ) {
-    'use strict';
+( function ( $, window ) {
+	'use strict';
 
-    /**
+	/**
 	 * WCCS Admin class.
 	 *
 	 * @since 2.7.0
 	 */
-    window.WCCS_Admin = function() {};
+	window.WCCS_Admin = function () {
+		this.applyingPreset = false;
+	};
 
-    /**
+	/**
 	 * Using color picker for color picker elements.
 	 *
 	 * @since   2.7.0
-     *
+	 *
 	 * @returns void
 	 */
-	WCCS_Admin.prototype.colorPicker = function() {
+	WCCS_Admin.prototype.colorPicker = function () {
 		if ( ! jQuery().wpColorPicker ) {
 			return;
 		}
 
+		var self = this;
+
 		// Using color picker in setting page.
-		jQuery( 'input[type=text].wccs-colorpick-setting' ).wpColorPicker();
-    };
+		jQuery( 'input[type=text].wccs-colorpick-setting' ).each( function () {
+			var $this = jQuery( this );
+			var id = $this.attr( 'id' ) || '';
+			$this.wpColorPicker( {
+				change: function ( event, ui ) {
+					if ( self.applyingPreset ) {
+						return;
+					}
+					if ( id.indexOf( 'quantity_table_' ) !== -1 ) {
+						jQuery(
+							'#wccs_settings\\[quantity_table_theme_preset\\]'
+						).val( 'custom' );
+					}
+					setTimeout( function () {
+						$this.trigger( 'change' );
+					}, 20 );
+				},
+				clear: function ( event ) {
+					if ( self.applyingPreset ) {
+						return;
+					}
+					if ( id.indexOf( 'quantity_table_' ) !== -1 ) {
+						jQuery(
+							'#wccs_settings\\[quantity_table_theme_preset\\]'
+						).val( 'custom' );
+					}
+					setTimeout( function () {
+						$this.trigger( 'change' );
+					}, 20 );
+				},
+			} );
+		} );
+	};
 
-    $( function() {
-        var wccsAmin = new WCCS_Admin();
-        wccsAmin.colorPicker();
-    });
+	/**
+	 * Handle quantity table theme presets.
+	 *
+	 * @returns void
+	 */
+	WCCS_Admin.prototype.quantityTableThemePresets = function () {
+		var themes = {
+			default: {
+				quantity_table_header_bg: '#6c7ae0',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#808080',
+				quantity_table_stripe_bg: '#f8f6ff',
+				quantity_table_hover_bg: '#f1f3ff',
+				quantity_table_theme_color: '#6c7ae0',
+				quantity_table_theme_bg: '#f8f6ff',
+				quantity_table_theme_text: '#6c7ae0',
+				quantity_table_theme_border: '#c3caf7',
+			},
+			sakura: {
+				quantity_table_header_bg: '#ffb7b2',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#5c5050',
+				quantity_table_stripe_bg: '#ffe5ec',
+				quantity_table_hover_bg: '#fff0f3',
+				quantity_table_theme_color: '#ff8fab',
+				quantity_table_theme_bg: '#ffe5ec',
+				quantity_table_theme_text: '#ff5c8a',
+				quantity_table_theme_border: '#ffc2d1',
+			},
+			minty: {
+				quantity_table_header_bg: '#a3e4d7',
+				quantity_table_header_text: '#2c3e50',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#515a5a',
+				quantity_table_stripe_bg: '#e8f8f5',
+				quantity_table_hover_bg: '#f0faf7',
+				quantity_table_theme_color: '#1abc9c',
+				quantity_table_theme_bg: '#e8f8f5',
+				quantity_table_theme_text: '#117a65',
+				quantity_table_theme_border: '#a3e4d7',
+			},
+			lavender: {
+				quantity_table_header_bg: '#c3aed6',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#5a5060',
+				quantity_table_stripe_bg: '#f3eaf4',
+				quantity_table_hover_bg: '#faf5fc',
+				quantity_table_theme_color: '#8675a9',
+				quantity_table_theme_bg: '#f3eaf4',
+				quantity_table_theme_text: '#625287',
+				quantity_table_theme_border: '#c3aed6',
+			},
+			ocean: {
+				quantity_table_header_bg: '#90e0ef',
+				quantity_table_header_text: '#0077b6',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#3d5a80',
+				quantity_table_stripe_bg: '#e0f7fa',
+				quantity_table_hover_bg: '#f0fdfe',
+				quantity_table_theme_color: '#0096c7',
+				quantity_table_theme_bg: '#e0f7fa',
+				quantity_table_theme_text: '#03045e',
+				quantity_table_theme_border: '#90e0ef',
+			},
+			sunset: {
+				quantity_table_header_bg: '#ffb5a7',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#6d5959',
+				quantity_table_stripe_bg: '#fcd5ce',
+				quantity_table_hover_bg: '#fff5f3',
+				quantity_table_theme_color: '#f08080',
+				quantity_table_theme_bg: '#fcd5ce',
+				quantity_table_theme_text: '#d9383a',
+				quantity_table_theme_border: '#ffb5a7',
+			},
+			banana: {
+				quantity_table_header_bg: '#f9ebc7',
+				quantity_table_header_text: '#6b5936',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#7a6b4d',
+				quantity_table_stripe_bg: '#fffbef',
+				quantity_table_hover_bg: '#fffdf4',
+				quantity_table_theme_color: '#cca43b',
+				quantity_table_theme_bg: '#fffbef',
+				quantity_table_theme_text: '#70591b',
+				quantity_table_theme_border: '#e8d5a7',
+			},
+			peach: {
+				quantity_table_header_bg: '#ffcad4',
+				quantity_table_header_text: '#805b63',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#7d6e70',
+				quantity_table_stripe_bg: '#ffe5ec',
+				quantity_table_hover_bg: '#fff0f3',
+				quantity_table_theme_color: '#ff7096',
+				quantity_table_theme_bg: '#ffe5ec',
+				quantity_table_theme_text: '#ff477e',
+				quantity_table_theme_border: '#ffb3c1',
+			},
+			marshmallow: {
+				quantity_table_header_bg: '#d8e2dc',
+				quantity_table_header_text: '#5c677d',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#7a8296',
+				quantity_table_stripe_bg: '#f4f1de',
+				quantity_table_hover_bg: '#faf8f0',
+				quantity_table_theme_color: '#90a955',
+				quantity_table_theme_bg: '#f4f1de',
+				quantity_table_theme_text: '#4f772d',
+				quantity_table_theme_border: '#ccd5ae',
+			},
+			eucalyptus: {
+				quantity_table_header_bg: '#b7b7a4',
+				quantity_table_header_text: '#3f4238',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#6b705c',
+				quantity_table_stripe_bg: '#f4f3ee',
+				quantity_table_hover_bg: '#fafaf8',
+				quantity_table_theme_color: '#a3b18a',
+				quantity_table_theme_bg: '#f4f3ee',
+				quantity_table_theme_text: '#3a5f43',
+				quantity_table_theme_border: '#a3b18a',
+			},
+			blueberry: {
+				quantity_table_header_bg: '#3f37c9',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#4895ef',
+				quantity_table_stripe_bg: '#f0f3ff',
+				quantity_table_hover_bg: '#f7f8ff',
+				quantity_table_theme_color: '#4cc9f0',
+				quantity_table_theme_bg: '#f0f3ff',
+				quantity_table_theme_text: '#4895ef',
+				quantity_table_theme_border: '#4cc9f0',
+			},
+			coffee: {
+				quantity_table_header_bg: '#ddb892',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#7f5539',
+				quantity_table_stripe_bg: '#ede0d4',
+				quantity_table_hover_bg: '#fcf9f6',
+				quantity_table_theme_color: '#9c6644',
+				quantity_table_theme_bg: '#ede0d4',
+				quantity_table_theme_text: '#7f5539',
+				quantity_table_theme_border: '#b7b7a4',
+			},
+			retro: {
+				quantity_table_header_bg: '#f28482',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#84a59d',
+				quantity_table_stripe_bg: '#f7ede2',
+				quantity_table_hover_bg: '#fdfbf7',
+				quantity_table_theme_color: '#f5cac3',
+				quantity_table_theme_bg: '#f7ede2',
+				quantity_table_theme_text: '#f28482',
+				quantity_table_theme_border: '#f5cac3',
+			},
+			matcha: {
+				quantity_table_header_bg: '#a3b18a',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#588157',
+				quantity_table_stripe_bg: '#dad7cd',
+				quantity_table_hover_bg: '#f5f6f3',
+				quantity_table_theme_color: '#588157',
+				quantity_table_theme_bg: '#dad7cd',
+				quantity_table_theme_text: '#344e41',
+				quantity_table_theme_border: '#a3b18a',
+			},
+			peach: {
+				quantity_table_header_bg: '#ffcfd2',
+				quantity_table_header_text: '#a44a3f',
+				quantity_table_body_bg: '#ffffff',
+				quantity_table_body_text: '#7c6354',
+				quantity_table_stripe_bg: '#fde2e4',
+				quantity_table_hover_bg: '#fff5f5',
+				quantity_table_theme_color: '#f19c79',
+				quantity_table_theme_bg: '#fde2e4',
+				quantity_table_theme_text: '#d96b43',
+				quantity_table_theme_border: '#f19c79',
+			},
+			night_dark: {
+				quantity_table_header_bg: '#0f172a',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#020617',
+				quantity_table_body_text: '#cbd5e1',
+				quantity_table_stripe_bg: '#0f172a',
+				quantity_table_hover_bg: '#182235',
+				quantity_table_theme_color: '#38bdf8',
+				quantity_table_theme_bg: '#1e293b',
+				quantity_table_theme_text: '#ffffff',
+				quantity_table_theme_border: '#38bdf8',
+			},
+			night_purple: {
+				quantity_table_header_bg: '#1d1826',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#0f0c13',
+				quantity_table_body_text: '#dfd5eb',
+				quantity_table_stripe_bg: '#15111b',
+				quantity_table_hover_bg: '#231c2e',
+				quantity_table_theme_color: '#c084fc',
+				quantity_table_theme_bg: '#1d1826',
+				quantity_table_theme_text: '#ffffff',
+				quantity_table_theme_border: '#c084fc',
+			},
+			night_cyber: {
+				quantity_table_header_bg: '#18181b',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#09090b',
+				quantity_table_body_text: '#e4e4e7',
+				quantity_table_stripe_bg: '#18181b',
+				quantity_table_hover_bg: '#202023',
+				quantity_table_theme_color: '#ec4899',
+				quantity_table_theme_bg: '#27272a',
+				quantity_table_theme_text: '#ffffff',
+				quantity_table_theme_border: '#f43f5e',
+			},
+			night_emerald: {
+				quantity_table_header_bg: '#062a1e',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#02140e',
+				quantity_table_body_text: '#a7f3d0',
+				quantity_table_stripe_bg: '#042319',
+				quantity_table_hover_bg: '#083727',
+				quantity_table_theme_color: '#34d399',
+				quantity_table_theme_bg: '#064e3b',
+				quantity_table_theme_text: '#ffffff',
+				quantity_table_theme_border: '#34d399',
+			},
+			night_teal: {
+				quantity_table_header_bg: '#0a1c20',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#030c0e',
+				quantity_table_body_text: '#99f6e4',
+				quantity_table_stripe_bg: '#08171a',
+				quantity_table_hover_bg: '#0d272d',
+				quantity_table_theme_color: '#2dd4bf',
+				quantity_table_theme_bg: '#115e59',
+				quantity_table_theme_text: '#ffffff',
+				quantity_table_theme_border: '#2dd4bf',
+			},
+			night_cocoa: {
+				quantity_table_header_bg: '#1e1410',
+				quantity_table_header_text: '#ffffff',
+				quantity_table_body_bg: '#0f0907',
+				quantity_table_body_text: '#fed7aa',
+				quantity_table_stripe_bg: '#170e0a',
+				quantity_table_hover_bg: '#241710',
+				quantity_table_theme_color: '#ea580c',
+				quantity_table_theme_bg: '#431407',
+				quantity_table_theme_text: '#ffffff',
+				quantity_table_theme_border: '#ea580c',
+			},
+		};
 
-})( jQuery, window );
+		var self = this;
+
+		jQuery( document ).on(
+			'change',
+			'#wccs_settings\\[quantity_table_theme_preset\\]',
+			function () {
+				var selectedPreset = jQuery( this ).val();
+				if (
+					! selectedPreset ||
+					selectedPreset === 'custom' ||
+					! themes[ selectedPreset ]
+				) {
+					return;
+				}
+
+				self.applyingPreset = true;
+				var presetColors = themes[ selectedPreset ];
+
+				Object.keys( presetColors ).forEach( function ( settingKey ) {
+					var $input = jQuery(
+						'#wccs_settings\\[' + settingKey + '\\]'
+					);
+					if ( $input.length ) {
+						if ( $input.wpColorPicker ) {
+							try {
+								$input.wpColorPicker(
+									'color',
+									presetColors[ settingKey ]
+								);
+							} catch ( err ) {
+								$input
+									.val( presetColors[ settingKey ] )
+									.trigger( 'change' );
+							}
+						} else {
+							$input
+								.val( presetColors[ settingKey ] )
+								.trigger( 'change' );
+						}
+					}
+				} );
+				self.applyingPreset = false;
+			}
+		);
+
+		// Fallback to custom on manual keyboard color edits (only for quantity table inputs)
+		jQuery( document ).on(
+			'change input',
+			'input.wccs-colorpick-setting',
+			function () {
+				var id = jQuery( this ).attr( 'id' ) || '';
+				if (
+					self.applyingPreset !== true &&
+					id.indexOf( 'quantity_table_' ) !== -1
+				) {
+					jQuery(
+						'#wccs_settings\\[quantity_table_theme_preset\\]'
+					).val( 'custom' );
+				}
+			}
+		);
+	};
+
+	/**
+	 * Setup floating preview container.
+	 *
+	 * @returns void
+	 */
+	WCCS_Admin.prototype.setupQuantityTablePreview = function () {
+		var self = this;
+		var $presetSelect = jQuery(
+			'#wccs_settings\\[quantity_table_theme_preset\\]'
+		);
+		if ( ! $presetSelect.length ) {
+			return;
+		}
+
+		var previewHtml =
+			'<div class="asnp-wccs-preview-sticky-card">' +
+			'<h3>Live Table Preview</h3>' +
+			'<div class="asnp-wccs-preview-tabs">' +
+			'  <button type="button" class="asnp-wccs-preview-tab-btn active" data-layout="vertical">Vertical Layout</button>' +
+			'  <button type="button" class="asnp-wccs-preview-tab-btn" data-layout="horizontal">Horizontal Layout</button>' +
+			'</div>' +
+			'<div class="asnp-wccs-preview-box">' +
+			'  <!-- Vertical Table Preview -->' +
+			'  <div class="asnp-wccs-preview-vertical-wrap asnp-wccs-table-wrapper-outer">' +
+			'    <div class="wccs-bulk-pricing-table-container asnp-wccs-table-container asnp-wccs-table-theme-v1">' +
+			'      <div class="asnp-wccs-table-head">' +
+			'        <table>' +
+			'          <thead>' +
+			'            <tr class="asnp-wccs-row100 asnp-wccs-head">' +
+			'              <th class="asnp-wccs-cell100 asnp-wccs-column-select"><svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; display: inline-block;"><polyline points="20 6 9 17 4 12"></polyline></svg></th>' +
+			'              <th class="asnp-wccs-cell100 asnp-wccs-column1">Quantity</th>' +
+			'              <th class="asnp-wccs-cell100 asnp-wccs-column2">Discount</th>' +
+			'              <th class="asnp-wccs-cell100 asnp-wccs-column3">Price</th>' +
+			'            </tr>' +
+			'          </thead>' +
+			'        </table>' +
+			'      </div>' +
+			'      <div class="asnp-wccs-table-body asnp-wccs-vertical-scroll">' +
+			'        <table class="wccs-bulk-pricing-table wccs-vertical-table">' +
+			'          <tbody>' +
+			'            <tr class="asnp-wccs-row100 asnp-wccs-body">' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column-select"><input type="radio" name="wccs_preview_select_v" class="wccs-tier-radio" /></td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column1">2 - 5</td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column2">10%</td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column3">$22.50</td>' +
+			'            </tr>' +
+			'            <tr class="asnp-wccs-row100 asnp-wccs-body wccs-active-tier">' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column-select"><input type="radio" name="wccs_preview_select_v" class="wccs-tier-radio" checked="checked" /></td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column1">6 - 10</td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column2">15%</td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column3">$21.25</td>' +
+			'            </tr>' +
+			'            <tr class="asnp-wccs-row100 asnp-wccs-body">' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column-select"><input type="radio" name="wccs_preview_select_v" class="wccs-tier-radio" /></td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column1">11+</td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column2">20%</td>' +
+			'              <td class="asnp-wccs-cell100 asnp-wccs-column3">$20.00</td>' +
+			'            </tr>' +
+			'          </tbody>' +
+			'        </table>' +
+			'      </div>' +
+			'    </div>' +
+			'  </div>' +
+			'  <!-- Horizontal Table Preview -->' +
+			'  <div class="asnp-wccs-preview-horizontal-wrap asnp-wccs-table-wrapper-outer" style="display: none;">' +
+			'    <div class="wccs-bulk-pricing-table-container asnp-wccs-horizontal-split-container">' +
+			'      <div class="asnp-wccs-table-left">' +
+			'        <table>' +
+			'          <tbody>' +
+			'            <tr><th>Quantity</th></tr>' +
+			'            <tr><th>Discount</th></tr>' +
+			'            <tr><th>Price</th></tr>' +
+			'            <tr class="wccs-row-select"><th><svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; display: inline-block;"><polyline points="20 6 9 17 4 12"></polyline></svg></th></tr>' +
+			'          </tbody>' +
+			'        </table>' +
+			'      </div>' +
+			'      <div class="asnp-wccs-table-right asnp-wccs-horizontal-scroll">' +
+			'        <table class="wccs-bulk-pricing-table wccs-horizontal-table">' +
+			'          <tbody>' +
+			'            <tr>' +
+			'              <td>2 - 5</td>' +
+			'              <td class="wccs-active-tier">6 - 10</td>' +
+			'              <td>11+</td>' +
+			'            </tr>' +
+			'            <tr>' +
+			'              <td>10%</td>' +
+			'              <td class="wccs-active-tier">15%</td>' +
+			'              <td>20%</td>' +
+			'            </tr>' +
+			'            <tr>' +
+			'              <td>$22.50</td>' +
+			'              <td class="wccs-active-tier">$21.25</td>' +
+			'              <td>$20.00</td>' +
+			'            </tr>' +
+			'            <tr class="wccs-row-select">' +
+			'              <td><input type="radio" name="wccs_preview_select_h" class="wccs-tier-radio" /></td>' +
+			'              <td class="wccs-active-tier"><input type="radio" name="wccs_preview_select_h" class="wccs-tier-radio" checked="checked" /></td>' +
+			'              <td><input type="radio" name="wccs_preview_select_h" class="wccs-tier-radio" /></td>' +
+			'            </tr>' +
+			'          </tbody>' +
+			'        </table>' +
+			'      </div>' +
+			'    </div>' +
+			'  </div>' +
+			'</div>' +
+			'</div>';
+
+		jQuery( '#tab-container' ).prepend( previewHtml );
+
+		// Set default layout based on layout setting field
+		var initialLayout =
+			jQuery( '#wccs_settings\\[quantity_table_layout\\]' ).val() ||
+			'bulk-pricing-table-vertical';
+		if ( initialLayout === 'bulk-pricing-table-horizontal' ) {
+			jQuery( '.asnp-wccs-preview-tab-btn' ).removeClass( 'active' );
+			jQuery(
+				'.asnp-wccs-preview-tab-btn[data-layout="horizontal"]'
+			).addClass( 'active' );
+			jQuery( '.asnp-wccs-preview-vertical-wrap' ).hide();
+			jQuery( '.asnp-wccs-preview-horizontal-wrap' ).show();
+		} else {
+			jQuery( '.asnp-wccs-preview-tab-btn' ).removeClass( 'active' );
+			jQuery(
+				'.asnp-wccs-preview-tab-btn[data-layout="vertical"]'
+			).addClass( 'active' );
+			jQuery( '.asnp-wccs-preview-vertical-wrap' ).show();
+			jQuery( '.asnp-wccs-preview-horizontal-wrap' ).hide();
+		}
+
+		// Sync preview layout when user changes layout select dropdown
+		jQuery( document ).on(
+			'change',
+			'#wccs_settings\\[quantity_table_layout\\]',
+			function () {
+				var selectedLayout = jQuery( this ).val();
+				if ( selectedLayout === 'bulk-pricing-table-horizontal' ) {
+					jQuery(
+						'.asnp-wccs-preview-tab-btn[data-layout="horizontal"]'
+					).trigger( 'click' );
+				} else {
+					jQuery(
+						'.asnp-wccs-preview-tab-btn[data-layout="vertical"]'
+					).trigger( 'click' );
+				}
+			}
+		);
+
+		// Set initial selection preview layout based on selection setting
+		var updateSelectionPreviewState = function () {
+			var selectionEnabled =
+				jQuery(
+					'#wccs_settings\\[quantity_table_enable_tier_selection\\]'
+				).val() === 'yes';
+			jQuery(
+				'.asnp-wccs-preview-sticky-card .wccs-bulk-pricing-table-container'
+			).toggleClass( 'wccs-tier-selection-enabled', selectionEnabled );
+		};
+		updateSelectionPreviewState();
+
+		// Sync selection preview state when user changes the dropdown
+		jQuery( document ).on(
+			'change',
+			'#wccs_settings\\[quantity_table_enable_tier_selection\\]',
+			function () {
+				updateSelectionPreviewState();
+			}
+		);
+
+		var updatePreviewColors = function () {
+			var themeColor =
+				jQuery(
+					'#wccs_settings\\[quantity_table_theme_color\\]'
+				).val() || '';
+			var themeBg =
+				jQuery( '#wccs_settings\\[quantity_table_theme_bg\\]' ).val() ||
+				'';
+			var themeText =
+				jQuery(
+					'#wccs_settings\\[quantity_table_theme_text\\]'
+				).val() || '';
+			var themeBorder =
+				jQuery(
+					'#wccs_settings\\[quantity_table_theme_border\\]'
+				).val() || '';
+			var headerBg =
+				jQuery(
+					'#wccs_settings\\[quantity_table_header_bg\\]'
+				).val() || '';
+			var headerText =
+				jQuery(
+					'#wccs_settings\\[quantity_table_header_text\\]'
+				).val() || '';
+			var bodyBg =
+				jQuery( '#wccs_settings\\[quantity_table_body_bg\\]' ).val() ||
+				'';
+			var stripeBg =
+				jQuery(
+					'#wccs_settings\\[quantity_table_stripe_bg\\]'
+				).val() || '';
+			var bodyText =
+				jQuery(
+					'#wccs_settings\\[quantity_table_body_text\\]'
+				).val() || '';
+			var hoverBg =
+				jQuery( '#wccs_settings\\[quantity_table_hover_bg\\]' ).val() ||
+				'';
+
+			// Calculate scrollbar thumb color dynamically
+			var cleanBg = bodyBg.replace( '#', '' );
+			var r = 255,
+				g = 255,
+				b = 255;
+			if ( cleanBg.length === 3 ) {
+				r = parseInt(
+					cleanBg.substring( 0, 1 ) + cleanBg.substring( 0, 1 ),
+					16
+				);
+				g = parseInt(
+					cleanBg.substring( 1, 2 ) + cleanBg.substring( 1, 2 ),
+					16
+				);
+				b = parseInt(
+					cleanBg.substring( 2, 3 ) + cleanBg.substring( 2, 3 ),
+					16
+				);
+			} else if ( cleanBg.length === 6 ) {
+				r = parseInt( cleanBg.substring( 0, 2 ), 16 );
+				g = parseInt( cleanBg.substring( 2, 4 ), 16 );
+				b = parseInt( cleanBg.substring( 4, 6 ), 16 );
+			}
+			var luminance = r * 0.299 + g * 0.587 + b * 0.114;
+			var scrollbarThumb =
+				luminance < 120 ? bodyText : 'rgba(0, 0, 0, 0.25)';
+
+			var vars =
+				'--asnp-wccs-theme-color: ' +
+				themeColor +
+				';' +
+				'--asnp-wccs-theme-bg: ' +
+				themeBg +
+				';' +
+				'--asnp-wccs-theme-text: ' +
+				themeText +
+				';' +
+				'--asnp-wccs-theme-border: ' +
+				themeBorder +
+				';' +
+				'--asnp-wccs-header-bg: ' +
+				headerBg +
+				';' +
+				'--asnp-wccs-header-text: ' +
+				headerText +
+				';' +
+				'--asnp-wccs-body-bg: ' +
+				bodyBg +
+				';' +
+				'--asnp-wccs-stripe-bg: ' +
+				stripeBg +
+				';' +
+				'--asnp-wccs-body-text: ' +
+				bodyText +
+				';' +
+				'--asnp-wccs-scrollbar-thumb: ' +
+				scrollbarThumb +
+				';' +
+				'--asnp-wccs-hover-bg: ' +
+				hoverBg +
+				';';
+
+			jQuery(
+				'.asnp-wccs-preview-sticky-card .wccs-bulk-pricing-table-container'
+			).attr( 'style', vars );
+		};
+
+		// Run initially
+		updatePreviewColors();
+
+		// Handle layout tab switching
+		jQuery( document ).on(
+			'click',
+			'.asnp-wccs-preview-tab-btn',
+			function () {
+				var $btn = jQuery( this );
+				var layout = $btn.data( 'layout' );
+				jQuery( '.asnp-wccs-preview-tab-btn' ).removeClass( 'active' );
+				$btn.addClass( 'active' );
+
+				if ( layout === 'vertical' ) {
+					jQuery( '.asnp-wccs-preview-vertical-wrap' ).show();
+					jQuery( '.asnp-wccs-preview-horizontal-wrap' ).hide();
+				} else {
+					jQuery( '.asnp-wccs-preview-vertical-wrap' ).hide();
+					jQuery( '.asnp-wccs-preview-horizontal-wrap' ).show();
+				}
+			}
+		);
+
+		// Update colors on input changes
+		jQuery( document ).on(
+			'change input',
+			'input.wccs-colorpick-setting',
+			function () {
+				updatePreviewColors();
+			}
+		);
+
+		// Also listen on preset change with small timeout to allow preset values to fill inputs
+		jQuery( document ).on(
+			'change',
+			'#wccs_settings\\[quantity_table_theme_preset\\]',
+			function () {
+				setTimeout( function () {
+					updatePreviewColors();
+				}, 100 );
+			}
+		);
+
+		// Toggle preview vertical row select
+		jQuery( document ).on(
+			'click',
+			'.asnp-wccs-preview-sticky-card .wccs-vertical-table tbody tr',
+			function () {
+				var $row = jQuery( this );
+				var $table = $row.closest( 'table' );
+				$table.find( 'tr, td, th' ).removeClass( 'wccs-active-tier' );
+				$table.find( '.wccs-tier-radio' ).prop( 'checked', false );
+				$row.addClass( 'wccs-active-tier' );
+				$row.find( 'td, th' ).addClass( 'wccs-active-tier' );
+				$row.find( '.wccs-tier-radio' ).prop( 'checked', true );
+			}
+		);
+
+		// Toggle preview horizontal column select
+		jQuery( document ).on(
+			'click',
+			'.asnp-wccs-preview-sticky-card .wccs-horizontal-table td',
+			function () {
+				var $cell = jQuery( this );
+				var colIndex = $cell.index();
+				var $table = $cell.closest( '.wccs-horizontal-table' );
+
+				$table.find( 'th, td, tr' ).removeClass( 'wccs-active-tier' );
+				$table.find( '.wccs-tier-radio' ).prop( 'checked', false );
+
+				$table.find( 'tr' ).each( function () {
+					jQuery( this )
+						.children()
+						.eq( colIndex )
+						.addClass( 'wccs-active-tier' );
+				} );
+				$table
+					.find( 'tr.wccs-row-select' )
+					.children()
+					.eq( colIndex )
+					.find( '.wccs-tier-radio' )
+					.prop( 'checked', true );
+			}
+		);
+	};
+
+	$( function () {
+		var wccsAmin = new WCCS_Admin();
+		wccsAmin.colorPicker();
+		wccsAmin.quantityTableThemePresets();
+		wccsAmin.setupQuantityTablePreview();
+	} );
+} )( jQuery, window );

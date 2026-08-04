@@ -109,6 +109,7 @@ class WCCS_Admin_Assets {
 				wp_set_script_translations( 'easy-woocommerce-discounts', 'easy-woocommerce-discounts', WCCS_PLUGIN_DIR . 'languages' );
 			}
 		} elseif ( isset( $menus['settings'] ) && $menus['settings'] === $screen_id ) {
+			$this->enqueue_style( 'wccs-public', $this->get_asset_url( 'public/css/wccs-public' . $suffix . '.css' ) );
 			$this->enqueue_script( 'wccs-admin', $this->get_asset_url( 'admin/js/wccs-admin' . $suffix . '.js' ), array( 'wp-color-picker' ), WCCS_VERSION, true );
 		} elseif ( 'dashboard' === $screen_id ) {
 			$this->show_review();
