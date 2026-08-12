@@ -5,7 +5,7 @@ Tags: woocommerce, discounts, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4.2
 Tested up to: 7.0
 Requires PHP: 5.6.0
-Stable tag: 9.3.0
+Stable tag: 9.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -570,6 +570,11 @@ In the free version: bulk/quantity discounts, category discounts, storewide perc
 
 == Changelog ==
 
+= 9.3.1 =
+* Improvement: Added version parameters to plugin stylesheets to force cache refresh and ensure the latest styles are always loaded.
+* Update: Verified compatibility with WooCommerce 11.0.1
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 9.3.0 =
 * New: Completely redesigned the quantity table with a modern, user-friendly interface.
 * New: Introduced a selection of pre-built themes for the quantity table, accessible via plugin settings.
@@ -579,12 +584,10 @@ In the free version: bulk/quantity discounts, category discounts, storewide perc
 * Fix: Resolved volume kick pricing template apply mode set to *Individually*.
 * Fix: Horizontally centered table content for improved UI consistency.
 * Update: Changed the default quantity table layout from *Horizontal* to *Vertical*.
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 9.2.0 =
 * New: Added "You Saved" block to the cart and checkout blocks.
 * Update: Verified compatibility with WooCommerce 10.9.4
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 9.1.1 =
 * Fix: When a product updates, the background price updater now updates only that product.
@@ -629,9 +632,5 @@ Note: We kindly request your support in spreading the word by leaving a 5-star r
 * New: Added negative value support for checkout fees that works like a discount.
 * Fix: Fixed an issue of counting pricing rules impression when analytics is disabled.
 * Fix: Fixed select2 deprecated error message in WooCommerce 10.3.0 and above.
-
-= 8.0.1 =
-* Fix: Fixed an issue in logging variation products impressions.
-* Update: Verified compatibility with WooCommerce 10.3.4
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/easy-woocommerce-discounts/trunk/changelog.txt).

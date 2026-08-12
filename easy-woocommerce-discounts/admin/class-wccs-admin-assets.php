@@ -162,7 +162,9 @@ class WCCS_Admin_Assets {
 
 		wp_enqueue_style(
 			'asnp-ewd-review',
-			$this->get_asset_url( 'admin/css/review/style.css' )
+			$this->get_asset_url( 'admin/css/review/style.css' ),
+			[],
+			WCCS_VERSION
 		);
 		wp_enqueue_script(
 			'asnp-ewd-review',

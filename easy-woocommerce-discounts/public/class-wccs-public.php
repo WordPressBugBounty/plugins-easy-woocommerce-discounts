@@ -159,7 +159,7 @@ class WCCS_Public {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		if ( WCCS_Helpers::is_product_page() || is_cart() || is_checkout() ) {
-			wp_enqueue_style( 'wccs-public', plugin_dir_url( __FILE__ ) . 'css/wccs-public' . $suffix . '.css' );
+			wp_enqueue_style( 'wccs-public', plugin_dir_url( __FILE__ ) . 'css/wccs-public' . $suffix . '.css', [], $this->version );
 		}
 	}
 
