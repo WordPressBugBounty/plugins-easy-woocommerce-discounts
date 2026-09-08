@@ -392,7 +392,7 @@ class WCCS_Activator {
 	}
 
 	private static function notices() {
-		if (
+		/* if (
 			! defined( 'ASNP_WESB_VERSION' ) &&
 			! WC_Admin_Notices::has_notice( 'ewd_sale_badges_free' ) &&
 			! get_user_meta( get_current_user_id(), 'dismissed_ewd_sale_badges_free_notice', true )
@@ -401,7 +401,7 @@ class WCCS_Activator {
 				'ewd_sale_badges_free',
 				'<p><a href="https://www.asanaplugins.com/product/woocommerce-sale-badges-and-product-labels/" target="_blank"><strong>Sale Badges and Product Labels for WooCommerce</strong></a> Add beautiful sale badges and product labels to your products and categories.</p>'
 			);
-		}
+		} */
 	}
 
 }

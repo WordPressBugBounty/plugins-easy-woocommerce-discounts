@@ -70,7 +70,7 @@ class WCCS_Admin_Assets {
 
 		if ( isset( $menus['wc_conditions'] ) && $menus['wc_conditions'] === $screen_id && ! WCCS_Updates::update_required() ) {
 			$this->enqueue_style( 'select2', $this->get_asset_url( 'admin/css/select2/select2.css' ), array(), '4.0.3' );
-			$this->enqueue_style( 'easy-woocommerce-discounts', $this->get_asset_url( 'admin/css/conditions/style.css' ) );
+			$this->enqueue_style( 'easy-woocommerce-discounts', $this->get_asset_url( 'admin/css/conditions/style.css' ), array(), WCCS_VERSION );
 			$this->enqueue_style( 'wccs-font-awesome', $this->get_asset_url( 'admin/css/font-awesome.css' ), array(), '4.6.3' );
 			$this->register_script( 'vue', $this->get_asset_url( 'admin/js/vendor/vue/vue.js' ), array(), '2.6.12' );
 			$this->register_script( 'vue-router', $this->get_asset_url( 'admin/js/vendor/vue-router/vue-router.js' ), array( 'vue' ), '3.4.9' );
@@ -140,13 +140,18 @@ class WCCS_Admin_Assets {
 					'pricingList' => WCCS_Conditions_Provider::get_pricings(),
 					'shippingList' => WCCS_Conditions_Provider::get_shippings(),
 					'dateTime' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
-					'saleBadgesAdv' => ! defined( 'ASNP_WESB_VERSION' ),
 					'pluginUrl' => WCCS_PLUGIN_URL,
 					'wcSubscriptions' => class_exists( 'WC_Subscriptions' ),
 					'couponCharacters' => apply_filters( 'woocommerce_coupon_code_generator_characters', 'ABCDEFGHJKMNPQRSTUVWXYZ23456789' ),
 					'couponCharLength' => apply_filters( 'woocommerce_coupon_code_generator_character_length', 8 ),
 					'couponPrefix' => apply_filters( 'woocommerce_coupon_code_generator_prefix', '' ),
 					'couponSuffix' => apply_filters( 'woocommerce_coupon_code_generator_suffix', '' ),
+					'imagesUrl' => $this->get_asset_url( 'admin/images/' ),
+					'installedAddons' => array(
+						'auto-add'          => defined( 'EWDAUTOADD_VERSION' ),
+						'url-coupons'       => defined( 'EWD_URL_COUPONS_VERSION' ),
+						'shipping-discount' => defined( 'EWD_SHIPPING_DISCOUNT_VERSION' ),
+					),
 				);
 		}
 

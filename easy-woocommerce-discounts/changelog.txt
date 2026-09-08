@@ -1,9 +1,16 @@
 == Changelog ==
 
+= 9.4.0 =
+* New: Added more templates for tiered pricing rules.
+* New: Enhanced discount page alert message design.
+* New: Added direct links to Documentation and Video Tutorials.
+* Update: Tested and verified compatibility with WordPress 7.1.
+* Update: Tested and verified compatibility with WooCommerce 11.1.0
+Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
+
 = 9.3.1 =
 * Improvement: Added version parameters to plugin stylesheets to force cache refresh and ensure the latest styles are always loaded.
 * Update: Verified compatibility with WooCommerce 11.0.1
-Note: We kindly request your support in spreading the word by leaving a 5-star review. ❤️😍 Feel free to include your ideas in the review, as we always value and consider your feedback. 🌹
 
 = 9.3.0 =
 * New: Completely redesigned the quantity table with a modern, user-friendly interface.

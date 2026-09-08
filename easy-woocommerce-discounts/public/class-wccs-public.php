@@ -158,7 +158,10 @@ class WCCS_Public {
 	public function enqueue_styles() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		if ( WCCS_Helpers::is_product_page() || is_cart() || is_checkout() ) {
+		$is_cart     = is_cart() || ( function_exists( 'has_block' ) && has_block( 'woocommerce/cart' ) );
+		$is_checkout = is_checkout() || ( function_exists( 'has_block' ) && has_block( 'woocommerce/checkout' ) );
+
+		if ( WCCS_Helpers::is_product_page() || $is_cart || $is_checkout ) {
 			wp_enqueue_style( 'wccs-public', plugin_dir_url( __FILE__ ) . 'css/wccs-public' . $suffix . '.css', [], $this->version );
 		}
 	}
