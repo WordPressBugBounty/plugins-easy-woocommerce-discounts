@@ -48,6 +48,32 @@ class WCCS_Service_Manager {
 	}
 
 	/**
+	 * Check if key exists in container.
+	 *
+	 * @since  8.19.0
+	 *
+	 * @param  string $key
+	 *
+	 * @return bool
+	 */
+	public function has( $key ) {
+		return isset( $this->container[ $key ] );
+	}
+
+	/**
+	 * Magic isset method.
+	 *
+	 * @since  8.19.0
+	 *
+	 * @param  string $key
+	 *
+	 * @return bool
+	 */
+	public function __isset( $key ) {
+		return $this->has( $key );
+	}
+
+	/**
 	 * Getting value of key from container.
 	 *
 	 * @since  1.0.0

@@ -55,6 +55,21 @@ class WCCS_Shipping_Method extends WC_Shipping_Method {
     }
 
     /**
+	 * Check if this shipping method is available.
+	 *
+	 * Overrides WC_Shipping_Method::is_available() so that evaluation is not prematurely
+	 * blocked when a visitor has not yet entered a destination country on the cart page.
+	 * Condition matching (including any country/location restrictions) is handled by
+	 * the internal WCCS_Shipping_Condition_Validator.
+	 *
+	 * @param  array $package Shipping package.
+	 * @return bool
+	 */
+    public function is_available( $package ) {
+        return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', $this->is_enabled(), $package, $this );
+    }
+
+    /**
 	 * Called to calculate shipping rates for this method. Rates can be added using the add_rate() method.
 	 *
 	 * @param array $package Package array.
@@ -195,7 +210,7 @@ class WCCS_Shipping_Method extends WC_Shipping_Method {
      * @return array
      */
     public function get_valid_rules( $package = array() ) {
-        $rules = WCCS_Conditions_Provider::get_shippings( array( 'status' => 1 ) );
+        $rules = WCCS_Conditions_Provider::get_shippings( array( 'status' => 1, 'cache' => true ) );
         if ( empty( $rules ) ) {
             return apply_filters( 'wccs_shipping_method_get_valid_rules', array(), $package, $this );
         }
@@ -210,7 +225,7 @@ class WCCS_Shipping_Method extends WC_Shipping_Method {
             // Validating date time.
             if ( ! $this->date_time_validator->is_valid_date_times( $rule->date_time, ( ! empty( $rule->date_times_match_mode ) ? $rule->date_times_match_mode : 'one' ) ) ) {
 				continue;
-			} 
+            }
             
             // Validating conditions.
             if ( ! $this->condition_validator->is_valid_conditions( $rule, ( ! empty( $rule->conditions_match_mode ) ? $rule->conditions_match_mode : 'all' ), $package ) ) {

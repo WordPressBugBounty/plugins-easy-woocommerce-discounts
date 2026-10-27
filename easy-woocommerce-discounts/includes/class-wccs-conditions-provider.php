@@ -16,6 +16,10 @@ class WCCS_Conditions_Provider {
 	 * @return array
 	 */
 	public static function get_products_lists( array $args = array() ) {
+		if ( isset( $args['status'] ) && 1 === (int) $args['status'] && ! isset( $args['cache'] ) ) {
+			$args['cache'] = true;
+		}
+
 		$args = wp_parse_args( $args, array(
 			'type'    => 'products-list',
 			'number'  => -1,
@@ -53,6 +57,10 @@ class WCCS_Conditions_Provider {
 	 * @return array
 	 */
 	public static function get_cart_discounts( array $args = array() ) {
+		if ( isset( $args['status'] ) && 1 === (int) $args['status'] && ! isset( $args['cache'] ) ) {
+			$args['cache'] = true;
+		}
+
 		$args = wp_parse_args( $args, array(
 			'type'    => 'cart-discount',
 			'number'  => -1,
@@ -96,6 +104,10 @@ class WCCS_Conditions_Provider {
 	 * @return array
 	 */
 	public static function get_pricings( array $args = array() ) {
+		if ( isset( $args['status'] ) && 1 === (int) $args['status'] && ! isset( $args['cache'] ) ) {
+			$args['cache'] = true;
+		}
+
 		$args = wp_parse_args( $args, array(
 			'type'    => 'pricing',
 			'number'  => -1,
@@ -148,6 +160,10 @@ class WCCS_Conditions_Provider {
 	 * @return array
 	 */
 	public static function get_shippings( array $args = array() ) {
+		if ( isset( $args['status'] ) && 1 === (int) $args['status'] && ! isset( $args['cache'] ) ) {
+			$args['cache'] = true;
+		}
+
 		$args = wp_parse_args( $args, array(
 			'type'    => 'shipping',
 			'number'  => -1,

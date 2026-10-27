@@ -174,11 +174,69 @@ class WCCS_Store_API {
 			if ( WCCS_Helpers::is_auto_added_product( $cart_item ) ) {
 				$item_data['quantity_limits'] = static::item_quantity_limits( $cart_item, $item_data['quantity_limits'] );
 			}
+
+			$custom_regular_price = apply_filters(
+				'wccs_store_api_cart_item_regular_price',
+				isset( $cart_item['_wccs_main_price'] ) ? (float) $cart_item['_wccs_main_price'] : null,
+				$cart_item,
+				$item_data,
+				$response
+			);
+
+			if ( null !== $custom_regular_price && is_numeric( $custom_regular_price ) && isset( $item_data['prices'] ) ) {
+				$item_data['prices'] = static::update_cart_item_regular_price( $item_data['prices'], (float) $custom_regular_price, $cart_item );
+			}
 		}
 
 		$response->set_data( $data );
 
 		return $response;
+	}
+
+	/**
+	 * Update regular price in Store API prices object/array.
+	 *
+	 * @param object|array $prices       Prices object or array.
+	 * @param float        $regular_price Custom regular price.
+	 * @param array        $cart_item    Cart item array.
+	 * @return object|array
+	 */
+	protected static function update_cart_item_regular_price( $prices, $regular_price, $cart_item ) {
+		$product = isset( $cart_item['data'] ) && is_a( $cart_item['data'], 'WC_Product' ) ? $cart_item['data'] : null;
+		if ( $product ) {
+			$tax_display_mode = get_option( 'woocommerce_tax_display_cart' );
+			$price_func       = 'incl' === $tax_display_mode ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax';
+			$calc_price       = $price_func( $product, [ 'price' => $regular_price ] );
+		} else {
+			$calc_price = $regular_price;
+		}
+
+		$price_decimals     = wc_get_price_decimals();
+		$rounding_precision = wc_get_rounding_precision();
+		$formatted_price    = static::prepare_money_response( $calc_price, $price_decimals );
+		$raw_price          = static::prepare_money_response( $calc_price, $rounding_precision );
+
+		if ( is_object( $prices ) ) {
+			$prices->regular_price = $formatted_price;
+			if ( isset( $prices->raw_prices ) ) {
+				if ( is_object( $prices->raw_prices ) ) {
+					$prices->raw_prices->regular_price = $raw_price;
+				} elseif ( is_array( $prices->raw_prices ) ) {
+					$prices->raw_prices['regular_price'] = $raw_price;
+				}
+			}
+		} elseif ( is_array( $prices ) ) {
+			$prices['regular_price'] = $formatted_price;
+			if ( isset( $prices['raw_prices'] ) ) {
+				if ( is_object( $prices['raw_prices'] ) ) {
+					$prices['raw_prices']->regular_price = $raw_price;
+				} elseif ( is_array( $prices['raw_prices'] ) ) {
+					$prices['raw_prices']['regular_price'] = $raw_price;
+				}
+			}
+		}
+
+		return $prices;
 	}
 
 	protected static function get_total_discounts_data() {
@@ -220,12 +278,22 @@ class WCCS_Store_API {
 	 * @return string      The new amount.
 	 */
 	protected static function prepare_money_response( $amount, $decimals = 2, $rounding_mode = PHP_ROUND_HALF_UP ) {
-		return static::$extend->get_formatter( 'money' )->format(
-			$amount,
-			[
-				'decimals'      => $decimals,
-				'rounding_mode' => $rounding_mode,
-			]
+		if ( static::$extend && is_callable( [ static::$extend, 'get_formatter' ] ) ) {
+			return static::$extend->get_formatter( 'money' )->format(
+				$amount,
+				[
+					'decimals'      => $decimals,
+					'rounding_mode' => $rounding_mode,
+				]
+			);
+		}
+
+		return (string) intval(
+			round(
+				( (float) wc_format_decimal( $amount ) ) * ( 10 ** $decimals ),
+				0,
+				$rounding_mode
+			)
 		);
 	}
 

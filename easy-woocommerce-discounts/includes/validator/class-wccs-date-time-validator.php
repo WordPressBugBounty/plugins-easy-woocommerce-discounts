@@ -14,8 +14,8 @@ class WCCS_Date_Time_Validator {
 	 *
 	 * @return boolean
 	 */
-	public function is_valid_date_times( array $date_times, $match_mode = 'one' ) {
-		if ( empty( $date_times ) ) {
+	public function is_valid_date_times( $date_times = array(), $match_mode = 'one' ) {
+		if ( empty( $date_times ) || ! is_array( $date_times ) ) {
 			return true;
 		}
 
@@ -109,9 +109,8 @@ class WCCS_Date_Time_Validator {
 			$start_date = strtotime( $date_time['start_time'], $now );
 			$end_date   = strtotime( $date_time['end_time'], $now );
 
-			// If end_time is less than start_time, add 24 hours to end_time
 			if ( $end_date < $start_date ) {
-				$end_date = strtotime( '+1 day', $end_date );
+				return ( $now >= $start_date || $now <= $end_date );
 			}
 
 			return ( $now >= $start_date && $now <= $end_date );

@@ -8,6 +8,13 @@ class WCCS_Cart {
 
 	public $cart;
 
+	/**
+	 * Memoized filtered cart items cache per request.
+	 *
+	 * @var array
+	 */
+	protected $filtered_cart_items_cache = array();
+
 	public function __construct( $cart = null ) {
 		$this->cart = null !== $cart ? $cart : WC()->cart;
 	}
@@ -152,13 +159,14 @@ class WCCS_Cart {
 		$exclude_excluded_products = false,
 		$sort = '',
 		$order = 'desc',
-		array $exclude_items = array()
+		array $exclude_items = array(),
+		$filter_auto_added_products = false
 	) {
 		if ( empty( $items ) ) {
 			return array();
 		}
 
-		$cart_items = $this->filter_cart_items( $items, $exclude_excluded_products, $exclude_items );
+		$cart_items = $this->filter_cart_items( $items, $exclude_excluded_products, $exclude_items, $filter_auto_added_products );
 		if ( empty( $cart_items ) ) {
 			return array();
 		}
@@ -222,7 +230,8 @@ class WCCS_Cart {
 	public function filter_cart_items( 
 		array $items, 
 		$exclude_excluded_products = false, 
-		array $exclude_items = array() 
+		array $exclude_items = array(),
+		$filter_auto_added_products = false
 	) {
 		if ( ! $this->cart_initialized() || empty( $items ) ) {
 			return array();
@@ -233,8 +242,19 @@ class WCCS_Cart {
 			return array();
 		}
 
+		$cart_hash = md5( implode( '|', array_keys( $cart_contents ) ) );
+		$cache_key = $cart_hash . '_' . md5( serialize( $items ) . '_' . serialize( $exclude_items ) . '_' . (int) $exclude_excluded_products . '_' . (int) $filter_auto_added_products );
+
+		if ( isset( $this->filtered_cart_items_cache[ $cache_key ] ) ) {
+			return $this->filtered_cart_items_cache[ $cache_key ];
+		}
+
 		$cart_items = array();
 		foreach ( $cart_contents as $cart_item_key => $cart_item ) {
+			if ( $filter_auto_added_products && WCCS_Helpers::is_auto_added_product( $cart_item ) ) {
+				continue;
+			}
+			
 			$product = $cart_item['data'];
 			$variation = (int) $cart_item['variation_id'];
 			if ( 0 < $variation ) {
@@ -251,7 +271,7 @@ class WCCS_Cart {
 			}
 		}
 
-		return $cart_items;
+		return $this->filtered_cart_items_cache[ $cache_key ] = $cart_items;
 	}
 
 	/**

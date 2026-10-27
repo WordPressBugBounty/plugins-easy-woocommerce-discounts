@@ -116,7 +116,7 @@ class WCCS_Condition_Validator {
 			return false;
 		}
 
-		return WCCS()->WCCS_Comparison->math_compare( $this->cart->get_cart_contents_count(), $value, $condition['math_operation_type'] );
+		return WCCS_Comparison::math_compare( $this->cart->get_cart_contents_count(), $value, $condition['math_operation_type'] );
 	}
 
 	public function subtotal_including_tax( array $condition ) {
@@ -135,7 +135,7 @@ class WCCS_Condition_Validator {
 
 		$value = WCCS_Helpers::maybe_exchange_price( $value, 'coupon' );
 
-		return WCCS()->WCCS_Comparison->math_compare( $this->cart->subtotal, $value, $condition['math_operation_type'] );
+		return WCCS_Comparison::math_compare( $this->cart->subtotal, $value, $condition['math_operation_type'] );
 	}
 
 	public function cart_total_weight( array $condition ) {
@@ -148,7 +148,7 @@ class WCCS_Condition_Validator {
 			return false;
 		}
 
-		return WCCS()->WCCS_Comparison->math_compare( $this->cart->get_cart_contents_weight(), $value, $condition['math_operation_type'] );
+		return WCCS_Comparison::math_compare( $this->cart->get_cart_contents_weight(), $value, $condition['math_operation_type'] );
 	}
 
 	public function user_usage_limit( array $condition, $rule ) {
@@ -167,10 +167,10 @@ class WCCS_Condition_Validator {
 		}
 
 		try {
-			$model = WCCS()->container()->get( WCCS_DB_User_Usage_Logs::class);
+			$model = WCCS()->container()->get( WCCS_DB_User_Usage_Logs::class );
 			$usage_count = $model->get_user_usage_count( (int) $rule->id, $used_by );
 			return $usage_count < $value;
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 			return false;
 		}
 	}

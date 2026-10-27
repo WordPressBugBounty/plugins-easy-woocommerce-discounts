@@ -279,7 +279,7 @@ class WCCS_Reports {
             SELECT 
                 a.rule_id,
                 r.name,
-                r.type,
+                r.`type`,
                 SUM(a.impressions)        AS impressions,
                 SUM(a.add_to_cart)        AS add_to_cart,
                 SUM(a.orders)             AS orders,
@@ -299,8 +299,8 @@ class WCCS_Reports {
                     ROUND(SUM(a.revenue) / NULLIF(SUM(a.orders), 0), 2),
                     0
                 ) AS avg_order_value
-            FROM {$wpdb->prefix}" . static::TABLE_NAME . " AS a
-            INNER JOIN {$wpdb->prefix}" . static::RULE_TABLE_NAME . " AS r ON a.rule_id = r.id AND r.type IN ( 'pricing', 'cart-discount', 'checkout-fee', 'auto-add-products', 'shipping', 'shipping-discount' )
+            FROM `{$wpdb->prefix}" . static::TABLE_NAME . "` AS a
+            INNER JOIN `{$wpdb->prefix}" . static::RULE_TABLE_NAME . "` AS r ON a.rule_id = r.id AND r.`type` IN ( 'pricing', 'cart-discount', 'checkout-fee', 'auto-add-products', 'shipping', 'shipping-discount' )
             WHERE {$where}
             GROUP BY rule_id
             ORDER BY conversion_rate DESC, revenue DESC
@@ -323,8 +323,8 @@ class WCCS_Reports {
 
 		$total = $wpdb->get_var( $wpdb->prepare( "
             SELECT COUNT(DISTINCT a.rule_id)
-            FROM {$wpdb->prefix}" . static::TABLE_NAME . " AS a
-            INNER JOIN {$wpdb->prefix}" . static::RULE_TABLE_NAME . " AS r ON a.rule_id = r.id AND r.type IN ( 'pricing', 'cart-discount', 'auto-add-products', 'shipping', 'shipping-discount' )
+            FROM `{$wpdb->prefix}" . static::TABLE_NAME . "` AS a
+            INNER JOIN `{$wpdb->prefix}" . static::RULE_TABLE_NAME . "` AS r ON a.rule_id = r.id AND r.`type` IN ( 'pricing', 'cart-discount', 'auto-add-products', 'shipping', 'shipping-discount' )
             WHERE {$where}"
 		) );
 

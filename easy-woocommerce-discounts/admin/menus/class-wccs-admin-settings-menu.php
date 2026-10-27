@@ -190,8 +190,13 @@ class WCCS_Admin_Settings_Menu extends WCCS_Admin_Controller {
 					$key = $value['id'];
 				}
 
-				if ( empty( $input[ $key ] ) && isset( $wccs_settings[ $key ] ) ) {
-					unset( $wccs_settings[ $key ] );
+				if ( empty( $input[ $key ] ) ) {
+					$setting_type = isset( $value['type'] ) ? $value['type'] : false;
+					if ( in_array( $setting_type, array( 'multicheck', 'sortable_multicheck' ), true ) ) {
+						$input[ $key ] = array();
+					} elseif ( isset( $wccs_settings[ $key ] ) ) {
+						unset( $wccs_settings[ $key ] );
+					}
 				}
 			}
 		}

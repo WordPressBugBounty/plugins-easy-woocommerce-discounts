@@ -132,7 +132,7 @@ class WCCS_Public {
 				$this->services->set( 'WCCS_Public_Total_Discounts_Hooks', new WCCS_Public_Total_Discounts_Hooks() );
 			}
 
-			if ( (int) WCCS()->settings->get_setting( 'enable_analytics', 1 ) ) {
+			if ( (int) WCCS()->settings->get_setting( 'enable_analytics', 0 ) ) {
 				$analytics = new WCCS_Pubilc_Analytics_Hooks();
 				$this->services->set( 'WCCS_Pubilc_Analytics_Hooks', $analytics );
 				$analytics->init();
@@ -187,7 +187,7 @@ class WCCS_Public {
 						'ajaxurl' => admin_url( 'admin-ajax.php' ),
 						'nonce' => wp_create_nonce( 'wccs_single_product_nonce' ),
 						'product_id' => $post->ID,
-						'analytics' => (int) WCCS()->settings->get_setting( 'enable_analytics', 1 ),
+						'analytics' => (int) WCCS()->settings->get_setting( 'enable_analytics', 0 ),
 					)
 				)
 			);

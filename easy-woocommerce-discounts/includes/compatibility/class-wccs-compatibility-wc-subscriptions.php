@@ -6,17 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WCCS_Compatibility_WC_Subscriptions {
 
-	protected $loader;
-
-	public function __construct( WCCS_Loader $loader ) {
-		$this->loader = $loader;
+	public static function init() {
+		// add_filter( 'wccs_should_apply_cart_discounts', [ __CLASS__, 'should_apply' ] );
 	}
 
-	public function init() {
-		// $this->loader->add_filter( 'wccs_should_apply_cart_discounts', $this, 'should_apply' );
-	}
-
-	public function should_apply( $apply ) {
+	public static function should_apply( $apply ) {
 		if ( ! is_callable( array( 'WC_Subscriptions_Cart', 'get_calculation_type' ) ) ) {
 			return $apply;
 		}

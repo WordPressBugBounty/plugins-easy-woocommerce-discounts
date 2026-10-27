@@ -5,7 +5,7 @@ Tags: woocommerce, discounts, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4.2
 Tested up to: 7.1
 Requires PHP: 5.6.0
-Stable tag: 9.4.0
+Stable tag: 9.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -371,6 +371,27 @@ Yes. Pricing rules and cart discount rules apply automatically when customers me
 
 == Changelog ==
 
+= 9.5.0 =
+* Performance: Major caching architecture overhaul featuring multi-tier caching (Memory, Object Cache, and Persistent DB Cache) for near-instant catalog page rendering.
+* Performance: Introduced file-based rules caching with OPcache support and compressed DB snapshots to drastically reduce rule query overhead.
+* Performance: Added dedicated percentage and sale badge cache (WCCS_Product_Badge_Cache) with support for user roles and negative caching.
+* Performance: Added catalog batch cache priming to eliminate N+1 queries on archive and shop pages.
+* Performance: Added "Archive Variation Pruning" setting to optimize discount calculations on catalog pages for products with high variation counts.
+* Performance: Converted comparison utilities to static methods for reduced memory footprint and faster condition checks.
+* Performance: Analytics is now disabled by default to minimize database overhead out of the box.
+* New: Added "Change Price Method" setting (Lightweight vs. Advanced) to allow ultra-fast price HTML modifications without heavy object overhead.
+* New: Added compatibility with Advanced Product Fields for WooCommerce (SW WAPF) standard and Extended versions.
+* New: Added compatibility with CTX Feed - WooCommerce Product Feed Generator plugin.
+* New: Added compatibility with Easy Sale Badges and Product Labels for lightweight pricing mode.
+* Improvement: Updated compatibility with Product Feed PRO, adding a helper function to export discounted prices into feeds.
+* Improvement: Enhanced compatibility with CURCY Multi Currency Switcher across both Lightweight and Advanced price calculation modes.
+* Improvement: Enhanced database indexing on conditions, condition meta, cache, and rule usage log tables for accelerated queries.
+* Improvement: Added automatic background cron to purge expired cache table rows.
+* Fix: Fixed free gift emoji (🎁) display issue in the WooCommerce mini cart block.
+* Fix: Fixed issues in the discounted products shortcode.
+* Dev: Added 'wccs_change_product_base_price' filter hook to customize product base prices before rule calculation.
+* Update: Tested and verified compatibility with WooCommerce 11.2.1.
+
 = 9.4.0 =
 * New: Added more templates for tiered pricing rules.
 * New: Enhanced discount page alert message design.
@@ -415,25 +436,5 @@ Note: We kindly request your support in spreading the word by leaving a 5-star r
 = 9.0.1 =
 * Fix: Fixed checkout integration js file doesn't load issue.
 * Update: Verified compatibility with WooCommerce 10.7.0
-
-= 9.0.0 =
-* New: Added "BOGO" or "Buy One Get One free" deals support for products in free version.
-* New: Added "Buy 2 Get 1 Free" deals support for products in the free version.
-* New: Added "Buy 3 Get 1 Free" deals support for products in the free version.
-* New: Added "Add from Template" button for the rules in the admin side to create rules quickly & easily with just a few edits.
-* New: Performance improvement on get_available_variatoins for variable products.
-* Fix: Added a compatibility for the Porto theme skeleton feature for bulk pricing rules table.
-* Update: Verified compatibility with WooCommerce 10.5.2
-
-= 8.1.2 =
-* Update: Update WordPress tested version to 6.9
-* Update: Verified compatibility with WooCommerce 10.4.3
-
-= 8.1.1 =
-* Update: Verified compatibility with WordPress 6.9
-* Update: Verified compatibility with WooCommerce 10.4.2
-
-= 8.1.0 =
-* New: Added recurring discount types for the WooCommerce subscriptions plugin.
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/easy-woocommerce-discounts/trunk/changelog.txt).

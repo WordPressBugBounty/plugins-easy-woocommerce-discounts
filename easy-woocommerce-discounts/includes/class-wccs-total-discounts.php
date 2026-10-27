@@ -41,7 +41,7 @@ class WCCS_Total_Discounts {
                 apply_filters( 'wccs_cart_item_line_subtotal', (float) $cart_item['line_subtotal'], $cart_item );
             $main_line_subtotal = isset( $cart_item['_wccs_main_price'] ) &&
                 ( ! isset( $cart_item['_wccs_main_sale_price'] ) || $cart_item['_wccs_main_sale_price'] != $cart_item['_wccs_main_price'] ) ?
-                (float) WCCS_Cart_Item_Helpers::get_main_price( $cart_item ) * $cart_item['quantity'] :
+                WCCS_Helpers::maybe_exchange_price( (float) WCCS_Cart_Item_Helpers::get_main_price( $cart_item ) ) * $cart_item['quantity'] :
                 (float) $cart_item['data']->get_regular_price() * $cart_item['quantity'];
             if ( $include_tax ) {
                 $main_line_subtotal = wc_get_price_including_tax( $cart_item['data'], array( 'qty' => 1, 'price' => $main_line_subtotal ) );

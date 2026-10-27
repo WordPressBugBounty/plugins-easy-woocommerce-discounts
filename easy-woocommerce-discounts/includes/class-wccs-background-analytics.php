@@ -105,6 +105,10 @@ class WCCS_Background_Analytics extends WC_Background_Process {
 	}
 
 	public function impression( $product ) {
+		if ( ! WCCS()->pricing->has_any_active_pricing_rule() ) {
+			return;
+		}
+
 		$product = is_numeric( $product ) ? wc_get_product( $product ) : $product;
 		if ( ! $product ) {
 			return;
@@ -113,10 +117,13 @@ class WCCS_Background_Analytics extends WC_Background_Process {
 		$impression = [];
 		$this->count_impression( $product, $impression );
 		if ( $product->is_type( 'variable' ) ) {
-			$variations = $product->get_available_variations( 'objects' );
-			if ( ! empty( $variations ) ) {
-				foreach ( $variations as $variation ) {
-					$this->count_impression( $variation, $impression );
+			// Memory optimization: get_children returns lightweight integer IDs instead of instantiating heavy WC_Product_Variation objects.
+			$children_ids = $product->get_children();
+			if ( ! empty( $children_ids ) ) {
+				$parent_id  = $product->get_id();
+				$attributes = [];
+				foreach ( $children_ids as $child_id ) {
+					$this->count_variation_impression( $parent_id, (int) $child_id, $attributes, $impression );
 				}
 			}
 		}
@@ -133,8 +140,12 @@ class WCCS_Background_Analytics extends WC_Background_Process {
 		}
 
 		$variation_id = $product->is_type( 'variation' ) ? $product->get_id() : 0;
-		$attributes = [];
+		$attributes   = [];
 
+		$this->count_variation_impression( $product_id, $variation_id, $attributes, $impression );
+	}
+
+	protected function count_variation_impression( $product_id, $variation_id, $attributes, &$impression ) {
 		$rules = WCCS()->pricing->get_pricings();
 		if ( empty( $rules ) ) {
 			return;
@@ -147,9 +158,18 @@ class WCCS_Background_Analytics extends WC_Background_Process {
 			}
 		}
 
+		// Fast path: get candidate rule IDs for product/variation from inverted index.
+		$candidates = WCCS()->pricing->get_candidate_rules_for_product( $product_id, $variation_id );
+
 		foreach ( $rules as $type => $pricings ) {
 			foreach ( $pricings as $pricing ) {
-				if ( isset( $impression[ (int) $pricing['id'] ] ) ) {
+				$rule_id = (int) $pricing['id'];
+				if ( isset( $impression[ $rule_id ] ) ) {
+					continue;
+				}
+
+				// If inverted candidate index exists and this rule is not a candidate, skip!
+				if ( null !== $candidates && ! isset( $candidates[ $rule_id ] ) ) {
 					continue;
 				}
 
@@ -157,13 +177,15 @@ class WCCS_Background_Analytics extends WC_Background_Process {
 					if ( ! empty( $pricing['groups'] ) ) {
 						foreach ( $pricing['groups'] as $group ) {
 							if ( ! empty( $group['items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $group['items'], $product_id, $variation_id, $attributes ) ) {
-								$impression[ (int) $pricing['id'] ] = 1;
+								$impression[ $rule_id ] = 1;
 								break;
 							}
 						}
 					}
 				} elseif ( ! empty( $pricing['items'] ) && WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['items'], $product_id, $variation_id, $attributes ) ) {
-					$impression[ (int) $pricing['id'] ] = 1;
+					if ( empty( $pricing['exclude_items'] ) || ! WCCS()->WCCS_Product_Validator->is_valid_product( $pricing['exclude_items'], $product_id, $variation_id, $attributes ) ) {
+						$impression[ $rule_id ] = 1;
+					}
 				}
 			}
 		}

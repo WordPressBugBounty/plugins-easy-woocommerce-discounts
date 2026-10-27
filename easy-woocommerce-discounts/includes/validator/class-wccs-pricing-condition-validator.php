@@ -1,12 +1,12 @@
 <?php
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 class WCCS_Pricing_Condition_Validator extends WCCS_Condition_Validator {
 
-    protected $cart_totals;
+	protected $cart_totals;
 
 	public function subtotal_including_tax( array $condition ) {
 		$value = ! empty( $condition['number_value_2'] ) ? floatval( $condition['number_value_2'] ) : 0;
@@ -24,7 +24,7 @@ class WCCS_Pricing_Condition_Validator extends WCCS_Condition_Validator {
 
 		$this->calculate_cart_totals();
 
-		return WCCS()->WCCS_Comparison->math_compare(
+		return WCCS_Comparison::math_compare(
 			$this->cart_totals->get_total( 'items_subtotal' ) + $this->cart_totals->get_total( 'items_subtotal_tax' ),
 			WCCS_Helpers::maybe_exchange_price( $value, 'coupon' ),
 			$condition['math_operation_type']
@@ -56,12 +56,12 @@ class WCCS_Pricing_Condition_Validator extends WCCS_Condition_Validator {
 		return $subtotal;
 	}
 
-    protected function calculate_cart_totals( $force = true ) {
-        if ( ! $this->cart_totals ) {
-            $this->cart_totals = new WCCS_Cart_Totals( WC()->cart );
-        }
+	protected function calculate_cart_totals( $force = true ) {
+		if ( ! $this->cart_totals ) {
+			$this->cart_totals = new WCCS_Cart_Totals( WC()->cart );
+		}
 
-        $this->cart_totals->calculate( $force );
-    }
+		$this->cart_totals->calculate( $force );
+	}
 
 }

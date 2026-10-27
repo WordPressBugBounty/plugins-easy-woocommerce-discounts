@@ -14,28 +14,32 @@ class WCCS_Comparison {
 	 * @param  array  $cmp
 	 * @param  array  $cmp_to
 	 * @param  string $type
+	 * @param  int    $number
 	 *
 	 * @return boolean
 	 */
-	public function union_compare( array $cmp, array $cmp_to, $type ) {
+	public static function union_compare( array $cmp, array $cmp_to, $type, $number = 2 ) {
 		switch ( $type ) {
-			case 'none_of' :
+			case 'none':
+			case 'none_of':
 				return ! count( array_intersect( $cmp, $cmp_to ) );
-				break;
 
-			case 'at_least_one_of' :
+			case 'at_least_one_of':
 				return count( array_intersect( $cmp, $cmp_to ) );
-				break;
 
-			case 'all_of' :
+			case 'all_of':
 				return ! count( array_diff( $cmp, $cmp_to ) );
-				break;
 
-			case 'only' :
+			case 'only':
 				return ! count( array_diff( $cmp, $cmp_to ) ) && ! count( array_diff( $cmp_to, $cmp ) );
-				break;
 
-			default :
+			case 'at_least':
+				return count( array_intersect( $cmp, $cmp_to ) ) >= $number;
+
+			case 'less_than':
+				return count( array_intersect( $cmp, $cmp_to ) ) < $number;
+
+			default:
 				break;
 		}
 
@@ -53,7 +57,7 @@ class WCCS_Comparison {
 	 *
 	 * @return boolean
 	 */
-	public function math_compare( $value, $against_value, $operation ) {
+	public static function math_compare( $value, $against_value, $operation ) {
 		if ( 'less_than' === $operation ) {
 			return $value < $against_value;
 		} elseif ( 'less_equal_to' === $operation ) {
@@ -64,7 +68,7 @@ class WCCS_Comparison {
 			return $value >= $against_value;
 		} elseif ( 'equal_to' === $operation ) {
 			return $value == $against_value;
-		} elseif ( 'not_equal_to' === $operation) {
+		} elseif ( 'not_equal_to' === $operation ) {
 			return $value != $against_value;
 		}
 
@@ -81,14 +85,14 @@ class WCCS_Comparison {
 	 *
 	 * @return boolean
 	 */
-	public function equal_to( $value, $cmp_value ) {
+	public static function equal_to( $value, $cmp_value ) {
 		if ( is_array( $value ) ) {
 			if ( empty( $value ) ) {
 				return false;
 			}
 
 			foreach ( $value as $v ) {
-				if ( ! $this->equal_to( $v, $cmp_value ) ) {
+				if ( ! static::equal_to( $v, $cmp_value ) ) {
 					return false;
 				}
 			}
@@ -109,14 +113,14 @@ class WCCS_Comparison {
 	 *
 	 * @return boolean
 	 */
-	public function less_than( $value, $cmp_value ) {
+	public static function less_than( $value, $cmp_value ) {
 		if ( is_array( $value ) ) {
 			if ( empty( $value ) ) {
 				return false;
 			}
 
 			foreach ( $value as $v ) {
-				if ( ! $this->less_than( $v, $cmp_value ) ) {
+				if ( ! static::less_than( $v, $cmp_value ) ) {
 					return false;
 				}
 			}
@@ -137,14 +141,14 @@ class WCCS_Comparison {
 	 *
 	 * @return boolean
 	 */
-	public function less_equal_to( $value, $cmp_value ) {
+	public static function less_equal_to( $value, $cmp_value ) {
 		if ( is_array( $value ) ) {
 			if ( empty( $value ) ) {
 				return false;
 			}
 
 			foreach ( $value as $v ) {
-				if ( ! $this->less_equal_to( $v, $cmp_value ) ) {
+				if ( ! static::less_equal_to( $v, $cmp_value ) ) {
 					return false;
 				}
 			}
@@ -165,14 +169,14 @@ class WCCS_Comparison {
 	 *
 	 * @return boolean
 	 */
-	public function greater_than( $value, $cmp_value ) {
+	public static function greater_than( $value, $cmp_value ) {
 		if ( is_array( $value ) ) {
 			if ( empty( $value ) ) {
 				return false;
 			}
 
 			foreach ( $value as $v ) {
-				if ( ! $this->greater_than( $v, $cmp_value ) ) {
+				if ( ! static::greater_than( $v, $cmp_value ) ) {
 					return false;
 				}
 			}
@@ -193,14 +197,14 @@ class WCCS_Comparison {
 	 *
 	 * @return boolean
 	 */
-	public function greater_equal_to( $value, $cmp_value ) {
+	public static function greater_equal_to( $value, $cmp_value ) {
 		if ( is_array( $value ) ) {
 			if ( empty( $value ) ) {
 				return false;
 			}
 
 			foreach ( $value as $v ) {
-				if ( ! $this->greater_equal_to( $v, $cmp_value ) ) {
+				if ( ! static::greater_equal_to( $v, $cmp_value ) ) {
 					return false;
 				}
 			}

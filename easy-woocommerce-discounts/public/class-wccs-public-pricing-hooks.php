@@ -14,6 +14,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 
 	protected $discounted_products;
 
+	protected $price_html_cache = array();
+
+	protected $price_hooks_enabled = false;
+
 	public $applied_pricings = false;
 
 	/**
@@ -41,10 +45,12 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		$this->loader->add_action( 'woocommerce_cart_loaded_from_session', $this, 'cart_loaded_from_session' );
 		$this->loader->add_action( 'woocommerce_cart_loaded_from_session', $this, 'enable_price_and_badge_hooks' );
 		$this->loader->add_action( 'woocommerce_init', $this, 'rest_api' );
+		$this->loader->add_action( 'wccs_virtual_cart_before_calculate_totals', $this, 'remove_pricings' );
 		$this->loader->add_action( 'woocommerce_before_calculate_totals', $this, 'remove_pricings' );
 		$this->loader->add_action( 'woocommerce_before_calculate_totals', $this, 'apply_pricings', 9999 );
 		$this->loader->add_action( 'woocommerce_add_to_cart', $this, 'reset_applied_pricings' );
 		$this->loader->add_action( 'woocommerce_cart_item_removed', $this, 'reset_applied_pricings' );
+		$this->loader->add_action( 'woocommerce_cart_emptied', $this, 'reset_applied_pricings' );
 		$this->loader->add_action( 'woocommerce_checkout_update_order_review', $this, 'reset_applied_pricings' );
 		$this->loader->add_action( 'woocommerce_after_cart_item_quantity_update', $this, 'reset_applied_pricings' );
 		$this->loader->add_filter( 'woocommerce_cart_item_price', $this, 'cart_item_price', 10, 3 );
@@ -90,35 +96,59 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			->enable_hooks();
 	}
 
-	public function enable_price_and_badge_hooks() {
-		if ( ! WCCS()->is_request( 'frontend' ) ) {
+	public function enable_price_and_badge_hooks( $force = false ) {
+		if ( ! $force && $this->price_hooks_enabled ) {
 			return;
 		}
 
-		$this->enable_change_price_hooks();
+		if ( ! WCCS()->is_request( 'frontend' ) ) {
+			return;
+		}
+		$this->price_hooks_enabled = true;
 
-		if ( WCCS_Helpers::should_change_display_price_html( 'all' ) ) {
-			add_filter( 'woocommerce_get_price_html', array(&$this, 'get_price_html' ), 10, 2 );
+		if ( 'advanced' === WCCS()->settings->get_setting( 'change_price_method', 'lightweight' ) ) {
+			$this->enable_change_price_hooks();
+		} else {
+			/**
+			 * Always show variation prices even variations has the same price.
+			 * It is required for change price of a variation.
+			 */
+			if ( $this->should_hook_price_html() ) {
+				add_filter( 'woocommerce_show_variation_price', '__return_true', 25 );
+			}
+		}
+
+		if ( $this->should_hook_price_html() ) {
+			add_filter( 'woocommerce_get_price_html', array( &$this, 'get_price_html' ), 10, 2 );
 		}
 
 		$sale_badge = WCCS()->settings->get_setting( 'sale_badge', array( 'simple' => '1' ) );
-		if ( empty( $sale_badge['simple'] ) ) {
-			add_filter( 'woocommerce_product_is_on_sale', array(&$this, 'remove_sale_flash' ), 10, 999 );
-		}
 
-		if ( ! empty( $sale_badge ) ) {
-			if ( ! empty( $sale_badge['simple'] ) && WCCS_Helpers::should_change_display_price_html() ) {
-				if ( 'sale' === WCCS()->settings->get_setting( 'sale_badge_type', 'sale' ) ) {
-					add_filter( 'woocommerce_product_is_on_sale', array(&$this, 'woocommerce_product_is_on_sale' ), 10, 2 );
-					unset( $sale_badge['simple'] );
-				} elseif ( 'discount' === WCCS()->settings->get_setting( 'sale_badge_type', 'sale' ) ) {
-					add_filter( 'woocommerce_sale_flash', array(&$this, 'percentage_sale_badge' ), 10, 3 );
+		if ( ! empty( $sale_badge ) && is_array( $sale_badge ) ) {
+			if ( ! empty( $sale_badge['simple'] ) ) {
+				add_filter( 'woocommerce_product_is_on_sale', array( &$this, 'woocommerce_product_is_on_sale' ), 10, 2 );
+
+				if ( 'discount' === WCCS()->settings->get_setting( 'sale_badge_type', 'sale' ) ) {
+					add_filter( 'woocommerce_sale_flash', array( &$this, 'percentage_sale_badge' ), 10, 3 );
 				}
 			}
 
-			if ( ! empty( $sale_badge ) ) {
+			$has_non_simple = false;
+			foreach ( array( 'bulk', 'purchase' ) as $type ) {
+				if ( ! empty( $sale_badge[ $type ] ) ) {
+					$has_non_simple = true;
+					break;
+				}
+			}
+
+			if ( $has_non_simple ) {
 				$this->sale_badge_hooks();
 			}
+		}
+
+		// Prime catalog product caches only when price/badge hooks are active and object caching is not external.
+		if ( ! wp_using_ext_object_cache() ) {
+			add_filter( 'the_posts', array( $this, 'prime_catalog_product_caches' ), 10, 2 );
 		}
 	}
 
@@ -128,6 +158,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		}
 
 		$this->enable_change_price_hooks();
+
+		if ( ! wp_using_ext_object_cache() ) {
+			add_filter( 'the_posts', array( $this, 'prime_catalog_product_caches' ), 10, 2 );
+		}
 	}
 
 	public function get_price_html( $price, $product ) {
@@ -139,8 +173,17 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			return $price;
 		}
 
+		$cache_key = $this->get_price_html_cache_key( $price, $product );
+		if ( isset( $this->price_html_cache[ $cache_key ] ) ) {
+			return $this->price_html_cache[ $cache_key ];
+		}
+
 		$product_pricing = $this->get_product_pricing( $product );
-		return $product_pricing->get_price_html( $price );
+		$html            = $product_pricing->get_price_html( $price );
+
+		$this->price_html_cache[ $cache_key ] = $html;
+
+		return $html;
 	}
 
 	public function apply_pricings( $cart = null ) {
@@ -148,6 +191,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			return;
 		}
 
+		$this->clear_price_html_cache();
 		$this->applied_discounts = array();
 
 		$cart = $cart && is_a( $cart, 'WC_Cart' ) ? $cart : WC()->cart;
@@ -155,7 +199,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			return;
 		}
 
-		$this->pricing = isset( $this->pricing ) ? $this->pricing : WCCS()->pricing;
+		$this->pricing = WCCS()->pricing;
 		$this->pricing->reset_cache();
 
 		$cart_contents = $cart->get_cart();
@@ -191,7 +235,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				continue;
 			}
 
-			$pricing_item = new WCCS_Public_Cart_Item_Pricing( $cart_item_key, $cart_item, $this->pricing, '', null, $pricing_cache );
+			$pricing_item          = new WCCS_Public_Cart_Item_Pricing( $cart_item_key, $cart_item, $this->pricing, '', null, $pricing_cache );
 			$item_discounted_price = $pricing_item->get_price();
 			if ( false === $item_discounted_price || $item_discounted_price < 0 ) {
 				continue;
@@ -205,28 +249,28 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 
 			do_action( 'wccs_apply_pricing_before_set_item_prices', $cart_item, $pricing_item, $item_discounted_price );
 
-			$cart->cart_contents[ $cart_item_key ]['_wccs_main_price'] = $this->get_cart_item_main_price( $cart_item, $pricing_item->product );
-			$cart->cart_contents[ $cart_item_key ]['_wccs_main_display_price'] = $this->get_cart_item_main_display_price( $cart_item, $pricing_item->product );
+			$cart->cart_contents[ $cart_item_key ]['_wccs_main_price']              = $this->get_cart_item_main_price( $cart_item, $pricing_item->product );
+			$cart->cart_contents[ $cart_item_key ]['_wccs_main_display_price']      = $this->get_cart_item_main_display_price( $cart_item, $pricing_item->product );
 			$cart->cart_contents[ $cart_item_key ]['_wccs_before_discounted_price'] = $this->get_cart_item_before_discounted_price( $cart_item, $product );
-			$cart->cart_contents[ $cart_item_key ]['_wccs_discounted_price'] = wc_format_decimal( $item_discounted_price );
-			$cart->cart_contents[ $cart_item_key ]['_wccs_prices'] = apply_filters( 'wccs_cart_item_prices', $pricing_item->get_prices(), $cart_item );
+			$cart->cart_contents[ $cart_item_key ]['_wccs_discounted_price']        = wc_format_decimal( $item_discounted_price );
+			$cart->cart_contents[ $cart_item_key ]['_wccs_prices']                  = apply_filters( 'wccs_cart_item_prices', $pricing_item->get_prices(), $cart_item );
 			// Do not apply any filter on _wccs_prices_main.
-			$cart->cart_contents[ $cart_item_key ]['_wccs_prices_main'] = $pricing_item->get_prices();
+			$cart->cart_contents[ $cart_item_key ]['_wccs_prices_main']             = $pricing_item->get_prices();
 
 			// Set applied rules.
 			$applied_rules = $pricing_item->get_applied_rules();
 			if ( ! empty( $applied_rules ) ) {
-				$applied_rules = array_map( function ( $rule ) {
+				$applied_rules = array_map( function( $rule ) {
 					return [
-						'id' => $rule['id'],
-						'name' => $rule['name'],
-						'description' => ! empty( $rule['description'] ) ? $rule['description'] : '',
-						'type' => isset( $rule['type'] ) ? $rule['type'] : 'discount',
+						'id'            => $rule['id'],
+						'name'          => $rule['name'],
+						'description'   => ! empty( $rule['description'] ) ? $rule['description'] : '',
+						'type'          => isset( $rule['type'] ) ? $rule['type'] : 'discount',
 						'discount_type' => isset( $rule['discount_type'] ) ? $rule['discount_type'] : '',
-						'discount' => isset( $rule['discount'] ) ? $rule['discount'] : 0,
-						'apply_mode' => isset( $rule['apply_mode'] ) ? $rule['apply_mode'] : '',
-						'mode' => isset( $rule['mode'] ) ? $rule['mode'] : '',
-						'amount' => isset( $rule['amount'] ) ? $rule['amount'] : 0,
+						'discount'      => isset( $rule['discount'] ) ? $rule['discount'] : 0,
+						'apply_mode'    => isset( $rule['apply_mode'] ) ? $rule['apply_mode'] : '',
+						'mode'          => isset( $rule['mode'] ) ? $rule['mode'] : '',
+						'amount'        => isset( $rule['amount'] ) ? $rule['amount'] : 0,
 					];
 				}, $applied_rules );
 			}
@@ -240,16 +284,18 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 
 			// Setting sale price.
 			if ( $item_discounted_price < $pricing_item->get_base_price() ) {
-				$cart->cart_contents[ $cart_item_key ]['_wccs_main_sale_price'] = apply_filters( 'wccs_cart_item_main_sale_price', WCCS()->product_helpers->wc_get_sale_price( $pricing_item->product ), $cart_item );
+				$cart->cart_contents[ $cart_item_key ]['_wccs_main_sale_price'] = apply_filters( 'wccs_cart_item_main_sale_price', $pricing_item->product->get_sale_price( 'edit' ), $cart_item );
 				$product->set_sale_price( $item_discounted_price );
 				$this->applied_discounts[ $cart_item_key ]['discounted_sale_price'] = $item_discounted_price;
 			}
+
 			$product->set_price( $item_discounted_price );
 		}
 
 		do_action( 'wccs_public_pricing_hooks_after_apply_pricings', $this );
 
 		$this->applied_pricings = true;
+		$this->clear_price_html_cache();
 	}
 
 	/**
@@ -260,17 +306,24 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 	 * @return void
 	 */
 	public function reset_applied_pricings() {
+		$this->clear_price_html_cache();
+		$this->pricing = WCCS()->pricing;
+
 		if ( $this->applied_pricings ) {
 			$this->applied_pricings = false;
-			$this->pricing->reset_cache();
+			if ( isset( $this->pricing ) ) {
+				$this->pricing->reset_cache();
+			}
 			// Enable remove pricing hook after reset applied pricings.
-			if ( ! has_action( 'woocommerce_before_calculate_totals', array(&$this, 'remove_pricings' ) ) ) {
-				add_action( 'woocommerce_before_calculate_totals', array(&$this, 'remove_pricings' ) );
+			if ( ! has_action( 'woocommerce_before_calculate_totals', array( &$this, 'remove_pricings' ) ) ) {
+				add_action( 'woocommerce_before_calculate_totals', array( &$this, 'remove_pricings' ) );
 			}
 		}
 	}
 
 	public function remove_pricings( $cart = null ) {
+		$this->clear_price_html_cache();
+
 		$cart = $cart && is_a( $cart, 'WC_Cart' ) ? $cart : WC()->cart;
 		if ( $cart->is_empty() ) {
 			return;
@@ -395,8 +448,8 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		$position = WCCS()->settings->get_setting( 'quantity_table_position', 'before_add_to_cart_button' );
 
 		switch ( $position ) {
-			case 'before_add_to_cart_button':
-			case 'after_add_to_cart_button':
+			case 'before_add_to_cart_button' :
+			case 'after_add_to_cart_button' :
 				$add_to_cart_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart' );
 				if ( 'before_add_to_cart_button' === $position ) {
 					$add_to_cart_priority ?
@@ -417,8 +470,8 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				$this->loader->add_action( 'woocommerce_after_add_to_cart_form', $this, 'display_bulk_pricing_table' );
 				break;
 
-			case 'before_excerpt':
-			case 'after_excerpt':
+			case 'before_excerpt' :
+			case 'after_excerpt' :
 				$excerpt_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt' );
 				if ( 'before_excerpt' === $position ) {
 					$excerpt_priority ?
@@ -431,17 +484,17 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				}
 				break;
 
-			case 'after_product_meta':
+			case 'after_product_meta' :
 				$meta_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta' );
 				$meta_priority ?
 					$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_bulk_pricing_table', $meta_priority + 1 ) :
 					$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_bulk_pricing_table', 41 );
 				break;
 
-			case 'in_modal':
+			case 'in_modal' :
 				break;
 
-			default:
+			default :
 				break;
 		}
 	}
@@ -460,8 +513,8 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		$position = WCCS()->settings->get_setting( 'purchase_x_receive_y_message_position', 'before_add_to_cart_button' );
 
 		switch ( $position ) {
-			case 'before_add_to_cart_button':
-			case 'after_add_to_cart_button':
+			case 'before_add_to_cart_button' :
+			case 'after_add_to_cart_button' :
 				$add_to_cart_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart' );
 				if ( 'before_add_to_cart_button' === $position ) {
 					$add_to_cart_priority ?
@@ -482,8 +535,8 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				$this->loader->add_action( 'woocommerce_after_add_to_cart_form', $this, 'display_purchase_message' );
 				break;
 
-			case 'before_excerpt':
-			case 'after_excerpt':
+			case 'before_excerpt' :
+			case 'after_excerpt' :
 				$excerpt_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt' );
 				if ( 'before_excerpt' === $position ) {
 					$excerpt_priority ?
@@ -496,17 +549,17 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 				}
 				break;
 
-			case 'after_product_meta':
+			case 'after_product_meta' :
 				$meta_priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta' );
 				$meta_priority ?
 					$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', $meta_priority + 1 ) :
 					$this->loader->add_action( 'woocommerce_single_product_summary', $this, 'display_purchase_message', 41 );
 				break;
 
-			case 'in_modal':
+			case 'in_modal' :
 				break;
 
-			default:
+			default :
 				break;
 		}
 	}
@@ -531,72 +584,72 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			case 'before_shop_loop_item_thumbnail':
 				$priority = has_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail' );
 				if ( $priority ) {
-					add_action( 'woocommerce_before_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_before_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_before_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 9 );
+					add_action( 'woocommerce_before_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 9 );
 				}
 				break;
 
 			case 'after_shop_loop_item_thumbnail':
 				$priority = has_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail' );
 				if ( $priority ) {
-					add_action( 'woocommerce_before_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_before_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_before_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 11 );
+					add_action( 'woocommerce_before_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 11 );
 				}
 				break;
 
 			case 'before_shop_loop_item_title':
 				$priority = has_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title' );
 				if ( $priority ) {
-					add_action( 'woocommerce_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 9 );
+					add_action( 'woocommerce_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 9 );
 				}
 				break;
 
 			case 'after_shop_loop_item_title':
 				$priority = has_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title' );
 				if ( $priority ) {
-					add_action( 'woocommerce_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 10 );
+					add_action( 'woocommerce_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 10 );
 				}
 				break;
 
 			case 'before_shop_loop_item_rating':
 				$priority = has_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating' );
 				if ( $priority ) {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 4 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 4 );
 				}
 				break;
 
 			case 'after_shop_loop_item_rating':
 				$priority = has_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating' );
 				if ( $priority ) {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 6 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 6 );
 				}
 				break;
 
 			case 'before_shop_loop_item_price':
 				$priority = has_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price' );
 				if ( $priority ) {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 9 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 9 );
 				}
 				break;
 
 			case 'after_shop_loop_item_price':
 				$priority = has_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price' );
 				if ( $priority ) {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_after_shop_loop_item_title', array(&$this, 'display_sale_badge' ), 11 );
+					add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'display_sale_badge' ), 11 );
 				}
 				break;
 		}
@@ -606,54 +659,54 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			case 'before_single_item_images':
 				$priority = has_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images' );
 				if ( $priority ) {
-					add_action( 'woocommerce_before_single_product_summary', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_before_single_product_summary', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_before_single_product_summary', array(&$this, 'display_sale_badge' ), 19 );
+					add_action( 'woocommerce_before_single_product_summary', array( &$this, 'display_sale_badge' ), 19 );
 				}
 				break;
 
 			case 'after_single_item_images':
 				$priority = has_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images' );
 				if ( $priority ) {
-					add_action( 'woocommerce_before_single_product_summary', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_before_single_product_summary', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_before_single_product_summary', array(&$this, 'display_sale_badge' ), 21 );
+					add_action( 'woocommerce_before_single_product_summary', array( &$this, 'display_sale_badge' ), 21 );
 				}
 				break;
 
 			case 'before_single_item_title':
 				$priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title' );
 				if ( $priority ) {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), 4 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), 4 );
 				}
 				break;
 
 			case 'after_single_item_title':
 				$priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title' );
 				if ( $priority ) {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), 6 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), 6 );
 				}
 				break;
 
 			case 'before_single_item_price':
 				$priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' );
 				if ( $priority ) {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), $priority - 1 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), $priority - 1 );
 				} else {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), 9 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), 9 );
 				}
 				break;
 
 			case 'after_single_item_price':
 				$priority = has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' );
 				if ( $priority ) {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), $priority + 1 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), $priority + 1 );
 				} else {
-					add_action( 'woocommerce_single_product_summary', array(&$this, 'display_sale_badge' ), 11 );
+					add_action( 'woocommerce_single_product_summary', array( &$this, 'display_sale_badge' ), 11 );
 				}
 				break;
 		}
@@ -668,49 +721,57 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			return $on_sale;
 		}
 
-		return WCCS()->WCCS_Product_Onsale_Cache->is_onsale( $product, array( 'simple' => 1 ) );
-	}
-
-	/**
-	 * Remove sale badge from simple pricing rules when it is disabled.
-	 *
-	 * @param  boolean    $on_sale
-	 * @param  WC_Product $product
-	 *
-	 * @return boolean
-	 */
-	public function remove_sale_flash( $on_sale, $product ) {
-		if ( ! $on_sale ) {
-			return false;
-		}
-
-		if ( WCCS()->WCCS_Product_Onsale_Cache->is_onsale( $product, array( 'simple' => 1 ) ) ) {
-			return false;
-		}
-
-		return $on_sale;
+		return WCCS()->WCCS_Product_Onsale_Cache->is_simple_onsale( $product );
 	}
 
 	public function percentage_sale_badge( $sale_badge, $post, $product ) {
-		if ( $discount = WCCS()->product_helpers->get_percentage_badge_value( $product ) ) {
+		if ( ! $product && ! empty( $post ) ) {
+			$product = wc_get_product( $post->ID );
+		}
+
+		if ( $product && ( $discount = WCCS()->product_helpers->get_percentage_badge_value( $product ) ) ) {
 			$html = '<span class="onsale wccs-onsale-badge wccs-onsale-badge-discount">';
 			$html .= apply_filters( 'wccs_sale_flash_negative_symbol', '<span class="wccs-sale-flash-negative-symbol">-</span>' )
-				. esc_html( apply_filters( 'wccs_sale_flash_percentage_value', round( $discount ), $discount ) )
-				. apply_filters( 'wccs_sale_flash_percentage_symbol', '<span class="wccs-sale-flash-percentage-symbol">%</span>' );
+					. esc_html( apply_filters( 'wccs_sale_flash_percentage_value', round( $discount ), $discount ) )
+					. apply_filters( 'wccs_sale_flash_percentage_symbol', '<span class="wccs-sale-flash-percentage-symbol">%</span>' );
 			$html .= '</span>';
 			$sale_badge = apply_filters( 'wccs_sale_flash_discount_value', $html, $discount, $product, $post );
 		}
 		return $sale_badge;
 	}
 
+	/**
+	 * Check whether woocommerce_get_price_html filter should be hooked.
+	 *
+	 * In advanced mode, if change_display_price is simple_ex_html, WCCS_Product_Price_Replace replaces
+	 * regular and sale prices directly, so woocommerce_get_price_html is not hooked.
+	 * In lightweight mode, woocommerce_get_price_html must be hooked to modify the display price without strikethrough.
+	 *
+	 * @return bool
+	 */
+	public function should_hook_price_html() {
+		if ( WCCS_Helpers::should_change_display_price_html( 'all' ) ) {
+			return true;
+		}
+
+		if ( 'lightweight' === WCCS()->settings->get_setting( 'change_price_method', 'lightweight' )
+			&& WCCS_Helpers::is_change_display_price_ex_html()
+			&& WCCS_Helpers::should_change_display_price()
+		) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function enable_price_hooks( $hooks = array() ) {
 		if ( ! empty( $hooks ) ) {
-			if ( in_array( 'woocommerce_get_price_html', $hooks ) && WCCS_Helpers::should_change_display_price_html( 'all' ) ) {
-				add_filter( 'woocommerce_get_price_html', array(&$this, 'get_price_html' ), 10, 2 );
+			if ( in_array( 'woocommerce_get_price_html', $hooks ) && $this->should_hook_price_html() ) {
+				add_filter( 'woocommerce_get_price_html', array( &$this, 'get_price_html' ), 10, 2 );
 			}
 		} else {
-			if ( WCCS_Helpers::should_change_display_price_html( 'all' ) ) {
-				add_filter( 'woocommerce_get_price_html', array(&$this, 'get_price_html' ), 10, 2 );
+			if ( $this->should_hook_price_html() ) {
+				add_filter( 'woocommerce_get_price_html', array( &$this, 'get_price_html' ), 10, 2 );
 			}
 		}
 	}
@@ -718,10 +779,10 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 	public function disable_price_hooks( $hooks = array() ) {
 		if ( ! empty( $hooks ) ) {
 			if ( in_array( 'woocommerce_get_price_html', $hooks ) ) {
-				remove_filter( 'woocommerce_get_price_html', array(&$this, 'get_price_html' ) );
+				remove_filter( 'woocommerce_get_price_html', array( &$this, 'get_price_html' ) );
 			}
 		} else {
-			remove_filter( 'woocommerce_get_price_html', array(&$this, 'get_price_html' ) );
+			remove_filter( 'woocommerce_get_price_html', array( &$this, 'get_price_html' ) );
 		}
 	}
 
@@ -752,7 +813,7 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 
 	protected function get_product_pricing( $product, $pricing = null ) {
 		if ( null === $pricing ) {
-			$pricing = $this->pricing = isset( $this->pricing ) ? $this->pricing : WCCS()->pricing;
+			$pricing = $this->pricing = WCCS()->pricing;
 		}
 
 		if ( ! isset( $this->product_pricing ) ) {
@@ -764,6 +825,20 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		}
 
 		return $this->product_pricing;
+	}
+
+	protected function get_price_html_cache_key( $price, $product ) {
+		$product_id = is_numeric( $product ) ? (int) $product : (int) $product->get_id();
+		$parts      = [
+			'product_id' => $product_id,
+			'price'      => $price,
+		];
+
+		return md5( wp_json_encode( apply_filters( 'asnp_wccs_public_pricing_hooks_price_html_cache_key_parts', $parts, $price, $product ) ) );
+	}
+
+	protected function clear_price_html_cache() {
+		$this->price_html_cache = [];
 	}
 
 	protected function get_cart_item_main_price( $cart_item, $product ) {
@@ -787,14 +862,14 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 		if ( 'cart_item_price' === WCCS()->settings->get_setting( 'pricing_product_base_price', 'cart_item_price' ) ) {
 			return apply_filters(
 				'wccs_cart_item_main_display_price',
-				wc_get_price_to_display( $cart_item['data'], array( 'price' => $cart_item['data']->get_price( 'edit' ) ) ),
+				wc_get_price_to_display( $cart_item['data'], array( 'price' => $cart_item['data']->get_price( 'edit' ), 'display_context' => 'cart' ) ),
 				$cart_item,
 				$product
 			);
 		}
 		return apply_filters(
 			'wccs_cart_item_main_display_price',
-			wc_get_price_to_display( $product, array( 'price' => $product->get_price( 'edit' ) ) ),
+			wc_get_price_to_display( $product, array( 'price' => $product->get_price( 'edit' ), 'display_context' => 'cart' ) ),
 			$cart_item,
 			$product
 		);
@@ -815,6 +890,98 @@ class WCCS_Public_Pricing_Hooks extends WCCS_Public_Controller {
 			$cart_item,
 			$product
 		);
+	}
+
+	/**
+	 * Prime product price and on-sale caches for catalog and archive query results in batch.
+	 *
+	 * Eliminates N+1 database queries on shop, category, tag, search, and shortcode pages.
+	 * Runs ONLY when required on product queries with active rules.
+	 *
+	 * @param array         $posts Array of post objects or IDs.
+	 * @param WP_Query|null $query The WP_Query instance.
+	 * @return array
+	 */
+	public function prime_catalog_product_caches( $posts, $query = null ) {
+		if ( empty( $posts ) || ! is_array( $posts ) ) {
+			return $posts;
+		}
+
+		// Never run during cron jobs, CLI, or admin requests (except storefront catalog AJAX).
+		if ( ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+			return $posts;
+		}
+
+		if ( is_admin() && ! wp_doing_ajax() ) {
+			return $posts;
+		}
+
+		// Guard against periodic background AJAX tasks (Heartbeat, Action Scheduler runner, autosave, refreshed cart fragments).
+		if ( function_exists( 'wp_doing_ajax' ) && wp_doing_ajax() ) {
+			$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+			if ( 'heartbeat' === $action || 'wp-autosave' === $action || 0 === strpos( $action, 'as_' ) ) {
+				return $posts;
+			}
+		}
+
+		$wc_ajax = isset( $_REQUEST['wc-ajax'] ) ? sanitize_key( wp_unslash( $_REQUEST['wc-ajax'] ) ) : '';
+		if ( 'get_refreshed_fragments' === $wc_ajax ) {
+			return $posts;
+		}
+
+		// Persistent object caches (Redis, Memcached) handle memory caching directly without L2 DB meta batch priming.
+		if ( wp_using_ext_object_cache() ) {
+			return $posts;
+		}
+
+		// Don't run if DB caches are disabled.
+		$price_cache_enabled  = WCCS()->WCCS_Product_Price_Cache->is_cache_enabled();
+		$onsale_cache_enabled = WCCS()->WCCS_Product_Onsale_Cache->is_cache_enabled();
+		if ( ! $price_cache_enabled && ! $onsale_cache_enabled ) {
+			return $posts;
+		}
+
+		// Don't run if there are no active pricing rules.
+		if ( empty( WCCS()->pricing ) || empty( WCCS()->pricing->get_all_pricing_rules() ) ) {
+			return $posts;
+		}
+
+		// Don't run if neither price modification nor sale badges are active.
+		$sale_badge = WCCS()->settings->get_setting( 'sale_badge', array( 'simple' => '1' ) );
+		if ( ! WCCS_Helpers::should_change_display_price_html() && ! WCCS_Helpers::should_change_display_price() && empty( $sale_badge ) ) {
+			return $posts;
+		}
+
+		// Validate that the query is specifically a product query.
+		$is_product_query = false;
+		if ( is_a( $query, 'WP_Query' ) ) {
+			$post_type = $query->get( 'post_type' );
+			if ( is_string( $post_type ) ) {
+				$is_product_query = ( 'product' === $post_type || 'product_variation' === $post_type );
+			} elseif ( is_array( $post_type ) ) {
+				$is_product_query = in_array( 'product', $post_type, true ) || in_array( 'product_variation', $post_type, true );
+			}
+			if ( ! $is_product_query ) {
+				return $posts;
+			}
+		}
+
+		$product_ids = array();
+		foreach ( $posts as $post ) {
+			if ( is_a( $post, 'WP_Post' ) ) {
+				if ( 'product' === $post->post_type || 'product_variation' === $post->post_type ) {
+					$product_ids[] = (int) $post->ID;
+				}
+			} elseif ( is_numeric( $post ) && $is_product_query ) {
+				$product_ids[] = (int) $post;
+			}
+		}
+
+		if ( ! empty( $product_ids ) ) {
+			WCCS_Helpers::prime_product_caches( $product_ids );
+		}
+
+		return $posts;
 	}
 
 }

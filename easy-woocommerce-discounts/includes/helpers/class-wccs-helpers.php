@@ -7,6 +7,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WCCS_Helpers {
 
 	/**
+	 * Static memoization storage for display price checks.
+	 *
+	 * @var bool|null
+	 */
+	protected static $display_price_cache = null;
+
+	/**
+	 * Static memoization storage for display price HTML checks.
+	 *
+	 * @var array
+	 */
+	protected static $display_price_html_cache = array();
+
+	/**
+	 * Static memoization storage for display price without HTML check.
+	 *
+	 * @var bool|null
+	 */
+	protected static $display_price_ex_html_cache = null;
+
+	/**
+	 * Static memoization storage for primed product IDs.
+	 *
+	 * @var array<int, bool>
+	 */
+	protected static $primed_ids = array();
+
+	/**
 	 * Checking a version against WooCommerce version.
 	 *
 	 * @since  1.1.0
@@ -317,41 +345,81 @@ class WCCS_Helpers {
 		return apply_filters( 'wccs_maybe_exchange_price', $price, $type );
 	}
 
-	public static function should_change_display_price() {
-		if ( ! WCCS()->pricing ) {
-			return false;
-		}
-
-		if ( 'none' === WCCS()->settings->get_setting( 'change_display_price', 'simple' ) ) {
-			return false;
-		}
-
-		$simples = WCCS()->pricing->get_simple_pricings();
-		return ! empty( $simples );
+	/**
+	 * Reset static memoization caches for display price checks.
+	 *
+	 * @return void
+	 */
+	public static function reset_display_price_cache() {
+		self::$display_price_cache         = null;
+		self::$display_price_html_cache    = array();
+		self::$display_price_ex_html_cache = null;
+		self::$primed_ids                  = array();
 	}
 
+	/**
+	 * Check whether display price is set to change without HTML strikethrough.
+	 *
+	 * @return bool
+	 */
+	public static function is_change_display_price_ex_html() {
+		if ( null !== self::$display_price_ex_html_cache ) {
+			return self::$display_price_ex_html_cache;
+		}
+
+		return self::$display_price_ex_html_cache = ( 'simple_ex_html' === WCCS()->settings->get_setting( 'change_display_price', 'simple' ) );
+	}
+
+	/**
+	 * Check whether display prices should be changed by simple pricing rules.
+	 * Decoupled from runtime condition evaluation; checks setting and rule presence.
+	 *
+	 * @return bool
+	 */
+	public static function should_change_display_price() {
+		if ( null !== self::$display_price_cache ) {
+			return self::$display_price_cache;
+		}
+
+		$wccs = WCCS();
+
+		if ( 'none' === $wccs->settings->get_setting( 'change_display_price', 'simple' ) ) {
+			return self::$display_price_cache = false;
+		}
+
+		return self::$display_price_cache = $wccs->pricing->has_simple_rules();
+	}
+
+	/**
+	 * Check whether display price HTML filter should be hooked.
+	 * Decoupled from runtime condition evaluation; checks setting and rule presence.
+	 *
+	 * @param string $type 'simple' or 'all'
+	 * @return bool
+	 */
 	public static function should_change_display_price_html( $type = 'simple' ) {
-		if ( ! WCCS()->pricing ) {
-			return false;
+		if ( isset( self::$display_price_html_cache[ $type ] ) ) {
+			return self::$display_price_html_cache[ $type ];
 		}
 
-		$change = WCCS()->settings->get_setting( 'change_display_price', 'all' );
+		$wccs = WCCS();
+
+		$change = $wccs->settings->get_setting( 'change_display_price', 'simple' );
 		if ( 'all' !== $change && 'simple' !== $change ) {
-			return false;
+			return self::$display_price_html_cache[ $type ] = false;
 		}
 
-		$simples = WCCS()->pricing->get_simple_pricings();
-		if ( ! empty( $simples ) ) {
-			return true;
+		$has_simple = $wccs->pricing->has_simple_rules();
+
+		if ( $has_simple ) {
+			return self::$display_price_html_cache[ $type ] = true;
 		}
 
-		if ( 'all' !== $type ) {
-			return false;
+		if ( 'all' === $change && 'all' === $type ) {
+			return self::$display_price_html_cache[ $type ] = $wccs->pricing->has_bulk_rules();
 		}
 
-		$bulks = WCCS()->pricing->get_bulk_pricings();
-
-		return ! empty( $bulks );
+		return self::$display_price_html_cache[ $type ] = false;
 	}
 
 	public static function is_allowed_auto_add_product_type( $type ) {
@@ -447,19 +515,40 @@ class WCCS_Helpers {
 	}
 
 	public static function get_billing_email() {
-		if ( empty( $_GET['wc-ajax'] ) || ! in_array( $_GET['wc-ajax'], array( 'checkout', 'update_order_review' ) ) ) {
-			return '';
+		$email = '';
+
+		if ( isset( WC()->customer ) ) {
+			$email = WC()->customer->get_billing_email();
 		}
 
-		$email = '';
-		if ( ! empty( $_POST['billing_email'] ) ) {
-			$email = strtolower( sanitize_email( $_POST['billing_email'] ) );
-		} elseif ( ! empty( $_POST['post_data'] ) ) {
+		if ( empty( $email ) && ! empty( $_POST['billing_email'] ) ) {
+			$email = $_POST['billing_email'];
+		} elseif ( empty( $email ) && ! empty( $_POST['post_data'] ) ) {
 			parse_str( $_POST['post_data'], $post );
 			if ( ! empty( $post['billing_email'] ) ) {
-				$email = strtolower( sanitize_email( $post['billing_email'] ) );
+				$email = $post['billing_email'];
 			}
 		}
+
+		if ( empty( $email ) && ! empty( $_SERVER['REQUEST_URI'] ) && false !== strpos( $_SERVER['REQUEST_URI'], '/wc/store' ) ) {
+			$data = file_get_contents( 'php://input' );
+			$data = json_decode( $data, true );
+
+			if (
+				is_array( $data ) &&
+				isset( $data['requests'][0]['path'] ) &&
+				false !== strpos( $data['requests'][0]['path'], '/update-customer' ) &&
+				isset( $data['requests'][0]['data'] )
+			) {
+				$data = $data['requests'][0]['data'];
+				if ( isset( $data['billing_address']['email'] ) ) {
+					$email = $data['billing_address']['email'];
+				}
+			}
+		}
+
+		$email = strtolower( sanitize_email( $email ) );
+
 		return is_email( $email ) ? $email : '';
 	}
 
@@ -539,6 +628,163 @@ class WCCS_Helpers {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Get product discounted price by plugin pricing rules.
+	 *
+	 * @param int|WC_Product $product
+	 * @param float|null $custom_price
+	 * @param bool $exchange_price
+	 * @param WCCS_Public_Product_Pricing|null $product_pricing
+	 * @return float|null
+	 */
+	public static function get_product_discounted_price( $product, $custom_price = null, $exchange_price = false, $product_pricing = null ) {
+		if ( ! $product || ! WCCS()->pricing ) {
+			return $custom_price;
+		}
+
+		$price_cache = WCCS()->container()->get( WCCS_Product_Price_Cache::class );
+		if ( $price_cache ) {
+			$price = $price_cache->get_price( $product, $custom_price, 'price', $custom_price, $product_pricing );
+		} else {
+			$product_id = is_numeric( $product ) ? (int) $product : (int) $product->get_id();
+			if ( ! is_a( $product_pricing, 'WCCS_Public_Product_Pricing' ) || (int) $product_pricing->product_id !== $product_id ) {
+				$product_pricing = new WCCS_Public_Product_Pricing( $product );
+			}
+			$price = $product_pricing->get_price( $custom_price );
+		}
+		
+		if ( ! is_numeric( $price ) || 0 > $price ) {
+			return $custom_price;
+		}
+
+		if ( $price != $custom_price && $exchange_price ) {
+			$price = static::maybe_exchange_price( $price );
+		}
+
+		return $price;
+	}
+
+	public static function get_archive_optimized_variation_ids( $product ) {
+		if ( ! $product || ! $product->is_type( 'variable' ) ) {
+			return false;
+		}
+
+		$threshold = (int) WCCS()->settings->get_setting( 'variation_archive_pruning', 0 );
+		if ( $threshold <= 0 ) {
+			return false;
+		}
+
+		$variation_ids = $product->get_visible_children();
+		if ( count( $variation_ids ) <= $threshold ) {
+			return false;
+		}
+
+		if ( ! is_single( $product->get_id() ) && ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() ) ) {
+			$prices = $product->get_variation_prices( true );
+			if ( empty( $prices['price'] ) ) {
+				return false;
+			}
+
+			$prices = 'regular_price' === WCCS()->settings->get_setting( 'on_sale_products_price', 'on_sale_price' ) ? $prices['regular_price'] : $prices['price'];
+
+			$min_price = min( $prices );
+			$max_price = max( $prices );
+
+			$min_ids = array_keys( $prices, $min_price );
+			$max_ids = array_keys( $prices, $max_price );
+
+			$min_id = $min_ids[0];
+			$max_id = $max_ids[0];
+
+			$result = array( $min_id );
+			if ( $max_id !== $min_id ) {
+				$result[] = $max_id;
+			}
+
+			return $result;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Preload posts and postmeta caches for a list of product or variation IDs in bulk.
+	 *
+	 * Eliminates N+1 database queries when instantiating child variations.
+	 * Uses WordPress 6.1+ _prime_post_caches() or fallback to update_meta_cache().
+	 *
+	 * @since 9.12.0
+	 *
+	 * @param array $product_ids
+	 * @return void
+	 */
+	public static function prime_product_caches( $product_ids ) {
+		if ( empty( $product_ids ) || ! is_array( $product_ids ) ) {
+			return;
+		}
+
+		$ids = array_values( array_filter( array_map( 'absint', $product_ids ) ) );
+		if ( empty( $ids ) ) {
+			return;
+		}
+
+		$to_prime = array();
+		foreach ( $ids as $id ) {
+			if ( ! isset( self::$primed_ids[ $id ] ) ) {
+				self::$primed_ids[ $id ] = true;
+				$to_prime[]              = $id;
+			}
+		}
+
+		if ( empty( $to_prime ) ) {
+			return;
+		}
+
+		if ( function_exists( '_prime_post_caches' ) ) {
+			_prime_post_caches( $to_prime, true, true );
+		} else {
+			if ( function_exists( 'update_meta_cache' ) ) {
+				update_meta_cache( 'post', $to_prime );
+			}
+		}
+
+		if ( ! wp_using_ext_object_cache() ) {
+			WCCS()->WCCS_Product_Price_Cache->prime_products_db_cache( $to_prime );
+			WCCS()->WCCS_Product_Onsale_Cache->prime_products_db_cache( $to_prime );
+			if ( WCCS()->WCCS_Product_Badge_Cache->is_percentage_badge_enabled() ) {
+				WCCS()->WCCS_Product_Badge_Cache->prime_products_db_cache( $to_prime );
+			}
+		}
+	}
+
+	/**
+	 * Fast O(N) integer array deduplication with minimal memory footprint.
+	 *
+	 * Uses hash-map lookup instead of expensive array_unique copies.
+	 * Filters out zero, negative, and non-numeric values while preserving insertion order.
+	 *
+	 * @since 9.12.0
+	 *
+	 * @param  array $array
+	 * @return array
+	 */
+	public static function fast_dedup_ids( array $array ) {
+		if ( empty( $array ) ) {
+			return array();
+		}
+
+		$seen   = array();
+		$result = array();
+		foreach ( $array as $id ) {
+			$id = (int) $id;
+			if ( $id > 0 && ! isset( $seen[ $id ] ) ) {
+				$seen[ $id ] = true;
+				$result[]    = $id;
+			}
+		}
+		return $result;
 	}
 
 }

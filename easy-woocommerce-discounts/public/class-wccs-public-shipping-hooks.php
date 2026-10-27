@@ -63,7 +63,7 @@ class WCCS_Public_Shipping_Hooks extends WCCS_Public_Controller {
 			return $methods;
 		}
 
-        $rules = WCCS_Conditions_Provider::get_shippings();
+        $rules = WCCS_Conditions_Provider::get_shippings( array( 'status' => 1, 'cache' => true ) );
         if ( empty( $rules ) ) {
             return $methods;
         }

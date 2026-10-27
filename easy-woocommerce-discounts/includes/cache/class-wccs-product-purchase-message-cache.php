@@ -4,6 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+/**
+ * Class WCCS_Product_Purchase_Message_Cache
+ *
+ * @deprecated 9.12.0 Purchase message caching is deprecated and disabled.
+ *                    Purchase messages are rendered directly on single product pages with minimal overhead.
+ *                    This class is retained as a lightweight shim for backwards compatibility.
+ */
 class WCCS_Product_Purchase_Message_Cache extends WCCS_Abstract_Cache {
 
     const TYPE = 'message';
@@ -12,42 +19,39 @@ class WCCS_Product_Purchase_Message_Cache extends WCCS_Abstract_Cache {
         parent::__construct( 'wccs_product_purchase_message_', 'wccs_product_purchase_message' );
     }
 
+    /**
+     * @deprecated 9.12.0
+     * @param array $args
+     * @return false
+     */
     public function get_purchase_message( array $args ) {
-        if ( empty( $args ) || empty( $args['product_id'] ) ) {
-            return false;
-        }
-
-        if ( 0 >= absint( $args['product_id'] ) ) {
-            return false;
-        }
-
-        $cache = WCCS()->WCCS_DB_Cache->get_item_by_product( absint( $args['product_id'] ), static::TYPE );
-        $value = ! empty( $cache->value ) && is_array( $cache->value ) ? $cache->value : array();
-        $key   = md5( wp_json_encode( $args ) );
-
-        return isset( $value[ $key ] ) ? $value[ $key ] : false;
+        return false;
     }
 
+    /**
+     * @deprecated 9.12.0
+     * @param array  $args
+     * @param string $message
+     * @return bool
+     */
     public function set_purchase_message( array $args, $message ) {
-        if ( empty( $args ) || empty( $args['product_id'] ) ) {
-            return false;
-        }
+        return true;
+    }
 
-        if ( 0 >= absint( $args['product_id'] ) ) {
-            return false;
-        }
+    /**
+     * @deprecated 9.12.0
+     * @return void
+     */
+    public function clear_cache() {
+        // No-op for deprecated cache.
+    }
 
-        $cache = WCCS()->WCCS_DB_Cache->get_item_by_product( absint( $args['product_id'] ), static::TYPE );
-        $value = ! empty( $cache->value ) && is_array( $cache->value ) ? $cache->value : array();
-        $key   = md5( wp_json_encode( $args ) );
-
-        $value[ $key ] = $message;
-
-        if ( $cache ) {
-            return WCCS()->WCCS_DB_Cache->update( $cache->id, array( 'value' => maybe_serialize( $value ) ) ); 
-        }
-        
-        return WCCS()->WCCS_DB_Cache->add( array( 'product_id' => absint( $args['product_id'] ), 'cache_type' => static::TYPE, 'value' => maybe_serialize( $value ) ) );
+    /**
+     * @deprecated 9.12.0
+     * @return void
+     */
+    public function clear_cache_deprecated() {
+        // No-op for deprecated cache.
     }
 
 }

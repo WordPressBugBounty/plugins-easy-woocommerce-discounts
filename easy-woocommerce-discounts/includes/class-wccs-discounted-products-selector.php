@@ -13,10 +13,10 @@ class WCCS_Discounted_Products_Selector {
 	protected $selected_products = array();
 
 	protected $orders = array(
-		'all_products' => '0',
-		'products_in_list' => '1',
-		'products_not_in_list' => '2',
-		'categories_in_list' => '15',
+		'all_products'           => '0',
+		'products_in_list'       => '1',
+		'products_not_in_list'   => '2',
+		'categories_in_list'     => '15',
 		'categories_not_in_list' => '16',
 	);
 
@@ -87,7 +87,7 @@ class WCCS_Discounted_Products_Selector {
 		}
 
 		if ( ! empty( $this->selected_products ) ) {
-			return $this->selected_products = array_diff( $this->selected_products, $item['products'] );
+			return $this->selected_products = array_values( array_diff( $this->selected_products, $item['products'] ) );
 		} else {
 			return $this->selected_products = WCCS()->products->get_products(
 				array(
@@ -107,8 +107,8 @@ class WCCS_Discounted_Products_Selector {
 
 		$products = WCCS()->products->get_categories_products( $item['categories'] );
 
-		return $this->selected_products = ! empty( $this->selected_products ) ?
-			array_intersect( $this->selected_products, $products ) : $products;
+		return $this->selected_products = ( is_array( $this->selected_products ) && ! empty( $this->selected_products ) ) ?
+			array_values( array_intersect( $this->selected_products, $products ) ) : $products;
 	}
 
 	protected function categories_not_in_list( $item ) {
@@ -123,8 +123,8 @@ class WCCS_Discounted_Products_Selector {
 
 		$products = WCCS()->products->get_categories_products( $categories_to_include );
 
-		return $this->selected_products = ! empty( $this->selected_products ) ?
-			array_intersect( $this->selected_products, $products ) : $products;
+		return $this->selected_products = ( is_array( $this->selected_products ) && ! empty( $this->selected_products ) ) ?
+			array_values( array_intersect( $this->selected_products, $products ) ) : $products;
 	}
 
 }

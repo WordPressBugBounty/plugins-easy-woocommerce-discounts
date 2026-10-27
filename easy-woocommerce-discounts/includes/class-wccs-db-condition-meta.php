@@ -174,7 +174,8 @@ class WCCS_DB_Condition_Meta extends WCCS_DB {
 			meta_value longtext,
 			PRIMARY KEY  (meta_id),
 			KEY wccs_condition_id (wccs_condition_id),
-			KEY meta_key (meta_key)
+			KEY meta_key (meta_key(100)),
+			KEY condition_meta (wccs_condition_id, meta_key(100))
 			) $collate;";
 
 		dbDelta( $sql );

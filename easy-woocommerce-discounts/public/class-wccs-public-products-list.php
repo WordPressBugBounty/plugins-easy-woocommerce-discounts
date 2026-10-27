@@ -34,7 +34,8 @@ class WCCS_Public_Products_List extends WCCS_Public_Controller {
 			'page'       => 1,
 			'orderby'    => 'date',
 			'order'      => 'DESC',
-			'meta_query' => array(),
+			'meta_query' => WC()->query->get_meta_query(),
+			'tax_query'  => WC()->query->get_tax_query(),
 		);
 
 		if ( WCCS_Helpers::wc_version_check( '3.3' ) ) {

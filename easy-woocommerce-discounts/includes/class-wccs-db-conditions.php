@@ -7,6 +7,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WCCS_DB_Conditions extends WCCS_DB {
 
 	/**
+	 * Local request cache for conditions.
+	 *
+	 * @var array
+	 */
+	protected $active_rules_cache = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.0.0
@@ -14,9 +21,10 @@ class WCCS_DB_Conditions extends WCCS_DB {
 	public function __construct() {
 		global $wpdb;
 
-		$this->table_name  = $wpdb->prefix . 'wccs_conditions';
-		$this->primary_key = 'id';
-		$this->version     = '1.0';
+		$this->table_name         = $wpdb->prefix . 'wccs_conditions';
+		$this->primary_key        = 'id';
+		$this->version            = '1.0';
+		$this->active_rules_cache = array();
 	}
 
 	/**
@@ -125,6 +133,19 @@ class WCCS_DB_Conditions extends WCCS_DB {
 		return $condition ? $condition : false;
 	}
 
+	public function get_conditions_by_name( $name, array $args = [] ) {
+		$args = array_merge( [
+			'title'  => $name,
+			'number' => -1,
+		], $args );
+
+		if ( is_null( $args['title'] ) || '' === $args['title'] || ctype_space( $args['title'] ) ) {
+			return false;
+		}
+
+		return $this->get_conditions( $args );
+	}
+
 	/**
 	 * Deleting a condition by it's id.
 	 *
@@ -142,7 +163,7 @@ class WCCS_DB_Conditions extends WCCS_DB {
 
 		$condition = $this->get_condition( $id );
 
-		if ( $condition->id > 0 ) {
+		if ( $condition && ! empty( $condition->id ) ) {
 			global $wpdb;
 			$delete = $wpdb->delete( $this->table_name, array( 'id' => $condition->id ), array( '%d' ) );
 
@@ -154,6 +175,65 @@ class WCCS_DB_Conditions extends WCCS_DB {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get the rules cache service instance.
+	 *
+	 * @return WCCS_Rules_Cache
+	 */
+	public function get_rules_cache() {
+		$rules_cache = WCCS()->container()->get( WCCS_Rules_Cache::class );
+		if ( $rules_cache instanceof WCCS_Rules_Cache ) {
+			return $rules_cache;
+		}
+
+		return WCCS_Rules_Cache::instance();
+	}
+
+	/**
+	 * Clear cached conditions across all cache tiers, optionally filtered by rule type.
+	 *
+	 * @param  string|null $type Optional condition type (e.g. 'pricing', 'cart-discount', 'checkout-fee', 'shipping').
+	 * @return void
+	 */
+	public function clear_rules_cache( $type = null ) {
+		if ( ! empty( $type ) && is_string( $type ) && ! empty( $this->active_rules_cache) ) {
+			$type_prefix = 'asnp_wccs_rules_' . sanitize_key( $type ) . '_';
+			$all_prefix  = 'asnp_wccs_rules_all_';
+			foreach ( array_keys( $this->active_rules_cache ) as $key ) {
+				if ( 0 === strpos( $key, $type_prefix ) || 0 === strpos( $key, $all_prefix ) ) {
+					unset( $this->active_rules_cache[ $key ] );
+				}
+			}
+		} else {
+			$this->active_rules_cache = array();
+		}
+
+		$this->get_rules_cache()->clear_cache( $type );
+	}
+
+	/**
+	 * Determine whether the conditions query should be cached in Multi-Tier Rules Cache.
+	 *
+	 * Caching defaults to false in get_conditions() and is strictly opt-in via 'cache' => true.
+	 * Only queries explicitly requesting cache (cache => true) without suppress_cache or
+	 * single-item lookups are eligible for rules caching.
+	 *
+	 * @param  array $args Query arguments.
+	 * @return bool
+	 */
+	public function is_cacheable( array $args ) {
+		if ( empty( $args['cache'] ) || ! empty( $args['suppress_cache'] ) ) {
+			return false;
+		}
+
+		// Specific lookups by ID, name, or title are lookups, not evaluation rule sets
+		if ( ! empty( $args['id'] ) || ! empty( $args['name'] ) || ! empty( $args['title'] ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -169,85 +249,133 @@ class WCCS_DB_Conditions extends WCCS_DB {
 		global $wpdb;
 
 		$defaults = array(
-			'number'  => 20,
-			'offset'  => 0,
-			'orderby' => 'id',
-			'order'   => 'DESC',
-			'output'  => OBJECT,
+			'number'       => 20,
+			'offset'       => 0,
+			'orderby'      => 'id',
+			'order'        => 'DESC',
+			'output'       => OBJECT,
+			'include_meta' => true,
+			'cache'        => false,
 		);
 
-		$args = wp_parse_args( $args, $defaults );
+		$is_cacheable = $this->is_cacheable( $args );
+		$args         = wp_parse_args( $args, $defaults );
+		unset( $args['cache'], $args['suppress_cache'] );
 
 		if ( $args['number'] < 1 ) {
 			$args['number'] = 999999999999;
 		}
 
-		$args['orderby'] = ! array_key_exists( $args['orderby'], $this->get_columns() ) ? 'id' : $args['orderby'];
-		$args['orderby'] = esc_sql( $args['orderby'] );
-		$args['order']   = esc_sql( $args['order'] );
+		$valid_columns   = array_keys( $this->get_columns() );
+		$args['orderby'] = in_array( $args['orderby'], $valid_columns, true ) ? $args['orderby'] : 'id';
+		$args['order']   = 'ASC' === strtoupper( trim( (string) $args['order'] ) ) ? 'ASC' : 'DESC';
+
+		// Check Multi-Tier Hybrid Rules Cache (Memory -> Object Cache -> OPcache File -> Master Snapshot Option)
+		if ( $is_cacheable ) {
+			$rules_cache = $this->get_rules_cache();
+			$cached      = $rules_cache->get( $args );
+			if ( false !== $cached ) {
+				$cache_key = $rules_cache->generate_cache_key( $args );
+				$this->active_rules_cache[ $cache_key ] = $cached;
+				return $cached;
+			}
+		}
 
 		$select_args = array();
 		$where       = ' WHERE 1=1';
 
 		// Specific conditions.
 		if ( ! empty( $args['id'] ) ) {
-			if ( is_array( $args['id'] ) ) {
-				$ids = implode( ',', array_map( 'absint', $args['id'] ) );
+			$raw_ids = is_array( $args['id'] ) ? $args['id'] : array( $args['id'] );
+			$ids     = array_values( array_filter( array_map( 'absint', $raw_ids ) ) );
+			if ( ! empty( $ids ) ) {
+				$placeholders = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
+				$where       .= " AND `id` IN ( {$placeholders} )";
+				foreach ( $ids as $id ) {
+					$select_args[] = $id;
+				}
 			} else {
-				$ids = absint( $args['id'] );
+				$where .= ' AND 1=0';
 			}
-			$where .= " AND `id` IN( {$ids} )";
 		}
 
 		// Specific type.
 		if ( ! empty( $args['type'] ) ) {
-			if ( is_array( $args['type'] ) ) {
-				$types = implode( "','", array_map( 'esc_sql', $args['type'] ) );
+			$raw_types = is_array( $args['type'] ) ? $args['type'] : array( $args['type'] );
+			$types     = array_values( array_filter( array_map( 'sanitize_key', $raw_types ) ) );
+			if ( ! empty( $types ) ) {
+				$placeholders = implode( ', ', array_fill( 0, count( $types ), '%s' ) );
+				$where       .= " AND `type` IN ( {$placeholders} )";
+				foreach ( $types as $type_slug ) {
+					$select_args[] = $type_slug;
+				}
 			} else {
-				$types = esc_sql( $args['type'] );
+				$where .= ' AND 1=0';
 			}
-			$where .= " AND `type` IN( '{$types}' )";
 		}
 
 		// Search by name.
 		if ( ! empty( $args['name'] ) ) {
 			$where         .= ' AND LOWER(`name`) LIKE %s';
 			$select_args[] = '%' . $wpdb->esc_like( strtolower( sanitize_text_field( $args['name'] ) ) ) . '%';
+			// Exact search by name.
+		} elseif ( ! empty( $args['title'] ) ) {
+			$where         .= ' AND LOWER(`name`) = %s';
+			$select_args[] = strtolower( sanitize_text_field( $args['title'] ) );
 		}
 
 		// Status.
-		if ( isset( $args['status'] ) ) {
-			$where .= " AND `status` = " . intval( $args['status'] );
+		if ( isset( $args['status'] ) && '' !== $args['status'] ) {
+			$where         .= ' AND `status` = %d';
+			$select_args[] = intval( $args['status'] );
 		}
 
 		$select_args[] = absint( $args['offset'] );
 		$select_args[] = absint( $args['number'] );
 
-		$conditions = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->table_name $where ORDER BY {$args['orderby']} {$args['order']} LIMIT %d,%d;", $select_args ), $args['output'] );
+		$conditions = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$this->table_name} {$where} ORDER BY `{$args['orderby']}` {$args['order']} LIMIT %d, %d;", $select_args ), $args['output'] );
 
-		if ( ! empty( $conditions ) ) {
+		if ( ! empty( $conditions ) && $args['include_meta'] ) {
+			$condition_ids = array();
+			foreach ( $conditions as $c ) {
+				$cid = is_object( $c ) ? (int) $c->id : (int) $c['id'];
+				if ( $cid > 0 ) {
+					$condition_ids[] = $cid;
+				}
+			}
+
+			// Batch prime all metadata in ONE query instead of N+1 individual queries
+			if ( ! empty( $condition_ids ) ) {
+				update_meta_cache( 'wccs_condition', $condition_ids );
+			}
+
 			$wccs = WCCS();
 			foreach ( $conditions as &$condition ) {
-				if ( is_object( $condition ) ) {
-					$meta_data = $wccs->condition_meta->get_meta( $condition->id, '', true );
-					if ( ! empty( $meta_data ) ) {
-						foreach ( $meta_data as $key => $value ) {
+				$cid = is_object( $condition ) ? (int) $condition->id : (int) $condition['id'];
+				$meta_data = $wccs->condition_meta->get_meta( $cid, '', true );
+				if ( ! empty( $meta_data ) ) {
+					foreach ( $meta_data as $key => $value ) {
+						$val = maybe_unserialize( is_array( $value ) && isset( $value[0] ) ? $value[0] : $value );
+						if ( is_object( $condition ) ) {
 							if ( ! isset( $condition->{$key} ) ) {
-								$condition->{$key} = maybe_unserialize( $value[0] );
+								$condition->{$key} = $val;
 							}
-						}
-					}
-				} elseif ( isset( $condition['id'] ) ) {
-					$meta_data = $wccs->condition_meta->get_meta( $condition['id'], '', true );
-					if ( ! empty( $meta_data ) ) {
-						foreach ( $meta_data as $key => $value ) {
+						} elseif ( isset( $condition['id'] ) ) {
 							if ( ! isset( $condition[ $key ] ) ) {
-								$condition[ $key ] = maybe_unserialize( $value[0] );
+								$condition[ $key ] = $val;
 							}
 						}
 					}
 				}
 			}
+			unset( $condition );
+		}
+
+		if ( $is_cacheable ) {
+			$rules_cache = isset( $rules_cache ) ? $rules_cache : $this->get_rules_cache();
+			$cache_key   = $rules_cache->generate_cache_key( $args );
+			$this->active_rules_cache[ $cache_key ] = $conditions;
+			$rules_cache->set( $args, $conditions );
 		}
 
 		return $conditions;
@@ -270,11 +398,11 @@ class WCCS_DB_Conditions extends WCCS_DB {
 		global $wpdb;
 
 		foreach ( $conditions as $condition ) {
-			if ( empty( $condition['id'] ) || empty( $condition['ordering'] ) ) {
+			if ( empty( $condition['id'] ) || ! isset( $condition['ordering'] ) || '' === $condition['ordering'] ) {
 				continue;
 			}
 
-			if ( false === $wpdb->update( $this->table_name, array( 'ordering' => $condition['ordering'] ), array( 'id' => $condition['id'] ), '%d', '%d' ) ) {
+			if ( false === $wpdb->update( $this->table_name, array( 'ordering' => intval( $condition['ordering'] ) ), array( 'id' => absint( $condition['id'] ) ), array( '%d' ), array( '%d' ) ) ) {
 				return false;
 			}
 		}
@@ -331,7 +459,7 @@ class WCCS_DB_Conditions extends WCCS_DB {
 	public function count() {
 		global $wpdb;
 
-		$count = $wpdb->get_var( 'SELECT COUNT(' . esc_sql( $this->primary_key ) . ') FROM ' . esc_sql( $this->table_name ) );
+		$count = $wpdb->get_var( "SELECT COUNT( $this->primary_key ) FROM $this->table_name" );
 
 		return absint( $count );
 	}
@@ -363,13 +491,15 @@ class WCCS_DB_Conditions extends WCCS_DB {
 			$collate = $wpdb->get_charset_collate();
 		}
 
-		$sql = "CREATE TABLE " . esc_sql( $this->table_name ) . " (
+		$sql = "CREATE TABLE " . $this->table_name . " (
 		id bigint(20) NOT NULL AUTO_INCREMENT,
 		type varchar(200) NOT NULL,
 		name mediumtext NOT NULL DEFAULT '',
 		ordering MEDIUMINT NOT NULL DEFAULT 0,
 		status TINYINT NOT NULL DEFAULT '1',
-		PRIMARY KEY  (id)
+		PRIMARY KEY  (id),
+		KEY type_status_ordering (type(50), status, ordering),
+		KEY status (status)
 		) $collate;";
 
 		dbDelta( $sql );

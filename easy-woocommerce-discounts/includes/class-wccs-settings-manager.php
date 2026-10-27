@@ -15,6 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WCCS_Settings_Manager {
 
 	/**
+	 * Memoized settings sections.
+	 *
+	 * @var array|false
+	 */
+	protected $sections = false;
+
+	/**
 	 * Getting tabs of settings menu.
 	 *
 	 * @since  1.0.0
@@ -60,13 +67,11 @@ class WCCS_Settings_Manager {
 	 * @return array Array of tabs and sections
 	 */
 	public function get_registered_settings_sections() {
-		static $sections = false;
-
-		if ( false !== $sections ) {
-			return $sections;
+		if ( false !== $this->sections ) {
+			return $this->sections;
 		}
 
-		$sections = array(
+		$this->sections = array(
 			'general' => apply_filters( 'wccs_settings_sections_general', array(
 				'cart-discount' => __( 'Cart Discount', 'easy-woocommerce-discounts' ),
 				'product-pricing' => __( 'Product Pricing', 'easy-woocommerce-discounts' ),
@@ -92,9 +97,9 @@ class WCCS_Settings_Manager {
 			) ),
 		);
 
-		$sections = apply_filters( 'wccs_settings_sections', $sections );
+		$this->sections = apply_filters( 'wccs_settings_sections', $this->sections );
 
-		return $sections;
+		return $this->sections;
 	}
 
 	/**
@@ -223,6 +228,17 @@ class WCCS_Settings_Manager {
 									'all' => __( 'Change price - simple and bulk prices', 'easy-woocommerce-discounts' ),
 									'simple' => __( 'Change price - simple prices', 'easy-woocommerce-discounts' ),
 									'simple_ex_html' => __( 'Change price - simple prices without strikethrough price', 'easy-woocommerce-discounts' ),
+								),
+							),
+							'change_price_method' => array(
+								'id'      => 'change_price_method',
+								'name'    => __( 'Change Price Method', 'easy-woocommerce-discounts' ),
+								'desc'    => __( 'Use a lightweight method by default. Only use the advanced (heavier) method for major price changes.', 'easy-woocommerce-discounts' ),
+								'type'    => 'select',
+								'std'     => 'lightweight',
+								'options' => array(
+									'lightweight' => __( 'Lightweight', 'easy-woocommerce-discounts' ),
+									'advanced'    => __( 'Advanced', 'easy-woocommerce-discounts' ),
 								),
 							),
 							'sale_badge' => array(
@@ -1290,61 +1306,39 @@ class WCCS_Settings_Manager {
 				array(
 					'main' => apply_filters( 'wccs_settings_performance_main_section', array(
 						'update_products_price' => array(
-							'id' => 'update_products_price',
-							'name' => __( 'Update Products Price', 'easy-woocommerce-discounts' ),
-							'desc' => __( 'Cache products price based on simple pricing rules to improve performance in the front-end.', 'easy-woocommerce-discounts' ),
-							'type' => 'link',
-							'url' => esc_url( wp_nonce_url( add_query_arg( 'do_update_products_price_asnp_wccs', '1' ), 'wccs_update_products_price_nonce', '_wccs_update_products_price_nonce' ) ),
+							'id'      => 'update_products_price',
+							'name'    => __( 'Warm Products Price Cache', 'easy-woocommerce-discounts' ),
+							'desc'    => sprintf( __( 'Pre-calculate and warm product prices and on-sale badges into the persistent cache in the background.%1$s<strong>Note:</strong> Warming price cache is only useful when simple pricing or bulk pricing rules that change product prices are not cart-based or dynamic rules, and do not have dynamic products. If your pricing rules depend on cart or dynamic conditions, prices cannot be pre-cached.', 'easy-woocommerce-discounts' ), '<br>' ),
+							'type'    => 'link',
+							'url'     => esc_url( wp_nonce_url( add_query_arg( 'do_update_products_price_asnp_wccs', '1' ), 'wccs_update_products_price_nonce', '_wccs_update_products_price_nonce' ) ),
 							'classes' => 'button',
 						),
 						'auto_update_products_price' => array(
-							'id' => 'auto_update_products_price',
-							'name' => __( 'Auto Update Products Price', 'easy-woocommerce-discounts' ),
-							'desc' => __( 'Automatically update products price in the background when a new rule added or the plugin settings updated or WooCommerce settings updated or a product added or updated.', 'easy-woocommerce-discounts' ),
-							'type' => 'select',
-							'std' => 0,
+							'id'      => 'auto_update_products_price',
+							'name'    => __( 'Auto Warm Products Price Cache', 'easy-woocommerce-discounts' ),
+							'desc'    => sprintf( __( 'Automatically pre-calculate and warm product prices in the background whenever pricing rules or products are updated.%1$s<strong>Important:</strong> Only enable this feature if your simple pricing or bulk pricing rules that change product prices are not cart-based or dynamic rules, and do not have dynamic products. Do not enable this feature when it is not useful, as running background updates for dynamic rules creates unnecessary server workload without cache benefits.', 'easy-woocommerce-discounts' ), '<br>' ),
+							'type'    => 'select',
+							'std'     => 0,
 							'options' => array(
 								1 => __( 'Yes', 'easy-woocommerce-discounts' ),
 								0 => __( 'No', 'easy-woocommerce-discounts' ),
 							),
 						),
 						'enable_analytics' => array(
-							'id' => 'enable_analytics',
-							'name' => __( 'Enable Analytics', 'easy-woocommerce-discounts' ),
-							'desc' => __( 'Enable/Disable Analytics', 'easy-woocommerce-discounts' ),
-							'type' => 'select',
-							'std' => 1,
+							'id'      => 'enable_analytics',
+							'name'    => __( 'Enable Analytics', 'easy-woocommerce-discounts' ),
+							'desc'    => __( 'Enable/Disable Analytics', 'easy-woocommerce-discounts' ),
+							'type'    => 'select',
+							'std'     => 0,
 							'options' => array(
 								1 => __( 'Yes', 'easy-woocommerce-discounts' ),
 								0 => __( 'No', 'easy-woocommerce-discounts' ),
 							),
 						),
 						'cache_prices' => array(
-							'id' => 'cache_prices',
-							'name' => __( 'Cache Prices', 'easy-woocommerce-discounts' ),
-							'desc' => sprintf( __( "Enable/Disable price caching.%s <strong>Note:</strong> Disabling this feature can potentially reduce your website's loading speed.", 'easy-woocommerce-discounts' ), '<br>' ),
-							'type' => 'select',
-							'std' => 1,
-							'options' => array(
-								1 => __( 'Yes', 'easy-woocommerce-discounts' ),
-								0 => __( 'No', 'easy-woocommerce-discounts' ),
-							),
-						),
-						'cache_quantity_table' => array(
-							'id' => 'cache_quantity_table',
-							'name' => __( 'Cache Quantity Table', 'easy-woocommerce-discounts' ),
-							'desc' => __( 'Enable/Disable quantity table caching.', 'easy-woocommerce-discounts' ),
-							'type' => 'select',
-							'std' => 1,
-							'options' => array(
-								1 => __( 'Yes', 'easy-woocommerce-discounts' ),
-								0 => __( 'No', 'easy-woocommerce-discounts' ),
-							),
-						),
-						'cache_messages' => array(
-							'id'      => 'cache_messages',
-							'name'    => __( 'Cache Messages', 'easy-woocommerce-discounts' ),
-							'desc'    => __( 'Enable/Disable pricing messages caching.', 'easy-woocommerce-discounts' ),
+							'id'      => 'cache_prices',
+							'name'    => __( 'Cache Prices', 'easy-woocommerce-discounts' ),
+							'desc'    => sprintf( __( "Enable/Disable price caching.%s <strong>Note:</strong> Disabling this feature can potentially reduce your website's loading speed.", 'easy-woocommerce-discounts' ), '<br>' ),
 							'type'    => 'select',
 							'std'     => 1,
 							'options' => array(
@@ -1352,12 +1346,30 @@ class WCCS_Settings_Manager {
 								0 => __( 'No', 'easy-woocommerce-discounts' ),
 							),
 						),
+						'cache_duration' => array(
+							'id'      => 'cache_duration',
+							'name'    => __( 'Cache Duration', 'easy-woocommerce-discounts' ),
+							'desc'    => __( 'Duration in minutes to cache product prices when no rule-based expiration is set. Default is 43200 minutes (30 days / 1 month). Set to 0 to disable the fallback TTL.', 'easy-woocommerce-discounts' ),
+							'type'    => 'number',
+							'std'     => '43200',
+							'min'     => '0',
+							'step'    => '1',
+						),
+						'variation_archive_pruning' => array(
+							'id'      => 'variation_archive_pruning',
+							'name'    => __( 'Archive Variation Pruning', 'easy-woocommerce-discounts' ),
+							'desc'    => __( 'On archive pages (shop, categories, tags), only calculate discounts for the cheapest and most expensive variation when a variable product has more than this many variations. Set to 0 to disable.', 'easy-woocommerce-discounts' ),
+							'type'    => 'number',
+							'std'     => '0',
+							'min'     => '0',
+							'step'    => '1',
+						),
 						'cache_onsale_badge' => array(
-							'id' => 'cache_onsale_badge',
-							'name' => __( 'Cache Onsale Badge', 'easy-woocommerce-discounts' ),
-							'desc' => __( 'Enable/Disable onsale badge caching.', 'easy-woocommerce-discounts' ),
-							'type' => 'select',
-							'std' => 1,
+							'id'      => 'cache_onsale_badge',
+							'name'    => __( 'Cache Onsale Badge', 'easy-woocommerce-discounts' ),
+							'desc'    => __( 'Enable/Disable onsale badge caching.', 'easy-woocommerce-discounts' ),
+							'type'    => 'select',
+							'std'     => 1,
 							'options' => array(
 								1 => __( 'Yes', 'easy-woocommerce-discounts' ),
 								0 => __( 'No', 'easy-woocommerce-discounts' ),

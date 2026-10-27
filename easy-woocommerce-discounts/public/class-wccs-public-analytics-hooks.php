@@ -291,6 +291,16 @@ class WCCS_Pubilc_Analytics_Hooks {
 	public function impression() {
 		check_ajax_referer( 'wccs_single_product_nonce', 'nonce' );
 
+		// Fast exit if analytics is disabled in plugin settings.
+		if ( ! (int) WCCS()->settings->get_setting( 'enable_analytics', 0 ) ) {
+			wp_send_json_success();
+		}
+
+		// Fast exit if no pricing rules are active at all.
+		if ( ! WCCS()->pricing->has_any_active_pricing_rule() ) {
+			wp_send_json_success();
+		}
+
 		$product = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
 		if ( 0 >= $product ) {
 			return;

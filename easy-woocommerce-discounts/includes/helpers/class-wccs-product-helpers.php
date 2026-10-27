@@ -17,6 +17,13 @@ class WCCS_Product_Helpers {
 	protected $loader;
 
 	/**
+	 * Memoized product target IDs (product_id, parent_id, variation_id) per request.
+	 *
+	 * @var array<int, array{product_id: int, parent_id: int, variation_id: int, is_variable: bool}>
+	 */
+	protected $product_targets = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @since  1.0.0
@@ -278,8 +285,20 @@ class WCCS_Product_Helpers {
 			if ( empty( $cats_array ) && empty( $tags_array ) && ! apply_filters( 'woocommerce_conditions_product_related_posts_force_display', false, $product_id ) ) {
 				$related_posts = array();
 			} else {
-				$data_store = WC_Data_Store::load( 'product' );
-				$related_posts = $data_store->get_related_products( $cats_array, $tags_array, $exclude_ids, ( $limit > 0 ? $limit + 10 : 9999999 ), $product_id );
+				if ( WCCS_Helpers::wc_version_check() ) {
+					$data_store = WC_Data_Store::load( 'product' );
+					$related_posts = $data_store->get_related_products( $cats_array, $tags_array, $exclude_ids, ( $limit > 0 ? $limit + 10 : 9999999 ), $product_id );
+				} else {
+					global $wpdb;
+
+					$product = wc_get_product( $product_id );
+
+					// Generate query - but query an extra 10 results to give the appearance of random results
+					$query = $product->build_related_query( $cats_array, $tags_array, $exclude_ids, ( $limit > 0 ? $limit + 10 : 9999999 ) );
+
+					// Get the posts
+					$related_posts = $wpdb->get_col( implode( ' ', $query ) );
+				}
 			}
 
 			set_transient( $transient_name, $related_posts, DAY_IN_SECONDS );
@@ -496,57 +515,176 @@ class WCCS_Product_Helpers {
 		return $variations;
 	}
 
-	public function get_percentage_badge_value( $product ) {
-		if ( is_numeric( $product ) ) {
-			$product = wc_get_product( $product );
+	/**
+	 * Get product categories based on given items.
+	 * Product categories should match in the given items categories.
+	 *
+	 * @since  3.4.0
+	 *
+	 * @param  int   $product_id
+	 * @param  array $items
+	 *
+	 * @return array
+	 */
+	public function get_product_categories( $product_id, $items = array() ) {
+		if ( ! $product_id ) {
+			return array();
 		}
 
-		if ( ! $product ) {
-			return false;
+		$product_categories = array_unique( wc_get_product_cat_ids( $product_id ) );
+
+		if ( empty( $product_categories ) || empty( $items ) ) {
+			return $product_categories;
 		}
 
-		if ( $product->is_type( 'variable' ) ) {
-			$prices = $product->get_variation_prices();
-			$max_percentage = 0;
-			foreach ( $prices['price'] as $key => $price ) {
-				// Only on sale variations
-				if ( $prices['regular_price'][ $key ] > $price ) {
-					$percentage = ( floatval( $prices['regular_price'][ $key ] ) - floatval( $price ) ) / floatval( $prices['regular_price'][ $key ] ) * 100;
-					if ( $percentage > $max_percentage ) {
-						$max_percentage = $percentage;
+		$method = '';
+		foreach ( $items as $group ) {
+			if ( is_array( $group ) && ! isset( $group['item'] ) && ! isset( $group['condition'] ) ) {
+				foreach ( $group as $item ) {
+					$method = isset( $item['item'] ) ? $item['item'] : $item['condition'];
+					if ( 'categories_in_list' === $method && ! empty( $item['categories'] ) ) {
+						$product_categories = array_intersect( $product_categories, $item['categories'] );
+					} elseif ( 'categories_not_in_list' === $method && ! empty( $item['categories'] ) ) {
+						$product_categories = array_diff( $product_categories, $item['categories'] );
 					}
 				}
-			}
-			if ( 0 < $max_percentage ) {
-				return $max_percentage;
-			}
-		} else {
-			$regular_price = $product->get_regular_price();
-			$sale_price = $product->get_sale_price();
-			if ( '' !== $sale_price && $sale_price < $regular_price ) {
-				return ( floatval( $regular_price ) - floatval( $sale_price ) ) / floatval( $regular_price ) * 100;
+			} else {
+				$method = isset( $group['item'] ) ? $group['item'] : $group['condition'];
+				if ( 'categories_in_list' === $method && ! empty( $group['categories'] ) ) {
+					$product_categories = array_intersect( $product_categories, $group['categories'] );
+				} elseif ( 'categories_not_in_list' === $method && ! empty( $group['categories'] ) ) {
+					$product_categories = array_diff( $product_categories, $group['categories'] );
+				}
 			}
 		}
 
-		return false;
+		return $product_categories;
 	}
 
+	/**
+	 * Get the percentage badge value for a product.
+	 *
+	 * Delegates to WCCS_Product_Badge_Cache for multi-tiered caching and optimal performance.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @param  WC_Product|int $product Product instance or ID.
+	 * @return float|false Percentage discount value or false if not discounted.
+	 */
+	public function get_percentage_badge_value( $product ) {
+		return WCCS()->WCCS_Product_Badge_Cache->get_badge_value( $product );
+	}
+
+	/**
+	 * Check if product or product ID is a variable product (standard, variable subscription, etc.).
+	 *
+	 * Supports WooCommerce core variable products, WooCommerce Subscriptions (variable-subscription),
+	 * and third-party custom variable product types.
+	 *
+	 * @param  WC_Product|int|string $product Product instance or numeric product ID.
+	 * @return bool
+	 */
 	public function is_variable_product( $product ) {
-		$product = is_numeric( $product ) ? wc_get_product( $product ) : $product;
-		if ( ! $product ) {
+		if ( is_a( $product, 'WC_Product_Variable' ) ) {
+			return true;
+		}
+
+		if ( is_a( $product, 'WC_Product' ) ) {
+			return $product->is_type( 'variable' );
+		}
+
+		$product_id = is_numeric( $product ) ? (int) $product : 0;
+		if ( $product_id <= 0 ) {
 			return false;
 		}
 
-		return $product->is_type( 'variable' );
+		// A child variation cannot be a parent variable product
+		if ( wp_get_post_parent_id( $product_id ) > 0 ) {
+			return false;
+		}
+
+		$product_type = WC_Product_Factory::get_product_type( $product_id );
+		return false !== strpos( $product_type, 'variable' );
 	}
 
+	/**
+	 * Check if product or product ID is a variation (standard, subscription variation, etc.).
+	 *
+	 * Supports WooCommerce core variations, WooCommerce Subscriptions (subscription_variation),
+	 * and third-party custom variation product types.
+	 *
+	 * @param  WC_Product|int|string $product Product instance or numeric product ID.
+	 * @return bool
+	 */
 	public function is_variation_product( $product ) {
-		$product = is_numeric( $product ) ? wc_get_product( $product ) : $product;
-		if ( ! $product ) {
+		if ( is_a( $product, 'WC_Product_Variation' ) ) {
+			return true;
+		}
+
+		if ( is_a( $product, 'WC_Product' ) ) {
+			return $product->is_type( 'variation' );
+		}
+
+		$product_id = is_numeric( $product ) ? (int) $product : 0;
+		if ( $product_id <= 0 ) {
 			return false;
 		}
 
-		return $product->is_type( 'variation' );
+		$parent = wp_get_post_parent_id( $product_id );
+		if ( $parent > 0 ) {
+			return true;
+		}
+
+		$product_type = WC_Product_Factory::get_product_type( $product_id );
+		return false !== strpos( $product_type, 'variation' );
 	}
 
+
+	/**
+	 * Get normalized product target IDs (product_id, parent_id, variation_id) and variable status.
+	 *
+	 * @param  WC_Product|int|string $product Product instance or numeric ID.
+	 * @return array{product_id: int, parent_id: int, variation_id: int, is_variable: bool}
+	 */
+	public function get_product_target( $product ) {
+		$product_id = is_numeric( $product ) ? (int) $product : ( is_a( $product, 'WC_Product' ) ? (int) $product->get_id() : 0 );
+
+		if ( $product_id > 0 && isset( $this->product_targets[ $product_id ] ) ) {
+			return $this->product_targets[ $product_id ];
+		}
+
+		$parent_id    = $product_id;
+		$variation_id = 0;
+		$is_variable  = false;
+
+		if ( is_a( $product, 'WC_Product' ) ) {
+			if ( $this->is_variation_product( $product ) ) {
+				$parent_id    = (int) $product->get_parent_id();
+				$variation_id = (int) $product->get_id();
+			} else {
+				$is_variable = $this->is_variable_product( $product );
+			}
+		} elseif ( $product_id > 0 ) {
+			$parent = wp_get_post_parent_id( $product_id );
+			if ( $parent > 0 ) {
+				$parent_id    = (int) $parent;
+				$variation_id = $product_id;
+			} else {
+				$is_variable = $this->is_variable_product( $product_id );
+			}
+		}
+
+		$target = array(
+			'product_id'   => $product_id,
+			'parent_id'    => $parent_id,
+			'variation_id' => $variation_id,
+			'is_variable'  => $is_variable,
+		);
+
+		if ( $product_id > 0 ) {
+			$this->product_targets[ $product_id ] = $target;
+		}
+
+		return $target;
+	}
 }

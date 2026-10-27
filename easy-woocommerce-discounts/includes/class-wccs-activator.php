@@ -310,6 +310,9 @@ class WCCS_Activator {
 			'9.3.0' => array(
 				'WCCS_Updates::clear_table_cache',
 			),
+			'9.5.0' => array(
+				'WCCS_Updates::update_9120_cache_table',
+			),
 		);
 	}
 

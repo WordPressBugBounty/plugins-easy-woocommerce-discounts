@@ -77,7 +77,7 @@ abstract class WCCS_DB {
 	 */
 	public function get( $row_id ) {
 		global $wpdb;
-		return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE $this->primary_key = %s LIMIT 1;", $row_id ) );
+		return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM `{$this->table_name}` WHERE `{$this->primary_key}` = %s LIMIT 1;", $row_id ) );
 	}
 
 	/**
@@ -90,7 +90,7 @@ abstract class WCCS_DB {
 	public function get_by( $column, $row_id ) {
 		global $wpdb;
 		$column = esc_sql( $column );
-		return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE $column = %s LIMIT 1;", $row_id ) );
+		return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM `{$this->table_name}` WHERE `{$column}` = %s LIMIT 1;", $row_id ) );
 	}
 
 	/**
@@ -103,7 +103,7 @@ abstract class WCCS_DB {
 	public function get_column( $column, $row_id ) {
 		global $wpdb;
 		$column = esc_sql( $column );
-		return $wpdb->get_var( $wpdb->prepare( "SELECT $column FROM $this->table_name WHERE $this->primary_key = %s LIMIT 1;", $row_id ) );
+		return $wpdb->get_var( $wpdb->prepare( "SELECT `{$column}` FROM `{$this->table_name}` WHERE `{$this->primary_key}` = %s LIMIT 1;", $row_id ) );
 	}
 
 	/**
@@ -117,7 +117,7 @@ abstract class WCCS_DB {
 		global $wpdb;
 		$column_where = esc_sql( $column_where );
 		$column       = esc_sql( $column );
-		return $wpdb->get_var( $wpdb->prepare( "SELECT $column FROM $this->table_name WHERE $column_where = %s LIMIT 1;", $column_value ) );
+		return $wpdb->get_var( $wpdb->prepare( "SELECT `{$column}` FROM `{$this->table_name}` WHERE `{$column_where}` = %s LIMIT 1;", $column_value ) );
 	}
 
 	/**
@@ -207,7 +207,7 @@ abstract class WCCS_DB {
 			return false;
 		}
 
-		if ( false === $wpdb->query( $wpdb->prepare( "DELETE FROM $this->table_name WHERE $this->primary_key = %d", $row_id ) ) ) {
+		if ( false === $wpdb->query( $wpdb->prepare( "DELETE FROM `{$this->table_name}` WHERE `{$this->primary_key}` = %d", $row_id ) ) ) {
 			return false;
 		}
 
@@ -217,7 +217,7 @@ abstract class WCCS_DB {
 	public function delete_all_data() {
 		global $wpdb;
 
-		return $wpdb->query( "TRUNCATE TABLE $this->table_name" );
+		return $wpdb->query( "TRUNCATE TABLE `{$this->table_name}`" );
 	}
 
 	/**

@@ -113,7 +113,8 @@ class WCCS_DB_User_Usage_Logs extends WCCS_DB {
         last_used DATETIME DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         KEY rule_id (rule_id),
-        KEY used_by (used_by)
+        KEY used_by (used_by(100)),
+        KEY rule_user (rule_id, used_by(100))
 		) $collate;";
 
 		dbDelta( $sql );

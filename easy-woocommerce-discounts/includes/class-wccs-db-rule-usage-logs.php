@@ -6,6 +6,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 
+	/**
+	 * In-memory cache for usage counts.
+	 *
+	 * @var array
+	 */
+	protected $usage_count_cache = array();
+
     /**
 	 * Constructor.
 	 *
@@ -50,6 +57,23 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 		);
 	}
 
+	/**
+	 * Clear usage count cache for a rule or all rules.
+	 *
+	 * @param int $rule_id
+	 * @return void
+	 */
+	public function clear_rule_usage_cache( $rule_id = 0 ) {
+		$rule_id = absint( $rule_id );
+		if ( $rule_id > 0 ) {
+			unset( $this->usage_count_cache[ $rule_id ] );
+			$cache_key = 'asnp_wccs_rule_usage_' . $rule_id;
+			wp_cache_delete( $cache_key, 'asnp_wccs_rules' );
+		} else {
+			$this->usage_count_cache = array();
+		}
+	}
+
 	public function log_rule_usage( $rule_id, $order_id, $usage_count = 1 ) {
 		if ( empty( $rule_id ) || empty( $order_id ) ) {
 			throw new Exception( 'Rule ID and Order ID is required.' );
@@ -61,6 +85,8 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 			'usage_count' => absint( $usage_count ),
 			'created_at'  => current_time( 'mysql' ),
 		), 'rule_usage_log' );
+
+		$this->clear_rule_usage_cache( $rule_id );
 	}
 
 	public function log_rules_usage( $rules_usage ) {
@@ -76,6 +102,7 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 		$placeholders = '(' . implode( ',', array_values( $columns ) ) . ')';
 		$query_values = [];
 		$query_data   = [];
+		$affected_rule_ids = [];
 
 		foreach ( $rules_usage as $rule_usage ) {
 			$values = wp_parse_args( $rule_usage, $this->get_column_defaults() );
@@ -85,6 +112,10 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 			foreach ( array_keys( $columns ) as $column ) {
 				$query_data[] = isset( $values[ $column ] ) ? $values[ $column ] : null;
 			}
+
+			if ( ! empty( $values['rule_id'] ) ) {
+				$affected_rule_ids[] = absint( $values['rule_id'] );
+			}
 		}
 
 		$query = $wpdb->prepare(
@@ -92,7 +123,13 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 			$query_data
 		);
 
-		return $wpdb->query( $query ) ? $wpdb->rows_affected : false;
+		$result = $wpdb->query( $query ) ? $wpdb->rows_affected : false;
+
+		foreach ( array_unique( $affected_rule_ids ) as $rid ) {
+			$this->clear_rule_usage_cache( $rid );
+		}
+
+		return $result;
 	}
 
 	public function get_rule_usage_count( $rule_id ) {
@@ -115,14 +152,29 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
 			throw new Exception( 'Rule ID is required.' );
 		}
 
+		$rule_id = absint( $rule_id );
+		if ( isset( $this->usage_count_cache[ $rule_id ] ) ) {
+			return $this->usage_count_cache[ $rule_id ];
+		}
+
+		$cache_key = 'asnp_wccs_rule_usage_' . $rule_id;
+		$cached    = wp_cache_get( $cache_key, 'asnp_wccs_rules' );
+		if ( false !== $cached ) {
+			$this->usage_count_cache[ $rule_id ] = (int) $cached;
+			return (int) $cached;
+		}
+
 		global $wpdb;
 
-		$usage_count = $wpdb->get_var( $wpdb->prepare(
+		$usage_count = (int) $wpdb->get_var( $wpdb->prepare(
 			"SELECT COUNT(DISTINCT order_id) FROM {$this->table_name} WHERE rule_id = %d",
 			$rule_id
 		) );
 
-		return (int) $usage_count;
+		$this->usage_count_cache[ $rule_id ] = $usage_count;
+		wp_cache_set( $cache_key, $usage_count, 'asnp_wccs_rules', 300 );
+
+		return $usage_count;
 	}
 
     /**
@@ -146,7 +198,8 @@ class WCCS_DB_Rule_Usage_Logs extends WCCS_DB {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         KEY rule_id (rule_id),
-        KEY order_id (order_id)
+        KEY order_id (order_id),
+        KEY rule_order (rule_id, order_id)
 		) $collate;";
 
 		dbDelta( $sql );

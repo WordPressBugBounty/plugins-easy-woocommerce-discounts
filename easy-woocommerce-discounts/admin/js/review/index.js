@@ -94,13 +94,6 @@ this["ewd"] = this["ewd"] || {}; this["ewd"]["review"] =
 
 /***/ }),
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["apiFetch"]; }());
-
-/***/ }),
-
 /***/ 149:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -173,7 +166,7 @@ var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_)
 var external_this_wp_i18n_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: external {"this":["wp","apiFetch"]}
-var external_this_wp_apiFetch_ = __webpack_require__(11);
+var external_this_wp_apiFetch_ = __webpack_require__(9);
 var external_this_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_this_wp_apiFetch_);
 
 // CONCATENATED MODULE: ./admin/vue/review/api/review.js
@@ -433,6 +426,13 @@ domReady(function () {
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["React"]; }());
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["apiFetch"]; }());
 
 /***/ })
 

@@ -19,6 +19,13 @@ class WCCS_Product_Price_Replace {
 
     protected $prices = array();
 
+    /**
+     * Map of variable product IDs currently being replaced to prevent infinite recursion cycles.
+     *
+     * @var array<int, bool>
+     */
+    protected $replacing_variation_prices = array();
+
     public function __construct( $should_replace_prices = false, $read_variation_cached_prices = null, $change_regular_price = false ) {
         $this->should_replace_prices        = $should_replace_prices;
         $this->read_variation_cached_prices = $read_variation_cached_prices;
@@ -98,12 +105,14 @@ class WCCS_Product_Price_Replace {
 
     public function enable_hooks() {
         if ( ! $this->should_replace_prices ) {
-            return;
+            return $this;
         }
 
         foreach ( $this->get_filters() as $hook ) {
             add_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
         }
+
+        return $this;
     }
 
     public function disable_hooks() {
@@ -114,6 +123,8 @@ class WCCS_Product_Price_Replace {
         foreach ( $this->get_filters() as $hook ) {
             remove_filter( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'] );
         }
+
+        return $this;
     }
 
     public function replace( $price, $product, $price_type, $exchange_price = true ) {
@@ -134,8 +145,17 @@ class WCCS_Product_Price_Replace {
     }
 
     public function replace_price( $price, $product, $exchange_price = true ) {
-        if ( ! isset( $this->prices[ $product->get_id() ] ) ) {
-            $this->prices[ $product->get_id() ] = array( 'price' => array() );
+        if ( ! $product ) {
+            return $price;
+        }
+
+        $product_id = $product->get_id();
+        if ( isset( $this->prices[ $product_id ]['price'][ strval( $price ) ] ) ) {
+            return $this->prices[ $product_id ]['price'][ strval( $price ) ];
+        }
+
+        if ( ! isset( $this->prices[ $product_id ] ) ) {
+            $this->prices[ $product_id ] = array( 'price' => array() );
         }
 
         return $this->maybe_cache_price(
@@ -147,8 +167,17 @@ class WCCS_Product_Price_Replace {
     }
 
     public function replace_sale_price( $price, $product, $exchange_price = true ) {
-        if ( ! isset( $this->prices[ $product->get_id() ] ) ) {
-            $this->prices[ $product->get_id() ] = array( 'sale_price' => array() );
+        if ( ! $product ) {
+            return $price;
+        }
+
+        $product_id = $product->get_id();
+        if ( isset( $this->prices[ $product_id ]['sale_price'][ strval( $price ) ] ) ) {
+            return $this->prices[ $product_id ]['sale_price'][ strval( $price ) ];
+        }
+
+        if ( ! isset( $this->prices[ $product_id ] ) ) {
+            $this->prices[ $product_id ] = array( 'sale_price' => array() );
         }
 
         return $this->maybe_cache_price(
@@ -160,153 +189,309 @@ class WCCS_Product_Price_Replace {
     }
 
     public function replace_regular_price( $price, $product, $exchange_price = true ) {
-        if ( ! isset( $this->prices[ $product->get_id() ] ) ) {
-            $this->prices[ $product->get_id() ] = array( 'regular_price' => array() );
+        if ( ! $product ) {
+            return $price;
+        }
+
+        $product_id = $product->get_id();
+        if ( isset( $this->prices[ $product_id ]['regular_price'][ strval( $price ) ] ) ) {
+            return $this->prices[ $product_id ]['regular_price'][ strval( $price ) ];
+        }
+
+        if ( ! isset( $this->prices[ $product_id ] ) ) {
+            $this->prices[ $product_id ] = array( 'regular_price' => array() );
         }
 
         return $this->maybe_cache_price(
             $product,
             $price,
             'regular_price',
-            $this->change_regular_price ? $this->replace( $price, $product, self::REGULAR_PRICE, $exchange_price ) : $price
+            ( $this->change_regular_price && ! $product->is_on_sale( 'edit' ) ) ? $this->replace( $price, $product, self::REGULAR_PRICE, $exchange_price ) : $price
         );
     }
 
-    public function replace_variation_prices( $prices, $product, $for_display ) {
-        if ( ! WCCS()->is_request( 'frontend' ) || ! is_a( WC()->cart, 'WC_Cart' ) ) {
-            return $prices;
-        }
-
-        // Do not replace price till woocommerce_cart_loaded_from_session done.
-        if ( ! did_action( 'woocommerce_cart_loaded_from_session' ) ) {
-            return $prices;
-        }
-
-        if ( ! isset( $this->prices[ $product->get_id() ] ) ) {
-            $this->prices[ $product->get_id() ] = array();
-        }
-
-        $price_hash         = $this->get_price_hash( $product, $for_display );
-        $pricing_hash       = $this->get_variation_pricing_hash( $product, $for_display );
-        $read_cached_prices = $this->can_read_variation_cached_prices( $product );
-
-        if ( $read_cached_prices ) {
-            $cache = WCCS()->WCCS_DB_Cache->get_item_by_product( $product->get_id(), 'price' );
-            $value = ! empty( $cache->value ) && is_array( $cache->value ) ? $cache->value : array();
-        }
-
-        if ( $read_cached_prices && isset( $this->prices[ $product->get_id() ][ $price_hash ][ $pricing_hash ] ) ) {
-            return $this->prices[ $product->get_id() ][ $price_hash ][ $pricing_hash ];
-        }
-
-        $transient_cached_prices_array = array();
-        if ( $read_cached_prices ) {
-            if ( empty( $this->prices[ $product->get_id() ][ $price_hash ][ $pricing_hash ] ) ) {
-                $transient_cached_prices_array = $value;
+    public function get_discounted_variation_prices( $product, $for_display = true ) {
+        if ( ! is_a( $product, 'WC_Product_Variable' ) ) {
+            $product = is_numeric( $product ) ? wc_get_product( $product ) : $product;
+            if ( ! $product || ! $product->is_type( 'variable' ) ) {
+                return array();
             }
         }
 
-        // If the prices are not stored for this hash, generate them and add to the transient.
-        if ( empty( $transient_cached_prices_array[ $price_hash ][ $pricing_hash ] ) ) {
+        if ( ! WCCS()->is_request( 'frontend' ) && ! WCCS_Helpers::wc_is_rest_api_request() ) {
+            return array();
+        }
+
+        // Do not replace price till woocommerce_cart_loaded_from_session done.
+        if ( ! did_action( 'woocommerce_cart_loaded_from_session' ) && ! WCCS_Helpers::wc_is_rest_api_request() ) {
+            return array();
+        }
+
+        $price_cache = WCCS()->WCCS_Product_Price_Cache;
+        $product_id  = (int) $product->get_id();
+
+        if ( ! empty( $this->replacing_variation_prices[ $product_id ] ) ) {
+            return array();
+        }
+
+        $this->replacing_variation_prices[ $product_id ] = true;
+        try {
+            $cache_key = $price_cache->build_variation_cache_key( $product_id, $for_display, 'lightweight' );
+
+            // 1. Check local instance memory cache (0.0001ms)
+            if ( isset( $this->prices[ $product_id ][ $cache_key ] ) && is_array( $this->prices[ $product_id ][ $cache_key ] ) ) {
+                return $this->prices[ $product_id ][ $cache_key ];
+            }
+
+            // 2. Check 3-Tier Cache (Local Memory -> Redis/Memcached -> Layer 2 DB Cache)
+            $cached_prices = $price_cache->get_variation_prices( $product, $for_display, 'lightweight' );
+            if ( false !== $cached_prices && is_array( $cached_prices ) && ! empty( $cached_prices['price'] ) ) {
+                if ( ! isset( $this->prices[ $product_id ] ) ) {
+                    $this->prices[ $product_id ] = array();
+                }
+                $this->prices[ $product_id ][ $cache_key ] = $cached_prices;
+                return $cached_prices;
+            }
+
+            // 3. Compute on cache miss
+            $variation_ids = $product->get_visible_children();
+            if ( empty( $variation_ids ) ) {
+                return array(
+                    'price'         => array(),
+                    'regular_price' => array(),
+                    'sale_price'    => array(),
+                );
+            }
+
+            // Bulk prime variation post objects, meta, and Layer 2 DB price cache in single batch query
+            WCCS_Helpers::prime_product_caches( $variation_ids );
+
             $prices_array = array(
                 'price'         => array(),
                 'regular_price' => array(),
                 'sale_price'    => array(),
             );
 
-            $variation_ids = $product->get_visible_children();
+            $price_decimals = wc_get_price_decimals();
+            $tax_enabled    = wc_tax_enabled();
+            $is_incl_tax    = ( $for_display && $tax_enabled && 'incl' === get_option( 'woocommerce_tax_display_shop', 'excl' ) );
 
             foreach ( $variation_ids as $variation_id ) {
                 $variation = wc_get_product( $variation_id );
-
-                if ( $variation ) {
-                    $price         = $this->get_replaced_price( $variation->get_price( 'edit' ), $variation, false );
-                    $regular_price = $this->get_replaced_regular_price( $variation->get_regular_price( 'edit' ), $variation, false );
-                    $sale_price    = $this->get_replaced_sale_price( $variation->get_sale_price( 'edit' ), $variation, false );
-
-                    // Skip empty prices.
-                    if ( '' === $price ) {
-                        continue;
-                    }
-
-                    // If sale price does not equal price, the product is not yet on sale.
-                    if ( $sale_price === $regular_price || $sale_price !== $price ) {
-                        $sale_price = $regular_price;
-                    }
-
-                    // If we are getting prices for display, we need to account for taxes.
-                    if ( $for_display ) {
-                        if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
-                            $price         = '' === $price ? '' : wc_get_price_including_tax(
-                                $variation,
-                                array(
-                                    'qty'   => 1,
-                                    'price' => $price,
-                                )
-                            );
-                            $regular_price = '' === $regular_price ? '' : wc_get_price_including_tax(
-                                $variation,
-                                array(
-                                    'qty'   => 1,
-                                    'price' => $regular_price,
-                                )
-                            );
-                            $sale_price    = '' === $sale_price ? '' : wc_get_price_including_tax(
-                                $variation,
-                                array(
-                                    'qty'   => 1,
-                                    'price' => $sale_price,
-                                )
-                            );
-                        } else {
-                            $price         = '' === $price ? '' : wc_get_price_excluding_tax(
-                                $variation,
-                                array(
-                                    'qty'   => 1,
-                                    'price' => $price,
-                                )
-                            );
-                            $regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax(
-                                $variation,
-                                array(
-                                    'qty'   => 1,
-                                    'price' => $regular_price,
-                                )
-                            );
-                            $sale_price    = '' === $sale_price ? '' : wc_get_price_excluding_tax(
-                                $variation,
-                                array(
-                                    'qty'   => 1,
-                                    'price' => $sale_price,
-                                )
-                            );
-                        }
-                    }
-
-                    $prices_array['price'][ $variation_id ]         = wc_format_decimal( $price, wc_get_price_decimals() );
-                    $prices_array['regular_price'][ $variation_id ] = wc_format_decimal( $regular_price, wc_get_price_decimals() );
-                    $prices_array['sale_price'][ $variation_id ]    = wc_format_decimal( $sale_price, wc_get_price_decimals() );
+                if ( ! $variation ) {
+                    continue;
                 }
-            }
 
-            // Add all pricing data to the transient array.
-            foreach ( $prices_array as $key => $values ) {
-                $transient_cached_prices_array[ $price_hash ][ $pricing_hash ][ $key ] = $values;
-            }
+                $discounted_price = WCCS_Helpers::get_product_discounted_price( $variation );
+                $price            = ( ! is_numeric( $discounted_price ) || 0 > $discounted_price ) ? $variation->get_price( 'edit' ) : $discounted_price;
+                $regular_price    = $variation->get_regular_price( 'edit' );
+                $sale_price       = ( ! is_numeric( $discounted_price ) || 0 > $discounted_price ) ? $variation->get_price( 'edit' ) : $discounted_price;
 
-            // Important: Cache prices only when read prices from cache is available.
-            if ( $read_cached_prices ) {
-                if ( $cache ) {
-                    WCCS()->WCCS_DB_Cache->update( $cache->id, array( 'value' => maybe_serialize( $transient_cached_prices_array ) ) ); 
+                // Skip empty prices
+                if ( '' === $price ) {
+                    continue;
+                }
+
+                // If sale price equals regular price or does not equal active price, it is not on sale
+                if ( $sale_price === $regular_price || $sale_price !== $price ) {
+                    $sale_price = $regular_price;
+                }
+
+                // Account for display taxes
+                if ( $is_incl_tax ) {
+                    $price         = '' === $price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+                    $regular_price = '' === $regular_price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+                    $sale_price    = '' === $sale_price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
                 } else {
-                    WCCS()->WCCS_DB_Cache->add( array( 'product_id' => $product->get_id(), 'cache_type' => 'price', 'value' => maybe_serialize( $transient_cached_prices_array ) ) );
+                    $price         = '' === $price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+                    $regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+                    $sale_price    = '' === $sale_price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
                 }
+
+                $prices_array['price'][ $variation_id ]         = wc_format_decimal( $price, $price_decimals );
+                $prices_array['regular_price'][ $variation_id ] = wc_format_decimal( $regular_price, $price_decimals );
+                $prices_array['sale_price'][ $variation_id ]    = wc_format_decimal( $sale_price, $price_decimals );
+            }
+
+            // Allow third-party extensions to filter prices, safely avoiding recursion
+            if ( has_filter( 'woocommerce_variation_prices' ) ) {
+                $has_self_hook = has_filter( 'woocommerce_variation_prices', array( $this, 'replace_variation_prices' ) );
+                if ( false !== $has_self_hook ) {
+                    remove_filter( 'woocommerce_variation_prices', array( $this, 'replace_variation_prices' ), 999 );
+                }
+                $filtered = apply_filters( 'woocommerce_variation_prices', $prices_array, $product, $for_display );
+                if ( false !== $has_self_hook ) {
+                    add_filter( 'woocommerce_variation_prices', array( $this, 'replace_variation_prices' ), 999, 3 );
+                }
+                if ( is_array( $filtered ) ) {
+                    $prices_array = $filtered;
+                }
+            }
+
+            // Guaranteed ascending sort for mathematically accurate min/max calculations
+            if ( ! empty( $prices_array['price'] ) && is_array( $prices_array['price'] ) ) {
+                asort( $prices_array['price'] );
+            }
+            if ( ! empty( $prices_array['regular_price'] ) && is_array( $prices_array['regular_price'] ) ) {
+                asort( $prices_array['regular_price'] );
+            }
+            if ( ! empty( $prices_array['sale_price'] ) && is_array( $prices_array['sale_price'] ) ) {
+                asort( $prices_array['sale_price'] );
+            }
+
+            // Store into 3-tier cache (always in RAM for current request; in persistent cache if conditions permit)
+            $can_persist = $price_cache->can_cache_variation_prices( $product );
+            $ttl         = null;
+            if ( $can_persist ) {
+                $all_rules   = $price_cache->get_variable_product_all_simple_rules( $product );
+                $default_ttl = $price_cache->get_default_ttl();
+                $time_expiry = WCCS_Rules_Helpers::get_nearest_time_expiry( $all_rules );
+                $ttl         = ( $time_expiry > 0 ) ? ( ( $default_ttl > 0 ) ? min( $default_ttl, $time_expiry ) : $time_expiry ) : $default_ttl;
+            }
+
+            $price_cache->set_variation_prices( $product_id, $cache_key, $prices_array, $ttl, $can_persist );
+
+            if ( ! isset( $this->prices[ $product_id ] ) ) {
+                $this->prices[ $product_id ] = array();
+            }
+            $this->prices[ $product_id ][ $cache_key ] = $prices_array;
+
+            return $prices_array;
+        } finally {
+            unset( $this->replacing_variation_prices[ $product_id ] );
+        }
+    }
+
+    public function replace_variation_prices( $prices, $product, $for_display ) {
+        if ( ! is_a( $product, 'WC_Product_Variable' ) ) {
+            $product = is_numeric( $product ) ? wc_get_product( $product ) : $product;
+            if ( ! $product || ! $product->is_type( 'variable' ) ) {
+                return $prices;
             }
         }
 
-        $this->prices[ $product->get_id() ][ $price_hash ][ $pricing_hash ] = $transient_cached_prices_array[ $price_hash ][ $pricing_hash ];
+        if ( ! WCCS()->is_request( 'frontend' ) && ! WCCS_Helpers::wc_is_rest_api_request() ) {
+            return $prices;
+        }
 
-        return $this->prices[ $product->get_id() ][ $price_hash ][ $pricing_hash ];
+        // Do not replace price till woocommerce_cart_loaded_from_session done.
+        if ( ! did_action( 'woocommerce_cart_loaded_from_session' ) && ! WCCS_Helpers::wc_is_rest_api_request() ) {
+            return $prices;
+        }
+
+        $price_cache = WCCS()->WCCS_Product_Price_Cache;
+        $product_id  = (int) $product->get_id();
+
+        if ( ! empty( $this->replacing_variation_prices[ $product_id ] ) ) {
+            return $prices;
+        }
+
+        $this->replacing_variation_prices[ $product_id ] = true;
+        try {
+            $cache_key = $price_cache->build_variation_cache_key( $product_id, $for_display, 'advanced' );
+
+            // 1. Check local instance memory cache (0.0001ms)
+            if ( isset( $this->prices[ $product_id ][ $cache_key ] ) && is_array( $this->prices[ $product_id ][ $cache_key ] ) ) {
+                return $this->prices[ $product_id ][ $cache_key ];
+            }
+
+            // 2. Check 3-Tier Cache (Local Memory -> Redis/Memcached -> Layer 2 DB Cache)
+            $cached_prices = $price_cache->get_variation_prices( $product, $for_display, 'advanced' );
+            if ( false !== $cached_prices && is_array( $cached_prices ) && ! empty( $cached_prices['price'] ) ) {
+                if ( ! isset( $this->prices[ $product_id ] ) ) {
+                    $this->prices[ $product_id ] = array();
+                }
+                $this->prices[ $product_id ][ $cache_key ] = $cached_prices;
+                return $cached_prices;
+            }
+
+            // 3. Compute on cache miss
+            $variation_ids = $product->get_visible_children();
+            if ( empty( $variation_ids ) ) {
+                return $prices;
+            }
+
+            // Bulk prime variation post objects, meta, and Layer 2 DB price cache in single batch query
+            WCCS_Helpers::prime_product_caches( $variation_ids );
+
+            $prices_array = array(
+                'price'         => array(),
+                'regular_price' => array(),
+                'sale_price'    => array(),
+            );
+
+            $price_decimals = wc_get_price_decimals();
+            $tax_enabled    = wc_tax_enabled();
+            $is_incl_tax    = ( $for_display && $tax_enabled && 'incl' === get_option( 'woocommerce_tax_display_shop', 'excl' ) );
+
+            foreach ( $variation_ids as $variation_id ) {
+                $variation = wc_get_product( $variation_id );
+                if ( ! $variation ) {
+                    continue;
+                }
+
+                $price         = $this->get_replaced_price( $variation->get_price( 'edit' ), $variation, false );
+                $regular_price = $this->get_replaced_regular_price( $variation->get_regular_price( 'edit' ), $variation, false );
+                $sale_price    = $this->get_replaced_sale_price( $variation->get_sale_price( 'edit' ), $variation, false );
+
+                // Skip empty prices
+                if ( '' === $price ) {
+                    continue;
+                }
+
+                // If sale price equals regular price or does not equal active price, it is not on sale
+                if ( $sale_price === $regular_price || $sale_price !== $price ) {
+                    $sale_price = $regular_price;
+                }
+
+                // Account for display taxes
+                if ( $is_incl_tax ) {
+                    $price         = '' === $price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+                    $regular_price = '' === $regular_price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+                    $sale_price    = '' === $sale_price ? '' : wc_get_price_including_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
+                } else {
+                    $price         = '' === $price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $price ) );
+                    $regular_price = '' === $regular_price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $regular_price ) );
+                    $sale_price    = '' === $sale_price ? '' : wc_get_price_excluding_tax( $variation, array( 'qty' => 1, 'price' => $sale_price ) );
+                }
+
+                $prices_array['price'][ $variation_id ]         = wc_format_decimal( $price, $price_decimals );
+                $prices_array['regular_price'][ $variation_id ] = wc_format_decimal( $regular_price, $price_decimals );
+                $prices_array['sale_price'][ $variation_id ]    = wc_format_decimal( $sale_price, $price_decimals );
+            }
+
+            // Guaranteed ascending sort for mathematically accurate min/max calculations
+            if ( ! empty( $prices_array['price'] ) && is_array( $prices_array['price'] ) ) {
+                asort( $prices_array['price'] );
+            }
+            if ( ! empty( $prices_array['regular_price'] ) && is_array( $prices_array['regular_price'] ) ) {
+                asort( $prices_array['regular_price'] );
+            }
+            if ( ! empty( $prices_array['sale_price'] ) && is_array( $prices_array['sale_price'] ) ) {
+                asort( $prices_array['sale_price'] );
+            }
+
+            // Store into 3-tier cache (always in RAM for current request; in persistent cache if conditions permit)
+            $can_persist = $price_cache->can_cache_variation_prices( $product );
+            $ttl         = null;
+            if ( $can_persist ) {
+                $all_rules   = $price_cache->get_variable_product_all_simple_rules( $product );
+                $default_ttl = $price_cache->get_default_ttl();
+                $time_expiry = WCCS_Rules_Helpers::get_nearest_time_expiry( $all_rules );
+                $ttl         = ( $time_expiry > 0 ) ? ( ( $default_ttl > 0 ) ? min( $default_ttl, $time_expiry ) : $time_expiry ) : $default_ttl;
+            }
+
+            $price_cache->set_variation_prices( $product_id, $cache_key, $prices_array, $ttl, $can_persist );
+
+            if ( ! isset( $this->prices[ $product_id ] ) ) {
+                $this->prices[ $product_id ] = array();
+            }
+            $this->prices[ $product_id ][ $cache_key ] = $prices_array;
+
+            return $prices_array;
+        } finally {
+            unset( $this->replacing_variation_prices[ $product_id ] );
+        }
     }
 
     protected function should_replace( $price, $product, $price_type ) {
@@ -314,7 +499,7 @@ class WCCS_Product_Price_Replace {
             return apply_filters( 'wccs_product_price_replace_should_replace', false, $price, $product, $price_type, $this  );
         }
 
-        if ( ! WCCS()->is_request( 'frontend' ) ) {
+        if ( ! WCCS()->is_request( 'frontend' ) && ! WCCS_Helpers::wc_is_rest_api_request() ) {
             return apply_filters( 'wccs_product_price_replace_should_replace', false, $price, $product, $price_type, $this  );
         }
 
@@ -370,42 +555,24 @@ class WCCS_Product_Price_Replace {
             return $this->read_variation_cached_prices;
         }
 
-        $value = true;
+        return WCCS()->WCCS_Product_Price_Cache->can_read_variation_cached_prices( $product );
+    }
 
-        $pricing_rules = WCCS()->pricing->get_simple_pricings();
-        $exclude_rules = WCCS()->pricing->get_exclude_rules();
+    public function can_cache_variation_prices( $product, $rules = null ) {
+        return WCCS()->WCCS_Product_Price_Cache->can_cache_variation_prices( $product, $rules );
+    }
 
-        $hash = md5( wp_json_encode( array( $pricing_rules, $exclude_rules ) ) );
-
-        $saved_hash = get_transient( 'wccs_can_read_variation_cached_prices_hash' );
-        if ( $saved_hash != $hash ) {
-            if ( is_user_logged_in() ) {
-                // Compare with use specific transient.
-                $user_id = get_current_user_id();
-                $user_transient = get_transient( 'wccs_can_read_variation_cached_prices_hash_' . $user_id );
-                if ( $user_transient != $hash ) {
-                    $value = false;
-                    if ( $this->can_save_variation_cached_prices_transient( $pricing_rules ) ) {
-                        set_transient( 'wccs_can_read_variation_cached_prices_hash_' . $user_id, $hash, DAY_IN_SECONDS );
-                    }
-                }
-
-                // Set general transient.
-            } else {
-                $value = false;
-                if ( $this->can_save_variation_cached_prices_transient( $pricing_rules ) ) {
-                    set_transient( 'wccs_can_read_variation_cached_prices_hash', $hash );
-                }
-            }
-        }
-
-        $this->read_variation_cached_prices = apply_filters( 'wccs_product_price_replace_read_variation_cached_prices', $value, $product );
-
-        return $this->read_variation_cached_prices;
+    public function reset_cache() {
+        $this->prices                       = array();
+        $this->read_variation_cached_prices = null;
+        $this->replacing_variation_prices   = array();
     }
 
     public function get_variation_prices_hash( $price_hash, $product, $for_display ) {
-        $price_hash[] = WCCS()->WCCS_Product_Price_Cache->get_transient_name( array( 'is_user_logged_in' => is_user_logged_in() ) );
+        if ( ! is_array( $price_hash ) ) {
+            $price_hash = array();
+        }
+        $price_hash['wccs'] = WCCS()->WCCS_Product_Price_Cache->get_variation_hash_data( $product, $for_display );
         return $price_hash;
     }
 
@@ -424,55 +591,6 @@ class WCCS_Product_Price_Replace {
         $this->prices[ $product->get_id() ][ $price_type ][ strval( $price ) ] = $replaced_price;
 
         return $replaced_price;
-    }
-
-     /**
-	 * Create unique cache key based on the tax location (affects displayed/cached prices), product version and active price filters.
-	 * DEVELOPERS should filter this hash if offering conditional pricing to keep it unique.
-	 *
-	 * @param WC_Product $product Product object.
-	 * @param bool       $for_display If taxes should be calculated or not.
-	 *
-	 * @return string
-	 */
-	protected function get_price_hash( &$product, $for_display = false ) {
-		global $wp_filter;
-
-		$price_hash   = $for_display && wc_tax_enabled() ? array( get_option( 'woocommerce_tax_display_shop', 'excl' ), WC_Tax::get_rates() ) : array( false );
-		$filter_names = array( 'woocommerce_variation_prices_price', 'woocommerce_variation_prices_regular_price', 'woocommerce_variation_prices_sale_price' );
-
-		foreach ( $filter_names as $filter_name ) {
-			if ( ! empty( $wp_filter[ $filter_name ] ) ) {
-				$price_hash[ $filter_name ] = array();
-
-				foreach ( $wp_filter[ $filter_name ] as $priority => $callbacks ) {
-					$price_hash[ $filter_name ][] = array_values( wp_list_pluck( $callbacks, 'function' ) );
-				}
-			}
-		}
-
-		return md5( wp_json_encode( apply_filters( 'woocommerce_get_variation_prices_hash', $price_hash, $product, $for_display ) ) );
-    }
-
-    protected function get_variation_pricing_hash( $product, $for_display = false ) {
-        $hash = array(
-            'rules'         => WCCS()->pricing->get_simple_pricings(),
-            'exclude_rules' => WCCS()->pricing->get_exclude_rules(),
-        );
-
-        return md5( wp_json_encode( apply_filters( 'wccs_' . __FUNCTION__, $hash, $product, $for_display ) ) );
-    }
-
-    protected function can_save_variation_cached_prices_transient( $rules ) {
-        if ( empty( $rules ) ) {
-            return false;
-        }
-
-        if ( WC()->cart && WC()->cart->is_empty() ) {
-            return true;
-        }
-
-        return ! WCCS_Rules_Helpers::has_cart_conditions( $rules );
     }
 
 }

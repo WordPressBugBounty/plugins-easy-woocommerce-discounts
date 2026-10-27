@@ -152,6 +152,9 @@ class WCCS_Admin_Assets {
 						'url-coupons'       => defined( 'EWD_URL_COUPONS_VERSION' ),
 						'shipping-discount' => defined( 'EWD_SHIPPING_DISCOUNT_VERSION' ),
 					),
+					'settings' => array(
+						'enable_analytics' => (int) $wccs->settings->get_setting( 'enable_analytics', 0 ),
+					),
 				);
 		}
 

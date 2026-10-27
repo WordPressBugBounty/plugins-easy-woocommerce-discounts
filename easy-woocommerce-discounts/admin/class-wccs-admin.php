@@ -142,9 +142,6 @@ class WCCS_Admin {
 		$order_hooks = new WCCS_Admin_Order_Hooks( $this->loader );
 		$order_hooks->enable_hooks();
 
-		// Cache Clear Hooks.
-		WCCS_Clear_Cache::enable_hooks();
-
 		// Plugin links.
 		$this->loader->add_filter( 'plugin_row_meta', $this, 'plugin_row_meta_links', 10, 2 );
 		add_filter( 'plugin_action_links', [ $this, 'plugin_action_links' ], 10, 2 );

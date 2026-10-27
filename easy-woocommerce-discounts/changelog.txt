@@ -1,5 +1,26 @@
 == Changelog ==
 
+= 9.5.0 =
+* Performance: Major caching architecture overhaul featuring multi-tier caching (Memory, Object Cache, and Persistent DB Cache) for near-instant catalog page rendering.
+* Performance: Introduced file-based rules caching with OPcache support and compressed DB snapshots to drastically reduce rule query overhead.
+* Performance: Added dedicated percentage and sale badge cache (WCCS_Product_Badge_Cache) with support for user roles and negative caching.
+* Performance: Added catalog batch cache priming to eliminate N+1 queries on archive and shop pages.
+* Performance: Added "Archive Variation Pruning" setting to optimize discount calculations on catalog pages for products with high variation counts.
+* Performance: Converted comparison utilities to static methods for reduced memory footprint and faster condition checks.
+* Performance: Analytics is now disabled by default to minimize database overhead out of the box.
+* New: Added "Change Price Method" setting (Lightweight vs. Advanced) to allow ultra-fast price HTML modifications without heavy object overhead.
+* New: Added compatibility with Advanced Product Fields for WooCommerce (SW WAPF) standard and Extended versions.
+* New: Added compatibility with CTX Feed - WooCommerce Product Feed Generator plugin.
+* New: Added compatibility with Easy Sale Badges and Product Labels for lightweight pricing mode.
+* Improvement: Updated compatibility with Product Feed PRO, adding a helper function to export discounted prices into feeds.
+* Improvement: Enhanced compatibility with CURCY Multi Currency Switcher across both Lightweight and Advanced price calculation modes.
+* Improvement: Enhanced database indexing on conditions, condition meta, cache, and rule usage log tables for accelerated queries.
+* Improvement: Added automatic background cron to purge expired cache table rows.
+* Fix: Fixed free gift emoji (🎁) display issue in the WooCommerce mini cart block.
+* Fix: Fixed issues in the discounted products shortcode.
+* Dev: Added 'wccs_change_product_base_price' filter hook to customize product base prices before rule calculation.
+* Update: Tested and verified compatibility with WooCommerce 11.2.1.
+
 = 9.4.0 =
 * New: Added more templates for tiered pricing rules.
 * New: Enhanced discount page alert message design.

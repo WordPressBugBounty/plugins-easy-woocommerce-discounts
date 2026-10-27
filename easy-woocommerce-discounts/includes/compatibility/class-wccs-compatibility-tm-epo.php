@@ -25,6 +25,30 @@ class WCCS_Compatibility_TM_EPO {
             $this->loader->add_filter( 'wccs_cart_item_before_discounted_price', $this, 'cart_item_before_discounted_price', 10, 2 );
             $this->loader->add_filter( 'wccs_cart_item_prices', $this, 'cart_item_prices', 10, 2 );
         }
+
+        if ( 'lightweight' === WCCS()->settings->get_setting( 'change_price_method', 'lightweight' ) ) {
+            add_filter( 'wc_epo_product_price_rules', [ $this, 'maybe_replace_product_price' ], 100, 2 );
+        }
+    }
+
+    public function maybe_replace_product_price( $price, $product ) {
+        if ( ! $product ) {
+            return $price;
+        }
+
+        $adjusted_price = WCCS_Helpers::get_product_discounted_price( $product );
+        if ( null === $adjusted_price ) {
+            return $price;
+        }
+
+        $price['price'] = $adjusted_price;
+
+        return apply_filters( 
+            'asnp_ewd_compatibility_tm_eop_maybe_replace_product_price', 
+            $price, 
+            $product,
+            $adjusted_price
+        );
     }
 
     public function cart_item_discounted_price( $discounted_price, $cart_item ) {

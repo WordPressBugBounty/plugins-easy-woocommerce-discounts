@@ -16,7 +16,7 @@ class WCCS_Updates {
 		$condition_meta = WCCS()->condition_meta;
 
 		// Adding apply_mode for pricing and cart_discount conditions.
-		$results = $wpdb->get_col( "SELECT `id` FROM " . esc_sql( $wpdb->prefix . 'wccs_conditions' ) . " WHERE `type` IN ('pricing','cart-discount') AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM " . esc_sql( $wpdb->prefix . 'wccs_condition_meta' ) . " WHERE `meta_key` = 'apply_mode' )" );
+		$results = $wpdb->get_col( "SELECT `id` FROM {$wpdb->prefix}wccs_conditions WHERE `type` IN ('pricing','cart-discount') AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM {$wpdb->prefix}wccs_condition_meta WHERE `meta_key` = 'apply_mode' )" );
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $condition_id ) {
 				$condition_meta->update_meta( $condition_id, 'apply_mode', 'all' );
@@ -24,7 +24,7 @@ class WCCS_Updates {
 		}
 
 		// Adding exclude_items for pricing conditions.
-		$results = $wpdb->get_col( "SELECT `id` FROM " . esc_sql( $wpdb->prefix . 'wccs_conditions' ) . " WHERE `type` = 'pricing' AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM " . esc_sql( $wpdb->prefix . 'wccs_condition_meta' ) . " WHERE `meta_key` = 'exclude_items' )" );
+		$results = $wpdb->get_col( "SELECT `id` FROM {$wpdb->prefix}wccs_conditions WHERE `type` = 'pricing' AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM {$wpdb->prefix}wccs_condition_meta WHERE `meta_key` = 'exclude_items' )" );
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $condition_id ) {
 				$condition_meta->update_meta( $condition_id, 'exclude_items', array() );
@@ -32,7 +32,7 @@ class WCCS_Updates {
 		}
 
 		// Adding private_note for cart_discount conditions.
-		$results = $wpdb->get_col( "SELECT `id` FROM " . esc_sql( $wpdb->prefix . 'wccs_conditions' ) .  "WHERE `type` = 'cart-discount' AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM " . esc_sql( $wpdb->prefix . 'wccs_condition_meta' ) . " WHERE `meta_key` = 'private_note' )" );
+		$results = $wpdb->get_col( "SELECT `id` FROM {$wpdb->prefix}wccs_conditions WHERE `type` = 'cart-discount' AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM {$wpdb->prefix}wccs_condition_meta WHERE `meta_key` = 'private_note' )" );
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $condition_id ) {
 				$condition_meta->update_meta( $condition_id, 'private_note', '' );
@@ -40,7 +40,7 @@ class WCCS_Updates {
 		}
 
 		// Adding date_times_match_mode to conditions.
-		$results = $wpdb->get_col( "SELECT `id` FROM " . esc_sql( $wpdb->prefix . 'wccs_conditions' ) . " WHERE `type` IN ('pricing','cart-discount','products-list') AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM " . esc_sql( $wpdb->prefix . 'wccs_condition_meta' ) . " WHERE `meta_key` = 'date_times_match_mode' )" );
+		$results = $wpdb->get_col( "SELECT `id` FROM {$wpdb->prefix}wccs_conditions WHERE `type` IN ('pricing','cart-discount','products-list') AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM {$wpdb->prefix}wccs_condition_meta WHERE `meta_key` = 'date_times_match_mode' )" );
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $condition_id ) {
 				$condition_meta->update_meta( $condition_id, 'date_times_match_mode', 'one' );
@@ -48,7 +48,7 @@ class WCCS_Updates {
 		}
 
 		// Adding conditions_match_mode to conditions.
-		$results = $wpdb->get_col( "SELECT `id` FROM " . esc_sql( $wpdb->prefix . 'wccs_conditions' ) . " WHERE `type` IN ('pricing','cart-discount','products-list') AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM " . esc_sql( $wpdb->prefix . 'wccs_condition_meta' ) . " WHERE `meta_key` = 'conditions_match_mode' )" );
+		$results = $wpdb->get_col( "SELECT `id` FROM {$wpdb->prefix}wccs_conditions WHERE `type` IN ('pricing','cart-discount','products-list') AND `id` NOT IN ( SELECT DISTINCT `wccs_condition_id` FROM {$wpdb->prefix}wccs_condition_meta WHERE `meta_key` = 'conditions_match_mode' )" );
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $condition_id ) {
 				$condition_meta->update_meta( $condition_id, 'conditions_match_mode', 'all' );
@@ -56,7 +56,7 @@ class WCCS_Updates {
 		}
 
 		// Updating pricing products to adding quantity.
-		$results = $wpdb->get_results( "SELECT `conditions`.id, `conditions_meta`.meta_value FROM " . esc_sql( $wpdb->prefix . 'wccs_conditions' ) . " AS `conditions` JOIN " . esc_sql( $wpdb->prefix . 'wccs_condition_meta' ) . " AS `conditions_meta` ON `conditions`.id = `conditions_meta`.wccs_condition_id WHERE `conditions`.type = 'pricing' AND `conditions_meta`.meta_key = 'items' AND `conditions_meta`.meta_value != ''" );
+		$results = $wpdb->get_results( "SELECT `conditions`.id, `conditions_meta`.meta_value FROM `{$wpdb->prefix}wccs_conditions` AS `conditions` JOIN `{$wpdb->prefix}wccs_condition_meta` AS `conditions_meta` ON `conditions`.id = `conditions_meta`.wccs_condition_id WHERE `conditions`.`type` = 'pricing' AND `conditions_meta`.meta_key = 'items' AND `conditions_meta`.meta_value != ''" );
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $result ) {
 				if ( ! empty( $result->meta_value ) ) {
@@ -144,6 +144,66 @@ class WCCS_Updates {
 
 	public static function clear_table_cache() {
 		WCCS()->WCCS_Product_Quantity_Table_Cache->clear_cache();
+	}
+
+	public static function update_9120_cache_table() {
+		global $wpdb;
+
+		// 1. wp_wccs_cache: column and indexes
+		$cache_table = $wpdb->prefix . 'wccs_cache';
+		$col = $wpdb->get_results( "SHOW COLUMNS FROM `{$cache_table}` LIKE 'expires_at'" );
+		if ( empty( $col ) ) {
+			$wpdb->query( "ALTER TABLE `{$cache_table}` ADD COLUMN `expires_at` bigint(20) NOT NULL DEFAULT 0" );
+		}
+
+		$existing_indices = $wpdb->get_results( "SHOW INDEX FROM `{$cache_table}` WHERE Key_name = 'product_cache'" );
+		if ( empty( $existing_indices ) ) {
+			$wpdb->query( "ALTER TABLE `{$cache_table}` ADD UNIQUE KEY `product_cache` (`product_id`, `cache_type`)" );
+		}
+
+		$existing_type_indices = $wpdb->get_results( "SHOW INDEX FROM `{$cache_table}` WHERE Key_name = 'cache_type'" );
+		if ( empty( $existing_type_indices ) ) {
+			$wpdb->query( "ALTER TABLE `{$cache_table}` ADD INDEX `cache_type` (`cache_type`)" );
+		}
+
+		$existing_exp_indices = $wpdb->get_results( "SHOW INDEX FROM `{$cache_table}` WHERE Key_name = 'expires_at'" );
+		if ( empty( $existing_exp_indices ) ) {
+			$wpdb->query( "ALTER TABLE `{$cache_table}` ADD INDEX `expires_at` (`expires_at`)" );
+		}
+
+		// 2. wp_wccs_conditions: composite index for fast rule querying
+		$conditions_table = $wpdb->prefix . 'wccs_conditions';
+		$existing_cond_idx = $wpdb->get_results( "SHOW INDEX FROM `{$conditions_table}` WHERE Key_name = 'type_status_ordering'" );
+		if ( empty( $existing_cond_idx ) ) {
+			$wpdb->query( "ALTER TABLE `{$conditions_table}` ADD INDEX `type_status_ordering` (`type`(50), `status`, `ordering`)" );
+		}
+		$existing_status_idx = $wpdb->get_results( "SHOW INDEX FROM `{$conditions_table}` WHERE Key_name = 'status'" );
+		if ( empty( $existing_status_idx ) ) {
+			$wpdb->query( "ALTER TABLE `{$conditions_table}` ADD INDEX `status` (`status`)" );
+		}
+
+		// 3. wp_wccs_condition_meta: composite lookup index
+		$meta_table = $wpdb->prefix . 'wccs_condition_meta';
+		$existing_meta_idx = $wpdb->get_results( "SHOW INDEX FROM `{$meta_table}` WHERE Key_name = 'condition_meta'" );
+		if ( empty( $existing_meta_idx ) ) {
+			$wpdb->query( "ALTER TABLE `{$meta_table}` ADD INDEX `condition_meta` (`wccs_condition_id`, `meta_key`(100))" );
+		}
+
+		// 4. wp_wccs_user_usage_logs: composite lookup index
+		$user_logs_table = $wpdb->prefix . 'wccs_user_usage_logs';
+		$existing_user_idx = $wpdb->get_results( "SHOW INDEX FROM `{$user_logs_table}` WHERE Key_name = 'rule_user'" );
+		if ( empty( $existing_user_idx ) ) {
+			$wpdb->query( "ALTER TABLE `{$user_logs_table}` ADD INDEX `rule_user` (`rule_id`, `used_by`(100))" );
+		}
+
+		// 5. wp_wccs_rule_usage_logs: composite lookup index
+		$rule_logs_table = $wpdb->prefix . 'wccs_rule_usage_logs';
+		$existing_order_idx = $wpdb->get_results( "SHOW INDEX FROM `{$rule_logs_table}` WHERE Key_name = 'rule_order'" );
+		if ( empty( $existing_order_idx ) ) {
+			$wpdb->query( "ALTER TABLE `{$rule_logs_table}` ADD INDEX `rule_order` (`rule_id`, `order_id`)" );
+		}
+
+		WCCS_Clear_Cache::clear_pricing_caches();
 	}
 
 	public static function update_required() {

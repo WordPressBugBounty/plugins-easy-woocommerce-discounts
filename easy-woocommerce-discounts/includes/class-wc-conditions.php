@@ -263,6 +263,11 @@ final class WC_Conditions {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wccs-db.php';
 
 		/**
+		 * Rules Hybrid Cache Engine.
+		 */
+		require_once dirname( __FILE__ ) . '/cache/class-wccs-rules-cache.php';
+
+		/**
 		 * Conditions DB Class.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wccs-db-conditions.php';
@@ -362,6 +367,7 @@ final class WC_Conditions {
 		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-quantity-table-cache.php';
 		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-purchase-message-cache.php';
 		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-onsale-cache.php';
+		require_once dirname( __FILE__ ) . '/cache/class-wccs-product-badge-cache.php';
 
 		require_once dirname( __FILE__ ) . '/class-wccs-clear-cache.php';
 		require_once dirname( __FILE__ ) . '/class-wccs-background-batch-price-updater.php';
@@ -464,6 +470,7 @@ final class WC_Conditions {
 		$this->loader->add_filter( 'posts_where', $this, 'posts_where', 10, 2 );
 
 		WCCS_Activator::init();
+		WCCS_Clear_Cache::enable_hooks();
 
 		$this->admin->define_hooks();
 		$this->public->define_hooks();
@@ -500,6 +507,19 @@ final class WC_Conditions {
 	 */
 	public function __get( $key ) {
 		return $this->services->get( $key );
+	}
+
+	/**
+	 * Magic method to check if service exists.
+	 *
+	 * @since  8.19.0
+	 *
+	 * @param  string $key
+	 *
+	 * @return bool
+	 */
+	public function __isset( $key ) {
+		return $this->services->has( $key );
 	}
 
 	/**
@@ -627,10 +647,10 @@ final class WC_Conditions {
 		if ( $this->is_request( 'frontend' ) || WCCS_Helpers::wc_is_rest_api_request() ) {
 			$this->cart = new WCCS_Cart();
 			$pricing = new WCCS_Pricing(
-				WCCS_Conditions_Provider::get_pricings( array( 'status' => 1 ) )
+				WCCS_Conditions_Provider::get_pricings( array( 'status' => 1, 'cache' => true ) )
 			);
 			$this->services->set( 'cart_discount', new WCCS_Cart_Discount(
-				WCCS_Conditions_Provider::get_cart_discounts( array( 'status' => 1 ) )
+				WCCS_Conditions_Provider::get_cart_discounts( array( 'status' => 1, 'cache' => true ) )
 			) );
 			$this->services->set( 'pricing', $pricing );
 			$this->services->set( 'WCCS_Product_Price_Cache', new WCCS_Product_Price_Cache( $pricing ) );
@@ -666,6 +686,7 @@ final class WC_Conditions {
 		$batch_price_updater = new WCCS_Background_Batch_Price_Updater();
 		$batch_price_updater->init();
 
+		$this->services->set( WCCS_Rules_Cache::class, new WCCS_Rules_Cache() );
 		$this->services->set( 'WCCS_DB_Cache', new WCCS_DB_Cache() );
 		$this->services->set( 'conditions', new WCCS_DB_Conditions() );
 		$this->services->set( 'condition_meta', new WCCS_DB_Condition_Meta() );

@@ -26,7 +26,7 @@ class WCCS_Cart_Items_Helpers {
 		$products = array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $products );
 
 		if ( empty( $cart_items ) ) {
-			return WCCS()->WCCS_Comparison->union_compare( $products, array(), $type, (int) $number );
+			return WCCS_Comparison::union_compare( $products, array(), $type, (int) $number );
 		}
 
 		$found_count = 0;
@@ -90,7 +90,7 @@ class WCCS_Cart_Items_Helpers {
 		}
 
 		if ( empty( $cart_items ) ) {
-			return WCCS()->WCCS_Comparison->union_compare( $categories, array(), $type, (int) $number );
+			return WCCS_Comparison::union_compare( $categories, array(), $type, (int) $number );
 		}
 
 		$categories = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $categories );
@@ -125,7 +125,7 @@ class WCCS_Cart_Items_Helpers {
 				return true;
 			}
 			
-			return WCCS()->WCCS_Comparison->union_compare( $categories, $cart_categories, $type, (int) $number );
+			return WCCS_Comparison::union_compare( $categories, $cart_categories, $type, (int) $number );
 		}
 
 		return false;

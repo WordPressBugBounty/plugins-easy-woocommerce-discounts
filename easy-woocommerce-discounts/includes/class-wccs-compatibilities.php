@@ -105,7 +105,7 @@ class WCCS_Compatibilities {
 		}
 
 		// Product Feed PRO for WooCommerce compatibility.
-		if ( defined( 'WOOCOMMERCESEA_FILE' ) ) {
+		if ( defined( 'WOOCOMMERCESEA_PLUGIN_VERSION' ) || defined( 'ADT_PFP_PLUGIN_FILE' ) || defined( 'WOOCOMMERCESEA_FILE' ) ) {
 			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-product-feed-pro.php';
 			$compatibility = new WCCS_Compatibility_Product_Feed_Pro( $this->loader );
 			$compatibility->init();
@@ -152,9 +152,32 @@ class WCCS_Compatibilities {
 			WCCS_Compatibility_Product_Bundles::init();
 		}
 
+		if ( defined( 'ASNP_WESB_VERSION' ) ) {
+			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-easy-sale-badges.php';
+			WCCS_Compatibility_Easy_Sale_Badges::init();
+		}
+
 		if ( class_exists( 'WooCommerceWholeSalePrices' ) ) {
 			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-wholesale-prices.php';
 			WCCS_Compatibility_WholeSale_Prices::init();
+		}
+
+		if ( 'woodmart' === get_stylesheet() || 'woodmart' === get_template() ) {
+			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-woodmart.php';
+			$compatibility = new WCCS_Compatibility_Woodmart( $this->loader );
+			$compatibility->init();
+			$this->services->set( WCCS_Compatibility_Woodmart::class, $compatibility );
+		}
+
+		// CTXFeed compatibility.
+		if ( defined( 'WOO_FEED_PLUGIN_FILE' ) ) {
+			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-ctx-feed.php';
+			WCCS_Compatibility_CTXFeed::init();
+		}
+
+		if ( class_exists( '\SW_WAPF\WAPF' ) || class_exists( '\SW_WAPF_PRO\WAPF' ) ) {
+			require_once dirname( __FILE__ ) . '/compatibility/class-wccs-compatibility-sw-wapf.php';
+			WCCS_Compatibility_SW_WAPF::init();
 		}
     }
 

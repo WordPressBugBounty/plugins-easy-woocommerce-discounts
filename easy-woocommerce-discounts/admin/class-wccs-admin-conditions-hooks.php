@@ -8,11 +8,8 @@ class WCCS_Admin_Conditions_Hooks {
 
     protected $loader;
 
-    protected $auto_update_prices;
-
     public function __construct( WCCS_Loader $loader ) {
-        $this->loader             = $loader;
-        $this->auto_update_prices = (int) apply_filters( 'wccs_background_auto_update_products_price', WCCS()->settings->get_setting( 'auto_update_products_price', 0 ) );
+        $this->loader = $loader;
     }
 
     public function enable_hooks() {
@@ -23,43 +20,41 @@ class WCCS_Admin_Conditions_Hooks {
         $this->loader->add_action( 'wccs_condition_duplicated', $this, 'condition_duplicated' );
     }
 
+    protected function get_condition_type( $condition ) {
+        if ( is_object( $condition ) && isset( $condition->type ) ) {
+            return $condition->type;
+        }
+        if ( is_array( $condition ) && isset( $condition['type'] ) ) {
+            return $condition['type'];
+        }
+        return null;
+    }
+
     public function condition_added( $condition ) {
-        if ( ! $condition || ! $condition->id ) {
+        if ( ! $condition || ( ! isset( $condition->id ) && ! isset( $condition['id'] ) ) ) {
             return;
         }
 
-        if ( 'pricing' === $condition->type ) {
-            WCCS_Clear_Cache::clear_pricing_caches();
-            if ( $this->auto_update_prices ) {
-                WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
-            }
-        }
+        $type = $this->get_condition_type( $condition );
+        $this->clear_rules_cache_by_type( $type );
     }
 
     public function condition_deleted( $condition ) {
-        if ( ! $condition || ! $condition->id ) {
+        if ( ! $condition || ( ! isset( $condition->id ) && ! isset( $condition['id'] ) ) ) {
             return;
         }
 
-        if ( 'pricing' === $condition->type ) {
-            WCCS_Clear_Cache::clear_pricing_caches();
-            if ( $this->auto_update_prices ) {
-                WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
-            }
-        }
+        $type = $this->get_condition_type( $condition );
+        $this->clear_rules_cache_by_type( $type );
     }
 
     public function condition_updated( $condition ) {
-        if ( ! $condition || ! $condition->id ) {
+        if ( ! $condition || ( ! isset( $condition->id ) && ! isset( $condition['id'] ) ) ) {
             return;
         }
 
-        if ( 'pricing' === $condition->type ) {
-            WCCS_Clear_Cache::clear_pricing_caches();
-            if ( $this->auto_update_prices ) {
-                WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
-            }
-        }
+        $type = $this->get_condition_type( $condition );
+        $this->clear_rules_cache_by_type( $type );
     }
 
     public function condition_duplicated( $condition_id ) {
@@ -68,20 +63,26 @@ class WCCS_Admin_Conditions_Hooks {
         }
 
         $condition = WCCS()->conditions->get_condition( $condition_id );
-        if ( 'pricing' === $condition->type ) {
-            WCCS_Clear_Cache::clear_pricing_caches();
-            if ( $this->auto_update_prices ) {
-                WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
-            }
-        }
+        $type      = $this->get_condition_type( $condition );
+        $this->clear_rules_cache_by_type( $type );
     }
 
     public function conditions_ordering_updated( $type ) {
-        if ( 'pricing' === $type ) {
-            WCCS_Clear_Cache::clear_pricing_caches();
-            if ( $this->auto_update_prices ) {
-                WCCS()->WCCS_Background_Batch_Price_Updater->maybe_update_prices();
-            }
+        $this->clear_rules_cache_by_type( $type );
+    }
+
+    /**
+     * Clear cached rules and services selectively based on rule type.
+     *
+     * @param string|null $type Condition type (e.g. 'pricing', 'cart-discount', 'checkout-fee', 'shipping').
+     * @return void
+     */
+    protected function clear_rules_cache_by_type( $type = null ) {
+        WCCS()->conditions->clear_rules_cache( $type );
+
+        // When a pricing rule changes (or all rules are cleared), clear product price and badge caches
+        if ( 'pricing' === $type || empty( $type ) ) {
+            WCCS_Clear_Cache::clear_pricing_caches( true );
         }
     }
 

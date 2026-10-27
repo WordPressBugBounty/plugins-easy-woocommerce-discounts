@@ -23,6 +23,18 @@ class WCCS_Cart_Item_Pricing_Discounts {
 	protected $pricing_cache;
 
 	/**
+	 * Instance memoization caches for cart item discounts.
+	 */
+	protected $cache_all_discounts      = null;
+	protected $cache_all_pricings       = null;
+	protected $cache_simple_discounts   = null;
+	protected $cache_simple_pricings    = null;
+	protected $cache_bulk_discounts     = null;
+	protected $cache_bulk_pricings      = null;
+	protected $cache_purchase_discounts = null;
+	protected $cache_purchase_pricings  = null;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string                        $cart_item_id
@@ -43,6 +55,10 @@ class WCCS_Cart_Item_Pricing_Discounts {
 	}
 
 	public function get_discounts() {
+		if ( null !== $this->cache_all_discounts ) {
+			return $this->cache_all_discounts;
+		}
+
 		$discounts = $this->get_simple_discounts()
 			+ $this->get_bulk_discounts()
 			+ $this->get_purchase_discounts();
@@ -52,10 +68,14 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			$discounts = $this->pricing->rules_filter->by_apply_mode( $discounts );
 		}
 
-		return $discounts;
+		return $this->cache_all_discounts = $discounts;
 	}
 
 	public function get_pricings() {
+		if ( null !== $this->cache_all_pricings ) {
+			return $this->cache_all_pricings;
+		}
+
 		$pricings = $this->get_simple_pricings()
 			+ $this->get_bulk_pricings()
 			+ $this->get_purchase_pricings();
@@ -65,16 +85,20 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			$pricings = $this->pricing->rules_filter->by_apply_mode( $pricings );
 		}
 
-		return $pricings;
+		return $this->cache_all_pricings = $pricings;
 	}
 
 	public function get_simple_discounts() {
+		if ( null !== $this->cache_simple_discounts ) {
+			return $this->cache_simple_discounts;
+		}
+
 		if ( ! apply_filters( 'wccs_cart_item_simple_discounts', true, $this->item, $this ) ) {
-			return [];
+			return $this->cache_simple_discounts = [];
 		}
 
 		if ( empty( $this->pricings ) || empty( $this->pricings['simple'] ) ) {
-			return apply_filters( 'wccs_cart_item_pricing_simple_discounts', array() );
+			return $this->cache_simple_discounts = apply_filters( 'wccs_cart_item_pricing_simple_discounts', array() );
 		}
 
 		$discounts = array();
@@ -101,16 +125,25 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			);
 		}
 
-		return apply_filters( 'wccs_cart_item_pricing_simple_discounts', $discounts );
+		return $this->cache_simple_discounts = apply_filters( 'wccs_cart_item_pricing_simple_discounts', $discounts );
 	}
 
 	public function get_simple_pricings() {
+		if ( null !== $this->cache_simple_pricings ) {
+			return $this->cache_simple_pricings;
+		}
+
 		if ( ! apply_filters( 'wccs_cart_item_simple_pricings', true, $this->item, $this ) ) {
-			return [];
+			return $this->cache_simple_pricings = [];
 		}
 
 		if ( empty( $this->pricings ) || empty( $this->pricings['simple'] ) ) {
-			return apply_filters( 'wccs_cart_item_pricing_simple_pricings', array() );
+			return $this->cache_simple_pricings = apply_filters( 'wccs_cart_item_pricing_simple_pricings', array() );
+		}
+
+		// Fast path: if simple discounts already computed, reuse validated rules directly!
+		if ( null !== $this->cache_simple_discounts ) {
+			return $this->cache_simple_pricings = apply_filters( 'wccs_cart_item_pricing_simple_pricings', $this->cache_simple_discounts );
 		}
 
 		$pricings = array();
@@ -135,16 +168,20 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			);
 		}
 
-		return apply_filters( 'wccs_cart_item_pricing_simple_pricings', $pricings );
+		return $this->cache_simple_pricings = apply_filters( 'wccs_cart_item_pricing_simple_pricings', $pricings );
 	}
 
 	public function get_bulk_discounts() {
+		if ( null !== $this->cache_bulk_discounts ) {
+			return $this->cache_bulk_discounts;
+		}
+
 		if ( ! apply_filters( 'wccs_cart_item_bulk_discounts', true, $this->item, $this ) ) {
-			return [];
+			return $this->cache_bulk_discounts = [];
 		}
 
 		if ( empty( $this->pricings ) || empty( $this->pricings['bulk'] ) ) {
-			return apply_filters( 'wccs_cart_item_pricing_bulk_discounts', array() );
+			return $this->cache_bulk_discounts = apply_filters( 'wccs_cart_item_pricing_bulk_discounts', array() );
 		}
 
 		$discounts = array();
@@ -157,7 +194,15 @@ class WCCS_Cart_Item_Pricing_Discounts {
 				continue;
 			}
 
-			$items_quantities = $this->cart->get_items_quantities( $pricing['items'], $pricing['quantity_based_on'], true );
+			$items_quantities = $this->cart->get_items_quantities(
+				$pricing['items'],
+				$pricing['quantity_based_on'],
+				true,
+				'',
+				'desc',
+				array(),
+				true
+			);
 			if ( empty( $items_quantities ) ) {
 				continue;
 			}
@@ -191,16 +236,20 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			}
 		}
 
-		return apply_filters( 'wccs_cart_item_pricing_bulk_discounts', $discounts );
+		return $this->cache_bulk_discounts = apply_filters( 'wccs_cart_item_pricing_bulk_discounts', $discounts );
 	}
 
 	public function get_bulk_pricings() {
+		if ( null !== $this->cache_bulk_pricings ) {
+			return $this->cache_bulk_pricings;
+		}
+
 		if ( ! apply_filters( 'wccs_cart_item_bulk_pricings', true, $this->item, $this ) ) {
-			return [];
+			return $this->cache_bulk_pricings = [];
 		}
 
 		if ( empty( $this->pricings ) || empty( $this->pricings['bulk'] ) ) {
-			return apply_filters( 'wccs_cart_item_pricing_bulk_pricings', array() );
+			return $this->cache_bulk_pricings = apply_filters( 'wccs_cart_item_pricing_bulk_pricings', array() );
 		}
 
 		$pricings = array();
@@ -225,23 +274,27 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			);
 		}
 
-		return apply_filters( 'wccs_cart_item_pricing_bulk_pricings', $pricings );
+		return $this->cache_bulk_pricings = apply_filters( 'wccs_cart_item_pricing_bulk_pricings', $pricings );
 	}
 
 	public function get_purchase_discounts() {
+		if ( null !== $this->cache_purchase_discounts ) {
+			return $this->cache_purchase_discounts;
+		}
+
 		if ( ! apply_filters( 'wccs_cart_item_purchase_discounts', true, $this->item, $this ) ) {
-			return [];
+			return $this->cache_purchase_discounts = [];
 		}
 
 		if ( empty( $this->pricings ) || empty( $this->pricings['purchase'] ) ) {
-			return apply_filters( 'wccs_cart_item_pricing_purchase_discounts', array() );
+			return $this->cache_purchase_discounts = apply_filters( 'wccs_cart_item_pricing_purchase_discounts', array() );
 		}
 
 		$rules = $this->pricings['purchase'];
 		if ( (int) WCCS()->settings->get_setting( 'auto_add_free_to_cart', 1 ) ) {
 			$rules = $this->pricing->get_purchase_pricings( 'exclude_auto' );
 			if ( empty( $rules ) ) {
-				return apply_filters( 'wccs_cart_item_pricing_purchase_discounts', array() );
+				return $this->cache_purchase_discounts = apply_filters( 'wccs_cart_item_pricing_purchase_discounts', array() );
 			}
 		}
 
@@ -347,7 +400,7 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			}
 		}
 
-		return apply_filters( 'wccs_cart_item_pricing_purchase_discounts', $discounts );
+		return $this->cache_purchase_discounts = apply_filters( 'wccs_cart_item_pricing_purchase_discounts', $discounts );
 	}
 
 	/**
@@ -577,12 +630,16 @@ class WCCS_Cart_Item_Pricing_Discounts {
 	}
 
 	public function get_purchase_pricings() {
+		if ( null !== $this->cache_purchase_pricings ) {
+			return $this->cache_purchase_pricings;
+		}
+
 		if ( ! apply_filters( 'wccs_cart_item_purchase_pricings', true, $this->item, $this ) ) {
-			return [];
+			return $this->cache_purchase_pricings = [];
 		}
 
 		if ( empty( $this->pricings ) || empty( $this->pricings['purchase'] ) ) {
-			return apply_filters( 'wccs_cart_item_pricing_purchase_pricings', array() );
+			return $this->cache_purchase_pricings = apply_filters( 'wccs_cart_item_pricing_purchase_pricings', array() );
 		}
 
 		$pricings = array();
@@ -605,7 +662,7 @@ class WCCS_Cart_Item_Pricing_Discounts {
 			);
 		}
 
-		return apply_filters( 'wccs_cart_item_pricing_purchase_pricings', $pricings );
+		return $this->cache_purchase_pricings = apply_filters( 'wccs_cart_item_pricing_purchase_pricings', $pricings );
 	}
 
 }

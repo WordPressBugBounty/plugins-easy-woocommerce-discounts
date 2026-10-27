@@ -9,6 +9,11 @@ class WCCS_Product_Validator {
 	protected $customer;
 
 	/**
+	 * Memoized hash maps to avoid repetitive maybe_get_exact_item_id sweeps.
+	 */
+	protected $product_maps = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param WP_User|null $customer
@@ -93,9 +98,14 @@ class WCCS_Product_Validator {
 			return false;
 		}
 
-		$product = is_numeric( $product ) ? $product : $product->get_id();
+		$hash = md5( serialize( $item['products'] ) );
+		if ( ! isset( $this->product_maps[ $hash ] ) ) {
+			$this->product_maps[ $hash ] = array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $item['products'] );
+		}
 
-		return in_array( $product, array_filter( array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $item['products'] ) ) );
+		$product = is_numeric( $product ) ? absint( $product ) : $product->get_id();
+
+		return in_array( $product, $this->product_maps[ $hash ] );
 	}
 
 	public function products_not_in_list( $item, $product, $variation = 0, array $variations = array() ) {
@@ -103,9 +113,14 @@ class WCCS_Product_Validator {
 			return false;
 		}
 
-		$product = is_numeric( $product ) ? $product : $product->get_id();
+		$hash = md5( serialize( $item['products'] ) );
+		if ( ! isset( $this->product_maps[ $hash ] ) ) {
+			$this->product_maps[ $hash ] = array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $item['products'] );
+		}
 
-		return ! in_array( $product, array_filter( array_map( 'WCCS_Helpers::maybe_get_exact_item_id', $item['products'] ) ) );
+		$product = is_numeric( $product ) ? absint( $product ) : $product->get_id();
+
+		return ! in_array( $product, $this->product_maps[ $hash ] );
 	}
 
 	public function categories_in_list( $item, $product, $variation = 0, array $variations = array() ) {
@@ -114,8 +129,20 @@ class WCCS_Product_Validator {
 		}
 
 		$item_categories = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $item['categories'] );
-		$product = is_numeric( $product ) ? $product : $product->get_id();
-		$product_categories = wc_get_product_cat_ids( $product );
+		$product_id      = is_numeric( $product ) ? absint( $product ) : $product->get_id();
+		$parent_id       = 0;
+		if ( is_a( $product, 'WC_Product' ) ) {
+			if ( $product->is_type( 'variation' ) ) {
+				$parent_id = $product->get_parent_id();
+			}
+		} elseif ( $product_id > 0 ) {
+			$parent_id = wp_get_post_parent_id( $product_id );
+		}
+		if ( $parent_id > 0 ) {
+			$product_id = $parent_id;
+		}
+
+		$product_categories = wc_get_product_cat_ids( $product_id );
 		foreach ( $product_categories as $category ) {
 			if ( in_array( $category, $item_categories ) ) {
 				return true;
@@ -130,14 +157,33 @@ class WCCS_Product_Validator {
 		}
 
 		$item_categories = array_map( 'WCCS_Helpers::maybe_get_exact_category_id', $item['categories'] );
-		$product = is_numeric( $product ) ? $product : $product->get_id();
-		$product_categories = wc_get_product_cat_ids( $product );
+		$product_id      = is_numeric( $product ) ? absint( $product ) : $product->get_id();
+		$parent_id       = 0;
+		if ( is_a( $product, 'WC_Product' ) ) {
+			if ( $product->is_type( 'variation' ) ) {
+				$parent_id = $product->get_parent_id();
+			}
+		} elseif ( $product_id > 0 ) {
+			$parent_id = wp_get_post_parent_id( $product_id );
+		}
+		if ( $parent_id > 0 ) {
+			$product_id = $parent_id;
+		}
+
+		$product_categories = wc_get_product_cat_ids( $product_id );
 		foreach ( $product_categories as $category ) {
 			if ( in_array( $category, $item_categories ) ) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Reset in-memory cache maps.
+	 */
+	public function clear_local_cache() {
+		$this->product_maps = array();
 	}
 
 }

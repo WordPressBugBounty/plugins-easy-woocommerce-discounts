@@ -54,6 +54,18 @@ class WCCS_Rest_Analytics extends WCCS_Rest_Base_Controller {
 				],
 			]
 		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/toggle',
+			array(
+				array(
+					'methods' => WP_REST_Server::CREATABLE,
+					'callback' => array( $this, 'toggle' ),
+					'permission_callback' => array( $this, 'update_item_permissions_check' ),
+				),
+			)
+		);
 	}
 
 	public function totals( $request ) {
@@ -227,6 +239,27 @@ class WCCS_Rest_Analytics extends WCCS_Rest_Base_Controller {
 			return $result;
 		} catch (Exception $e) {
 			throw $e;
+		}
+	}
+
+	public function toggle( $request ) {
+		try {
+			$enable = isset( $request['enable'] ) ? (int) $request['enable'] : 0;
+			$enable = 1 === $enable ? 1 : 0;
+
+			$settings = WCCS()->settings;
+			$settings->enable_analytics = $enable;
+			$settings->update();
+
+			return rest_ensure_response( array(
+				'success' => true,
+				'enabled' => $enable,
+				'message' => 1 === $enable
+					? __( 'Analytics enabled successfully.', 'easy-woocommerce-discounts' )
+					: __( 'Analytics disabled successfully.', 'easy-woocommerce-discounts' ),
+			) );
+		} catch ( Exception $e ) {
+			return new WP_Error( 'asnp_ewd_rest_analytics_error', $e->getMessage(), array( 'status' => 400 ) );
 		}
 	}
 
