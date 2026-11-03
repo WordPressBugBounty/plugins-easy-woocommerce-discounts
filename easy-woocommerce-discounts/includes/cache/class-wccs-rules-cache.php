@@ -158,6 +158,9 @@ class WCCS_Rules_Cache {
 		// Tier 1: Always memoize in runtime memory
 		$this->runtime_cache[ $cache_key ] = $data;
 
+		// Track registered key across all environments (including external object cache)
+		$this->register_snapshot_key( $cache_key );
+
 		// Tier 2: External Object Cache (Redis / Memcached)
 		if ( wp_using_ext_object_cache() ) {
 			return wp_cache_set( $cache_key, $data, self::CACHE_GROUP, HOUR_IN_SECONDS );
@@ -186,12 +189,13 @@ class WCCS_Rules_Cache {
 	 * @return void
 	 */
 	public function clear_cache( $type = null ) {
+		$type_prefix = ! empty( $type ) && is_string( $type ) ? 'asnp_wccs_rules_' . sanitize_key( $type ) . '_' : null;
+		$all_prefix  = 'asnp_wccs_rules_all_';
+		
 		// Tier 1: Purge runtime memory
 		if ( ! empty( $type ) && is_string( $type ) && ! empty( $this->runtime_cache ) ) {
-			$type_prefix = 'asnp_wccs_rules_' . sanitize_key( $type ) . '_';
-			$all_prefix  = 'asnp_wccs_rules_all_';
 			foreach ( array_keys( $this->runtime_cache ) as $key ) {
-				if ( 0 === strpos( $key, $type_prefix ) || 0 === strpos( $key, $all_prefix ) ) {
+				if ( ( ! empty( $type_prefix ) && 0 === strpos( $key, $type_prefix ) ) || 0 === strpos( $key, $all_prefix ) ) {
 					unset( $this->runtime_cache[ $key ] );
 				}
 			}
@@ -199,22 +203,18 @@ class WCCS_Rules_Cache {
 			$this->runtime_cache = array();
 		}
 
-		// Tier 2: Flush external object cache
-		if ( ! empty( $type ) && is_string( $type ) ) {
-			$keys = get_option( self::SNAPSHOT_REGISTRY_OPTION, array() );
-			if ( is_array( $keys ) && ! empty( $keys ) ) {
-				$type_prefix = 'asnp_wccs_rules_' . sanitize_key( $type ) . '_';
-				$all_prefix  = 'asnp_wccs_rules_all_';
-				foreach ( $keys as $k ) {
-					if ( 0 === strpos( $k, $type_prefix ) || 0 === strpos( $k, $all_prefix ) ) {
-						wp_cache_delete( $k, self::CACHE_GROUP );
-					}
+		// Tier 2: Flush external object cache (Redis / Memcached)
+		$keys = get_option( self::SNAPSHOT_REGISTRY_OPTION, array() );
+		if ( is_array( $keys ) && ! empty( $keys ) ) {
+			foreach ( $keys as $k ) {
+				if ( empty( $type_prefix ) || 0 === strpos( $k, $type_prefix ) || 0 === strpos( $k, $all_prefix ) ) {
+					wp_cache_delete( $k, self::CACHE_GROUP );
 				}
 			}
-		} else {
-			if ( wp_cache_supports( 'flush_group' ) ) {
-				wp_cache_flush_group( self::CACHE_GROUP );
-			}
+		}
+
+		if ( empty( $type ) && wp_cache_supports( 'flush_group' ) ) {
+			wp_cache_flush_group( self::CACHE_GROUP );
 		}
 
 		// Tier 3: Purge OPcache PHP file cache

@@ -70,14 +70,17 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$variable_regular_prices = apply_filters(
 				'wccs_product_pricing_variable_regular_prices',
 				array(
-					'min' => current( $prices['regular_price'] ),
+					'min' => reset( $prices['regular_price'] ),
 					'max' => end( $prices['regular_price'] ),
 				),
 				$this->product,
 				$this
 			);
-			$min_price = isset( $variable_regular_prices['min'] ) ? $variable_regular_prices['min'] : current( $prices['regular_price'] );
+			$min_price = isset( $variable_regular_prices['min'] ) ? $variable_regular_prices['min'] : reset( $prices['regular_price'] );
 			$max_price = isset( $variable_regular_prices['max'] ) ? $variable_regular_prices['max'] : end( $prices['regular_price'] );
+
+			$min_orig_price = ! empty( $prices['price'] ) ? reset( $prices['price'] ) : $min_price;
+			$max_orig_price = ! empty( $prices['price'] ) ? end( $prices['price'] ) : $max_price;
 
 			$optimized_ids = WCCS_Helpers::get_archive_optimized_variation_ids( $this->product );
 
@@ -111,7 +114,8 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$max_discounted = $temp;
 				}
 
-				if ( (float) $min_price == (float) $min_discounted && (float) $max_price == (float) $max_discounted ) {
+				if ( ( (float) $min_price == (float) $min_discounted && (float) $max_price == (float) $max_discounted ) ||
+				     ( (float) $min_orig_price == (float) $min_discounted && (float) $max_orig_price == (float) $max_discounted ) ) {
 					if ( false !== strpos( $price, '<del' ) ) {
 						$clean_price = ( $min_price !== $max_price ) ? WCCS_Helpers::wc_format_price_range( $min_price, $max_price ) : wc_price( $min_price );
 						return $clean_price . $this->product->get_price_suffix();
@@ -156,7 +160,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 				$min_product_discounted_price = apply_filters(
 					'wccs_public_product_pricing_get_price_html_min_variation_price',
-					current( $product_discounted_price['price'] ),
+					reset( $product_discounted_price['price'] ),
 					key( $product_discounted_price['price'] ),
 					$price,
 					$this
@@ -169,7 +173,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$this
 				);
 
-				$min_orig_price = current( $prices['price'] );
+				$min_orig_price = reset( $prices['price'] );
 				$max_orig_price = end( $prices['price'] );
 				if ( ( (float) $min_price == $min_product_discounted_price && (float) $max_price == $max_product_discounted_price ) ||
 				     ( (float) $min_orig_price == $min_product_discounted_price && (float) $max_orig_price == $max_product_discounted_price ) ) {
@@ -201,7 +205,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$discounted_price = wc_price( $min_product_discounted_price );
 				}
 
-				$min_product_raw_price = current( $product_discounted_price['price'] );
+				$min_product_raw_price = reset( $product_discounted_price['price'] );
 				$price_suffix = $this->product->get_price_suffix( is_numeric( $min_product_raw_price ) ? $min_product_raw_price : '' );
 
 				if ( (float) $min_price > $min_product_discounted_price || (float) $max_price > $max_product_discounted_price ) {
@@ -269,7 +273,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 		}
 
 		if ( $this->product->is_type( 'variable' ) ) {
-			$prices = $this->product->get_variation_prices( true );
+			$prices = WCCS()->product_helpers->wc_get_variation_prices( $this->product, true );
 			if ( empty( $prices['regular_price'] ) ) {
 				do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
 				return $price;
@@ -278,13 +282,13 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$variable_regular_prices = apply_filters(
 				'wccs_product_pricing_variable_regular_prices',
 				array(
-					'min' => current( $prices['regular_price'] ),
+					'min' => reset( $prices['regular_price'] ),
 					'max' => end( $prices['regular_price'] ),
 				),
 				$this->product,
 				$this
 			);
-			$min_price = isset( $variable_regular_prices['min'] ) ? $variable_regular_prices['min'] : current( $prices['regular_price'] );
+			$min_price = isset( $variable_regular_prices['min'] ) ? $variable_regular_prices['min'] : reset( $prices['regular_price'] );
 			$max_price = isset( $variable_regular_prices['max'] ) ? $variable_regular_prices['max'] : end( $prices['regular_price'] );
 
 			$optimized_ids = WCCS_Helpers::get_archive_optimized_variation_ids( $this->product );
@@ -306,6 +310,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				}
 
 				if ( ( ! is_numeric( $min_discounted ) || 0 > $min_discounted ) && ( ! is_numeric( $max_discounted ) || 0 > $max_discounted ) ) {
+					do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
 					return $price;
 				} elseif ( ! is_numeric( $min_discounted ) || 0 > $min_discounted ) {
 					$min_discounted = $max_discounted;
@@ -314,7 +319,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				}
 
 				if ( $min_discounted > $max_discounted ) {
-					$temp = $min_discounted;
+					$temp           = $min_discounted;
 					$min_discounted = $max_discounted;
 					$max_discounted = $temp;
 				}
@@ -322,7 +327,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 				if ( (float) $min_price == (float) $min_discounted && (float) $max_price == (float) $max_discounted ) {
 					if ( false !== strpos( $price, '<del' ) ) {
 						$clean_price = ( $min_price !== $max_price ) ? WCCS_Helpers::wc_format_price_range( $min_price, $max_price ) : wc_price( $min_price );
-						$price = $clean_price . $this->product->get_price_suffix();
+						$price       = $clean_price . $this->product->get_price_suffix();
 					}
 					do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
 					return $price;
@@ -369,7 +374,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 
 				$min_product_discounted_price = apply_filters(
 					'wccs_public_product_pricing_get_price_html_min_variation_price',
-					current( $product_discounted_price['price'] ),
+					reset( $product_discounted_price['price'] ),
 					key( $product_discounted_price['price'] ),
 					$price,
 					$this
@@ -382,13 +387,10 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$this
 				);
 
-				$min_orig_price = current( $prices['price'] );
-				$max_orig_price = end( $prices['price'] );
-				if ( ( (float) $min_price == $min_product_discounted_price && (float) $max_price == $max_product_discounted_price ) ||
-				     ( (float) $min_orig_price == $min_product_discounted_price && (float) $max_orig_price == $max_product_discounted_price ) ) {
+				if ( (float) $min_price == $min_product_discounted_price && (float) $max_price == $max_product_discounted_price ) {
 					if ( false !== strpos( $price, '<del' ) ) {
 						$clean_price = ( $min_price !== $max_price ) ? WCCS_Helpers::wc_format_price_range( $min_price, $max_price ) : wc_price( $min_price );
-						$price = $clean_price . $this->product->get_price_suffix();
+						$price       = $clean_price . $this->product->get_price_suffix();
 					}
 					do_action( 'wccs_public_product_pricing_after_get_price_html', $this, $price );
 					return $price;
@@ -415,7 +417,7 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 					$discounted_price = wc_price( $min_product_discounted_price );
 				}
 
-				$min_product_raw_price = current( $product_discounted_price['price'] );
+				$min_product_raw_price = reset( $product_discounted_price['price'] );
 				$price_suffix          = $this->product->get_price_suffix( is_numeric( $min_product_raw_price ) && 0 <= $min_product_raw_price ? $min_product_raw_price : '' );
 
 				if ( (float) $min_price > $min_product_discounted_price || (float) $max_price > $max_product_discounted_price ) {
@@ -531,11 +533,11 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			}
 
 			if ( ! isset( $max_tier['min'] ) || 1 != $max_tier['min'] ) {
-				$prices[] = current( $variable_prices['price'] );
+				$prices[] = reset( $variable_prices['price'] );
 				$prices[] = end( $variable_prices['price'] );
 			} elseif ( isset( $max_tier['min'] ) && 1 == $max_tier['min'] && 0 == $max_tier['discount'] ) {
 				if ( 'fixed_price' !== $max_tier['discount_type'] ) {
-					$prices[] = current( $variable_prices['price'] );
+					$prices[] = reset( $variable_prices['price'] );
 					$prices[] = end( $variable_prices['price'] );
 				}
 			}
@@ -546,13 +548,13 @@ class WCCS_Public_Product_Pricing extends WCCS_Public_Controller {
 			$variable_regular_prices = apply_filters(
 				'wccs_product_pricing_variable_regular_prices',
 				array(
-					'min' => current( $variable_prices['regular_price'] ),
+					'min' => reset( $variable_prices['regular_price'] ),
 					'max' => end( $variable_prices['regular_price'] ),
 				),
 				$this->product,
 				$this
 			);
-			$min_reg = isset( $variable_regular_prices['min'] ) ? $variable_regular_prices['min'] : current( $variable_prices['regular_price'] );
+			$min_reg = isset( $variable_regular_prices['min'] ) ? $variable_regular_prices['min'] : reset( $variable_prices['regular_price'] );
 			$max_reg = isset( $variable_regular_prices['max'] ) ? $variable_regular_prices['max'] : end( $variable_prices['regular_price'] );
 			if ( $min_reg !== $max_reg ) {
 				$regular_price = WCCS_Helpers::wc_format_price_range( $min_reg, $max_reg );

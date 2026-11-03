@@ -5,7 +5,7 @@ Tags: woocommerce, discounts, dynamic pricing, bulk discount, bogo
 Requires at least: 4.4.2
 Tested up to: 7.1
 Requires PHP: 5.6.0
-Stable tag: 9.5.0
+Stable tag: 9.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -370,6 +370,12 @@ Yes. Pricing rules and cart discount rules apply automatically when customers me
 ---
 
 == Changelog ==
+
+= 9.5.1 =
+* Performance: Added archive variation pruning optimization to Advanced price change mode to accelerate shop and archive page rendering for products with large variation counts.
+* Fix: Resolved an issue where saving or updating pricing rules did not immediately take effect on sites using external object caching (Redis / Memcached) without manually flushing the cache.
+* Fix: Resolved variable product price HTML replacement in Advanced Mode to properly render discounted price ranges with strike-through formatting.
+* Fix: Corrected native WooCommerce variation sale price detection in Lightweight Mode when archive variation pruning is enabled.
 
 = 9.5.0 =
 * Performance: Major caching architecture overhaul featuring multi-tier caching (Memory, Object Cache, and Persistent DB Cache) for near-instant catalog page rendering.

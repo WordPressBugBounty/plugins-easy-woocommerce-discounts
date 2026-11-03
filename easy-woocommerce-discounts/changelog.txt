@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 9.5.1 =
+* Performance: Added archive variation pruning optimization to Advanced price change mode to accelerate shop and archive page rendering for products with large variation counts.
+* Fix: Resolved an issue where saving or updating pricing rules did not immediately take effect on sites using external object caching (Redis / Memcached) without manually flushing the cache.
+* Fix: Resolved variable product price HTML replacement in Advanced Mode to properly render discounted price ranges with strike-through formatting.
+* Fix: Corrected native WooCommerce variation sale price detection in Lightweight Mode when archive variation pruning is enabled.
+
 = 9.5.0 =
 * Performance: Major caching architecture overhaul featuring multi-tier caching (Memory, Object Cache, and Persistent DB Cache) for near-instant catalog page rendering.
 * Performance: Introduced file-based rules caching with OPcache support and compressed DB snapshots to drastically reduce rule query overhead.
